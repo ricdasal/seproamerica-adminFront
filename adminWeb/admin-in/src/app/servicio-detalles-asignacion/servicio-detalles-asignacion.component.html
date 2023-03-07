@@ -1,0 +1,188 @@
+<app-header></app-header>
+
+<div class="wrapper">
+    <div class="bottom_nav" >
+      <div id="navbarResponsive2">
+      <ul>
+        <li><a  routerLinkActive="active" routerLink="/serviciosEnCurso">En Curso</a></li>
+        <li><a routerLinkActive="active" routerLink="/serviciosPorAsignar">Por asignar</a></li>
+        <li><a routerLinkActive="active" routerLink="/serviciosTipo" href="#">Tipo</a></li>
+        
+      </ul>
+    </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="column">
+      <div id="Datos_Servicio">
+        <h2 id="Titulo_Datos">Datos del servicio</h2>
+
+        <div id="Fila_Datos">
+          <h5>ID:</h5>
+          <h5 id="valor">{{pedido_a_asignar.idPedido}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Nombre del servicio:    </h5>
+          <h5 id="valor">{{pedido_a_asignar.nombre_Servicio}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Usuario solicitante:</h5>
+          <h5 id="valor">{{pedido_a_asignar.cliente_solicitante}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Fecha de solicitud:</h5>
+          <h5 id="valor">{{pedido_a_asignar.fecha_Solicitud}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Fecha Inicio: </h5>
+          <h5 id="valor">{{pedido_a_asignar.fecha_Inicio}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Fecha Finalizacion:</h5>
+          <h5 id="valor">{{pedido_a_asignar.fecha_Finalizacion}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Hora Inicio:</h5>
+          <h5 id="valor">{{pedido_a_asignar.hora_Inicio}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Hora Finalizacion:</h5>
+          <h5 id="valor">{{pedido_a_asignar.hora_Finalizacion}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Cantidad de empleados requeridos:</h5>
+          <h5 id="valor">{{pedido_a_asignar.cantidad_Empleados_Asignados}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Cantidad de vehiculos requeridos:</h5>
+          <h5 id="valor">{{pedido_a_asignar.cantidad_vehiculos}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Metodo de pago: </h5>
+          <h5 id="valor">Efectivo</h5>
+        </div>
+
+        <h5>Detalles:</h5>
+        <h5 id="detalles"></h5>
+
+      </div>
+    </div>
+
+
+
+    <div class="column">
+      <h2>Asignacion</h2>
+      <br>
+      <br>
+
+      <label >Empleado Lider</label>
+      <div class="input-group">
+        <select [(ngModel)]="lider_elegido" name="select" id="selectOption" class="custom-select custom-select-lg form-control" required="">
+            <option *ngFor="let personal of lista_personalOp" [ngValue]="personal">
+                {{personal.nombres}}
+            </option>
+        </select>
+      </div><br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Guardias</mat-label>
+        <mat-select [(ngModel)]="guardias_escogidos" multiple>
+          <mat-option *ngFor="let personal of lista_guardias" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
+            {{personal.nombres}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     <br>
+
+     <mat-form-field appearance="fill">
+      <mat-label>Guardaespaldas</mat-label>
+      <mat-select [(ngModel)]="guardaespaldas_escogidos" multiple>
+        <mat-option *ngFor="let personal of lista_guardaespaldas" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
+          {{personal.nombres}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Conductores</mat-label>
+      <mat-select [(ngModel)]="conductores_escogidos" multiple>
+        <mat-option *ngFor="let personal of lista_conductor" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
+          {{personal.nombres}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Motorizados</mat-label>
+      <mat-select [(ngModel)]="motorizados_escogidos" multiple>
+        <mat-option *ngFor="let personal of lista_motorizado" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
+          {{personal.nombres}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Vehiculos</mat-label>
+      <mat-select [(ngModel)]="vehiculos_escogidos" multiple>
+        <mat-option *ngFor="let vehiculo of lista_vehiculos" value="{{vehiculo.placa}}-{{vehiculo.marca}}-{{vehiculo.modelo}}-{{vehiculo.color}}">
+          {{vehiculo.marca}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Candados</mat-label>
+      <mat-select [(ngModel)]="candados_escogidos" multiple>
+        <mat-option *ngFor="let candado of lista_candados" value="{{candado.marca}}">
+          {{candado.marca}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Armamento</mat-label>
+      <mat-select [(ngModel)]="armamentos_escogidos" multiple>
+        <mat-option *ngFor="let armamento of lista_armamentos" value="{{armamento.clase}}">
+          {{armamento.clase}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Movil</mat-label>
+      <mat-select [(ngModel)]="moviles_escogidos">
+        <mat-option *ngFor="let movil of lista_moviles" value="{{movil.numeroCell}}">
+          {{movil.marca}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+
+
+    <input type="image" id="img-guardar" (click)="actualizar_pedido()" src="../../assets/Iconos/app sepro vectores-46.png"
+    alt="">
+
+    </div>
+
+
+</div>

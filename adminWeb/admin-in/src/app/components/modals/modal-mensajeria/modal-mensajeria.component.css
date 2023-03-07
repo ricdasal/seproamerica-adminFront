@@ -1,0 +1,79 @@
+
+.contenido h1{
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+.btn-mensajeria{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn{
+    position: absolute;
+    bottom: 20px;
+    color: white;
+    font-size: large;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    }
+    
+
+.mensajes{
+    height: 450px;
+	width: 100%;
+	overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.lista-mensajes{
+    display: flex;
+    flex-direction: column;
+	height: auto;
+    margin: 0;
+    padding-bottom: 20px;
+}
+#item-mensaje{
+
+    display: flex;
+    gap: 8px;
+}
+#nombre-servicio{
+    display: flex;
+    background-color: rgb(44, 152, 44);
+    color: white;
+    border-radius: 28px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: top;
+    font-size: large;
+    z-index: 3;
+}
+.info-envio{
+    font-size: smaller;
+    color: gray;
+
+}
+#mensaje{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    border-radius: 32px ;
+    border: 1px solid black;
+    padding: 10px;   
+}
+
+
+.no-leido {
+    background-color: blue;
+    width: 15px;
+    height: 15px;
+    border-radius: 12px;
+  }
+

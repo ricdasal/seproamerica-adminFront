@@ -1,0 +1,89 @@
+    <app-header></app-header>
+    <div class="wrapper">
+        <div class="bottom_nav">
+          <div id="navbarResponsive2">
+            <ul>
+              <li><a routerLinkActive="active" >BUZÓN DE MENSAJERÍA</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <div class="contenido">
+
+<section >
+        <div class="col-3 " id="historial-mensajes">
+            <div class="lista-mensajes1">
+                <div *ngFor="let message of mensajeriaService.chats">
+
+                    <div (click)="clickOnChat(message)" id="item-mensaje">
+                        <div id="nombre-servicio">Servicio <br> {{message.canal__id_servicio}}</div>
+    
+                        <div>
+    
+                            <span class="info-envio">{{message.nombre_perfil}}
+                                <span class="info-envio" *ngIf='message.usuario__rol==1'> - Administrador</span>
+                                <span class="info-envio" *ngIf='message.usuario__rol==1'>(Yo)</span>
+                                <span class="info-envio" *ngIf='message.usuario__rol==2'> - Cliente</span>
+                                <span class="info-envio" *ngIf='message.usuario__rol==3'> - Empleado</span>
+    
+                            </span>
+    
+    
+    
+                            <p id="mensaje">{{message.texto.split(" ").splice(0, 8).join(" ")}} </p>
+                            <span class="tiempo col " text-right><br>{{ message.tiempo | date:'short' }}</span>
+                            <div *ngIf="message.check_leido==false && message.usuario__correo!=usuario_actual" class="no-leido">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col" id="sala-mensajes">
+            <div *ngIf="!mensajeriaService.num_servicio_actual" class="sin-contenido">
+                <H1>COMIENCE A CHATEAR</H1>
+            </div>
+
+            <div *ngIf="mensajeriaService.num_servicio_actual" class="sala">
+                <div>
+                    <div id="nombre-servicio">
+
+                        <div>
+                            <div>Servicio : {{mensajeriaService.num_servicio_actual}} </div>
+                            {{mensajeriaService.servicio_actual}} : {{mensajeriaService.nombre_usuario_receptor}}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="mensajes" class="mensajes" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+                    <!-- class="sms-general" [ngClass]="{'sms-recibido' : message.correo_usuario==mensajeriaService.usuario_receptor,'sms-enviado' : message.correo_usuario==mensajeriaService.usuario_logeado}">-->
+                    <div id="lista" class="lista-mensajes">
+                        <p *ngFor="let message of mensajeriaService.contactosMensajes" class="sms-general row"
+                            [ngClass]="{'sms-recibido' : message.usuario__correo==mensajeriaService.usuario_receptor,'sms-enviado' : message.usuario__correo==mensajeriaService.usuario_logeado}">
+                            <span class="text-center col">{{message.texto}}</span>
+                            <span class="tiempo col " text-right><br>{{ message.tiempo | date:'short' }}</span>
+
+                        </p>
+                    </div>
+                    
+                </div>
+                <form (submit)="sendMessage()">
+                    <input [(ngModel)]="textSms" [ngModelOptions]="{standalone:true}"
+                        placeholder="Escribir un mensaje..." type="text" id="entrada-mensaje">
+                </form>
+                
+            </div>
+
+            
+        </div>
+
+
+</section>
+
+</div>

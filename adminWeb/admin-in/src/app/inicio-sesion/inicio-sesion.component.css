@@ -1,0 +1,115 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #f12222;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(243, 0, 0), rgb(100, 6, 6));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(243, 0, 0), rgb(100, 6, 6))
+    }
+section{
+  --background: none;
+  background-image: url("../../assets/Fondo-Web-Administrador.png");
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+  height: 100%;
+}
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  justify-content: end;
+}
+
+.formulario{
+display: flex;
+text-align: center;
+justify-content: center;
+}
+mat-form-field {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+
+}
+mat-icon{
+  color: gray;
+}
+#text-crear-cuenta{
+  font-size: 16px;
+  color: white;
+}
+.form-label{
+  display: flex;
+  float: inline-end;
+  color: white;
+  font-size: 20px;
+}
+.boton-login{
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 24px;
+  padding: 10px;
+  background-color:#3da631c8;
+
+  
+}
+.error,.mensaje-info{
+  background-color: rgba(255, 255, 255, 0.568);
+  border-radius: 4px;
+}
+
+.valido{
+  background-color:#3da631;
+
+}
+.invalido{
+  background-color:#3da631c8;
+}
+#firma{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 20px;
+}
+.transparente{
+  background-color: transparent !important;
+}
+
+.input-format{
+  border-radius: 30px !important;
+  width: 18rem !important;
+  height: 5rem !important;
+  /*padding: 1rem !important;*/
+  margin: 1rem !important;
+
+}
+
+.button-format{
+  width: 18rem !important;
+  background-color: #3da631 !important;
+  padding: 0.5rem !important;
+  border-radius: 30px !important;
+  color: white !important;
+}
+
+.button-format:disabled{
+  background-color: #6ba765 !important;
+  color: whitesmoke !important;
+}
+
+.error-style{
+  font-size: 0.5rem !important;
+  padding-left: 1rem !important;
+
+}
+
+.label-style{
+  font-size: 1rem !important;
+}

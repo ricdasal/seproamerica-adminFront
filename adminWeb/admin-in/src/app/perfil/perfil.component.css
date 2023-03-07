@@ -1,0 +1,141 @@
+.gradient-custom-3 {
+    /* fallback for old browsers */
+    background: #84fab0;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5))
+    }
+    .gradient-custom-4 {
+    /* fallback for old browsers */
+    background: #84fab0;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1))
+}
+
+/* Estilos personalizados*/
+img{
+    width: 100%;
+    height: auto;
+}
+/*Header*/
+fondo-header{
+    background-color: white;
+}
+
+.estructura-header{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1%;
+    grid-template-areas: 
+        "h1 h2 h3";
+}
+
+.estructura-header .primeraDivision{
+    grid-area: h1;
+}
+
+.estructura-header .segundaDivision{
+    grid-area: h2;
+}
+
+.estructura-header .terceraDivision{
+    grid-area: h3;
+}
+
+.container-imagen{
+    width: 40%;
+}
+
+.container-Registro1 .container-Registro2{
+    display: flex;
+    justify-content: center;
+    background-color: #BF1924;
+    color: white;
+    margin-top: 70px;
+}
+
+.container-Iconos1 .container-Iconos2{
+    display: flex;
+    justify-content: center;
+    background-color: #BF1924;
+}
+
+.container-Iconos1 .container-Iconos2 .iconList{
+    float: left;
+    list-style: none;
+}
+
+/*Body*/
+.fondo{
+    background-color: white;
+}
+
+.container-datos{
+    width: 100%;
+}
+
+.fondo-datos{
+    background-color: #D9D9D9;
+}
+
+.card{
+    padding: 0 300px;
+}
+
+.btn-confirmar{
+    background-color: #43A829;
+    color: black;
+}
+
+.titulo{
+margin: 0;
+padding-top: 5px;
+background-color: rgb(157, 13, 13);
+border-radius: 50px 50px 0px 0px;
+color: white;
+letter-spacing: 2px;
+text-transform: uppercase;
+font-size: 24px;
+width: 100%;
+height: 45px;    
+text-align: center;
+}
+#img-perfil{
+margin: 0 auto;
+font-size: 100px;
+width: 200px;
+}
+
+.mensaje-actualizar{
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    
+}
+.mensaje-actualizar.exito{
+    background-color: rgb(21, 199, 26);
+    color: white;
+}
+.mensaje-actualizar.error{
+    background-color: rgb(244, 56, 56);
+    color: white;
+}
+
+#opciones{
+    display: flex;
+    flex-direction: row;
+}
+
+#salir{
+   font-size: 30px;
+   cursor: pointer;
+}

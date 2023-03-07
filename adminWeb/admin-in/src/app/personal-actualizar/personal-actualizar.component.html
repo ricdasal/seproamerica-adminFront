@@ -1,0 +1,317 @@
+<app-header></app-header>
+<div class="wrapper">
+  <div class="bottom_nav">
+    <div id="navbarResponsive2">
+      <ul>
+        <li><a routerLinkActive="active" routerLink="/personalVentana">Personal Activo</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="contenido">
+  <form class="row" [formGroup]="registerForm" enctype="multipart/form-data">
+    <div class="col-3">
+      <div id="txtDatos">
+         DATOS PERSONALES
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="item">
+        <label >NOMBRES</label>
+        <input   type="text" id="fname" name="nombres"  tabindex="1" matInput
+           required formControlName="nombres" [(ngModel)]="personal.nombres" />
+        <mat-error *ngIf="registerForm.controls['nombres'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['nombres'].errors?.['pattern']"> Solo insertar letras</mat-error>
+
+      </div>
+
+      <div class="item">
+        <label  for="apellido">Apellidos</label>
+        <input   type="text" id="apellido" matInput  required
+          formControlName="apellidos" [(ngModel)]="personal.apellidos" />
+        <mat-error *ngIf="registerForm.controls['apellidos'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['apellidos'].errors?.['pattern']"> Solo insertar letras</mat-error>
+      </div>
+
+      
+      <label class="form-label" for="form3Example1cg">Sexo</label>
+      <div class="form-outline mb-4">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="personal.sexo" 
+                      id="gridRadios1" value="M">
+          <label class="form-check-label" for="gridRadios1">
+            Masculino
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="personal.sexo" 
+                      id="gridRadios2" value="F">
+          <label class="form-check-label" for="gridRadios2">
+            Femenino
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="personal.sexo" 
+                      id="gridRadios3" value="Nd">
+          <label class="form-check-label" for="gridRadios3">
+            No definir
+          </label>
+        </div>
+        <mat-error *ngIf="registerForm.controls['sexo'].errors?.['required']"> *</mat-error>
+      </div>
+
+        <label class="form-label">ESTADO</label>
+
+        <div class="form-outline mb-4">
+            <div *ngFor="let estado of lista_Estados" class="form-check">
+                <input class="form-check-input" type="radio"
+                id="gridRadios1" value={{estado.idEstado}}
+                formControlName="estado" [(ngModel)]="personal.estado">
+                <label class="form-check-label" for="gridRadios1" 
+                *ngIf="estado.idEstado == personal.estado" [ngStyle]="{'color':'blue'}">
+                    {{estado.estado}}
+                </label>
+                <label class="form-check-label" for="gridRadios1" 
+                *ngIf="estado.idEstado != personal.estado">
+                    {{estado.estado}}
+                </label>
+            </div>
+            <mat-error *ngIf="registerForm.controls['estado'].errors?.['required']"> *</mat-error>
+        </div>
+
+
+
+      <div class="item">
+        <label >PROFESION</label>
+          <input type="text" id="fname" name="profesion"  tabindex="1" matInput
+            required  formControlName="profesion" [(ngModel)]="personal.profesion"/>
+          
+      </div>
+
+      <div class="item">
+        <label  for="tel">TELÉFONO</label>
+        <input maxlength="10" type="tel" id="tel" 
+          formControlName="telefono" [(ngModel)]="personal.telefono" />
+        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['pattern']"> Su telefono debe comenzar con 09 y
+          tener como máximo 10 dígitos</mat-error>
+        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['minlength']"> Minimo 9 caracteres</mat-error>
+        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['maxlength']"> Maximo 10 caracteres</mat-error>
+      </div>
+      
+      <div class="item">
+        <div class="item">
+          <label >DIRECCIÓN</label>
+          <input type="text" id="fname" name="direccion"  tabindex="1" matInput
+              required  formControlName="direccion" [(ngModel)]="personal.direccion"/>
+          <mat-error *ngIf="registerForm.controls['direccion'].errors?.['required']"> *</mat-error>
+        </div>
+      </div>
+      
+      <br>
+      <br>
+      
+
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <div  id="txtDatos">
+            DATOS DEL CARGO
+         </div>
+        </div>
+       
+
+       <div class="col">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="!editable" disabled>
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="!editable && check_conduccion" disabled checked>
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="editable" (change)="cambio_check_conduccion($event)">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="editable && check_conduccion" checked (change)="cambio_check_conduccion($event)">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Conducción
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="!editable" disabled>
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="!editable && check_armamento" disabled checked>
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="editable" (change)="cambio_check_armamento($event)">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="editable && check_armamento" checked (change)="cambio_check_armamento($event)">
+
+
+
+          <label class="form-check-label" for="flexRadioDefault2">
+            Uso de armamento
+          </label>
+        </div>
+       </div>
+      </div><br><br><br>
+      <div class="row pe-4">
+          <div class="col">
+            <div id="txtDatos">
+              DATOS DE TRABAJO
+           </div>
+          </div>
+            <label class="form-label" for="form3Example1cg">Sucursales</label>
+            <div class="form-outline mb-4">
+                <div *ngFor="let sucursal of lista_Sucursales" class="form-check">
+                  <input class="form-check-input" type="radio" formControlName="sucursal" [(ngModel)]="personal.sucursal" 
+                      id="gridRadios1" value={{sucursal.idSucursal}}>
+                  <label class="form-check-label" for="gridRadios1"
+                   *ngIf="sucursal.idSucursal == personal.sucursal" [ngStyle]="{'color':'blue'}">
+                        {{sucursal.direccion}}
+                  </label>
+                  <label class="form-check-label" for="gridRadios1" *ngIf="sucursal.idSucursal != personal.sucursal">
+                    {{sucursal.direccion}}
+                  </label>
+                </div>
+                <mat-error *ngIf="registerForm.controls['sucursal'].errors?.['required']"> *</mat-error>
+            </div>
+            <br>
+            <!--<label > Foto de perfil </label> 
+            <input type="file"  accept="uploads/png, uploads/jpeg" (change)="setImagen($event)">-->
+
+            
+
+          <br>
+          <br>
+
+          <label class="form-label" for="form3Example1cg">Cargo de trabajo</label>
+          <div class="form-outline mb-4">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardia" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardia"*ngIf="!editable && check_guardia" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardia" *ngIf="editable" (change)="cambio_check_guardia($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardia" *ngIf="editable && check_guardia" checked (change)="cambio_check_guardia($event)">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Guardia
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardaespaldas" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardaespaldas" *ngIf="!editable && check_guardaespaldas" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardaespaldas" *ngIf="editable" (change)="cambio_check_guardaespaldas($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_guardaespaldas" *ngIf="editable && check_guardaespaldas" checked (change)="cambio_check_guardaespaldas($event)">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Guardaespaldas
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_conductor" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_conductor" *ngIf="!editable && check_conductor" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_conductor" *ngIf="editable" (change)="cambio_check_conductor($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_conductor" *ngIf="editable && check_conductor" checked (change)="cambio_check_conductor($event)">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Conductor
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_motorizado" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_motorizado" *ngIf="!editable && check_motorizado" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_motorizado" *ngIf="editable" (change)="cambio_check_motorizado($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_motorizado" *ngIf="editable && check_motorizado" checked (change)="cambio_check_motorizado($event)">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Motorizado
+              </label>
+            </div>
+            <mat-error *ngIf="registerForm.controls['sexo'].errors?.['required']"> *</mat-error>
+          </div>
+
+          <!--
+            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="!editable" disabled>
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="!editable && check_armamento" disabled checked>
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="editable" (change)="cambio_check_armamento($event)">
+          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="editable && check_armamento" checked (change)="cambio_check_armamento($event)">
+          -->
+
+  
+      </div>
+
+      <div class="row pe-4">
+
+        <div *ngIf="!editable && !inexistente" class="col cont-guardar">
+           <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-78.png"
+           alt="" (click)="editar_Personal()">
+        </div>
+
+        <div *ngIf="editable" class="col cont-guardar">
+            <input *ngIf="!registerForm.valid" type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-62.png"
+             alt="">
+
+            <input *ngIf="registerForm.valid" type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-62.png"
+            data-bs-toggle="modal" data-bs-target="#modalDos" data-bs-dismiss="modal"  alt="">
+            
+        </div>
+
+        <!--Pantalla para confirmar registro-->
+        <div class="modal fade" id="modalDos" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class=" modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Acepte para actualizar esta
+                            información</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" (click)="actualizar_Personal_Operativo()" class="btn btn-primary"
+                            style="background-color:green;">Actualizar</button>
+
+                    </div>
+                    <div *ngIf="actualizado==true" class="mensaje-actualizar exito">
+                        Datos actualizados con éxito, puede cerrar esta ventana para ver sus cambios
+                    </div>
+                    <div *ngIf="actualizado==false" class="mensaje-actualizar error">
+                        Problemas al actualizar sus datos!. <br>
+                        Cierre la ventana para reinintentar
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="editable" class="col cont-guardar">
+          <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-47.png"
+           alt="" (click)="refrescar()">
+        </div>
+
+        <!--[disabled]="!registerForm.valid"-->
+
+        
+      </div>
+
+      <!--Pantalla para eliminar servicio-->
+      
+      
+     
+    </div>
+
+    <!--Pantalla para confirmar registro-->
+    <div class="modal fade" id="modalDos" data-bs-backdrop="static" [ngStyle]="{'display':display}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3 id="mensajeDeConfirmacionDos"></h3>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" (click)="guardarUsuario()" class="btn btn-primary" style="background-color:green;">Guardar</button>
+          </div>-->
+        </div>
+      </div>
+    </div>
+
+   
+
+
+  </form>
+
+  <div class="col cont-guardar" *ngIf="inexistente == true">
+    <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-45.png"alt="" routerLink="/serviciosVentana">
+  </div>
+
+</div>

@@ -1,0 +1,136 @@
+.wrapper .bottom_nav {
+  width: 100%;
+  background: #f9f9f9;
+  height: 45px;
+  padding: 0 0px;
+}
+
+.wrapper .bottom_nav ul {
+  width: 100%;
+  height: 45px;
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 0cm;
+  list-style: none;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.wrapper .bottom_nav ul li a {
+  color: white;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+#navbarResponsive2 {
+  background-color: rgb(157, 13, 13);
+  border-radius: 50px 50px 0px 0px;
+  margin-bottom: 0cm;
+  padding-bottom: 0px;
+}
+
+.servicios {
+  background-color: pink;
+  padding: 5% 5% 10% 5%;
+
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+
+}
+
+/*.servicios>div>img {
+  width: 250px;
+}
+
+.servicios>div {
+  position: relative;
+  width: 250px;
+}*/
+
+.servicio_especifico{
+  position: relative;
+  top: 0;
+  left: 0;
+  align-content: center;
+}
+
+/*#Base_Circulo{
+  position: relative;
+  top: 0;
+  left: 0;
+}*/
+
+
+
+.detalles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 150px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 40px;
+  /*transform: translateX(-50%);*/
+  /*padding: 20px;*/
+
+}
+
+.detalles h1 {
+  font-weight: bold;
+  font-size: small;
+}
+
+.detalles .logo-servicio {
+  width: 80px;
+}
+
+.detalles .btn-detalle {
+  margin-top: 7px;
+  height: 30px;
+  width: 100px;
+  cursor: pointer;
+}
+
+
+.custodia , .chofer {
+ color: rgb(188, 12, 12);
+}
+.guardia, .transporte{
+ color: white;
+}
+
+
+.area_Boton {
+ background-color: pink;
+  padding: 1% 5% 2% 5%;
+
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.area_Boton .btn_Crear_Servicio {
+ margin-top: -5%;
+ margin-left: 2%;
+}
+
+.servicios .contenedor_servicios{
+  width: 100%;
+  background-color: pink;;
+  border-radius: 50px 50px 50px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+  padding-top: 10px;
+  padding-left: 3%;
+  padding-right: 3%;
+  justify-content: center;
+}
+
+.contenedor_servicios > * {
+  flex: 0 0 15%;
+}

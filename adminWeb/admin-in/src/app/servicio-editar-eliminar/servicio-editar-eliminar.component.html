@@ -1,0 +1,372 @@
+<app-header></app-header>
+
+<div class="wrapper">
+    <div class="bottom_nav" >
+      <div id="navbarResponsive2">
+      <ul>
+        <li><a href="#">Servicio</a></li>
+        
+      </ul>
+    </div>
+    </div>
+</div>
+
+<div class="contenido">
+
+    <form id="demoForm" class="row needs-validation" [formGroup]="registerForm" autocomplete="on" 
+     (ngSubmit)="registerForm.valid" enctype="multipart/form-data" novalidate>
+      <div class="col-3">
+        <div id="txtDatos">
+          DATOS DEL SERVICIO
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <label >NOMBRE DE SERVICIO</label>
+          <input   type="text" id="fname" name="nombreServicio"  tabindex="1" matInput
+             required formControlName="nombreServicio" [(ngModel)]="servicio.nombreServicio" />
+          <mat-error *ngIf="registerForm.controls['nombreServicio'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['nombreServicio'].errors?.['pattern']"> Solo insertar letras</mat-error>
+  
+        </div>
+  
+        <div class="item">
+          <label>COSTO</label>
+          <input   type="number" id="costo" matInput  required
+            formControlName="costo" [(ngModel)]="servicio.costo" />
+          <mat-error *ngIf="registerForm.controls['costo'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['costo'].errors?.['pattern']">Solo debe contener digitos</mat-error>
+        </div>
+
+        <div class="item">
+          <label>TIPO DE SERVICIO</label><br>
+          
+          
+          <div *ngFor="let tipoServicio of lista_Tipos_Servicios" class="form-check">
+            <input class="form-check-input" type="radio"
+            id="tipo_Servicio1" value="{{tipoServicio.idTipo}}" 
+            formControlName="tipo_Servicio" [(ngModel)]="servicio.tipo_Servicio" (change)="tipo_servicio_s2($event, tipoServicio.tarifa)">
+            <input class="form-check-input" type="radio"
+            id="tipo_Servicio1" value="{{tipoServicio.idTipo}}" [ngStyle]="{ 'color': 'white' }"
+            formControlName="tipo_Servicio" [(ngModel)]="servicio.tipo_Servicio"
+             *ngIf="tipoServicio.idTipo == servicio.tipo_Servicio" (change)="tipo_servicio_s2($event, tipoServicio.tarifa)">
+            <label class="form-check-label" for="gridRadios1"
+             *ngIf="tipoServicio.idTipo == servicio.tipo_Servicio" [ngStyle]="{ 'color': 'blue' }">{{tipoServicio.tarifa}}</label>
+             <label class="form-check-label" for="gridRadios1" *ngIf="tipoServicio.idTipo != servicio.tipo_Servicio">{{tipoServicio.tarifa}}</label>
+          </div>
+            
+          
+          <mat-error *ngIf="registerForm.controls['tipo_Servicio'].errors?.['required']"> *</mat-error>
+        </div>  
+  
+        
+  
+        <label class="form-label" for="form3Example1cg"></label>
+        <div class="form-outline mb-4">
+          <div class="form-check">
+           
+            <label class="form-check-label" for="gridRadios1">
+            </label>
+          </div>
+          <div class="form-check">
+            
+            <label class="form-check-label" for="gridRadios2">
+            </label>
+          </div>
+          <div class="form-check">
+            
+            <label class="form-check-label" for="gridRadios3">
+            </label>
+          </div>
+        </div>
+  
+        
+      </div>
+
+
+      <div class="col">
+        <div class="row pe-4">
+          <div class="col">
+            <div  id="txtDatos">
+              INVENTARIO REQUERIDO EN EL SERVICIO
+           </div>
+          </div>
+         
+
+          <!--<div class="col">-->
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="!editable && check_vehiculo" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="editable" (change)="cambio_check_vehiculo($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1" *ngIf="editable && check_vehiculo" checked (change)="cambio_check_vehiculo($event)">
+
+              <label class="form-check-label" for="flexRadioDefault1">
+                Vehiculo
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="!editable && check_armamento" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="editable" (change)="cambio_check_armamento($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2" *ngIf="editable && check_armamento" checked (change)="cambio_check_armamento($event)">
+
+              <label class="form-check-label" for="flexRadioDefault2">
+                Armamento
+              </label>
+            </div>
+           <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault3" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault3" *ngIf="!editable && check_candado" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault3" *ngIf="editable" (change)="cambio_check_candado($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault3" *ngIf="editable && check_candado" checked (change)="cambio_check_candado($event)">
+
+
+              <label class="form-check-label" for="flexRadioDefault3">
+                Candado Satelital
+              </label>
+            </div>
+          <!--</div>-->
+        </div><br><br>
+  
+         
+        <div class="row pe-4">
+            <div class="col">
+              <div id="txtDatos">
+                TIPO DE PERSONAL EN EL SERVICIO
+             </div>
+            </div>
+            
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardia" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardia" *ngIf="!editable && check_guardia" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardia" *ngIf="editable" (change)="cambio_check_guardia($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardia" *ngIf="editable && check_guardia" checked (change)="cambio_check_guardia($event)">
+
+              <label class="form-check-label" for="check_Guardia">
+                Guardia
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardaespaldas" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardaespaldas" *ngIf="!editable && check_guardaespaldas" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardaespaldas" *ngIf="editable" (change)="cambio_check_guardaespaldas($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardaespaldas" *ngIf="editable && check_guardaespaldas" checked (change)="cambio_check_guardaespaldas($event)">
+
+              <label class="form-check-label" for="check_Guardaespaldas">
+                Guardaespaldas
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Conductor_Chofer" *ngIf="!editable" disabled>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Conductor_Chofer" *ngIf="!editable && check_conductor_chofer" disabled checked>
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Conductor_Chofer" *ngIf="editable" (change)="cambio_check_conductor_chofer($event)">
+              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Conductor_Chofer" *ngIf="editable && check_conductor_chofer" checked (change)="cambio_check_conductor_chofer($event)">
+
+              <label class="form-check-label" for="check_Conductor_Chofer">
+                Conductor/Chofer
+              </label>
+          </div>
+
+          <br>
+          <br>
+
+
+          <label > Icono </label> 
+          <input type="file"  accept="uploads/png" *ngIf="!editable" disabled>
+          <input type="file"  accept="uploads/png" *ngIf="editable">
+
+
+          
+      </div>
+
+      <div class="row pe-4">
+
+        <div *ngIf="!editable && !inexistente" class="col cont-guardar">
+           <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-78.png"
+           alt="" (click)="editar_Servicio()">
+        </div>
+
+        <div *ngIf="editable" class="col cont-guardar">
+            <input *ngIf="!registerForm.valid" type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-62.png"
+             alt="">
+
+            <input *ngIf="registerForm.valid" type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-62.png"
+            data-bs-toggle="modal" data-bs-target="#modalDos" data-bs-dismiss="modal"  alt="">
+            
+        </div>
+
+        <!--Pantalla para confirmar registro-->
+        <div class="modal fade" id="modalDos" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class=" modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Acepte para actualizar esta
+                            información</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" (click)="actualizar_Servicio()" class="btn btn-primary"
+                            style="background-color:green;">Actualizar</button>
+
+                    </div>
+                    <div *ngIf="actualizado==true" class="mensaje-actualizar exito">
+                        Datos actualizados con éxito, puede cerrar esta ventana para ver sus cambios
+                    </div>
+                    <div *ngIf="actualizado==false" class="mensaje-actualizar error">
+                        Problemas al actualizar sus datos!. <br>
+                        Cierre la ventana para reinintentar
+                    </div>
+                    <div *ngIf="servicio_diferente==true" id="Mensaje_Error">
+                      Ya existe otro servicio con este nombre
+                    </div>
+                    <div *ngIf="servicio_diferente==false" id="Mensaje_Error"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="editable" class="col cont-guardar">
+          <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-47.png"
+           alt="" (click)="refrescar()">
+        </div>
+
+        <!--[disabled]="!registerForm.valid"-->
+
+        <!--Boton eliminar-->
+        <div class="col cont-guardar" *ngIf="!inexistente">
+            <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-77.png"
+           data-bs-toggle="modal" data-bs-target="#modalTres" data-bs-dismiss="modal"
+            alt="">
+         </div>
+      </div>
+
+      <!--Pantalla para eliminar servicio-->
+      <div class="modal fade" id="modalTres" data-bs-backdrop="static" data-bs-keyboard="false"
+      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class=" modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Una vez eliminado el servicio no podra recuperar los datos 
+                        de este
+                      </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"
+                          aria-label="Close"></button>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" (click)="eliminar_Servicio()" class="btn btn-primary" id="btnEliminarConfirmacion"
+                          style="background-color:rgb(128, 0, 0);">Confirmar eliminacion de servicio</button>
+                          <button type="button" (click)="eliminar_Servicio()" class="btn btn-primary" id="btnEliminarConfirmacion"
+                          style="background-color:rgb(128, 0, 0);" *ngIf="eliminado == true" hidden>
+                          Confirmar eliminacion de servicio</button>
+
+                  </div>
+                  <div *ngIf="eliminado==true" class="mensaje-actualizar exito">
+                      Servicio eliminado con éxito <br>
+                      
+                  </div>
+                  <div *ngIf="eliminado==false" class="mensaje-actualizar error">
+                      Problemas al eliminar el servicio. <br>
+                      Cierre la ventana para reinintentar
+                  </div>
+              </div>
+          </div>
+      </div>
+          
+       
+      </div>
+  
+      <!--Pantalla para confirmar registro-->
+      <!--<div class="modal fade" id="modalDos" data-bs-backdrop="static" [ngStyle]="{'display':display}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel mensajeDeConfirmacion">Datos enviados</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3 id="mensajeDeConfirmacionDos"></h3>
+            </div>
+          </div>
+        </div>
+      </div>-->
+     
+  
+  
+    </form>
+
+    <!--Código para presentar tabla-->
+    <div *ngIf="mostrar_tabla && editable"  class="item" id="tabla">
+      <label>TABLA DE PRECIO POR KILÓMETRO</label>
+      <h6>Indicaciones: Ingrese números decimales usando punto (.) y únicamente dos decimales</h6>
+      <button mat-raised-button *ngIf="!editando_fila" color="primary" (click)="addRow()">Agregar nuevo</button>
+      <button mat-raised-button *ngIf="editando_fila" color="primary" (click)="addRow()" disabled>Agregar nuevo</button>
+      <!--<button mat-raised-button color="primary" (click)="addRow()">Agregar nuevo</button>-->
+
+
+      
+      <table mat-table [dataSource]="data_tabla_source" class="mat-elevation-z8">
+        <ng-container [matColumnDef]="col.key" *ngFor="let col of esquema_columnas">
+          <th mat-header-cell *matHeaderCellDef>
+            {{col.label}} 
+          </th>
+
+          <td mat-cell *matCellDef="let element">
+
+            <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
+              <div class="btn-edit" *ngSwitchCase="'isEdit'">
+                <!--<button mat-button (click)="element.isEdit = !element.isEdit">Editar</button>-->
+                <button mat-button *ngIf="!editando_fila" (click)="element.isEdit = !element.isEdit" (click)="fila_en_edicion()">Editar</button>
+                <button mat-button *ngIf="editando_fila" (click)="element.isEdit = !element.isEdit" disabled>Editar</button>
+
+                <!--<button mat-button class="button_remove" (click)="removeRow(element.id)">Eliminar</button>-->
+                <button mat-button class="button_remove" *ngIf="!editando_fila" (click)="removeRow(element.id)">Eliminar</button>
+                <button mat-button class="button_remove" *ngIf="editando_fila" (click)="removeRow(element.id)" disabled>Eliminar</button>
+
+              </div>
+              <span *ngSwitchDefault>
+                {{ element[col.key]}}
+              </span>
+            </div> 
+
+            <div *ngIf="element.isEdit">
+              <div class="btn-edit" *ngIf="col.key === 'isEdit'; else dataField">
+                <button mat-button (click)="fila_en_no_edicion()" class="button_remove" (click)="removeRow(element.id)">Eliminar</button>
+                <button mat-button (click)="element.isEdit = esta_listo(element.isEdit, element.kilometro_inicial, element.kilometro_destino, element.id)" [disabled]="disableSubmit(element.id)">Hecho</button>
+              </div>
+              <ng-template #dataField>
+                <mat-form-field>
+                  <input
+                    min = 0
+                    step="0.01"
+                    ng-pattern = "/^[0-9]+(\.[0-9]{1,2})?$/"
+                    [required]="col.required"
+                    [pattern]="col.pattern"
+                    [type]="col.type"
+                    matInput
+                    [(ngModel)]="element[col.key]"
+                    (change)="inputHandler($event, element.id, col.key)"
+                  />
+                </mat-form-field>
+              </ng-template>
+            </div>
+
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="columnas_tabla"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas_tabla;"></tr>
+      </table>
+      <p *ngIf="rango_no_valido" style="color:rgb(168, 13, 13);">Rango no válido</p>
+      <p *ngIf="km_inicial_no_valido" style="color:rgb(168, 13, 13);">Kilómetro inicial debe ser mayor que el anterior kilómetro de destino</p>
+      <p *ngIf="km_destino_no_valido" style="color:rgb(168, 13, 13);">Kilómetro destino debe ser menor que el siguiente kilómetro inicial</p>
+      <p *ngIf="tres_digitos_no_valido" style="color:rgb(168, 13, 13);">Solo pueden haber tres dígitos decimales</p>
+    </div>
+
+    <div class="col cont-guardar" *ngIf="inexistente == true">
+      <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-45.png"alt="" routerLink="/serviciosVentana">
+    </div>
+    
+  
+</div>

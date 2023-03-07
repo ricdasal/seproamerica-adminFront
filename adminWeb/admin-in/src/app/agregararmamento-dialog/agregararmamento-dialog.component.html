@@ -1,0 +1,49 @@
+<div mat-dialog-content>{{message}}</div>
+<div mat-dialog-actions>
+    
+
+    <div class="cuerpo">
+      <div class="campos row">
+          <div class="column">
+              <form method="get" action="javascript: void(0);" id="login-form" class="login-form" [formGroup]="registerForm" autocomplete="on" (ngSubmit)="registerForm.valid && onRegisterSubmit()" novalidate>
+  
+              <div>
+
+                  <label class="label-email">Número de serie</label>
+                  <input type="text" id="fname"  name="numSerie" placeholder="Ingrese el Número de serie" tabindex="1" matInput class="form-control form-control-lg" required
+                  formControlName="numSerie"
+                  [(ngModel)]="armamento.numSerie" />
+                  <mat-error *ngIf="registerForm.controls['numSerie'].errors?.['required']"> *</mat-error>
+           
+
+              </div>
+              
+              <div>
+                <label class="label-email">Marca</label>
+                <input type="text" id="fname"  name="marca" placeholder="Ingrese la marca" tabindex="1" matInput class="form-control form-control-lg" required
+                formControlName="marca"
+                [(ngModel)]="armamento.marca"/>
+                <mat-error *ngIf="registerForm.controls['marca'].errors?.['required']"> *</mat-error>
+              </div>
+              
+              <div>
+                
+                    <label class="label-email">Clase</label>
+                    <input type="text" id="fname"  name="clase" placeholder="Ingrese el clase" tabindex="1" matInput class="form-control form-control-lg" required
+                    formControlName="clase"
+                    [(ngModel)]="armamento.clase"/>
+                    <mat-error *ngIf="registerForm.controls['clase'].errors?.['required']"> *</mat-error>
+                 
+            </div>
+
+              <div class="column botonesConf">
+                <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
+                <button class="botonesConf" mat-button (click)="guardarCandado()" [mat-dialog-close]="true">Guardar</button>
+              </div>
+              
+              <!--
+              <input type="submit" value="Confirmar" />
+              -->
+      </form>
+      </div> 
+  </div>

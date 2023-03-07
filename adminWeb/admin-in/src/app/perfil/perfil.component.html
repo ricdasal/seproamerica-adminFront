@@ -1,0 +1,208 @@
+<app-header></app-header>
+<h1 class="titulo">Datos Usuario</h1>
+<section class="vh-100 bg-image fondo">
+
+    <div class="container-datos">
+        <div class=" fondo-datos" style="border-radius: 15px;">
+            <div class=" p-5">
+                <div id="opciones">
+                    <div id="img-perfil">
+                        <img src="../../assets/Iconos/app sepro vectores-82.png" alt="">
+                    </div>
+
+                    <div>
+                        <h2 id="salir" (click)="logout()" >
+                            <mat-icon >exit_to_app</mat-icon>
+                            Cerrar Sesión
+                        </h2>
+                    </div>
+                </div>
+
+                <!--h2 class="text-uppercase text-center mb-5">Datos de registro</h2-->
+
+                <form id="demoForm" class="needs-validation" [formGroup]="registerForm" autocomplete="on"
+                    (ngSubmit)="registerForm.valid " novalidate>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example1cg">Apellidos</label>
+                        <input type="text" id="form3Example1cg" class="form-control form-control-lg" required
+                            formControlName="apellidos" [(ngModel)]="user.apellidos" />
+                        <mat-error *ngIf="registerForm.controls['apellidos'].errors?.['required']"> *</mat-error>
+                        <mat-error *ngIf="registerForm.controls['apellidos'].errors?.['pattern']"> Solo insertar letras
+                        </mat-error>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example2cg">Nombres</label>
+                        <input type="text" id="form3Example2cg" class="form-control form-control-lg"
+                            formControlName="nombres" [(ngModel)]="user.nombres" />
+                        <mat-error *ngIf="registerForm.controls['nombres'].errors?.['required']"> *</mat-error>
+                        <mat-error *ngIf="registerForm.controls['nombres'].errors?.['pattern']"> Solo insertar letras
+                        </mat-error>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example3cg">Cedula</label>
+                        <input maxlength="10" type="text" id="form3Example3cg" class="form-control form-control-lg"
+                            formControlName="cedula" [(ngModel)]="user.cedula" />
+                        <mat-error *ngIf="registerForm.controls['cedula'].errors?.['required']"> *</mat-error><br>
+                        <mat-error *ngIf="registerForm.controls['cedula'].errors?.['minlength']"> Su cédula debe tener
+                            10 dígitos</mat-error><br>
+                        <mat-error *ngIf="registerForm.controls['cedula'].errors?.['pattern']"> Su cédula solo debe
+                            contener digitos</mat-error><br>
+
+                    </div>
+
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example4cg">Fecha de Nacimiento</label>
+                        <input type="date" id="form3Example4cg" class="form-control form-control-lg"
+                            formControlName="fechaNac" [(ngModel)]="user.fechaNac" required validarFecha />
+                        <mat-error *ngIf="validacionFecha(user.fechaNac)">
+                            Debe ser mayor de 18 años
+                        </mat-error>
+                    </div>
+
+
+                    <label class="form-label" for="form3Example1cg">Sexo</label>
+                    <div class="form-outline mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="user.sexo"
+                                id="gridRadios1" value="M">
+                            <label class="form-check-label" for="gridRadios1">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="user.sexo"
+                                id="gridRadios2" value="F">
+                            <label class="form-check-label" for="gridRadios2">
+                                Femenino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="user.sexo"
+                                id="gridRadios3" value="Nd">
+                            <label class="form-check-label" for="gridRadios3">
+                                No definir
+                            </label>
+                        </div>
+                        <mat-error *ngIf="registerForm.controls['sexo'].errors?.['required']"> *</mat-error>
+                    </div>
+
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example6cg">Correo</label>
+                        <input type="email" id="form3Example6cg" class="form-control form-control-lg"
+                            formControlName="correo" [(ngModel)]="user.correo" />
+                        <mat-error *ngIf="registerForm.controls['correo'].errors?.['required']"> *</mat-error>
+                        <mat-error *ngIf="registerForm.controls['correo'].errors?.['pattern']"> Debe contener una
+                            extensión válida</mat-error>
+                        <!--<mat-error *ngIf="registerForm.controls['correo'].errors?.['email']"> Correo no válido</mat-error>-->
+
+
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="form3Example7cg">Telefono</label>
+                        <input maxlength="10" type="tel" id="form3Example7cg" class="form-control form-control-lg"
+                            formControlName="telefono" [(ngModel)]="user.telefono" />
+                        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['required']"> *</mat-error>
+                        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['pattern']"> Su telefono debe
+                            comenzar con 09 y tener como máximo 10 dígitos</mat-error>
+                        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['minlength']"> Minimo 9 caracteres
+                        </mat-error>
+                        <mat-error *ngIf="registerForm.controls['telefono'].errors?.['maxlength']"> Maximo 10 caracteres
+                        </mat-error>
+                    </div>
+
+
+                    <label class="form-label" for="form3Example8cg">Contraseña</label>
+
+                    <div class="form-outline form-white mb-4 input-group ">
+
+                        <span class="input-group-text" id="basic-addon1">
+                            <mat-icon matPrefix (click)="hide = !hide">
+                                {{hide ? 'visibility' : 'visibility_off'}}
+                            </mat-icon>
+                        </span>
+
+                        <input maxlength="10" type="password" id="form3Example8cg" class="form-control form-control-lg"
+                            formControlName="contrasenha" placeholder="Ingrese contraseña..."
+                            [(ngModel)]="user.contrasenia" [type]="hide ? 'password':'text'" />
+
+                    </div>
+                    <mat-error *ngIf="registerForm.controls['contrasenha'].errors?.['minlength']"> Minimo 8 caracteres
+                    </mat-error>
+
+
+                    <div *ngIf="!editable" class="d-flex justify-content-center">
+                        <button (click)="editar()" mat-button type="submit button" id="botonRegistro"
+                            class="btn-confirmar">Editar</button>
+                    </div>
+
+                    <div *ngIf="editable" class="d-flex justify-content-center">
+                        <button *ngIf="!esMayorEdad || !registerForm.valid" mat-button type="submit button"
+                            id="botonRegistro" [disabled]="!esMayorEdad || !registerForm.valid"
+                            class="btn-confirmar">Guardar</button>
+
+                        <button *ngIf="esMayorEdad && registerForm.valid" mat-button type="submit button"
+                            data-bs-toggle="modal" data-bs-target="#modalDos" data-bs-dismiss="modal" id="botonRegistro"
+                            class="btn-confirmar">Guardar</button>
+
+                    </div>
+
+                    <!--Pantalla para confirmar registro-->
+                    <div class="modal fade" id="modalDos" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class=" modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Acepte para actualizar esta
+                                        información</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" (click)="actualizarDatos()" class="btn btn-primary"
+                                        style="background-color:green;">Guardar</button>
+
+                                </div>
+                                <div *ngIf="actualizado==true" class="mensaje-actualizar exito">
+                                    Datos actualizados con éxito, puede cerrar esta ventana para ver sus cambios
+                                </div>
+                                <div *ngIf="actualizado==false" class="mensaje-actualizar error">
+                                    Problemas al actualizar sus datos!. <br>
+                                    Cierre la ventana para reinintentar
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Pantalla de datos no guardados-->
+                    <ng-container *ngIf="submitted">
+                        <div *ngIf="submitted" class="modal fade" id="modalFallido" data-bs-backdrop="static"
+                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Cuenta no creada</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,53 @@
+::-webkit-scrollbar {
+    display: none;
+    }
+    
+.contenido h1{
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+#notificaciones {
+    padding: 10px;
+    overflow-y: scroll;
+    cursor: pointer;
+}
+
+#item-notificacion{
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    
+    border-radius: 32px ;
+    border: 1px solid black;
+    padding: 10px;  
+    justify-content: space-between;
+
+}
+#titulo{
+    
+    text-align: start;
+}
+
+
+#hora{
+    text-align: end;
+    margin-right: 5px;
+}
+
+#estado{
+    background-color: blue;
+    border-radius: 26px;
+    text-align: end;
+    width: 15px;
+    height: 15px;
+}
+
+.cualquiera{
+    background-color: yellow;
+    color: rgb(187, 21, 21) ;
+}
+.nuevo_servicio{
+    background-color: rgb(22, 184, 22);
+    color: white ;
+}

@@ -1,0 +1,116 @@
+<section>
+
+  <div class="container">
+    <div class="mensaje-info" *ngIf="esAdmin==false">
+      <h1>No tiene cuenta de administrador</h1>
+    </div>
+    <div class="mensaje-info" *ngIf="estaRegistrado==false">
+      <h1>Usuario no Registrado</h1>
+    </div>
+    <div class="mensaje-info" *ngIf="exito==false">
+      <h1>Contraseña incorrecta</h1>
+    </div>
+    <div class="mb-4">
+      <img width="300px" src="../../assets/logo.png" class="img-logo">
+    </div>
+    <div class="formulario mb-md-5 mt-5 mt-md-4 pb-5">
+
+      <!--<form [formGroup]="inicioSesionForm" autocomplete="on"
+        (ngSubmit)="inicioSesionForm.valid && onInicioSesionSubmit()">
+
+        <label class="form-label" for="typeEmailX">Email</label>
+
+        <div class="form-outline form-white mb-4 input-group">
+
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon> email</mat-icon>
+          </span>
+
+          <input 
+          required
+          type="email" 
+          id="typeEmailX" 
+          class="form-control form-control-lg" 
+          formControlName="correo"
+            [(ngModel)]="user.correo"
+             placeholder="Ingrese email" />
+          <!--label class="form-label" for="typeEmailX">Correo</label
+        </div>
+        <p class="error" *ngIf="inicioSesionForm.get('correo')?.errors?.['required'] && inicioSesionForm.get('correo')?.touched ">
+          Es necesario un coreo electronico.
+        </p>
+        <p class="error" *ngIf="inicioSesionForm.get('correo')?.errors?.['pattern'] && inicioSesionForm.get('correo')?.touched">
+          Ingrese un correo valido.
+        </p>
+
+        <label class="form-label" for="typePasswordX">Contraseña</label>
+
+        <div class="form-outline form-white mb-4 input-group ">
+
+          <span class="input-group-text" id="basic-addon1">
+            <mat-icon matPrefix (click)="hide = !hide">
+              {{hide ? 'visibility' : 'visibility_off'}}
+            </mat-icon>
+          </span>
+
+          <input 
+          type="password" 
+          id="typePasswordX" 
+          class="form-control form-control-lg" 
+          formControlName="contrasenha"
+          placeholder="Ingrese contraseña..."
+            [(ngModel)]="user.contrasenia" [type]="hide ? 'password':'text'" />
+          <!--label class="form-label" for="typeEmailX">Correo</label
+        </div>
+        <p class="error" *ngIf="inicioSesionForm.get('contrasenha')?.errors?.['required'] && inicioSesionForm.get('contrasenha')?.touched">
+          Es necesaria una contraseña.
+        </p>
+        <p class="error" *ngIf="user.contrasenia.length < 8 && inicioSesionForm.get('contrasenha')?.touched">
+          Debe ingresar una contraseña mayor a 8 caracteres
+        </p>
+
+
+        <button [ngClass]="{'valido': inicioSesionForm.valid, 'invalido': !inicioSesionForm.valid}" class="boton-login  btn-lg px-5" type="submit" [disabled]="inicioSesionForm.invalid"
+          (click)="getUsuarioA()">Ingresar </button>
+
+        <!--<p routerLink="/registro" style="cursor: pointer" id="text-crear-cuenta" class="m-4"><a>Crear cuenta</a></p>
+
+      </form>-->
+            <form [formGroup]="form"  autocomplete="off"  (ngSubmit)="loginAdmin(form)" class="transparente"> <!--(ngSubmit)="saveDetails(form)"-->
+                <div>
+                    <mat-form-field appearance="fill" class="input-format">
+                        <mat-label class="label-style">Email:</mat-label>
+                       <input matInput type="email" name="correo" formControlName="email" placeholder="Your email">
+                        <!-- <mat-icon matSuffix>mail_outline</mat-icon>
+                        <!--<mat-hint>ingrese el correo que se le proporciono en la empresa</mat-hint>-->
+                        <mat-error *ngIf="form.controls['email'].errors?.['required']" class="error-style">Se requiere el email</mat-error>
+                        <mat-error *ngIf="form.controls['email'].errors?.['pattern']" class="error-style">ingrese un email válido</mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div>
+                    <mat-form-field appearance="fill" class="input-format">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
+                            formControlName="password" name="password">
+                        <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        <mat-error class="error-style">Se requiere contraseña</mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div>
+                    <button mat-raised-button color="primary" type="submit"  ngClick="Submit" [disabled]="!form.valid" class="button-format">Login</button>
+                </div>
+    
+            </form>
+
+
+    
+
+    </div>
+
+  </div>
+
+<div id="firma">www.seproamerica.com.ec</div>
+</section>
+<!--Comentario para probar integracion-->

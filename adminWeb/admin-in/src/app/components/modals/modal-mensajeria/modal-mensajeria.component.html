@@ -1,0 +1,42 @@
+<section class="modal-mensajeria">
+
+    <div class="contenido" >
+        <h1>MENSAJERIA</h1>
+        <div class="mensajes">
+            <div class="lista-mensajes">
+                <div *ngFor="let message of mensajeriaService.chats" >
+
+                    <div  id="item-mensaje">
+                        <div id="nombre-servicio">Servicio <br> {{message.canal__id_servicio}}</div>
+    
+                        <div id="mensaje" >
+                            <div style="width:20%;" class="text-center">
+                                <mat-icon  style="zoom: 1.5; color: rgb(96, 96, 223);">person</mat-icon>
+                            </div>
+    
+                            <div style="width: 80%;">
+                                <span   class="info-envio">{{message.nombre_perfil}} 
+                                    <span class="info-envio" *ngIf='message.usuario__rol==1'> - Administrador</span>
+                                    <span class="info-envio" *ngIf='message.usuario__rol==1'>(Yo)</span>
+                                    <span class="info-envio" *ngIf='message.usuario__rol==2'> - Cliente</span>
+                                    <span class="info-envio" *ngIf='message.usuario__rol==3'> - Empleado</span>
+        
+                                </span>
+                            
+                                <p >{{message.texto.split(" ").splice(0, 8).join(" ")}} </p>
+                            </div>
+                            <span class="no-leido" *ngIf="message.check_leido==false && message.usuario__correo!=usuario_actual "></span>
+
+                        </div>
+                    </div>
+                    <br>
+            </div>
+            </div>
+        </div>
+        
+
+    </div>
+    <div class="btn-mensajeria">
+        <button (click)="irMensajeria()" class="btn" >Ir a mensajería</button>
+    </div>
+</section>

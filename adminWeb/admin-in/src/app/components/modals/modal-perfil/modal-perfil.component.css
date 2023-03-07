@@ -1,0 +1,56 @@
+.container{
+    color: white;
+    text-align: center;
+    height: 100%;
+}
+.img-logo{
+    text-align: center;
+}
+.img-logo img{
+    width: 250px;
+    
+}
+.perfil{
+    text-align: center;
+}
+.perfil img{
+    cursor: pointer;
+    width: 100px;
+}
+.perfil h1{
+    margin: 20px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+.perfil span{
+    font-size: x-large;
+}
+
+
+.btn-banner{
+    cursor: pointer;
+    margin: 25px  auto ;
+    padding: 10px;
+    background-color: rgb(44, 152, 44);
+    border-radius: 32px;
+    width: 50%;
+
+}
+.btn-logout{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+    margin: 20px;
+   
+}
+.btn-logout img{
+    width: 50px;
+}
+.btn-logout span{
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

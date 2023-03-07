@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<div class="wrapper">
+    <div class="bottom_nav" >
+      <div id="navbarResponsive2">
+      <ul>
+        <li><a  routerLinkActive="active" routerLink="/serviciosEnCurso">En Curso</a></li>
+        <li><a routerLinkActive="active" routerLink="/serviciosPorAsignar">Por asignar</a></li>
+        <li><a routerLinkActive="active" routerLink="/serviciosTipo" href="#">Tipo</a></li>
+        
+      </ul>
+    </div>
+    </div>
+</div>
+
+<div class="servicios">
+
+    <!--<div *ngFor="let pedido of lista_pedidos">
+        <p>{{pedido.nombre_Servicio}}</p>
+        <button routerLink="/serviciosDetallesAsignacion" (click)="encontrar_pedido_especifico(pedido.idPedido)">{{pedido.nombre_Servicio}}</button>
+    </div>-->
+    <div class="contenedor-servicios">
+      <div class="pedido" *ngFor="let pedido of lista_pedidos">
+
+        <div id="IdServicio" class="elemento-pedido">
+          <p id="Sub_Titulo">ID SERVICIO</p>
+          <p>{{pedido.idPedido}}</p>
+        </div>
+
+        <div id="Fecha_Solicitud" class="elemento-pedido">
+          <p id="Sub_Titulo">Fecha de solicitud</p>
+          <p>{{pedido.fecha_Solicitud}}</p>
+        </div>
+
+        <div id="Fecha_Servicio" class="elemento-pedido">
+          <p id="Sub_Titulo">Fecha de Servicio</p>
+          <p>{{pedido.fecha_Inicio}}</p>
+        </div>
+
+        <div id="Solicitante" class="elemento-pedido">
+          <p id="Sub_Titulo">Solicitante</p>
+          <p>id: {{pedido.cliente_solicitante}}</p>
+        </div>
+
+        <div id="Servicio" class="elemento-pedido">
+          <p id="Sub_Titulo">Servicio</p>
+          <p>{{pedido.nombre_Servicio}}</p>
+        </div>
+
+        <div id="Distancia" class="elemento-pedido">
+          <p id="Sub_Titulo">Distancia</p>
+          <p>23km</p>
+        </div>
+
+        <div id="Botones" class="elemento-pedido">
+          <button routerLink="/serviciosDetallesAsignacion" (click)="encontrar_pedido_especifico(pedido.idPedido)">Detalles</button>
+          <button >Cancelar</button>
+        </div>
+
+        <br><br>
+
+      </div>
+
+    </div>
+    
+  
+</div>
