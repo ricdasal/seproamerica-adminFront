@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ModalsService } from 'src/app/services/modals/modals.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-perfil',
@@ -11,30 +12,33 @@ import { ModalsService } from 'src/app/services/modals/modals.service';
 })
 export class ModalPerfilComponent implements OnInit {
   data=JSON.parse(localStorage.getItem("datoUsuario")!)
-  nombre_perfil=this.data.nombres+" "+this.data.apellidos
+  nombre_perfil= 'usuario promedio'
 
   constructor(
     private router:Router,
     private authService: AuthService,
     private cookieService: CookieService,
-    private modalService:ModalsService
+    private modalService:ModalsService,
+    private dialogRef: MatDialogRef<ModalPerfilComponent>
   ) { }
 
   ngOnInit(): void {
   }
 
   irPerfil(){
-    this.router.navigate(['/perfil'])
+    this.router.navigate(['/perfil']);
   }
 
   logout(){
-    //document.getElementById("container")?.remove()
-    //HeaderComponent.dialogRef.closeAll()
-    //this.modalService.getDialogRef().closeAll()
     localStorage.clear()
     this.cookieService.deleteAll()
-    this.authService.logout()
+    //this.authService.logout()
+    this.onCloseClick();
+    this.router.navigate(['/login'])
     
     
+  }
+  onCloseClick(): void {
+    this.dialogRef.close();
   }
 }

@@ -48,22 +48,31 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_PERSONALOP_ESPECIFICO: string = this.BASE_URL+"api/obtener_personalop_especifico";
   DJANGO_SERVER_ACTUALIZAR_PERSONALOP: string = this.BASE_URL+"api/actualizar_personalop";
   DJANGO_SERVER_OBTENER_PEDIDOS: string = this.BASE_URL+"api/solicitarServicio";
-  DJANGO_SERVER_OBTENER_VEHICULOS: string = this.BASE_URL+"api/visualizarVehiculos";
-  DJANGO_SERVER_OBTENER_CANDADOS: string = this.BASE_URL+"api/visualizarCandados";
-  DJANGO_SERVER_OBTENER_ARMAMENTOS: string = this.BASE_URL+"api/visualizarArmamentos";
-  DJANGO_SERVER_OBTENER_MOBIL: string = this.BASE_URL+"api/visualizarMobil";
   DJANGO_SERVER_ACTUALIZAR_PEDIDO: string = this.BASE_URL+"api/actualizar_pedido_servicio";
   DJANGO_SERVER_OBTENER_ADMINISTRADOR_ESPECIFICO: string = this.BASE_URL+"api/obtenerAdministrador_especifico";
   DJANGO_SERVER_OBTENER_CLIENTE_TABLA_CLIENTE: string = this.BASE_URL+"api/obtener_cliente_tabla_cliente";
   DJANGO_SERVER_OBTENER_CLIENTE_TABLA_USUARIO: string = this.BASE_URL+"api/obtener_cliente_tabla_usuario";
+  DJANGO_SERVER_OBTENER_MOBIL = ""
 
   //Nuevos endpoints
-  DJANGO_SERVER_INICIO_SESION_ADMIN = this.BASE_URL + "users/adminSignin/";
-  DJANGO_SERVER_OBTENER_PERSONAL_OP = this.BASE_URL + "users/operationalList/";
-  DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL =  this.BASE_URL + "users/operationalStaff/";
+  DJANGO_SERVER_INICIO_SESION_ADMIN: string = this.BASE_URL + "users/adminSignin/";
+  DJANGO_SERVER_OBTENER_PERSONAL_OP: string = this.BASE_URL + "users/operationalList/";
+  DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL: string =  this.BASE_URL + "users/operationalStaff/?id=";
   DJANGO_SERVER_CREAR_PERSONAL_ADMINISTRADOR = this.BASE_URL + "users/adminStaff/";
-  DJANGO_SERVER_OBTENER_SUCURSALES  = this.BASE_URL
-  DJANGO_SERVER_OBTENER_GRUPOS = this.BASE_URL + "users/groupList/";
+  DJANGO_SERVER_OBTENER_SUCURSALES: string  = this.BASE_URL
+  DJANGO_SERVER_OBTENER_GRUPOS: string = this.BASE_URL + "users/group/";
+  DJANGO_SERRVER_REGISTRAR_PERSONAL_OPERATIVO: string = this.BASE_URL + "users/operationalStaff/";
+  DJANGO_SERVER_OBTENER_PERMISOS_USUARIO: string = this.BASE_URL + "users/getPermissions/";
+  DJANGO_SERVER_CREAR_GRUPOS: string = this.BASE_URL + "users/group/";
+  DJANGO_SERVER_TODO_PERSONAL: string = this.BASE_URL + "users/personal/";
+  DJANGO_SERVER_OBTENER_CLIENTES: string = this.BASE_URL + "users/clientList/";
+  DJANGO_SERVER_OBTENER_CUENTAS_TELEFONO: string = this.BASE_URL + "users/phoneAccountList/";
+  DJANGO_SERVER_OBTENER_MOVIL: string = this.BASE_URL+"equipment/phoneList/";
+  DJANGO_SERVER_OBTENER_ARMAMENTOS: string = this.BASE_URL+"equipment/weaponList/";
+  DJANGO_SERVER_OBTENER_VEHICULOS: string = this.BASE_URL+"equipment/vehicleList/";
+  DJANGO_SERVER_OBTENER_CANDADOS: string = this.BASE_URL+"equipment/lockList/";
+
+
 
   constructor(private http: HttpClient) { }
 

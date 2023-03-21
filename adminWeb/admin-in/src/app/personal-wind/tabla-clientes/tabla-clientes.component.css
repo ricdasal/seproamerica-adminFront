@@ -1,0 +1,19 @@
+table {
+    margin: auto;
+    background-color: rgb(224, 224, 233);
+    margin-top: 12px;
+    width: 90%;
+    height: 100vh;
+  }
+
+  .informacion{
+    
+    text-align: center;
+  }
+
+  .td-style{
+    
+     
+    align-items: center;
+    
+  }

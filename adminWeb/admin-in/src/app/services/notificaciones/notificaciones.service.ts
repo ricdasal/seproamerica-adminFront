@@ -33,7 +33,7 @@ export class NotificacionesService {
   }
 
   obtenerNotificacionesNoLeidas(){
-    this.http.get<any[]>(this.url_notificaciones +"no_leido/" + this.dataUsuario.cedula)
+    /*this.http.get<any[]>(this.url_notificaciones +"no_leido/" + this.dataUsuario.cedula)
     .subscribe(res => {
       let data = JSON.stringify(res)
       let notificaciones = JSON.parse(data)
@@ -49,7 +49,7 @@ export class NotificacionesService {
       });
       
     })
-    
+    */
   }
 
   marcarComoLeido(id:any){

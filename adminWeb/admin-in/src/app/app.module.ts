@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiciosWindComponent } from './servicios-wind/servicios-wind.component';
@@ -26,22 +27,25 @@ import { ReportesWindComponent } from './reportes-wind/reportes-wind.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MensajeriaWindComponent } from './mensajeria-wind/mensajeria-wind.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RecursosVehiculosComponent } from './recursos-vehiculos/recursos-vehiculos.component';
-import { RecursosCandadosComponent } from './recursos-candados/recursos-candados.component';
-import { RecursosCelularComponent } from './recursos-celular/recursos-celular.component';
-import { RecursosArmasComponent } from './recursos-armas/recursos-armas.component';
-import { PersonalRegistroComponent } from './personal-registro/personal-registro.component';
+import { RecursosVehiculosComponent } from './recursos-wind/recursos-vehiculos/recursos-vehiculos.component';
+import { RecursosCandadosComponent } from './recursos-wind/recursos-candados/recursos-candados.component';
+import { RecursosCelularComponent } from './recursos-wind/recursos-celular/recursos-celular.component';
+import { RecursosArmasComponent } from './recursos-wind/recursos-armas/recursos-armas.component';
+
+import { PersonalRegistroComponent } from './personal-wind/personal-registro/personal-registro.component';
+import { CrearGruposComponent } from './personal-wind/personal-registro/crear-grupos/crear-grupos.component';
+
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { RegistroComponent } from './registro/registro.component';
 import { HeaderComponent } from './header/header.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ActualizarPerfilComponent } from './actualizar-perfil/actualizar-perfil.component';
-import { AgregarvehiculoDialogComponent } from './agregarvehiculo-dialog/agregarvehiculo-dialog.component';
-import { EditVehiculosComponent } from './edit-vehiculos/edit-vehiculos.component';
-import { EditCandadosComponent } from './edit-candados/edit-candados.component';
-import { AgregarcandadosDialogComponent } from './agregarcandados-dialog/agregarcandados-dialog.component';
-import { AgregararmamentoDialogComponent } from './agregararmamento-dialog/agregararmamento-dialog.component';
+import { AgregarvehiculoDialogComponent } from './recursos-wind/recursos-vehiculos/agregarvehiculo-dialog/agregarvehiculo-dialog.component';
+import { EditVehiculosComponent } from './recursos-wind/recursos-vehiculos/edit-vehiculos/edit-vehiculos.component';
+import { EditCandadosComponent } from './recursos-wind/recursos-candados/edit-candados/edit-candados.component';
+import { AgregarcandadosDialogComponent } from './recursos-wind/recursos-candados/agregarcandados-dialog/agregarcandados-dialog.component';
+import { AgregararmamentoDialogComponent } from './recursos-wind/recursos-armas/agregararmamento-dialog/agregararmamento-dialog.component';
 
 
 
@@ -56,10 +60,16 @@ import { ServicioEditarEliminarComponent } from './servicio-editar-eliminar/serv
 import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio/tipo-servicio.component';
 import { ServicioPorAsignarComponent } from './servicios-wind/servicio-por-asignar/servicio-por-asignar/servicio-por-asignar.component';
 import { ServicioEnCursoComponent } from './servicios-wind/servicio-en-curso/servicio-en-curso/servicio-en-curso.component';
-import { PersonalActualizarComponent } from './personal-actualizar/personal-actualizar.component';
-import { PersonalAdminRegistroComponent } from './personal-admin-registro/personal-admin-registro.component';
+import { PersonalActualizarComponent } from './personal-wind/personal-actualizar/personal-actualizar.component';
+import { PersonalAdminRegistroComponent } from './personal-wind/personal-admin-registro/personal-admin-registro.component';
+
 import { ServicioDetallesAsignacionComponent } from './servicio-detalles-asignacion/servicio-detalles-asignacion.component';
 import { ErrorWindComponent } from './inicio-sesion/error-wind/error-wind.component';
+import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-clientes.component';
+import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-personal.component';
+import { PerfilPersonalComponent } from './personal-wind/tabla-personal/perfil-personal/perfil-personal.component';
+import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
+
 
 
 @NgModule({
@@ -99,6 +109,11 @@ import { ErrorWindComponent } from './inicio-sesion/error-wind/error-wind.compon
     PersonalAdminRegistroComponent,
     ServicioDetallesAsignacionComponent,
     ErrorWindComponent,
+    CrearGruposComponent,
+    TablaClientesComponent,
+    TablaPersonalComponent,
+    PerfilPersonalComponent,
+    TablaCuentasTelefonoComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,6 +136,7 @@ import { ErrorWindComponent } from './inicio-sesion/error-wind/error-wind.compon
     MatSelectModule,
     MatFormFieldModule,
     MatCardModule,
+    
 
   ],
   entryComponents: [AgregarvehiculoDialogComponent],
@@ -131,7 +147,7 @@ import { ErrorWindComponent } from './inicio-sesion/error-wind/error-wind.compon
     AuthGuard, 
     GuardService, 
     CookieService, */
-    {provide:LocationStrategy,useClass:HashLocationStrategy}
+    {provide:LocationStrategy,useClass:HashLocationStrategy},
   ],
   bootstrap: [AppComponent]
 })

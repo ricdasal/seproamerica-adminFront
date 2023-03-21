@@ -47,3 +47,18 @@
   margin-bottom: 0cm;
   padding-bottom: 0px;
 }
+
+.link-style{
+  text-align: center;
+  color: white;
+  padding: 10px;
+  border-radius: 32px;
+  width: 20%;
+}
+
+.link-style:hover{
+  background-color: rgb(203, 56, 56);
+  color: pink;
+  cursor: pointer
+  
+}

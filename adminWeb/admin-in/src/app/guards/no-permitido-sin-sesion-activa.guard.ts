@@ -10,8 +10,8 @@ export class NoPermitidoSinSesionActivaGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    //return false;
-    console.log(localStorage.getItem('ingresado'))
+    return false;
+    /*console.log(localStorage.getItem('ingresado'))
     if(localStorage.getItem('ingresado')){
       console.log("ingresado")
       this.router.navigate(['/serviciosVentana'])
@@ -19,7 +19,7 @@ export class NoPermitidoSinSesionActivaGuard implements CanActivate {
     }else{
       console.log("no ingresado")
       return true      
-    }
+    }*/
 
   }
   

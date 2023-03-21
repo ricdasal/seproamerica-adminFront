@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
   abrirModalPerfil() {
     //this.dialogRef.closeAll()
     //this.dialogRef.open(ModalPerfilComponent,this.dialogConfig)
-    this.modalService.getDialogRef().closeAll()
+    this.modalService.getDialogRef().closeAll();
     this.modalService.getDialogRef().open(ModalPerfilComponent, this.modalService.getDialogConfig())
 
   }

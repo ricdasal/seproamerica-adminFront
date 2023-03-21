@@ -26,21 +26,15 @@ export class PersonalWindComponent implements OnInit{
     telefono!: string;
     rol!: string;
 
-    //Lista para guardar los servicios ya creados
-    lista_personal: Array<any> = [];
 
-    //Variable para el modal
-    display = 'none';
+    
 
     //cedula temporal
     cedula_temp!: number
 
 
     //datos: PersonalOpN[] = [];
-    personalList:any=[];
-    columnas: string[] = ['Nombres','Apellidos','Contacto','Correo','Opciones'];
-    dataSource!: MatTableDataSource<any>;
-    @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+    
 
     
   
@@ -55,13 +49,7 @@ export class PersonalWindComponent implements OnInit{
  
 
     ngOnInit(): void {
-      localStorage.removeItem('cedula_personalOp')
-      localStorage.removeItem('detalles_personal')
-      //this.obtener_personal()
-      console.log("Lista de personal")
-      this.obtenerUsuarios();
-      //console.log(this.lista_personal)
-      this.cargarUsuarios();
+      
       /*this._infPersonalService.getAllPersonalOp().subscribe(respuesta => {
         this.dataSource = respuesta as any;
       })
@@ -83,12 +71,7 @@ export class PersonalWindComponent implements OnInit{
           
     }
     
-    cargarUsuarios(){  
-      console.log(this.lista_personal);
-      //this.dataSource = new MatTableDataSource(this.datos);
-      this.dataSource = new MatTableDataSource<any>(this.lista_personal);
-      this.dataSource.paginator = this.paginator;
-    }
+    
 
     guardar_cedula_eliminar(cedula: number){
       this.cedula_temp = cedula
@@ -174,19 +157,6 @@ export class PersonalWindComponent implements OnInit{
 
     //nuevas funciones
 
-    obtenerUsuarios(): void {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-      });
-
-      this.http.request('GET', this.clienteWAService.DJANGO_SERVER_OBTENER_PERSONAL_OP, {headers})
-      .subscribe({
-        next: (data) => {
-          console.log(data);
-          this.lista_personal = this.lista_personal.concat(data);
-
-        }
-      })  
-    }
+   
   }
 

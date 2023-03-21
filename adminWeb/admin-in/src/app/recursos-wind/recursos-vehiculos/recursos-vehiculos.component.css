@@ -1,0 +1,21 @@
+
+table {
+  margin: auto;
+  background-color: rgb(224, 224, 233);
+  margin-top: 12px;
+  width: 90%;
+  text-align: start;
+}
+
+th{
+  align-items: center;
+  width: 20%;
+}
+
+td{
+  align-items: center;
+}
+
+.pointer{
+  cursor: pointer;
+}

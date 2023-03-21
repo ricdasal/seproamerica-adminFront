@@ -1,0 +1,224 @@
+
+<div class="contenido">
+    <form class="row" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="guardarUsuario(registerForm)" enctype="multipart/form-data">
+      <div class="col-3">
+        <div id="txtDatos">
+           DATOS PERSONALES
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="item">
+          <label class="format-labels">NOMBRES</label>
+          <input type="text" id="fname" name="first_name"  tabindex="1" matInput
+             required formControlName="first_name"  /> <!--[(ngModel)]="user.nombres"-->
+          <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['first_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+  
+        </div>
+  
+        <div class="item">
+          <label class="format-labels" for="apellido">APELLIDOS</label>
+          <input   type="text" id="apellido" matInput required
+            formControlName="last_name" name="last_name"  /> <!--[(ngModel)]="user.apellidos-->
+          <mat-error *ngIf="registerForm.controls['last_name'].errors?.['required']">*</mat-error>
+          <mat-error *ngIf="registerForm.controls['last_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+        </div>
+
+        <div class="item">
+          <label class="format-labels" for="apellido">DOMICILIO</label>
+          <input   type="text" id="apellido" matInput required
+            formControlName="address" name="last_name"  /> 
+          <mat-error *ngIf="registerForm.controls['address'].errors?.['required']">*</mat-error>
+        </div>
+  
+        <!--<div class="item" >
+          <label class="format-labels">FECHA DE NACIMIENTO</label>
+            <div>
+              <input  
+              type="date" name="fechaNac"  tabindex="1" 
+                required formControlName="fechaNac" [(ngModel)]="user.fechaNac"
+                 required  validarFecha  >
+            </div>
+            
+            
+          <mat-error *ngIf="validacionFecha(user.fechaNac)">
+            Debe ser mayor de 18 años
+          </mat-error>
+        </div>-->
+        
+        <div class="item">
+          <label class="format-labels">DOCUMENTO DE IDENTIDAD</label>
+            <input type="text" id="fname" name="dni"  tabindex="1" matInput
+              required formControlName="dni"  /> <!--[(ngModel)]="user.cedula"-->
+            <mat-error class="format-labels" *ngIf="registerForm.controls['dni'].errors?.['required']"> *</mat-error>
+            <mat-error class="format-labels" *ngIf="registerForm.controls['dni'].errors?.['pattern']"> Su cédula solo debe contener
+              digitos y empezar con 09 o 125</mat-error>
+            <mat-error class="format-labels" *ngIf="registerForm.controls['dni'].errors?.['maxlength']"> Su cédula debe tener 10
+              dígitos</mat-error>
+            <mat-error class="format-labels" *ngIf="registerForm.controls['dni'].errors?.['minlength']"> Su cédula debe tener 10
+              dígitos</mat-error><br>
+        </div>
+
+        <label class="form-label" for="cargos">GENERO</label>
+              <div class="form-outline mb-4">
+                  <div *ngFor="let genero of lista_generos" class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="gender"  
+                        id="cargos" value={{genero}} name="gender"> <!--[(ngModel)]="sucursal_De_Admin"-->
+                    <label class="form-check-label" for="gridRadios1">
+                          {{genero}}
+                    </label>
+                  </div>
+                  <mat-error *ngIf="registerForm.controls['gender'].errors?.['required']"> *</mat-error>
+              </div>
+  
+        <div class="item">
+          <label class="format-labels" for="tel">TELÉFONO</label>
+          <input maxlength="13" type="tel" id="tel" 
+            formControlName="phone_number" name="phone_number"  /> <!--[(ngModel)]="user.telefono"-->
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['pattern']"> Ingrese un numero de teléfono válido</mat-error>
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['minlength']"> Minimo 9 caracteres</mat-error>
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['maxlength']"> Maximo 10 caracteres</mat-error>
+        </div>
+        <div class="item">
+          <label class="format-labels" >CORREO ELECTRÓNICO</label>
+          <input type="email" id="fname" name="email" tabindex="1" matInput required
+           formControlName="email" /> <!--[(ngModel)]="user.correo"-->
+          <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['email'].errors?.['pattern']"> Debe contener una extensión
+            válida</mat-error>
+        </div>
+       
+        <div class="item">
+          <label class="form-label format-labels" for="pass">CONTRASEÑA</label>
+          <mat-form-field class="input-format">
+            <input id="pass" matInput [type]="hide ? 'password' : 'text'" formControlName="password" name="password">
+                  <mat-icon (click)="hide=!hide" matSuffix>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+                  <mat-error *ngIf="registerForm.controls['password'].errors?.['minlength']"> Minimo 8 caracteres</mat-error><br>
+          </mat-form-field>
+      </div>
+        
+      </div>
+
+      <div class="col">
+        <div class="row">
+          
+         
+  
+         
+        </div>
+        <div class="row pe-4">
+            <div class="col">
+              <div id="txtDatos">
+                DATOS DE TRABAJO
+             </div>
+            </div>
+            <br>
+           <br>
+              <label class="form-label" for="form3Example1cg">Sucursales</label>
+              <div class="form-outline mb-4">
+                  <div *ngFor="let sucursal of lista_sucursales" class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="branch"  
+                        id="gridRadios1" value={{sucursal}} name="branch"> <!--[(ngModel)]="sucursal_De_Admin"-->
+                    <label class="form-check-label" for="gridRadios1">
+                          {{sucursal}}
+                    </label>
+                  </div>
+                  <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+              </div>
+
+              <label class="form-label" for="cargos">cargo</label>
+              <div class="form-outline mb-4">
+                  <div *ngFor="let cargo of lista_cargos" class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="charge"  
+                        id="cargos" value={{cargo}} name="charge"> <!--[(ngModel)]="sucursal_De_Admin"-->
+                    <label class="form-check-label" for="gridRadios1">
+                          {{cargo}}
+                    </label>
+                  </div>
+                  <mat-error *ngIf="registerForm.controls['charge'].errors?.['required']"> *</mat-error>
+              </div>
+
+              <!--"group":"admin_administrador"-->
+              <label class="form-label" for="grupo">grupo</label>
+              <div class="form-outline mb-4">
+                  <div *ngFor="let grupo of lista_grupos" class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="group"  
+                        id="grupo" value={{grupo}} name="group"> <!--[(ngModel)]="sucursal_De_Admin"-->
+                    <label class="form-check-label" for="gridRadios1">
+                          {{grupo}}
+                    </label>
+                  </div>
+                  <mat-error *ngIf="registerForm.controls['group'].errors?.['required']"> *</mat-error>
+              </div>
+
+              <!--<div class="col cont-guardar">
+                <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-62.png"
+                data-bs-toggle="modal" data-bs-target="#modalDos" data-bs-dismiss="modal"
+                alt="">
+            </div>-->
+
+            <button mat-raised-button color="primary" type="submit"  ngClick="Submit" [disabled]="!registerForm.valid" class="button-format">Guardar</button>
+              
+    
+        </div>
+        
+       
+      </div>
+
+      
+  
+      <!--Pantalla para confirmar registro-->
+      <div class="modal fade" id="modalDos" data-bs-backdrop="static" [ngStyle]="{'display':display}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!--<h1 class="modal-title fs-5" id="staticBackdropLabel mensajeDeConfirmacion"></h1>-->
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h3 id="mensajeDeConfirmacionDos"></h3>
+            </div>
+            <!--<div class="modal-footer">
+              <button type="button" (click)="guardarUsuario()" class="btn btn-primary" style="background-color:green;">Guardar</button>
+            </div>-->
+          </div>
+        </div>
+      </div>
+  
+     
+  
+  
+    </form>
+  
+</div>
+
+
+
+
+<!--Código legacy-->
+        <!--<label class="form-label format-labels" for="form3Example1cg">GENERO</label>
+        <div class="form-outline mb-4 format-labels format-radio">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="user.sexo" 
+                        id="gridRadios1" value="M">
+            <label class="form-check-label" for="gridRadios1">
+              Masculino
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="user.sexo" 
+                        id="gridRadios2" value="F">
+            <label class="form-check-label" for="gridRadios2">
+              Femenino
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" formControlName="sexo" [(ngModel)]="user.sexo" 
+                        id="gridRadios3" value="Nd">
+            <label class="form-check-label" for="gridRadios3">
+              No definir
+            </label>
+          </div>
+          <mat-error *ngIf="registerForm.controls['sexo'].errors?.['required']"> *</mat-error>
+        </div>-->

@@ -910,3 +910,10 @@
   right: -5px;
 }
 
+
+.link-style{
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+

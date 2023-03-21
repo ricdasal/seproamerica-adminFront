@@ -15,6 +15,49 @@
     </div>
     <div class="formulario mb-md-5 mt-5 mt-md-4 pb-5">
 
+            <form [formGroup]="form"  autocomplete="off"  (ngSubmit)="loginAdmin(form)" class="transparente"> <!--(ngSubmit)="saveDetails(form)"-->
+                <div>
+                    <mat-form-field appearance="fill" class="input-format">
+                        <mat-label class="label-style">Email:</mat-label>
+                       <input matInput type="email" name="correo" formControlName="email" placeholder="Your email">
+                        <!-- <mat-icon matSuffix>mail_outline</mat-icon>
+                        <!--<mat-hint>ingrese el correo que se le proporciono en la empresa</mat-hint>-->
+                        <mat-error *ngIf="form.controls['email'].errors?.['required']" class="error-style">Se requiere el email</mat-error>
+                        <mat-error *ngIf="form.controls['email'].errors?.['pattern']" class="error-style">ingrese un email válido</mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div>
+                    <mat-form-field appearance="fill" class="input-format">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
+                            formControlName="password" name="password">
+                        <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        <mat-error class="error-style">Se requiere contraseña</mat-error>
+                    </mat-form-field>
+                </div>
+    
+                <div>
+                    <button mat-raised-button color="primary" type="submit"  ngClick="Submit" [disabled]="!form.valid" class="button-format">Login</button>
+                </div>
+    
+            </form>
+
+
+    
+
+    </div>
+
+  </div>
+
+<div id="firma">www.seproamerica.com.ec</div>
+</section>
+<!--Comentario para probar integracion-->
+
+
+<!--Código legacy-->
+
+
       <!--<form [formGroup]="inicioSesionForm" autocomplete="on"
         (ngSubmit)="inicioSesionForm.valid && onInicioSesionSubmit()">
 
@@ -76,41 +119,3 @@
         <!--<p routerLink="/registro" style="cursor: pointer" id="text-crear-cuenta" class="m-4"><a>Crear cuenta</a></p>
 
       </form>-->
-            <form [formGroup]="form"  autocomplete="off"  (ngSubmit)="loginAdmin(form)" class="transparente"> <!--(ngSubmit)="saveDetails(form)"-->
-                <div>
-                    <mat-form-field appearance="fill" class="input-format">
-                        <mat-label class="label-style">Email:</mat-label>
-                       <input matInput type="email" name="correo" formControlName="email" placeholder="Your email">
-                        <!-- <mat-icon matSuffix>mail_outline</mat-icon>
-                        <!--<mat-hint>ingrese el correo que se le proporciono en la empresa</mat-hint>-->
-                        <mat-error *ngIf="form.controls['email'].errors?.['required']" class="error-style">Se requiere el email</mat-error>
-                        <mat-error *ngIf="form.controls['email'].errors?.['pattern']" class="error-style">ingrese un email válido</mat-error>
-                    </mat-form-field>
-                </div>
-    
-                <div>
-                    <mat-form-field appearance="fill" class="input-format">
-                        <mat-label>Contraseña</mat-label>
-                        <input matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
-                            formControlName="password" name="password">
-                        <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
-                        <mat-error class="error-style">Se requiere contraseña</mat-error>
-                    </mat-form-field>
-                </div>
-    
-                <div>
-                    <button mat-raised-button color="primary" type="submit"  ngClick="Submit" [disabled]="!form.valid" class="button-format">Login</button>
-                </div>
-    
-            </form>
-
-
-    
-
-    </div>
-
-  </div>
-
-<div id="firma">www.seproamerica.com.ec</div>
-</section>
-<!--Comentario para probar integracion-->
