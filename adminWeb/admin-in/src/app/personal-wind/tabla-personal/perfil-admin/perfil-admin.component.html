@@ -1,0 +1,24 @@
+
+  
+  <mat-card class="example-card" >
+    <mat-card-header>
+      <mat-card-title-group >
+        <mat-card-title>{{this.admin.first_name}} {{this.admin.last_name}}</mat-card-title>
+        <mat-card-subtitle>{{this.admin.dni}}</mat-card-subtitle>
+        <img mat-card-md-image style="margin-left: 50vh;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <b>Correo electronico:</b> {{this.admin.email}}<br>
+      <b>Direccion:</b> {{this.admin.address}}<br> 
+      <b>Fecha de nacimiento:</b> {{this.admin.birthdate}}<br>
+      <b>Genero:</b> {{this.admin.gender}}<br>
+      <b>Telefono:</b> {{this.admin.phone_number}}<br>
+      <b>Activo:</b> {{this.admin.is_active}}<br>
+      <b>Sucursal:</b> {{this.admin.branch}}<br>
+      <b>Grupo:</b> {{this.admin.group}}<br>
+      
+    </mat-card-content>
+  </mat-card>
+  
+

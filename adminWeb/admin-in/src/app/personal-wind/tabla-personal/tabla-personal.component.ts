@@ -8,6 +8,7 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfPersonalService } from 'src/app/services/inf-personal.service';
 import { PersonalAdminRegistroComponent } from '../personal-admin-registro/personal-admin-registro.component';
 import { PersonalRegistroComponent } from '../personal-registro/personal-registro.component';
+import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
 
 @Component({
@@ -68,21 +69,43 @@ export class TablaPersonalComponent implements OnInit {
     })  
   }
 
-  verPersonal(id: any){
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-    });
+  verPersonal(isAdmin: any, id: any){
+    console.log(isAdmin);
+    if(isAdmin){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+  
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_ADMINISTRADOR}${id}`, {headers})
+      .subscribe({
+        next: (admin: any) => {
+          const ventanaGrupos =  this.dialog.open(PerfilAdminComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: admin
+          })
+        }
+      })
 
-    this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL}${id}`, {headers})
-    .subscribe({
-      next: (data: any) => {
-        console.log(data);
-        const ventanaGrupos =  this.dialog.open(PerfilPersonalComponent, {
-          width: '100vh',
-          height: '50vh',
-        })
-      }
-    })
+    }else{
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+  
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL}${id}`, {headers})
+      .subscribe({
+        next: (personal: any) => {
+          const ventanaGrupos =  this.dialog.open(PerfilPersonalComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: personal
+          })
+        }
+      })
+
+    }
+
+    
 
 
   }

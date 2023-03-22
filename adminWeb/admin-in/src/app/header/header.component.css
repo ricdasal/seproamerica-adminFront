@@ -893,10 +893,10 @@
   height: 40px;
   color: blue;
 }
-::ng-deep.mat-dialog-container {
+/*::ng-deep.mat-dialog-container {
       background-color: rgb(187, 21, 21);
 
-  }
+}*/
 .icons ul li{
   position: relative;
 }

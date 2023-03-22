@@ -37,7 +37,7 @@ export class ClienteWAService {
   DJANGO_SERVER_INICIO_SESION: string = this.BASE_URL+"api/usuarioInicioSesion";
   DJANGO_SERVER_REGISTRO_ADMIN: string = this.BASE_URL+"api/personalAdminRegistro";
   //DJANGO_SERVER_OBTENER_SUCURSALES: string = this.BASE_URL+"api/visualizarSucursales";
-  DJANGO_SERVER_OBTENER_ADMINISTRADOR: string = this.BASE_URL+"api/obtenerAdministrador";
+ 
   DJANGO_SERVER_REGISTRO_PersonalOp: string = this.BASE_URL+"api/personalOperativoRegistro";
   DJANGO_SERVER_OBTENER_TIPOSSERVICIOS: string = this.BASE_URL+"api/visualizarTiposServicios";
   DJANGO_SERVER_CREAR_SERVICIO: string = this.BASE_URL+"api/crearServicio";
@@ -71,6 +71,7 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_ARMAMENTOS: string = this.BASE_URL+"equipment/weaponList/";
   DJANGO_SERVER_OBTENER_VEHICULOS: string = this.BASE_URL+"equipment/vehicleList/";
   DJANGO_SERVER_OBTENER_CANDADOS: string = this.BASE_URL+"equipment/lockList/";
+  DJANGO_SERVER_OBTENER_ADMINISTRADOR: string = this.BASE_URL+"users/adminStaff/?id=";
 
 
 

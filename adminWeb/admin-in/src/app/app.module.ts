@@ -69,6 +69,7 @@ import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-cli
 import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-personal.component';
 import { PerfilPersonalComponent } from './personal-wind/tabla-personal/perfil-personal/perfil-personal.component';
 import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
+import { PerfilAdminComponent } from './personal-wind/tabla-personal/perfil-admin/perfil-admin.component';
 
 
 
@@ -114,6 +115,7 @@ import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-tel
     TablaPersonalComponent,
     PerfilPersonalComponent,
     TablaCuentasTelefonoComponent,
+    PerfilAdminComponent,
   ],
   imports: [
     BrowserModule,
