@@ -7,6 +7,7 @@ import { AgregarvehiculoDialogComponent } from './agregarvehiculo-dialog/agregar
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { InfoVehiculosComponent } from './info-vehiculos/info-vehiculos.component';
 
 
 @Component({
@@ -67,6 +68,25 @@ export class RecursosVehiculosComponent implements OnInit {
           console.log(this.VehiculoList);
         }
       })
+    }
+
+    verVehiculo(id: any){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_VEHICULO}${id}`, {headers})
+      .subscribe({
+        next: (vehiculo: any) => {
+          console.log(vehiculo);
+          const ventanaGrupos =  this.dialog.open(InfoVehiculosComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: vehiculo
+          })
+        }
+      })
+
     }
 
     

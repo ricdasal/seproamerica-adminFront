@@ -32,15 +32,13 @@
             <input  
             type="date" name="fechaNac"  tabindex="1" 
               required formControlName="birthdate" 
-               required  validarFecha  >
+               required   >
             <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
           </div>
           
           <!--<mat-datepicker touchUi="true"  #picker ></mat-datepicker>
         </mat-form-field>-->
-        <mat-error *ngIf="validacionFecha(registerForm.value.birthdate)">
-          Debe ser mayor de 18 años
-        </mat-error>
+        
       </div>
       
       <div class="item">
@@ -69,13 +67,6 @@
         <mat-error *ngIf="registerForm.controls['gender'].errors?.['required']"> *</mat-error>
       </div>
 
-
-      <div class="item">
-        <label >PROFESION</label>
-          <input type="text" id="fname" name="profesion"  tabindex="1" matInput
-            required/>
-          
-      </div>
 
       <div class="item">
         <label  for="tel">TELÉFONO</label>
@@ -166,18 +157,7 @@
             <mat-error *ngIf="registerForm.controls['charge'].errors?.['required']"> *</mat-error>
           </div>
 
-          <label class="form-label">Grupo usuario</label>
-          <div class="form-outline mb-4">
-            <div class="form-check" *ngFor="let grupo of lista_grupos">
-              <input class="form-check-input" type="radio" name="group" [value]="grupo" formControlName="group" id="{{grupo}}">
-              <label class="form-check-label" [for]="grupo">
-                {{grupo}}
-              </label>
-            </div>
-            <mat-error *ngIf="registerForm.controls['group'].errors?.['required']"> *</mat-error><br>
-
-            <button type="button" (click)="crearGrupos()">Crear nuevo grupo</button>
-          </div>
+          
 
   
       </div>
@@ -209,13 +189,13 @@
       </div>
     </div>
 
+    
    
 
 
   </form>
 
 </div>
- 
 
 <!--Código legacy-->
      <!--div class="item">
@@ -305,3 +285,17 @@
             <mat-error *ngIf="registerForm.controls['group'].errors?.['required']"> *</mat-error>
           </div>
           -->
+
+
+          <!--<label class="form-label">Grupo usuario</label>
+          <div class="form-outline mb-4">
+            <div class="form-check" *ngFor="let grupo of lista_grupos">
+              <input class="form-check-input" type="radio" name="group" [value]="grupo" formControlName="group" id="{{grupo}}">
+              <label class="form-check-label" [for]="grupo">
+                {{grupo}}
+              </label>
+            </div>
+            <mat-error *ngIf="registerForm.controls['group'].errors?.['required']"> *</mat-error><br>
+
+            <button type="button" (click)="crearGrupos()">Crear nuevo grupo</button>
+          </div>-->

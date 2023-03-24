@@ -4,6 +4,7 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { InfoCelularComponent } from './info-celular/info-celular.component';
 
 
 @Component({
@@ -45,5 +46,23 @@ export class RecursosCelularComponent implements OnInit {
       })
   
     }
+
+    verCelular(id: any){{
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CELULAR}${id}`, {headers})
+      .subscribe({
+        next: (celular: any) => {
+          console.log(celular);
+          const ventanaGrupos =  this.dialog.open(InfoCelularComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: celular
+          })
+        }
+      })
+    }}
   
 }

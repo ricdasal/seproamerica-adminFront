@@ -70,6 +70,11 @@ import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-per
 import { PerfilPersonalComponent } from './personal-wind/tabla-personal/perfil-personal/perfil-personal.component';
 import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
 import { PerfilAdminComponent } from './personal-wind/tabla-personal/perfil-admin/perfil-admin.component';
+import { InfoClientesComponent } from './personal-wind/tabla-clientes/info-clientes/info-clientes.component';
+import { InfoCuentaComponent } from './personal-wind/tabla-cuentas-telefono/info-cuenta/info-cuenta.component';
+import { InfoVehiculosComponent } from './recursos-wind/recursos-vehiculos/info-vehiculos/info-vehiculos.component';
+import { InfoCandadosComponent } from './recursos-wind/recursos-candados/info-candados/info-candados.component';
+import { InfoCelularComponent } from './recursos-wind/recursos-celular/info-celular/info-celular.component';
 
 
 
@@ -116,6 +121,12 @@ import { PerfilAdminComponent } from './personal-wind/tabla-personal/perfil-admi
     PerfilPersonalComponent,
     TablaCuentasTelefonoComponent,
     PerfilAdminComponent,
+    InfoClientesComponent,
+    InfoCuentaComponent,
+    InfoArmasComponent,
+    InfoVehiculosComponent,
+    InfoCandadosComponent,
+    InfoCelularComponent,
   ],
   imports: [
     BrowserModule,

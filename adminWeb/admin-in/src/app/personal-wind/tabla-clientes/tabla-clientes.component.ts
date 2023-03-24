@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { InfoClientesComponent } from './info-clientes/info-clientes.component';
 
 
 @Component({
@@ -46,6 +47,25 @@ export class TablaClientesComponent implements OnInit {
 
       }
     })
+  }
+
+  verCliente(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CLIENTE}${id}`, {headers})
+      .subscribe({
+        next: (cliente: any) => {
+          console.log(cliente);
+          const ventanaGrupos =  this.dialog.open(InfoClientesComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: cliente
+          })
+        }
+      })
+
   }
 
   

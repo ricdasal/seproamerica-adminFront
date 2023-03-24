@@ -70,12 +70,12 @@ export class TablaPersonalComponent implements OnInit {
   }
 
   verPersonal(isAdmin: any, id: any){
-    console.log(isAdmin);
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
     if(isAdmin){
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-      });
-  
+
       this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_ADMINISTRADOR}${id}`, {headers})
       .subscribe({
         next: (admin: any) => {
@@ -87,11 +87,8 @@ export class TablaPersonalComponent implements OnInit {
         }
       })
 
-    }else{
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-      });
-  
+    }else{ 
+
       this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL}${id}`, {headers})
       .subscribe({
         next: (personal: any) => {

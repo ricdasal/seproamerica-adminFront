@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { InfoCuentaComponent } from './info-cuenta/info-cuenta.component';
 
 @Component({
   selector: 'app-tabla-cuentas-telefono',
@@ -39,6 +40,26 @@ export class TablaCuentasTelefonoComponent implements OnInit {
         console.log(this.lista_cuentas);
       } 
     })
+  }
+
+
+  verCuenta(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CUENTA_TELEFONO}${id}`, {headers})
+      .subscribe({
+        next: (cuentaTelefono: any) => {
+          console.log(cuentaTelefono);
+          const ventanaGrupos =  this.dialog.open(InfoCuentaComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: cuentaTelefono
+          })
+        }
+      })
+
   }
 
 

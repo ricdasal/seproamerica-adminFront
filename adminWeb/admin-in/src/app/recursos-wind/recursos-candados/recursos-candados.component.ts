@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AgregarcandadosDialogComponent } from './agregarcandados-dialog/agregarcandados-dialog.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { InfoCandadosComponent } from './info-candados/info-candados.component';
 
 @Component({
   selector: 'app-recursos-candados',
@@ -64,6 +65,24 @@ export class RecursosCandadosComponent implements OnInit {
         next: (data)=>{
           this.CandadoList = this.CandadoList.concat(data);
           console.log(this.CandadoList);
+        }
+      })
+    }
+
+    verCandado(id: any){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CANDADO}${id}`, {headers})
+      .subscribe({
+        next: (vehiculo: any) => {
+          console.log(vehiculo);
+          const ventanaGrupos =  this.dialog.open(InfoCandadosComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: vehiculo
+          })
         }
       })
     }

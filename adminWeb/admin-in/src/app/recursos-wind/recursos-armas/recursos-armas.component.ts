@@ -7,6 +7,7 @@ import { AgregararmamentoDialogComponent } from './agregararmamento-dialog/agreg
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { InfoArmasComponent } from './info-armas/info-armas.component';
 
 
 
@@ -71,6 +72,26 @@ export class RecursosArmasComponent{
       })
       this.dataSource = new MatTableDataSource<any>(this.ArmamentoList);
       this.dataSource.paginator = this.paginator;
+
+    }
+
+    verArmamento(id: any){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_ARMA}${id}`, {headers})
+      .subscribe({
+        next: (arma: any) => {
+          console.log(arma);
+          const ventanaGrupos =  this.dialog.open(InfoArmasComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: arma
+          })
+        }
+      })
+
 
     }
 }

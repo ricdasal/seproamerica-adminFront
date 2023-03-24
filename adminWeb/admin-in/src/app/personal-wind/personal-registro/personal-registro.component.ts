@@ -104,18 +104,14 @@ export class PersonalRegistroComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       'first_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       'last_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      'birthdate': [null, [Validators.required]],
-      'dni': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^(09|125)[0-9]*$')]],
-      'gender': [null, [Validators.required]],
       'email': [null, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')]],
-      'password': ['password_cambiable', [Validators.required, Validators.minLength(5)]],
       'phone_number': [null, [Validators.required, Validators.minLength(9), Validators.maxLength(10), Validators.pattern('^(0){1}(9){1}[0-9]{8}$')]],
+      'dni': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^(09|125)[0-9]*$')]],
+      'birthdate': [null, [Validators.required]],
+      'gender': [null, [Validators.required]],
       'address': [null, [Validators.required]],
       'charge':[null, [Validators.required ]],
-      'fotoOp':[null],
-      'branch' : [null,  [Validators.required]],
-      'group': [null, [Validators.required]]
-
+      'branch' : [null,  [Validators.required]],     
     });
     
     this.cargos_trabajo_seleccionado.set('guardia', false)

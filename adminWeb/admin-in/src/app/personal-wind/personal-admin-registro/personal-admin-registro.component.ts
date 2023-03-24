@@ -71,7 +71,7 @@ export class PersonalAdminRegistroComponent implements OnInit {
   lista_sucursales = ['norte', 'sur'];
   lista_cargos = ['administrador'];
   lista_grupos = [];
-  lista_generos = ['Hombre', 'Mujer', 'No definido'];
+  lista_generos = ['masculino', 'femenino', 'No definido'];
 
   constructor(private formBuilder: FormBuilder, 
     private _infPersonalService: InfPersonalService,
@@ -81,17 +81,20 @@ export class PersonalAdminRegistroComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      'last_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       'first_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      'dni': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$'), Validators.pattern(/^([0-9]{10})$/)]],
+      'last_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       'email': [null, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')/*, Validators.email*/]],
-      'phone_number': [null, [Validators.required, Validators.minLength(9), Validators.maxLength(13), Validators.pattern(/^(09|\+5939)([0-9]){8}$/)]], //Validators.pattern('^(0){1}(9){1}[0-9]{8}$')
       'password': [null, [Validators.required, Validators.minLength(8)]],
-      'branch' : [null, [Validators.required]],
-      'charge' : [null, [Validators.required]],
-      'group' : [null, [Validators.required]],
+      'phone_number': [null, [Validators.required, Validators.minLength(9), Validators.maxLength(13), Validators.pattern(/^(09|\+5939)([0-9]){8}$/)]], //Validators.pattern('^(0){1}(9){1}[0-9]{8}$')
+      'dni': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$'), Validators.pattern(/^([0-9]{10})$/)]],
+      'birthdate': [null, [Validators.required]],
       'gender': [null, [Validators.required]],
-      'address': [null, [Validators.required]]
+      'address': [null, [Validators.required]],
+      'charge' : ["administrador", ],
+      'branch' : [null, [Validators.required]],
+      'group' : ["administrador", ],
+      
+      
 
 
     });
@@ -100,12 +103,14 @@ export class PersonalAdminRegistroComponent implements OnInit {
   }
 
   guardarUsuario(form:any): void {
+    console.log(form.value)
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     this.http.post(`${this.clienteWAService.DJANGO_SERVER_CREAR_PERSONAL_ADMINISTRADOR}`, form.value, {headers})
     .subscribe( (res: any) => {
       console.log(res);
+      
     })
   }
 
