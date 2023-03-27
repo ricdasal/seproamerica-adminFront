@@ -72,9 +72,13 @@ import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-tel
 import { PerfilAdminComponent } from './personal-wind/tabla-personal/perfil-admin/perfil-admin.component';
 import { InfoClientesComponent } from './personal-wind/tabla-clientes/info-clientes/info-clientes.component';
 import { InfoCuentaComponent } from './personal-wind/tabla-cuentas-telefono/info-cuenta/info-cuenta.component';
+import { InfoArmasComponent } from './recursos-wind/recursos-armas/info-armas/info-armas.component';
 import { InfoVehiculosComponent } from './recursos-wind/recursos-vehiculos/info-vehiculos/info-vehiculos.component';
 import { InfoCandadosComponent } from './recursos-wind/recursos-candados/info-candados/info-candados.component';
 import { InfoCelularComponent } from './recursos-wind/recursos-celular/info-celular/info-celular.component';
+import { CrearClientesComponent } from './personal-wind/tabla-clientes/crear-clientes/crear-clientes.component';
+import { CrearCuentaComponent } from './personal-wind/tabla-cuentas-telefono/crear-cuenta/crear-cuenta.component';
+import { CrearCelularComponent } from './recursos-wind/recursos-celular/crear-celular/crear-celular.component';
 
 
 
@@ -127,6 +131,9 @@ import { InfoCelularComponent } from './recursos-wind/recursos-celular/info-celu
     InfoVehiculosComponent,
     InfoCandadosComponent,
     InfoCelularComponent,
+    CrearClientesComponent,
+    CrearCuentaComponent,
+    CrearCelularComponent,
   ],
   imports: [
     BrowserModule,

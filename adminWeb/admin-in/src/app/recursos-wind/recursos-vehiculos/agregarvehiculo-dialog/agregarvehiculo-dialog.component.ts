@@ -3,6 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormControl, FormControlDirective} from '@angular/forms';
 import { VehiculoModel } from '../../../models/vehiculo.model';
 import { InventarioService } from '../../../services/inventario.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
   selector: 'app-agregarvehiculo-dialog',
@@ -15,11 +17,14 @@ export class AgregarvehiculoDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<AgregarvehiculoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public message: string,
     private formBuilder: FormBuilder,
-    private _inventarioService: InventarioService) { }
+    private _inventarioService: InventarioService,
+    private http: HttpClient,
+    private clienteWAService: ClienteWAService
+    ) { }
 
     camposCompletos: boolean = false;
+    lista_sucursales: Array<any> = [];
 
-    vehiculo: VehiculoModel = new VehiculoModel();
     registerForm!: FormGroup;
     hide = true;
     //Indicador si registro fue guardado en la base de datos o no
@@ -28,57 +33,50 @@ export class AgregarvehiculoDialogComponent implements OnInit {
     p: boolean = false;
   
     ngOnInit(): void {
+      this.obtenerSucursales();
       this.registerForm = this.formBuilder.group({
-        'placa': [this.vehiculo.placa, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'marca': [this.vehiculo.marca, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        'modelo': [this.vehiculo.modelo, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'color': [this.vehiculo.color, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        'anio': [this.vehiculo.anio, [Validators.required, Validators.minLength(4),Validators.pattern('^[0-9]*$')]],
+
+        'plate': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'brand': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'model': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'color': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'year': [null, [Validators.required, Validators.minLength(4),Validators.pattern('^[0-9]*$')]],
+        'branch': [null, [Validators.required]],
+        'category': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'engine': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'gas_tank_capacity': [null, [Validators.required, ]],
+
            
       });
     }
-    onRegisterSubmit(){
-      /*alert(this.user.apellidos + ' ' + this.user.nombres + ' ' + this.user.cedula + ' ' + this.user + ' ' + 
-      this.user.sexo+ ' '+ this.user.correo + ' ' + this.user.telefono + ' ' + this.user.contrasenia + ' ' +  this.direccion + ' ' +
-      this.fechaRegistro + ' ' + this.rol);*/
-    }
-    guardarVehiculo(): void {
-      //this.camposCompletos = !this.registerForm.invalid;
-      const data = {
-        placa : this.vehiculo.placa,
-        marca : this.vehiculo.marca,
-        modelo : this.vehiculo.modelo,
-        color : this.vehiculo.color,
-        anio : this.vehiculo.anio,
-        idEquipamiento : 1,
-      };
-      this.camposCompletos = true;
-      console.log(data)
-      console.log("Campos completos: "+this.camposCompletos)
-      //Se han completado los campos y se han aceptado los términos de la empresa
-      if(this.camposCompletos){
-        this._inventarioService.createVehiculo(data)
-          .subscribe({
-            next: (res) => {
-              console.log(res);
-              this.submitted = true;
-              alert("Cuenta creada exitosamente")
-              this.registerForm.reset()
-            },
-          });
-      } else{
-  
-        alert("Debe completar los campos")
-      }
-      if(this.submitted){
-        console.log("Datos guardados")
-      } else {
-        console.log("Datos no guardados")
-      }
-    }
-  
 
-onClickNO(): void{
-  this.dialogRef.close();
-}
+    onClickNO(): void{
+      this.dialogRef.close();
+    }
+
+    obtenerSucursales(){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+      this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_SUCURSALES, {headers})
+      .subscribe({
+        next: (res)=>{
+          this.lista_sucursales = this.lista_sucursales.concat(res);
+        }
+      })
+    }
+
+    registrarVehiculo(registerForm: any){
+      console.log(registerForm.value)
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.post(`${this.clienteWAService.DJANGO_SERVER_CREAR_VEHICULO}`, registerForm.value, {headers})
+      .subscribe({
+        next: (data)=>{
+          console.log(data);
+        }
+      })
+    }
 }

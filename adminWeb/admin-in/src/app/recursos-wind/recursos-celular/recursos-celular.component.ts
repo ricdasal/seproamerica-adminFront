@@ -4,6 +4,7 @@ import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { CrearCelularComponent } from './crear-celular/crear-celular.component';
 import { InfoCelularComponent } from './info-celular/info-celular.component';
 
 
@@ -64,5 +65,13 @@ export class RecursosCelularComponent implements OnInit {
         }
       })
     }}
+
+    crearCelulares(){
+      const ventanaGrupos =  this.dialog.open(CrearCelularComponent, {
+        width: '100vh',
+        height: '50vh',
+      })
+
+    }
   
 }

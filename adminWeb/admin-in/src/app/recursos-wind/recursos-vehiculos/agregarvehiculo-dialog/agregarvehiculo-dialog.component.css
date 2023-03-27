@@ -216,3 +216,8 @@
   .botonesConf{
     text-align:center;
   }
+
+  .cuerpo{
+    max-height: 60vh;
+    max-width: 50vh;
+  }

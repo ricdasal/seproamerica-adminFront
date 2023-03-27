@@ -15,7 +15,7 @@ import { InfoCandadosComponent } from './info-candados/info-candados.component';
 })
 export class RecursosCandadosComponent implements OnInit {
 
-
+  lista_sucursales = ['norte', 'sur'];
   emp:any;
     numSerie!: string;
     marca!: string;
@@ -86,5 +86,8 @@ export class RecursosCandadosComponent implements OnInit {
         }
       })
     }
+
+
+    
 
 }

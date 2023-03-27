@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators, FormControl, FormControlDirective} from '@angular/forms';
-import { EditCandadosComponent } from '../../recursos-candados/edit-candados/edit-candados.component';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { ArmamentoModel } from '../../../models/armamento.model';
-import { InventarioService } from '../../../services/inventario.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 
 @Component({
@@ -13,13 +13,16 @@ import { InventarioService } from '../../../services/inventario.service';
 })
 export class AgregararmamentoDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<AgregararmamentoDialogComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<AgregararmamentoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public message: string,
     private formBuilder: FormBuilder,
-    private _inventarioService: InventarioService) { }
+    private http: HttpClient,
+    private clienteWAService: ClienteWAService,
+    ) { }
 
     camposCompletos: boolean = false;
-
+    lista_sucursales: Array<any> = []
     armamento: ArmamentoModel = new ArmamentoModel();
     registerForm!: FormGroup;
     hide = true;
@@ -29,54 +32,52 @@ export class AgregararmamentoDialogComponent implements OnInit {
     p: boolean = false;
   
     ngOnInit(): void {
+
+      this.obtenerSucursales();
       this.registerForm = this.formBuilder.group({
-        'numSerie': [this.armamento.numSerie, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'marca': [this.armamento.marca, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        'clase': [this.armamento.clase, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'serial_number': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'brand': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'category': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'model': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'branch': [null, [Validators.required, ]],
+        'ammo': [null, [Validators.required,]],
+        'year': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'color': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]]
                    
       });
     }
-    onRegisterSubmit(){
-      /*alert(this.user.apellidos + ' ' + this.user.nombres + ' ' + this.user.cedula + ' ' + this.user + ' ' + 
-      this.user.sexo+ ' '+ this.user.correo + ' ' + this.user.telefono + ' ' + this.user.contrasenia + ' ' +  this.direccion + ' ' +
-      this.fechaRegistro + ' ' + this.rol);*/
-    }
-    guardarCandado(): void {
-      //this.camposCompletos = !this.registerForm.invalid;
-      const data = {
-        numSerie : this.armamento.numSerie,
-        marca : this.armamento.marca,
-        clase : this.armamento.clase,
-        idEquipamiento : 2,
-      };
-      this.camposCompletos = true;
-      console.log(data)
-      console.log("Campos completos: "+this.camposCompletos)
-      //Se han completado los campos y se han aceptado los términos de la empresa
-      if(this.camposCompletos){
-        this._inventarioService.createArmamento(data)
-          .subscribe({
-            next: (res) => {
-              console.log(res);
-              this.submitted = true;
-              alert("Cuenta creada exitosamente")
-              this.registerForm.reset()
-            },
-          });
-      } else{
-  
-        alert("Debe completar los campos")
-      }
-      if(this.submitted){
-        console.log("Datos guardados")
-      } else {
-        console.log("Datos no guardados")
-      }
-    }
   
 
-onClickNO(): void{
-  this.dialogRef.close();
-}
+
+  onClickNO(): void{
+    this.dialogRef.close();
+  }
+
+  registrarCandado(registerForm: any){
+    console.log(registerForm.value)
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    this.http.post(`${this.clienteWAService.DJANGO_SERVER_CREAR_ARMA}`, registerForm.value, {headers})
+    .subscribe({
+      next: (data)=>{
+        console.log(data);
+      }
+    })
+
+  }
+
+  obtenerSucursales(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_SUCURSALES, {headers})
+    .subscribe({
+      next: (res)=>{
+        this.lista_sucursales = this.lista_sucursales.concat(res);
+      }
+    })
+  }
 
 }

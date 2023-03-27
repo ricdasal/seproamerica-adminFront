@@ -59,9 +59,9 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_PERSONAL_OP: string = this.BASE_URL + "users/operationalList/";
   DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL: string =  this.BASE_URL + "users/operationalStaff/?id=";
   DJANGO_SERVER_CREAR_PERSONAL_ADMINISTRADOR = this.BASE_URL + "users/adminStaff/"; 
-  DJANGO_SERVER_OBTENER_SUCURSALES: string  = this.BASE_URL
+  DJANGO_SERVER_OBTENER_SUCURSALES: string  = this.BASE_URL + "users/branchList/"
   DJANGO_SERVER_OBTENER_GRUPOS: string = this.BASE_URL + "users/group/";
-  DJANGO_SERRVER_REGISTRAR_PERSONAL_OPERATIVO: string = this.BASE_URL + "users/operationalStaff/";//: https://seproamerica2022.pythonanywhere.com/users/operationalStaff/
+  DJANGO_SERRVER_REGISTRAR_PERSONAL_OPERATIVO: string = this.BASE_URL + "users/operationalStaff/";
   DJANGO_SERVER_OBTENER_PERMISOS_USUARIO: string = this.BASE_URL + "users/getPermissions/";
   DJANGO_SERVER_CREAR_GRUPOS: string = this.BASE_URL + "users/group/";
   DJANGO_SERVER_TODO_PERSONAL: string = this.BASE_URL + "users/personal/";
@@ -78,6 +78,12 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_VEHICULO: string = this.BASE_URL + "equipment/vehicle/?id="
   DJANGO_SERVER_OBTENER_CANDADO: string = this.BASE_URL + "equipment/lock/?id="
   DJANGO_SERVER_OBTENER_CELULAR: string = this.BASE_URL + "equipment/phone/?id="
+  DJANGO_SERVER_CREAR_CLIENTE_CELULAR: string =  this.BASE_URL + "users/phoneAccount/" 
+  DJANGO_SERVER_CREAR_CELULAR: string = this.BASE_URL + "equipment/phone/"
+  DJANGO_SERVER_CREAR_ARMA: string = this.BASE_URL + "equipment/weapon/"
+  DJANGO_SERVER_CREAR_CANDADO: string = this.BASE_URL + "equipment/lock/"
+  DJANGO_SERVER_CREAR_VEHICULO: string =  this.BASE_URL + "equipment/vehicle/"
+
  
 
 

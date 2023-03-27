@@ -27,7 +27,10 @@
     padding: 1rem;
     position: relative;
     overflow: hidden;
+    
+    
   }
+
   
   form .email, form .email a {
     color: hsl(var(--fgColorH), var(--fgColorS), var(--fgColorL));
@@ -216,3 +219,10 @@
   .botonesConf{
     text-align:center;
   }
+
+
+  .cuerpo{
+    max-width: 75vh;
+    height: 75vh;
+  }
+ 

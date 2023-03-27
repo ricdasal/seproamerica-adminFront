@@ -1,0 +1,65 @@
+<form  id="login-form" class="login-form" [formGroup]="registerForm" autocomplete="on" (ngSubmit)="crearCelular(registerForm)">
+   
+    <div>
+
+        <label class="label-email">Marca</label>
+        <input type="text" id="fname"  name="marca" placeholder="Ingrese el marca" tabindex="1" matInput class="form-control form-control-lg" required
+        formControlName="brand"/>
+        <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
+ 
+
+    </div>
+    
+    <div>
+      <label class="label-email">Modelo</label>
+      <input type="text" id="fname"  name="marca" placeholder="Ingrese la marca" tabindex="1" matInput class="form-control form-control-lg" required
+      formControlName="model">
+      <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
+    </div>
+    
+    <div>
+      
+          <label class="label-email">Número de teléfono</label>
+          <input type="text" id="fname"  name="marca" placeholder="Ingrese el numero de teléfono" tabindex="1" matInput class="form-control form-control-lg" required
+          formControlName="phone_number"/>
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
+       
+  </div>
+
+  <div>
+      <label class="label-email">Color</label>
+      <input type="text" class="text" id="fname" name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
+      formControlName="color"/>
+      <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
+    </div>
+
+    <div>
+        <label class="label-email">Año compra</label>
+        <input type="date" class="text" id="fname" name="color" placeholder="Ingrese el año de compra" tabindex="1" matInput class="form-control form-control-lg" required
+        formControlName="purchase_date" />
+        <mat-error *ngIf="registerForm.controls['purchase_date'].errors?.['required']"> *</mat-error>
+      </div>
+
+
+    <label class="form-label" for="form3Example1cg">Sucursales</label>
+              <div class="form-outline mb-4">
+                  <div *ngFor="let sucursal of lista_sucursales" class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="branch"  
+                        id="gridRadios1" value={{sucursal}} name="branch"> 
+                    <label class="form-check-label" for="gridRadios1">
+                          {{sucursal}}
+                    </label>
+                  </div>
+                  <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+              </div>
+    
+    
+    <div class="column botonesConf">
+      <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
+      <button class="botonesConf" mat-button type="submit" [mat-dialog-close]="true">Guardar</button>
+    </div>
+    
+    <!--
+    <input type="submit" value="Confirmar" />
+    -->
+</form>

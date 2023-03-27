@@ -5,6 +5,8 @@ import { EditCandadosComponent } from '../edit-candados/edit-candados.component'
 import { CandadoModel } from '../../../models/candado.model';
 
 import { InventarioService } from '../../../services/inventario.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 @Component({
   selector: 'app-agregarcandados-dialog',
   templateUrl: './agregarcandados-dialog.component.html',
@@ -12,11 +14,16 @@ import { InventarioService } from '../../../services/inventario.service';
 })
 export class AgregarcandadosDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<AgregarcandadosDialogComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<any>,
     @Inject(MAT_DIALOG_DATA) public message: string,
     private formBuilder: FormBuilder,
-    private _inventarioService: InventarioService) { }
+    private _inventarioService: InventarioService,
+    private http: HttpClient,
+    private clienteWAService: ClienteWAService,
+    ) { }
 
+    lista_sucursales: Array<any> = []
     camposCompletos: boolean = false;
 
     candado: CandadoModel = new CandadoModel();
@@ -28,58 +35,47 @@ export class AgregarcandadosDialogComponent implements OnInit {
     p: boolean = false;
   
     ngOnInit(): void {
+      this.obtenerSucursales()
       this.registerForm = this.formBuilder.group({
-        'numSerie': [this.candado.numSerie, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'marca': [this.candado.marca, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        'modelo': [this.candado.modelo, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'color': [this.candado.color, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        'anio': [this.candado.anio, [Validators.required, Validators.minLength(4),Validators.pattern('^[0-9]*$')]],
-           
+        'serial_number': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'brand': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'model': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'color': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'branch':[null, [Validators.required]],
+        'provider': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]]
       });
     }
-    onRegisterSubmit(){
-      /*alert(this.user.apellidos + ' ' + this.user.nombres + ' ' + this.user.cedula + ' ' + this.user + ' ' + 
-      this.user.sexo+ ' '+ this.user.correo + ' ' + this.user.telefono + ' ' + this.user.contrasenia + ' ' +  this.direccion + ' ' +
-      this.fechaRegistro + ' ' + this.rol);*/
-    }
-    guardarCandado(): void {
-      //this.camposCompletos = !this.registerForm.invalid;
-      const data = {
-        numSerie : this.candado.numSerie,
-        marca : this.candado.marca,
-        modelo : this.candado.modelo,
-        color : this.candado.color,
-        anio : this.candado.anio,
-        idEquipamiento : 1,
-      };
-      this.camposCompletos = true;
-      console.log(data)
-      console.log("Campos completos: "+this.camposCompletos)
-      //Se han completado los campos y se han aceptado los términos de la empresa
-      if(this.camposCompletos){
-        this._inventarioService.createCandado(data)
-          .subscribe({
-            next: (res) => {
-              console.log(res);
-              this.submitted = true;
-              alert("Cuenta creada exitosamente")
-              this.registerForm.reset()
-            },
-          });
-      } else{
+    
+    registrarCandado(registerForm: any): void {
+
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
   
-        alert("Debe completar los campos")
-      }
-      if(this.submitted){
-        console.log("Datos guardados")
-      } else {
-        console.log("Datos no guardados")
-      }
+      this.http.post(`${this.clienteWAService.DJANGO_SERVER_CREAR_CANDADO}`, registerForm.value, {headers})
+      .subscribe({
+        next: (data)=>{
+          console.log(data);
+        }
+      })
+      
     }
   
 
-onClickNO(): void{
-  this.dialogRef.close();
-}
+  onClickNO(): void{
+    this.dialogRef.close();
+  }
+
+  obtenerSucursales(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_SUCURSALES, {headers})
+    .subscribe({
+      next: (res)=>{
+        this.lista_sucursales = this.lista_sucursales.concat(res);
+      }
+    })
+  }
 
 }
