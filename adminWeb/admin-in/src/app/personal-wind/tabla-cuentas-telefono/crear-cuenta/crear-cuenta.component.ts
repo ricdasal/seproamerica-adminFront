@@ -22,7 +22,7 @@ export class CrearCuentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      'name': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+      'first_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
       'email': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       'password': [null, [Validators.required,Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')]],
       

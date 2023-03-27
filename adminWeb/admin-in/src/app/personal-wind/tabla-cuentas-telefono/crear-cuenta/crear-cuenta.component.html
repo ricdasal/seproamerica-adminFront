@@ -6,10 +6,10 @@
 
     <div>
         <label class="label-email">Nombre cuenta</label>
-        <input type="text" id="fname"  name="placa" placeholder="Ingrese el nombre de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="name"
+        <input type="text" id="fname"  name="first_name" placeholder="Ingrese el nombre de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
+        formControlName="first_name"
         />
-        <mat-error *ngIf="registerForm.controls['name'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
     </div>
 
 
