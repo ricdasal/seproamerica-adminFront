@@ -42,7 +42,7 @@ export class AgregarcandadosDialogComponent implements OnInit {
         'model': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
         'color': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         'branch':[null, [Validators.required]],
-        'provider': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]]
+        'provider': [null, [ Validators.pattern('^[a-zA-Z0-9-]+$')]]
       });
     }
     
