@@ -43,7 +43,7 @@ export class ClienteWAService {
   DJANGO_SERVER_CREAR_SERVICIO: string = this.BASE_URL+"api/crearServicio";
   DJANGO_SERVER_OBTENER_SERVICIOS: string = this.BASE_URL+"api/obtenerServicio";
   DJANGO_SERVER_SELECCIONAR_ACTUALIZAR_ELIMINAR: string = this.BASE_URL+"api/servicio_seleccionar_actualizar_eliminar";
-  DJANGO_SERVER_OBTENER_PERSONALOP: string = this.BASE_URL+"api/obtenerTodoPersonalOperativo";
+  
   DJANGO_SERVER_ELIMINAR_PERSONALOP: string = this.BASE_URL+"api/eliminarPersonalOperativo";
   DJANGO_SERVER_OBTENER_PERSONALOP_ESPECIFICO: string = this.BASE_URL+"api/obtener_personalop_especifico";
   DJANGO_SERVER_ACTUALIZAR_PERSONALOP: string = this.BASE_URL+"api/actualizar_personalop";
@@ -82,9 +82,10 @@ export class ClienteWAService {
   DJANGO_SERVER_CREAR_CELULAR: string = this.BASE_URL + "equipment/phone/"
   DJANGO_SERVER_CREAR_ARMA: string = this.BASE_URL + "equipment/weapon/"
   DJANGO_SERVER_CREAR_CANDADO: string = this.BASE_URL + "equipment/lock/"
-  DJANGO_SERVER_CREAR_VEHICULO: string =  this.BASE_URL + "equipment/vehicle/"
+  DJANGO_SERVER_CREAR_VEHICULO: string =  this.BASE_URL + "equipment/vehicle/";
+  DJANGO_SERVER_OBTENER_PERSONALADM: string = this.BASE_URL+"users/adminList/";
 
- 
+
 
 
 

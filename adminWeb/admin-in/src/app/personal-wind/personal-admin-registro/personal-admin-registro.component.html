@@ -59,14 +59,15 @@
 
         <label class="form-label" for="cargos">GENERO</label>
               <div class="form-outline mb-4">
-                  <div *ngFor="let genero of lista_generos" class="form-check">
-                    <input class="form-check-input" type="radio" formControlName="gender"  
-                        id="cargos" value={{genero}} name="gender"> <!--[(ngModel)]="sucursal_De_Admin"-->
-                    <label class="form-check-label" for="gridRadios1">
-                          {{genero}}
-                    </label>
-                  </div>
-                  <mat-error *ngIf="registerForm.controls['gender'].errors?.['required']"> *</mat-error>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Escoge un genero</mat-label>
+                  <mat-select formControlName="gender">
+                    <mat-option *ngFor="let genero of lista_generos" value="{{genero}}" id="{{genero}}">{{genero}}</mat-option>
+          
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="registerForm.controls['gender'].errors?.['required']"> *</mat-error>
               </div>
   
         <div class="item">
@@ -114,20 +115,19 @@
             <br>
            <br>
               <label class="form-label" for="form3Example1cg">Sucursales</label>
+
+
               <div class="form-outline mb-4">
-                  <div *ngFor="let sucursal of lista_sucursales" class="form-check">
-                    <input class="form-check-input" type="radio" formControlName="branch"  
-                        id="gridRadios1" value={{sucursal}} name="branch"> <!--[(ngModel)]="sucursal_De_Admin"-->
-                    <label class="form-check-label" for="gridRadios1">
-                          {{sucursal}}
-                    </label>
-                  </div>
-                  <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+                <mat-form-field appearance="outline">
+                  <mat-label>Escoge una sucursal</mat-label>
+                  <mat-select formControlName="branch">
+                    <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
+      
+                  </mat-select>
+                </mat-form-field>
+                <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+                
               </div>
-
-              
-
-            
 
               <!--<div class="col cont-guardar">
                 <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-62.png"

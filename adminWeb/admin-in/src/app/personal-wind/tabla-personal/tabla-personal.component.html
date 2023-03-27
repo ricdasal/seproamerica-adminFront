@@ -5,6 +5,17 @@
   
 
 <div class="informacion mat-elevation-z8">
+  <h4>Filtro</h4>
+  <mat-form-field appearance="fill">
+    <mat-label>Filtro</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="food">
+      <mat-option *ngFor="let filtro of filtros"  [value]="filtro.value">
+        {{filtro.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> {{selectedValue}} </p>
+  <button (click)=" obtenerUsuarioFiltro()">Filtrar</button>
     
   <table mat-table [dataSource]="lista_personal" class="mat-elevation-z8" #tabla1>
 

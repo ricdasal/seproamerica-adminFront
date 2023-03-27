@@ -24,23 +24,26 @@
         <mat-error *ngIf="registerForm.controls['last_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
       </div>
 
-
-      <div class="item" >
-        <label >FECHA DE NACIMIENTO</label>
-        <!--<mat-form-field >-->
-          <div>
-            <input  
-            type="date" name="fechaNac"  tabindex="1" 
-              required formControlName="birthdate" 
-               required   >
-            <!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
-          </div>
-          
-          <!--<mat-datepicker touchUi="true"  #picker ></mat-datepicker>
-        </mat-form-field>-->
-        
+      <div class="item">
+        <label >CORREO ELECTRÓNICO</label>
+        <input type="email" id="fname" name="correo" tabindex="1" matInput required
+         formControlName="email" />
+        <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['email'].errors?.['pattern']"> Debe contener una extensión
+          válida</mat-error>
       </div>
-      
+
+      <div class="item">
+        <label  for="tel">TELÉFONO</label>
+        <input maxlength="10" type="tel" id="tel" 
+          formControlName="phone_number"/>
+        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['pattern']"> Su telefono debe comenzar con 09 y
+          tener como máximo 10 dígitos</mat-error>
+        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['minlength']"> Minimo 9 caracteres</mat-error>
+        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['maxlength']"> Maximo 10 caracteres</mat-error>
+      </div>
+
       <div class="item">
         <label >DOCUMENTO DE IDENTIDAD</label>
           <input type="text" id="fname" name="cedula"  tabindex="1" matInput
@@ -54,40 +57,26 @@
             dígitos</mat-error><br>
       </div>
 
-      <label class="form-label" for="form3Example1cg">Sexo</label>
-      <div class="form-outline mb-4">
-        <div class="form-check" *ngFor="let genero of lista_generos">
-          <input class="form-check-input" type="radio" formControlName="gender" 
-                      id="gridRadios1" value="{{genero.genero}}">
-          <label class="form-check-label" for="gridRadios1">
-            {{genero.genero}}
-          </label>
-        </div>
 
-        <mat-error *ngIf="registerForm.controls['gender'].errors?.['required']"> *</mat-error>
+      <div class="item" >
+        <label >FECHA DE NACIMIENTO</label>
+          <div>
+            <input type="date" name="fechaNac"  tabindex="1" required formControlName="birthdate" required   >
+          </div>
       </div>
+      
+      
+
+      <label class="form-label" for="form3Example1cg">Genero</label>
 
 
-      <div class="item">
-        <label  for="tel">TELÉFONO</label>
-        <input maxlength="10" type="tel" id="tel" 
-          formControlName="phone_number"/>
-        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
-        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['pattern']"> Su telefono debe comenzar con 09 y
-          tener como máximo 10 dígitos</mat-error>
-        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['minlength']"> Minimo 9 caracteres</mat-error>
-        <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['maxlength']"> Maximo 10 caracteres</mat-error>
-      </div>
+      <mat-form-field appearance="outline">
+        <mat-label>Escoge un genero</mat-label>
+        <mat-select formControlName="gender">
+          <mat-option *ngFor="let genero of lista_generos" value="{{genero.genero}}" id="{{genero.identificador}}">{{genero.genero}}</mat-option>
 
-
-      <div class="item">
-        <label >CORREO ELECTRÓNICO</label>
-        <input type="email" id="fname" name="correo" tabindex="1" matInput required
-         formControlName="email" />
-        <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
-        <mat-error *ngIf="registerForm.controls['email'].errors?.['pattern']"> Debe contener una extensión
-          válida</mat-error>
-      </div>
+        </mat-select>
+      </mat-form-field>
 
 
       <div class="item">
@@ -103,24 +92,7 @@
 
     </div>
     <div class="col">
-      <div class="row">
-        <div class="col">
-          <div  id="txtDatos">
-            DATOS DEL CARGO
-         </div>
-        </div>
-       
-
-       <div class="col">
-        <div class="form-check" *ngFor="let dato of lista_datos_cargo">
-          <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
-          <label class="form-check-label" for="flexRadioDefault1">
-            {{dato.tipo_dato}}
-          </label>
-        </div>
-
-       </div>
-      </div><br><br><br>
+      
       <div class="row pe-4">
           <div class="col">
             <div id="txtDatos">
@@ -130,11 +102,13 @@
 
           <label class="form-label" for="form3Example1cg">Sucursales</label>
           <div class="form-outline mb-4">
-            <div *ngFor="let sucursal of lista_sucursales" class="form-check">
-              <input class="form-check-input" type="radio" formControlName="branch" id="{{sucursal.id}}" [value]="sucursal.direccion">
-              <label class="form-check-label" for="{{sucursal.id}}">{{sucursal.direccion}}</label>
-            </div>
-            <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+            <mat-form-field appearance="outline">
+              <mat-label>Escoge una sucursal</mat-label>
+              <mat-select formControlName="branch">
+                <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
+  
+              </mat-select>
+            </mat-form-field>
           </div>
 
 
@@ -146,16 +120,18 @@
           
           
 
-          <label class="form-label" for="form3Example1cg">Cargo de trabajo</label>
+          <label class="form-label" for="form3Example1cg">Cargo </label>
+
           <div class="form-outline mb-4">
-            <div class="form-check" *ngFor="let cargo of lista_cargos">
-              <input class="form-check-input" type="radio" name="charge" [value]="cargo" formControlName="charge" id="{{cargo}}">
-              <label class="form-check-label" [for]="cargo">
-                {{cargo}}
-              </label>
-            </div>
-            <mat-error *ngIf="registerForm.controls['charge'].errors?.['required']"> *</mat-error>
+            <mat-form-field appearance="outline">
+              <mat-label>Escoge una sucursal</mat-label>
+              <mat-select formControlName="charge">
+                <mat-option *ngFor="let cargo of lista_cargos" value="{{cargo}}" id="{{cargo}}">{{cargo}}</mat-option>
+  
+              </mat-select>
+            </mat-form-field>
           </div>
+          
 
           
 

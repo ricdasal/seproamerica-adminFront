@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterModel } from 'src/app/models/register.model';
 import { PersonalOpModel } from 'src/app/models/personalOp.models';
 import { SucursalModel } from 'src/app/models/sucursal.model';
-import { FormGroup, FormBuilder, Validators, FormControl, FormControlDirective} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import * as moment from "moment";
 import { InfPersonalService } from 'src/app/services/inf-personal.service';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { Router } from '@angular/router';
-import { ModalMensajeriaComponent } from 'src/app/components/modals/modal-mensajeria/modal-mensajeria.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearGruposComponent } from './crear-grupos/crear-grupos.component';
@@ -38,9 +36,7 @@ export class PersonalRegistroComponent implements OnInit {
     {tipo_dato: 'Uso de armamento'}
    ];
 
-   lista_sucursales = [
-    {id: 1, direccion: 'norte'},
-    {id: 2, direccion: 'sur'},
+   lista_sucursales: Array<any> = [
    ]
 
    lista_cargos: any = [
@@ -50,10 +46,7 @@ export class PersonalRegistroComponent implements OnInit {
    lista_grupos: any = [
 
    ]
-
-
-
-
+   
   //Mensaje de error
   mensajeError = "";
   mensajeErrorCorreo = "";
@@ -123,19 +116,10 @@ export class PersonalRegistroComponent implements OnInit {
     this.validar_licencia_armamento();
     this.validar_licencia_conduccion()
     this.obtenerCargos();
+    this.obtenerSucursales();
   }
 
 
-  
-
-
-  onRegisterSubmit(){
-    /*alert(this.user.apellidos + ' ' + this.user.nombres + ' ' + this.user.cedula + ' ' + this.user + ' ' + 
-    this.user.sexo+ ' '+ this.user.correo + ' ' + this.user.telefono + ' ' + this.user.contrasenia + ' ' +  this.direccion + ' ' +
-    this.fechaRegistro + ' ' + this.rol);*/
-  }
-
-  /*Función para guardar usuario nuevo que se registre */
   guardar_Personal_Operativo(form: any): void {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
@@ -179,48 +163,22 @@ export class PersonalRegistroComponent implements OnInit {
   }
 
 
+  obtenerSucursales(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_SUCURSALES, {headers})
+    .subscribe({
+      next: (res:any)=>{
+        this.lista_sucursales = this.lista_sucursales.concat(res);
+      }
+    })
+  }
+
+
 
   //Metodo para verificar los cargos de trabajo del personal
-  validar_cargos_trabajo(diccionario_cargos_trabajo: Map<string, boolean>){
-    var checkbox_guardia = document.getElementById("check_guardia") as HTMLInputElement | null;
-    var checkbox_guardaespaldas = document.getElementById("check_guardaespaldas") as HTMLInputElement | null;
-    var checkbox_conductor = document.getElementById("check_conductor") as HTMLInputElement | null;
-    var checkbox_motorizado = document.getElementById("check_motorizado") as HTMLInputElement | null;
 
-
-    if(checkbox_guardia?.checked == true){
-      diccionario_cargos_trabajo.set('guardia', true);
-    }
-
-    if(checkbox_guardia?.checked == false){
-      diccionario_cargos_trabajo.set('guardia', false);
-    }
-
-    if(checkbox_guardaespaldas?.checked == true){
-      diccionario_cargos_trabajo.set('guardaespaldas', true);
-    }
-
-    if(checkbox_guardaespaldas?.checked == false){
-      diccionario_cargos_trabajo.set('guardaespaldas', false);
-    }
-
-    if(checkbox_conductor?.checked == true){
-      diccionario_cargos_trabajo.set('conductor', true)
-    }
-
-    if(checkbox_conductor?.checked == false){
-      diccionario_cargos_trabajo.set('conductor', false)
-    }
-
-    if(checkbox_motorizado?.checked == true){
-      diccionario_cargos_trabajo.set('motorizado', true)
-    }
-
-    if(checkbox_motorizado?.checked == false){
-      diccionario_cargos_trabajo.set('motorizado', false)
-    }
-
-  }
 
   //Metodo para reporte de tipo de personal
   convertir_reporte_cargos_trabajo(diccionario_cargos_trabajo: Map<string, boolean>){
@@ -351,35 +309,3 @@ export class PersonalRegistroComponent implements OnInit {
   }
 
 }
-/*codigo legacy*/
-
-
- /* permitirRegistro(): void{
-    console.log("entra a fucnion")
-    var botonRegistro = document.querySelector("#botonRegistro") as HTMLInputElement | null;
-    /*Caso en el que se deba habilitar el boton 
-    if(!this.registerForm ){
-      if(botonRegistro != undefined){
-        console.log("se ha habilitado el boton")
-        botonRegistro.disabled = false;
-      }
-    } else{
-      if(botonRegistro != undefined){
-        console.log("boton deshabilitado")
-        console.log(this.registerForm)
-        botonRegistro.disabled = false;
-      }
-    }
-  }*/
-
-    //Obtener sucursales desde un request
-  /*obtener_Sucursales_Request(): void{
-    this.clienteWAService.obtener_Sucursales()
-    .subscribe({
-      next: (data) => {
-        this.lista_Sucursales = data;
-        console.log(data);
-      },
-      error: (e) => console.error(e)
-    });
-  }*/

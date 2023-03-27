@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { SucursalModel } from '../../models/sucursal.model';
-import { PersonalOpModel } from '../../models/personalOp.models';
 import { FormGroup } from '@angular/forms';
 import * as moment from "moment";
 import { ClienteWAService } from '../../services/cliente-wa.service';
 import { FormBuilder } from '@angular/forms';
-import { InfPersonalService } from '../../services/inf-personal.service';
-import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterModel } from '../../models/register.model';
 
@@ -68,14 +65,12 @@ export class PersonalAdminRegistroComponent implements OnInit {
   var_inicioOperaciones = new Date();
   var_fechaModificacion = new Date();
 
-  lista_sucursales = ['norte', 'sur'];
+  lista_sucursales: Array<any> = [];
   lista_cargos = ['administrador'];
   lista_grupos = [];
   lista_generos = ['masculino', 'femenino', 'No definido'];
 
   constructor(private formBuilder: FormBuilder, 
-    private _infPersonalService: InfPersonalService,
-    private router:Router,
     private clienteWAService: ClienteWAService,
     private http: HttpClient) { }
 
@@ -100,6 +95,7 @@ export class PersonalAdminRegistroComponent implements OnInit {
     });
 
     this.obtenerGrupos();
+    this.obtenerSucursales();
   }
 
   guardarUsuario(form:any): void {
@@ -115,12 +111,24 @@ export class PersonalAdminRegistroComponent implements OnInit {
   }
 
   obtenerGrupos(){
-    const headers = new HttpHeaders({
+    /*const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_GRUPOS}`, {headers}).subscribe({
       next: (data: any) => {
         this.lista_grupos = this.lista_grupos.concat(data['groups']);
+      }
+    })*/
+  }
+
+  obtenerSucursales(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_SUCURSALES, {headers})
+    .subscribe({
+      next: (res: any)=>{
+        this.lista_sucursales = this.lista_sucursales.concat(res);
       }
     })
   }
@@ -260,7 +268,7 @@ export class PersonalAdminRegistroComponent implements OnInit {
   }
 
   //
-  setImagen(event: any){
+  setImagen(){
     /*this.user.fotoOp = event.target.files[0];
     this.registerForm.get('fotoOp')?.setValue(this.user.fotoOp);*/
   }

@@ -11,6 +11,11 @@ import { PersonalRegistroComponent } from '../personal-registro/personal-registr
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
 
+interface Filtro {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-tabla-personal',
   templateUrl: './tabla-personal.component.html',
@@ -27,6 +32,14 @@ export class TablaPersonalComponent implements OnInit {
    @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
    display = 'none';
+
+     filtros: Filtro[] = [
+    {value: 'administrador', viewValue: 'Usuarios administrador'},
+    {value: 'operativo', viewValue: 'Usuarios operativo'},
+    {value: 'todos', viewValue: 'Todos los usuarios'},
+  ];
+  selectedValue: string | undefined;
+
 
 
   constructor(
@@ -47,6 +60,22 @@ export class TablaPersonalComponent implements OnInit {
       this.cargarUsuarios();
   }
 
+  obtenerUsuarioFiltro(){
+
+    if(this.selectedValue == 'administrador'){
+      console.log('administrador')
+      this.obtenerPersonalAdministrativo();
+    }
+    else if(this.selectedValue == 'operativo'){
+      console.log('guardia')
+      this.obtenerPersonalOperativo();
+    }
+    else if(this.selectedValue == 'todos'){
+      console.log('todos');
+      this.obtenerUsuarios()
+    }
+  }
+
   cargarUsuarios(){  
     console.log(this.lista_personal);
     //this.dataSource = new MatTableDataSource(this.datos);
@@ -54,15 +83,17 @@ export class TablaPersonalComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
+
   obtenerUsuarios(): void {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
 
-    this.http.request('GET', this.clienteWAService.DJANGO_SERVER_TODO_PERSONAL, {headers})
+    this.http.get(this.clienteWAService.DJANGO_SERVER_TODO_PERSONAL, {headers})
     .subscribe({
       next: (data) => {
         console.log(data);
+        this.lista_personal = []; 
         this.lista_personal = this.lista_personal.concat(data);
 
       }
@@ -101,10 +132,41 @@ export class TablaPersonalComponent implements OnInit {
       })
 
     }
+  }
 
-    
 
 
+  obtenerPersonalAdministrativo(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_PERSONALADM, {headers})
+    .subscribe({
+      next: (data: any) => {
+        console.log(data);        
+        this.lista_personal = [];
+        this.lista_personal = this.lista_personal.concat(data);
+
+      }
+    })  
+
+  }
+
+  obtenerPersonalOperativo(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_PERSONAL_OP, {headers})
+    .subscribe({
+      next: (data: any) => {
+        console.log(data);        
+        this.lista_personal = [];
+        this.lista_personal = this.lista_personal.concat(data);
+
+      }
+    }) 
   }
 
 
