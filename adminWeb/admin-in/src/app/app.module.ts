@@ -87,6 +87,7 @@ import { EliminarCandadoComponent } from './recursos-wind/recursos-candados/elim
 import { EliminarCelularComponent } from './recursos-wind/recursos-celular/eliminar-celular/eliminar-celular.component';
 import { EliminarVehiculoComponent } from './recursos-wind/recursos-vehiculos/eliminar-vehiculo/eliminar-vehiculo.component';
 import { EditCelularComponent } from './recursos-wind/recursos-celular/edit-celular/edit-celular.component';
+import { EditArmasComponent } from './recursos-wind/recursos-armas/edit-armas/edit-armas.component';
 
 
 
@@ -150,6 +151,7 @@ import { EditCelularComponent } from './recursos-wind/recursos-celular/edit-celu
     EliminarCelularComponent,
     EliminarVehiculoComponent,
     EditCelularComponent,
+    EditArmasComponent,
   ],
   imports: [
     BrowserModule,

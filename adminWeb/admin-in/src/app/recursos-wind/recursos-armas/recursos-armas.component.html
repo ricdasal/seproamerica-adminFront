@@ -33,7 +33,8 @@
       <td mat-cell *matCellDef="let ArmamentoList; let i = index" style="text-align: right;">
         <a><mat-icon class="pointer" (click)=" verArmamento(ArmamentoList.id)" style="color: rgb(75, 75, 201);" matTooltip="Ver detalles">remove_red_eye</mat-icon> </a>
         <a><mat-icon class="pointer" (click)="eliminarArma(ArmamentoList.id)" style="color: rgb(177, 85, 86);" matTooltip="Eliminar">delete</mat-icon></a>
-       </td>
+        <a><mat-icon class="pointer" (click)="editarArma(ArmamentoList.id)" style="color: rgb(85, 177, 99);" matTooltip="Editar">edit_square</mat-icon></a>
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="columnas"></tr>
     <tr mat-row *matRowDef="let row; columns: columnas;"></tr>

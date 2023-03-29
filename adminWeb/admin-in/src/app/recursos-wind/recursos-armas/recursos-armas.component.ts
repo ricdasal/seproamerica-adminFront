@@ -9,6 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfoArmasComponent } from './info-armas/info-armas.component';
 import { EliminarArmaComponent } from './eliminar-arma/eliminar-arma.component';
+import { EditArmasComponent } from './edit-armas/edit-armas.component';
 
 
 
@@ -102,5 +103,24 @@ export class RecursosArmasComponent{
         height: '50vh',
         data: id
       })
+    }
+
+    editarArma(id: any){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_ARMA}${id}`, {headers})
+      .subscribe({
+        next: (arma: any) => {
+          console.log(arma);
+          const ventanaGrupos = this.dialog.open(EditArmasComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: arma
+          })
+        }
+      })
+
     }
 }
