@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CandadoModel } from 'src/app/models/candado.model';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
-import { InventarioService } from 'src/app/services/inventario.service';
 
 @Component({
   selector: 'app-crear-celular',
@@ -12,7 +11,7 @@ import { InventarioService } from 'src/app/services/inventario.service';
   styleUrls: ['./crear-celular.component.css']
 })
 export class CrearCelularComponent implements OnInit {
-  lista_sucursales = ['norte', 'sur'];
+  lista_sucursales: Array<any> = [];
   registerForm!: FormGroup;
   hide = true;
     //Indicador si registro fue guardado en la base de datos o no
@@ -23,7 +22,6 @@ export class CrearCelularComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _inventarioService: InventarioService,
     public dialogRef: MatDialogRef<any>,
     private http: HttpClient,
     private clienteWAService: ClienteWAService,
@@ -39,6 +37,18 @@ export class CrearCelularComponent implements OnInit {
       'branch': [null, Validators.required]
          
     });
+  }
+
+  obtenerSucursales(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    this.http.get(this.clienteWAService.DJANGO_SERVER_OBTENER_SUCURSALES, {headers})
+    .subscribe({
+      next: (res: any)=>{
+        this.lista_sucursales = this.lista_sucursales.concat(res);
+      }
+    })
   }
 
 

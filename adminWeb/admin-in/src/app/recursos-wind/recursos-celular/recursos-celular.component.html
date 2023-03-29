@@ -33,7 +33,8 @@
       <td mat-cell *matCellDef="let celular; let i = index" class="td-style">
         <a><mat-icon class="pointer" (click)="verCelular(celular.id)"  style="color: rgb(75, 75, 201);" matTooltip="Ver detalles">remove_red_eye</mat-icon> </a> <!--(click)="enviar_personalop_seleccionado(celular.id) (click)="verPersonal(celular.id)""-->
         <a><mat-icon class="pointer" (click)=" eliminarCelular(celular.id)" data-bs-toggle="modal" data-bs-target="#modalDos" data-bs-dismiss="modal" style="color: rgb(177, 85, 86);" matTooltip="Eliminar">delete</mat-icon></a> <!--(click)="guardar_cedula_eliminar(celular.numCedula)"-->
-       </td>
+        <a><mat-icon class="pointer" (click)="editarCelular(celular.id)" style="color: rgb(85, 177, 99);" matTooltip="Editar">edit_square</mat-icon></a>
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="columnas"></tr>
     <tr mat-row *matRowDef="let row; columns: columnas;"></tr>

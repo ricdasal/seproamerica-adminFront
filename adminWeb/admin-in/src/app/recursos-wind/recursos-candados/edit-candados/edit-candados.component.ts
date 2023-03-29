@@ -36,8 +36,6 @@ export class EditCandadosComponent implements OnInit {
   }
 
   editarCandado(registerForm: any){
-    console.log(registerForm.value)
-    console.log(registerForm.value);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });

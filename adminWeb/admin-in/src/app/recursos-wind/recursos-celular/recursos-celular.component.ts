@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { CrearCelularComponent } from './crear-celular/crear-celular.component';
+import { EditCelularComponent } from './edit-celular/edit-celular.component';
 import { EliminarCelularComponent } from './eliminar-celular/eliminar-celular.component';
 import { InfoCelularComponent } from './info-celular/info-celular.component';
 
@@ -49,7 +50,7 @@ export class RecursosCelularComponent implements OnInit {
   
     }
 
-    verCelular(id: any){{
+    verCelular(id: any){
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
       });
@@ -65,7 +66,7 @@ export class RecursosCelularComponent implements OnInit {
           })
         }
       })
-    }}
+    }
 
     crearCelulares(){
       const ventanaGrupos =  this.dialog.open(CrearCelularComponent, {
@@ -80,6 +81,24 @@ export class RecursosCelularComponent implements OnInit {
         width: '100vh',
         height: '50vh',
         data: id
+      })
+    }
+    
+    editarCelular(id: any){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CELULAR}${id}`, {headers})
+      .subscribe({
+        next: (celular: any) => {
+          console.log(celular);
+          const ventanaGrupos =  this.dialog.open(EditCelularComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: celular
+          })
+        }
       })
     }
   
