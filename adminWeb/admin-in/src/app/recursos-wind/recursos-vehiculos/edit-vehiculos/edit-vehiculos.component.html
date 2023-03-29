@@ -1,1 +1,99 @@
-<p>edit-vehiculos works!</p>
+<div class="cuerpo">
+    <div class="campos row">
+        <div class="column">
+            <form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="editarVehiculo(registerForm)" novalidate>
+
+            <div>
+
+                <label class="label-email">Placa</label>
+                <input type="text" id="fname"  name="plate" placeholder="Ingrese la placa del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+                formControlName="plate" />
+                <mat-error *ngIf="registerForm.controls['plate'].errors?.['required']"> *</mat-error>
+         
+
+            </div>
+
+            <div>
+
+              <label class="label-email">Categoría</label>
+              <input type="text" id="fname"  name="category" placeholder="Ingrese la categoria del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+              formControlName="category" />
+              <mat-error *ngIf="registerForm.controls['category'].errors?.['required']"> *</mat-error>
+       
+
+          </div>
+            
+            <div>
+              <label class="label-email">Marca</label>
+              <input type="text" id="fname"  name="brand" placeholder="Ingrese la marca del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+              formControlName="brand"/>
+              <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
+            </div>
+            
+            <div>
+              
+                  <label class="label-email">Modelo</label>
+                  <input type="text" id="fname"  name="model" placeholder="Ingrese el modelo del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+                  formControlName="model"/>
+                  <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
+               
+          </div>
+
+          <div>
+              <label class="label-email">Color</label>
+              <input type="text" class="text" id="fname" name="color" placeholder="Ingrese el color del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+              formControlName="color"/>
+              <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
+            </div>
+
+        <div>
+              <label class="label-email">Año</label>
+              <input type="number" min="1999" max="2023" class="text" id="fname" name="year" placeholder="Ingrese el año del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+              formControlName="year"/>
+              <mat-error *ngIf="registerForm.controls['year'].errors?.['required']"> *</mat-error>
+        </div>
+
+        <div>
+          <label class="label-email">Sucursales</label>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Escoge una sucursal</mat-label>
+                <mat-select formControlName="branch">
+                  <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
+
+                </mat-select>
+              </mat-form-field>
+                  
+              <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+            </div>
+        </div>
+
+        <div>
+          <label class="label-email">Motor</label>
+          <input type="text" id="fname"  name="engine" placeholder="Ingrese el motor del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+          formControlName="engine" />
+          <mat-error *ngIf="registerForm.controls['engine'].errors?.['required']"> *</mat-error>
+      </div>
+
+      <div>
+
+        <label class="label-email">Capacidad del tanque de gasolina</label>
+        <input type="text" id="fname"  name="gas_tank_capacity" placeholder="Ingrese la capacidad del tanque de gasolina del vehiculo" tabindex="1" matInput class="form-control form-control-lg" required
+        formControlName="gas_tank_capacity"/>
+        <mat-error *ngIf="registerForm.controls['gas_tank_capacity'].errors?.['required']"> *</mat-error>
+ 
+
+      </div>
+    
+      
+         
+        <div class="column botonesConf">
+          <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
+          <button class="botonesConf" mat-button type="submit" [mat-dialog-close]="true">Guardar</button>  
+        </div>
+            
+            <!--
+            <input type="submit" value="Confirmar" />
+            -->
+    </form>
+    </div> 

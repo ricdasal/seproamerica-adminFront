@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfoCandadosComponent } from './info-candados/info-candados.component';
 import { EliminarCandadoComponent } from './eliminar-candado/eliminar-candado.component';
+import { EditCandadosComponent } from './edit-candados/edit-candados.component';
 
 @Component({
   selector: 'app-recursos-candados',
@@ -89,6 +90,15 @@ export class RecursosCandadosComponent implements OnInit {
         height: '50vh',
         data: id
       })
+    }
+
+    editarCandado(id: any){
+      const ventanaGrupos =  this.dialog.open(EditCandadosComponent, {
+        width: '100vh',
+        height: '50vh',
+        data: id
+      })
+
     }
 
 

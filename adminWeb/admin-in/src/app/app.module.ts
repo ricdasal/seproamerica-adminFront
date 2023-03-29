@@ -13,7 +13,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -170,6 +170,7 @@ import { EliminarVehiculoComponent } from './recursos-wind/recursos-vehiculos/el
     MatSelectModule,
     MatFormFieldModule,
     MatCardModule,
+    MatCheckboxModule,
     
 
   ],

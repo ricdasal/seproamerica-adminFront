@@ -9,6 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfoVehiculosComponent } from './info-vehiculos/info-vehiculos.component';
 import { EliminarVehiculoComponent } from './eliminar-vehiculo/eliminar-vehiculo.component';
+import { EditVehiculosComponent } from './edit-vehiculos/edit-vehiculos.component';
 
 
 @Component({
@@ -91,6 +92,24 @@ export class RecursosVehiculosComponent implements OnInit {
         width: '100vh',
         height: '50vh',
         data: id
+      })
+    }
+
+    editarVehiculo(id: any){
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_VEHICULO}${id}`, {headers})
+      .subscribe({
+        next: (vehiculo: any) => {
+          console.log(vehiculo);
+          this.dialog.open(EditVehiculosComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: vehiculo
+          })
+        }
       })
     }
   

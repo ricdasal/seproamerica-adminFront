@@ -29,6 +29,7 @@ import { ServicioDetallesAsignacionComponent } from './servicio-detalles-asignac
 import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-personal.component';
 import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-clientes.component';
 import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
+import { EditVehiculosComponent } from './recursos-wind/recursos-vehiculos/edit-vehiculos/edit-vehiculos.component';
 
 
 
