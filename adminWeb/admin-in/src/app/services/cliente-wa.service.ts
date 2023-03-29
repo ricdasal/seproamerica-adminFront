@@ -105,6 +105,10 @@ export class ClienteWAService {
   DJANGO_SERVER_EDITAR_CANDADO: string = this.BASE_URL + "equipment/lock/";
   DJANGO_SERVER_EDITAR_CELULAR: string = this.BASE_URL + "equipment/phone/";
   DJANGO_SERVER_EDITAR_ARMA: string = this.BASE_URL + "equipment/weapon/";
+  DJANGO_SERVER_EDITAR_ADMINISTRADOR: string = this.BASE_URL + "users/adminStaff/";
+  DJANGO_SERVER_EDITAR_PERSONAL_OPERATIVO: string = this.BASE_URL + "users/operationalStaff/";
+  DJANGO_SERVER_EDITAR_CLIENTE: string =  this.BASE_URL + "users/adminClient/";
+  DJANGO_SERVER_EDITAR_CUENTAS: string =  this.BASE_URL + "users/phoneAccount/";
 
 
 

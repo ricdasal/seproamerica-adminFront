@@ -1,0 +1,37 @@
+<div class="column">
+    
+    <form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="editarCuenta(registerForm)">
+
+    <div>
+        <label class="label-email">Nombre cuenta</label>
+        <input type="text" id="fname"  name="first_name" placeholder="Ingrese el nombre de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
+        formControlName="first_name"
+        />
+        <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
+    </div>
+
+
+    <div>
+      <label class="label-email">Email</label>
+      <input type="email" id="fname"  name="marca" placeholder="Ingrese el email de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
+      formControlName="email"
+      />
+      <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+    </div>
+    
+    <div> 
+          <label class="label-email">Password</label>
+          <input type="password" id="fname"  name="marca" placeholder="Ingrese la contraseña de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
+          formControlName="password"
+          />
+          <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
+  </div>
+
+  
+    <div class="column botonesConf">
+      <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
+      <button class="botonesConf" type="submit" mat-button [mat-dialog-close]="true">Guardar</button>
+    </div>
+    
+</form>
+

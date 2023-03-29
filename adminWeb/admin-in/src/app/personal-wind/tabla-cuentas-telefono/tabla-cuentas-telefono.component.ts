@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
+import { EditarCuentaComponent } from './editar-cuenta/editar-cuenta.component';
 import { EliminarCuentaComponent } from './eliminar-cuenta/eliminar-cuenta.component';
 import { InfoCuentaComponent } from './info-cuenta/info-cuenta.component';
 
@@ -79,6 +80,25 @@ export class TablaCuentasTelefonoComponent implements OnInit {
       height: '50vh',
       data: id
     })
+  }
+
+  editarCuenta(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CUENTA_TELEFONO}${id}`, {headers})
+      .subscribe({
+        next: (cuentaTelefono: any) => {
+          console.log(cuentaTelefono);
+          const ventanaGrupos =  this.dialog.open(EditarCuentaComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: cuentaTelefono
+          })
+        }
+      })
+
   }
 
 

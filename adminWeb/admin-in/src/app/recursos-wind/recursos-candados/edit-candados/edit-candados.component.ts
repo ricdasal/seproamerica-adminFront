@@ -19,7 +19,7 @@ export class EditCandadosComponent implements OnInit {
     private clienteWAService: ClienteWAService,
   ) { }
 
-  lista_sucursales: Array<any> = []
+  lista_sucursales: Array<any> = [];
   registerForm!: FormGroup;
 
   ngOnInit(): void {
