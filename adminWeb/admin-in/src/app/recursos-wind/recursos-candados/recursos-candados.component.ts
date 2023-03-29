@@ -73,12 +73,12 @@ export class RecursosCandadosComponent implements OnInit {
 
       this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CANDADO}${id}`, {headers})
       .subscribe({
-        next: (vehiculo: any) => {
-          console.log(vehiculo);
+        next: (candado: any) => {
+          console.log(candado);
           const ventanaGrupos =  this.dialog.open(InfoCandadosComponent, {
             width: '100vh',
             height: '50vh',
-            data: vehiculo
+            data: candado
           })
         }
       })
@@ -93,15 +93,23 @@ export class RecursosCandadosComponent implements OnInit {
     }
 
     editarCandado(id: any){
-      const ventanaGrupos =  this.dialog.open(EditCandadosComponent, {
-        width: '100vh',
-        height: '50vh',
-        data: id
-      })
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+      });
 
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_CANDADO}${id}`, {headers})
+      .subscribe({
+        next: (candado: any) => {
+          console.log(candado);
+          const ventanaGrupos =  this.dialog.open(EditCandadosComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: candado
+          })
+        }
+      })
     }
 
 
-    
 
 }

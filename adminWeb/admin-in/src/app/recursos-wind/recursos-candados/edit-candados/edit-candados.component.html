@@ -1,1 +1,66 @@
-<p>edit-candados works!</p>
+<div class="cuerpo">
+    <div class="campos row">
+        <div class="column">
+            <form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="editarCandado(registerForm)">
+
+            <div>
+
+                <label class="label-email">Número de serie</label>
+                <input type="text" id="fname"  name="serial_number" placeholder="Ingrese el Número de serie" tabindex="1" matInput class="form-control form-control-lg" required
+                formControlName="serial_number" />
+                <mat-error *ngIf="registerForm.controls['serial_number'].errors?.['required']"> *</mat-error>
+         
+
+            </div>
+            
+            <div>
+              <label class="label-email">Marca</label>
+              <input type="text" id="fname"  name="brand" placeholder="Ingrese la marca" tabindex="1" matInput class="form-control form-control-lg" required
+              formControlName="brand"/>
+              <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
+            </div>
+            
+            <div>
+              
+                  <label class="label-email">Modelo</label>
+                  <input type="text" id="fname"  name="model" placeholder="Ingrese el modelo" tabindex="1" matInput class="form-control form-control-lg" required
+                  formControlName="model"/>
+                  <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
+               
+          </div>
+
+          <div>
+              <label class="label-email">Color</label>
+              <input type="text" class="text" id="fname" name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
+              formControlName="color"/>
+              <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
+          </div>
+              
+          <div>
+            <label class="label-email">Sucursal</label>
+            <mat-form-field appearance="fill">
+              <mat-label>Escoge una sucursal</mat-label>
+                <mat-select formControlName="branch">
+                  <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
+
+                </mat-select>
+            </mat-form-field>      
+            <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+          </div>
+
+          <div>
+            <label class="label-email">Proveedor</label>
+            <input type="text" id="fname"  name="provider" placeholder="Ingrese el nombre del proveedor" tabindex="1" matInput class="form-control form-control-lg" required
+            formControlName="provider" />
+            <mat-error *ngIf="registerForm.controls['provider'].errors?.['required']"> *</mat-error>
+          </div>
+            
+        <div class="column botonesConf">
+          <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
+          <button class="botonesConf" mat-button type="submit" [mat-dialog-close]="true">Guardar</button>
+        </div>
+            
+    </form>
+    </div> 
+</div>
+

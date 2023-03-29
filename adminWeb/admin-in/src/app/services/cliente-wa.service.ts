@@ -55,15 +55,15 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_MOBIL = ""
 
   //Nuevos endpoints
+
+  //INICIO DE SESION
   DJANGO_SERVER_INICIO_SESION_ADMIN: string = this.BASE_URL + "users/adminSignin/";
+
+  //ENDPOINTS DE LISTAS
   DJANGO_SERVER_OBTENER_PERSONAL_OP: string = this.BASE_URL + "users/operationalList/";
-  DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL: string =  this.BASE_URL + "users/operationalStaff/?id=";
-  DJANGO_SERVER_CREAR_PERSONAL_ADMINISTRADOR = this.BASE_URL + "users/adminStaff/"; 
   DJANGO_SERVER_OBTENER_SUCURSALES: string  = this.BASE_URL + "users/branchList/"
   DJANGO_SERVER_OBTENER_GRUPOS: string = this.BASE_URL + "users/group/";
-  DJANGO_SERRVER_REGISTRAR_PERSONAL_OPERATIVO: string = this.BASE_URL + "users/operationalStaff/";
   DJANGO_SERVER_OBTENER_PERMISOS_USUARIO: string = this.BASE_URL + "users/getPermissions/";
-  DJANGO_SERVER_CREAR_GRUPOS: string = this.BASE_URL + "users/group/";
   DJANGO_SERVER_TODO_PERSONAL: string = this.BASE_URL + "users/personal/";
   DJANGO_SERVER_OBTENER_CLIENTES: string = this.BASE_URL + "users/clientList/";
   DJANGO_SERVER_OBTENER_CUENTAS_TELEFONO: string = this.BASE_URL + "users/phoneAccountList/";
@@ -71,6 +71,9 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_ARMAMENTOS: string = this.BASE_URL+"equipment/weaponList/";
   DJANGO_SERVER_OBTENER_VEHICULOS: string = this.BASE_URL+"equipment/vehicleList/";
   DJANGO_SERVER_OBTENER_CANDADOS: string = this.BASE_URL+"equipment/lockList/";
+  DJANGO_SERVER_OBTENER_PERSONALADM: string = this.BASE_URL+"users/adminList/";
+
+//OBTENER POR ID
   DJANGO_SERVER_OBTENER_ADMINISTRADOR: string = this.BASE_URL+"users/adminStaff/?id=";
   DJANGO_SERVER_OBTENER_CLIENTE: string = this.BASE_URL + "users/adminClient/?id="
   DJANGO_SERVER_OBTENER_CUENTA_TELEFONO: string = this.BASE_URL + "users/phoneAccount/?id="
@@ -78,16 +81,29 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_VEHICULO: string = this.BASE_URL + "equipment/vehicle/?id="
   DJANGO_SERVER_OBTENER_CANDADO: string = this.BASE_URL + "equipment/lock/?id="
   DJANGO_SERVER_OBTENER_CELULAR: string = this.BASE_URL + "equipment/phone/?id="
+  DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL: string =  this.BASE_URL + "users/operationalStaff/?id=";
+  
+  
+  //endpoint de crear
   DJANGO_SERVER_CREAR_CLIENTE_CELULAR: string =  this.BASE_URL + "users/phoneAccount/" 
   DJANGO_SERVER_CREAR_CELULAR: string = this.BASE_URL + "equipment/phone/"
   DJANGO_SERVER_CREAR_ARMA: string = this.BASE_URL + "equipment/weapon/"
   DJANGO_SERVER_CREAR_CANDADO: string = this.BASE_URL + "equipment/lock/"
   DJANGO_SERVER_CREAR_VEHICULO: string =  this.BASE_URL + "equipment/vehicle/";
-  DJANGO_SERVER_OBTENER_PERSONALADM: string = this.BASE_URL+"users/adminList/";
+  DJANGO_SERVER_CREAR_GRUPOS: string = this.BASE_URL + "users/group/";
+  DJANGO_SERRVER_REGISTRAR_PERSONAL_OPERATIVO: string = this.BASE_URL + "users/operationalStaff/";
+  DJANGO_SERVER_CREAR_PERSONAL_ADMINISTRADOR = this.BASE_URL + "users/adminStaff/"; 
+  
+ 
+  //endpoints de eliminar
   DJANGO_SERVER_ELIMINAR_PERSONAL: string = this.BASE_URL + "users/personal/?id=";
   DJANGO_SERVER_ELIMINAR_CLIENTE: string = this.BASE_URL + "users/adminClient/?id=";
   DJANGO_SERVER_ELIMINAR_EQUIPAMENTO: string = this.BASE_URL + "equipment/equipment/?id=";
-  DJANGO_SERVER_EDITAR_VEHICULO: string = this.BASE_URL + "equipment/vehicle/"
+
+  //endpoints editar
+  DJANGO_SERVER_EDITAR_VEHICULO: string = this.BASE_URL + "equipment/vehicle/";
+  DJANGO_SERVER_EDITAR_CANDADO: string = this.BASE_URL + "equipment/lock/";
+
 
 
 
