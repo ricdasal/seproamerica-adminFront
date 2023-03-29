@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfoVehiculosComponent } from './info-vehiculos/info-vehiculos.component';
+import { EliminarVehiculoComponent } from './eliminar-vehiculo/eliminar-vehiculo.component';
 
 
 @Component({
@@ -51,10 +52,6 @@ export class RecursosVehiculosComponent implements OnInit {
       this.getVehiculos();
     }
     
-    eliminarVehiculo(index: number){
-      console.log(index);
-      this._inventarioService.eliminarVehiculo(index);
-    }
   
     getVehiculos(){
       const headers = new HttpHeaders({
@@ -88,6 +85,15 @@ export class RecursosVehiculosComponent implements OnInit {
       })
 
     }
+
+    eliminarVehiculo(id: any){
+      const ventanaGrupos =  this.dialog.open(EliminarVehiculoComponent, {
+        width: '100vh',
+        height: '50vh',
+        data: id
+      })
+    }
+  
 
     
   /*

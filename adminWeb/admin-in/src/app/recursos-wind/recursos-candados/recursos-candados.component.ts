@@ -7,6 +7,7 @@ import { AgregarcandadosDialogComponent } from './agregarcandados-dialog/agregar
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfoCandadosComponent } from './info-candados/info-candados.component';
+import { EliminarCandadoComponent } from './eliminar-candado/eliminar-candado.component';
 
 @Component({
   selector: 'app-recursos-candados',
@@ -50,11 +51,6 @@ export class RecursosCandadosComponent implements OnInit {
       this.getCandados();
     }
     
-    eliminarCandado(index: number){
-      console.log(index);
-      this._inventarioService.eliminarCandado(index);
-    }
-
     getCandados(){
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
@@ -84,6 +80,14 @@ export class RecursosCandadosComponent implements OnInit {
             data: vehiculo
           })
         }
+      })
+    }
+
+    eliminarCandado(id: any){
+      const ventanaGrupos =  this.dialog.open(EliminarCandadoComponent, {
+        width: '100vh',
+        height: '50vh',
+        data: id
       })
     }
 

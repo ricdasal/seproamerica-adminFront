@@ -8,6 +8,7 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfPersonalService } from 'src/app/services/inf-personal.service';
 import { PersonalAdminRegistroComponent } from '../personal-admin-registro/personal-admin-registro.component';
 import { PersonalRegistroComponent } from '../personal-registro/personal-registro.component';
+import { EliminarUsuarioComponent } from './eliminar-usuario/eliminar-usuario.component';
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
 
@@ -184,6 +185,15 @@ export class TablaPersonalComponent implements OnInit {
     })
 
   }
+
+  eliminarUsuario(id: any){
+    const ventanaGrupos =  this.dialog.open(EliminarUsuarioComponent, {
+      width: '100vh',
+      height: '80vh',
+      data: id
+    })
+  }
+  /**/
 
 
 }

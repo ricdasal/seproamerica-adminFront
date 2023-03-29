@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { EliminarCuentaComponent } from '../tabla-cuentas-telefono/eliminar-cuenta/eliminar-cuenta.component';
+import { EliminarClientesComponent } from './eliminar-clientes/eliminar-clientes.component';
 import { InfoClientesComponent } from './info-clientes/info-clientes.component';
 
 
@@ -66,6 +68,14 @@ export class TablaClientesComponent implements OnInit {
         }
       })
 
+  }
+
+  eliminarCliente(cliente: any){
+    const ventanaGrupos =  this.dialog.open(EliminarClientesComponent, {
+      width: '100vh',
+      height: '50vh',
+      data: cliente
+    })
   }
 
   

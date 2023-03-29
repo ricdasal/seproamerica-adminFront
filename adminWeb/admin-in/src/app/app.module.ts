@@ -79,6 +79,13 @@ import { InfoCelularComponent } from './recursos-wind/recursos-celular/info-celu
 import { CrearClientesComponent } from './personal-wind/tabla-clientes/crear-clientes/crear-clientes.component';
 import { CrearCuentaComponent } from './personal-wind/tabla-cuentas-telefono/crear-cuenta/crear-cuenta.component';
 import { CrearCelularComponent } from './recursos-wind/recursos-celular/crear-celular/crear-celular.component';
+import { EliminarUsuarioComponent } from './personal-wind/tabla-personal/eliminar-usuario/eliminar-usuario.component';
+import { EliminarCuentaComponent } from './personal-wind/tabla-cuentas-telefono/eliminar-cuenta/eliminar-cuenta.component';
+import { EliminarClientesComponent } from './personal-wind/tabla-clientes/eliminar-clientes/eliminar-clientes.component';
+import { EliminarArmaComponent } from './recursos-wind/recursos-armas/eliminar-arma/eliminar-arma.component';
+import { EliminarCandadoComponent } from './recursos-wind/recursos-candados/eliminar-candado/eliminar-candado.component';
+import { EliminarCelularComponent } from './recursos-wind/recursos-celular/eliminar-celular/eliminar-celular.component';
+import { EliminarVehiculoComponent } from './recursos-wind/recursos-vehiculos/eliminar-vehiculo/eliminar-vehiculo.component';
 
 
 
@@ -134,6 +141,13 @@ import { CrearCelularComponent } from './recursos-wind/recursos-celular/crear-ce
     CrearClientesComponent,
     CrearCuentaComponent,
     CrearCelularComponent,
+    EliminarUsuarioComponent,
+    EliminarCuentaComponent,
+    EliminarClientesComponent,
+    EliminarArmaComponent,
+    EliminarCandadoComponent,
+    EliminarCelularComponent,
+    EliminarVehiculoComponent,
   ],
   imports: [
     BrowserModule,

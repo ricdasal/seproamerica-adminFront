@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfoArmasComponent } from './info-armas/info-armas.component';
+import { EliminarArmaComponent } from './eliminar-arma/eliminar-arma.component';
 
 
 
@@ -93,5 +94,13 @@ export class RecursosArmasComponent{
       })
 
 
+    }
+
+    eliminarArma(id: any){
+      const ventanaGrupos =  this.dialog.open(EliminarArmaComponent, {
+        width: '100vh',
+        height: '50vh',
+        data: id
+      })
     }
 }

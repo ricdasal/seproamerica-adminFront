@@ -84,7 +84,9 @@ export class ClienteWAService {
   DJANGO_SERVER_CREAR_CANDADO: string = this.BASE_URL + "equipment/lock/"
   DJANGO_SERVER_CREAR_VEHICULO: string =  this.BASE_URL + "equipment/vehicle/";
   DJANGO_SERVER_OBTENER_PERSONALADM: string = this.BASE_URL+"users/adminList/";
-
+  DJANGO_SERVER_ELIMINAR_PERSONAL: string = this.BASE_URL + "users/personal/?id=";
+  DJANGO_SERVER_ELIMINAR_CLIENTE: string = this.BASE_URL + "users/adminClient/?id=";
+  DJANGO_SERVER_ELIMINAR_EQUIPAMENTO: string = this.BASE_URL + "equipment/equipment/?id=";
 
 
 

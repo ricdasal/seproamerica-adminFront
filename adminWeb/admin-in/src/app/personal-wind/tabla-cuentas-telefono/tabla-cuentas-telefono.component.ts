@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { CrearCuentaComponent } from './crear-cuenta/crear-cuenta.component';
+import { EliminarCuentaComponent } from './eliminar-cuenta/eliminar-cuenta.component';
 import { InfoCuentaComponent } from './info-cuenta/info-cuenta.component';
 
 @Component({
@@ -70,6 +71,14 @@ export class TablaCuentasTelefonoComponent implements OnInit {
       height: '50vh',
     })
 
+  }
+
+  eliminarCuenta(id: any){
+    this.dialog.open(EliminarCuentaComponent, {
+      width: '100vh',
+      height: '50vh',
+      data: id
+    })
   }
 
 
