@@ -8,6 +8,8 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { InfPersonalService } from 'src/app/services/inf-personal.service';
 import { PersonalAdminRegistroComponent } from '../personal-admin-registro/personal-admin-registro.component';
 import { PersonalRegistroComponent } from '../personal-registro/personal-registro.component';
+import { EditAdminComponent } from './edit-admin/edit-admin.component';
+import { EditPersonalComponent } from './edit-personal/edit-personal.component';
 import { EliminarUsuarioComponent } from './eliminar-usuario/eliminar-usuario.component';
 import { PerfilAdminComponent } from './perfil-admin/perfil-admin.component';
 import { PerfilPersonalComponent } from './perfil-personal/perfil-personal.component';
@@ -193,7 +195,40 @@ export class TablaPersonalComponent implements OnInit {
       data: id
     })
   }
-  /**/
+
+  editarUsuario(isAdmin: any, id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    if(isAdmin){
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_ADMINISTRADOR}${id}`, {headers})
+      .subscribe({
+        next: (admin: any) => {
+          console.log(admin);
+          const ventanaGrupos =  this.dialog.open(EditAdminComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: admin
+          })
+        }
+      })
+
+    }else{ 
+
+      this.http.get(`${this.clienteWAService.DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL}${id}`, {headers})
+      .subscribe({
+        next: (personal: any) => {
+          const ventanaGrupos =  this.dialog.open(EditPersonalComponent, {
+            width: '100vh',
+            height: '50vh',
+            data: personal
+          })
+        }
+      })
+
+    }
+  }
 
 
 }

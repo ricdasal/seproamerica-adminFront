@@ -75,12 +75,12 @@ export class ClienteWAService {
 
 //OBTENER POR ID
   DJANGO_SERVER_OBTENER_ADMINISTRADOR: string = this.BASE_URL+"users/adminStaff/?id=";
-  DJANGO_SERVER_OBTENER_CLIENTE: string = this.BASE_URL + "users/adminClient/?id="
-  DJANGO_SERVER_OBTENER_CUENTA_TELEFONO: string = this.BASE_URL + "users/phoneAccount/?id="
-  DJANGO_SERVER_OBTENER_ARMA: string = this.BASE_URL + "equipment/weapon/?id="
-  DJANGO_SERVER_OBTENER_VEHICULO: string = this.BASE_URL + "equipment/vehicle/?id="
-  DJANGO_SERVER_OBTENER_CANDADO: string = this.BASE_URL + "equipment/lock/?id="
-  DJANGO_SERVER_OBTENER_CELULAR: string = this.BASE_URL + "equipment/phone/?id="
+  DJANGO_SERVER_OBTENER_CLIENTE: string = this.BASE_URL + "users/adminClient/?id=";
+  DJANGO_SERVER_OBTENER_CUENTA_TELEFONO: string = this.BASE_URL + "users/phoneAccount/?id=";
+  DJANGO_SERVER_OBTENER_ARMA: string = this.BASE_URL + "equipment/weapon/?id=";
+  DJANGO_SERVER_OBTENER_VEHICULO: string = this.BASE_URL + "equipment/vehicle/?id=";
+  DJANGO_SERVER_OBTENER_CANDADO: string = this.BASE_URL + "equipment/lock/?id=";
+  DJANGO_SERVER_OBTENER_CELULAR: string = this.BASE_URL + "equipment/phone/?id=";
   DJANGO_SERVER_OBTENER_PERSONAL_OP_INDIVIDUAL: string =  this.BASE_URL + "users/operationalStaff/?id=";
   
   
