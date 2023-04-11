@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { PedidoModel } from '../models/pedido.model';
-import { PersonalOpModel } from '../models/personalOp.models';
-import { VehiculoModel } from '../models/vehiculo.model';
-import { ClienteWAService } from '../services/cliente-wa.service';
+import { PedidoModel } from '../../models/pedido.model';
+import { PersonalOpModel } from '../../models/personalOp.models';
+import { VehiculoModel } from '../../models/vehiculo.model';
+import { ClienteWAService } from '../../services/cliente-wa.service';
 import {MatSelectModule} from '@angular/material/select';
-import { CandadoModel } from '../models/candado.model';
-import { ArmamentoModel } from '../models/armamento.model';
-import { MobilModel } from '../models/mobil.model';
+import { CandadoModel } from '../../models/candado.model';
+import { ArmamentoModel } from '../../models/armamento.model';
+import { MobilModel } from '../../models/mobil.model';
 import { DATE_PIPE_DEFAULT_TIMEZONE, Time } from "@angular/common";
 
 

@@ -1,0 +1,78 @@
+<!--<div class="contenedor_servicios" style="display:flex;">
+
+    <div class="servicio_especifico">
+
+
+
+
+      
+
+    <div id="CUSTODIA ARMADA" class="servicio_especifico">
+      <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-12.png" alt="">
+
+      <div class="detalles">
+        <h1>CUSTODIA ARMADA</h1>
+        <img class="logo-servicio" src="../../assets/Iconos/app sepro vectores-19.png" alt="">
+        <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="">
+      </div>
+    </div>
+
+    <div id="GUARDIA DE SEGURIDAD" class="servicio_especifico">
+      <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-15.png" alt="">
+      <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-12.png" alt="">
+
+
+      <div class="detalles">
+        <h1>GUARDIA DE SEGURIDAD</h1>
+        <img class="logo-servicio" src="../../assets/Iconos/app sepro vectores-20.png" alt="">
+        <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="">
+      </div>
+    </div>
+
+    <div id="CHOFER SEGURO" class="servicio_especifico">
+      <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-12.png" alt="">
+
+      <div class="detalles">
+        <h1>CHOFER SEGURO</h1>
+        <img class="logo-servicio" src="../../assets/Iconos/app sepro vectores-17.png" alt="">
+        <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="">
+      </div>
+    </div>
+
+    <div id="TRANSPORTE SEGURO" class="servicio_especifico">
+      <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-15.png" alt="">
+      <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-12.png" alt="">
+
+
+      <div class="detalles">
+        <h1>TRANSPORTE SEGURO</h1>
+        <img class="logo-servicio" src="../../assets/Iconos/app sepro vectores-18.png" alt="">
+        <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="">
+      </div>
+    </div>
+
+
+
+  </div>
+ -->
+  
+ <div class="ventanaPrincipal">
+
+  <div style="margin: auto;" *ngFor="let servicio of lista_Servicio" id="{{servicio.id}}" class="servicio_especifico">
+    <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-12.png" alt="">
+  
+    <div class="detalles">
+      <h1>{{servicio.name}}</h1>
+      <img class="logo-servicio" src="../../assets/Iconos/app sepro vectores-19.png" alt="">
+      <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="" (click)="crearServicio()">
+    </div>
+  </div>
+
+ </div> 
+ 
+
+
+
+<div class="area_Boton" style="margin-top: 5rem;">
+  <button type="button" class="btn_Crear_Servicio btn btn-primary" (click)="crearServicio()">Crear Servicio</button>
+</div>

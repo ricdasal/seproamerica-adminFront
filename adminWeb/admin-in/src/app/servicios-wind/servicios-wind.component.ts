@@ -14,6 +14,8 @@ export class ServiciosWindComponent implements OnInit {
   //Lista para guardar los servicios ya creados
   lista_Servicio?: ServiceModel[];
 
+  lista_servicios: Array<any> = [];
+
   //servicio seleccionado a editar
   servicio_seleccionado = "";
 
@@ -70,4 +72,5 @@ export class ServiciosWindComponent implements OnInit {
     })
   }
 
+  
 }

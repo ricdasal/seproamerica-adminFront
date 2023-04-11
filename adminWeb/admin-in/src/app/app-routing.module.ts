@@ -18,14 +18,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PermitidoConSesionActivaGuard } from './guards/permitido-con-sesion-activa.guard';
 import { NoPermitidoSinSesionActivaGuard } from './guards/no-permitido-sin-sesion-activa.guard';
-import { ServicioCrearComponent } from './servicio-crear/servicio-crear.component';
-import { ServicioEditarEliminarComponent } from './servicio-editar-eliminar/servicio-editar-eliminar.component';
-import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio/tipo-servicio.component';
+import { ServicioCrearComponent } from './servicios-wind/servicio-crear/servicio-crear.component';
+import { ServicioEditarEliminarComponent } from './servicios-wind/servicio-editar-eliminar/servicio-editar-eliminar.component';
+import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio.component';
 import { ServicioPorAsignarComponent } from './servicios-wind/servicio-por-asignar/servicio-por-asignar/servicio-por-asignar.component';
 import { ServicioEnCursoComponent } from './servicios-wind/servicio-en-curso/servicio-en-curso/servicio-en-curso.component';
 import { PersonalActualizarComponent } from './personal-wind/personal-actualizar/personal-actualizar.component';
 import { PersonalAdminRegistroComponent } from './personal-wind/personal-admin-registro/personal-admin-registro.component';
-import { ServicioDetallesAsignacionComponent } from './servicio-detalles-asignacion/servicio-detalles-asignacion.component';
+import { ServicioDetallesAsignacionComponent } from './servicios-wind/servicio-detalles-asignacion/servicio-detalles-asignacion.component';
 import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-personal.component';
 import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-clientes.component';
 import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
@@ -76,6 +76,21 @@ const routes: Routes = [
   pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard]
 },
+{ path: 'serviciosVentana', component: ServiciosWindComponent, pathMatch: 'prefix',
+  canActivate:[PermitidoConSesionActivaGuard], children: [
+    { path: 'servicioEditarEliminar', component: ServicioEditarEliminarComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard] },
+    { path: 'serviciosTipo', component: TipoServicioComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard], children: []},
+    { path: 'serviciosPorAsignar', component: ServicioPorAsignarComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard] },
+    { path: 'serviciosDetallesAsignacion', component: ServicioDetallesAsignacionComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard] },
+    { path: 'serviciosEnCurso', component: ServicioEnCursoComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard] },
+    { path: '', redirectTo: '/serviciosVentana/serviciosTipo', pathMatch: 'prefix'},
+  ] },
+
 
   
 
@@ -86,21 +101,7 @@ const routes: Routes = [
 
 
 
-  { path: 'serviciosVentana/:token', component: ServiciosWindComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
-  { path: 'servicioCrear', component: ServicioCrearComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
-  { path: 'servicioEditarEliminar', component: ServicioEditarEliminarComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
-  { path: 'serviciosTipo', component: TipoServicioComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
-  { path: 'serviciosPorAsignar', component: ServicioPorAsignarComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
-  { path: 'serviciosDetallesAsignacion', component: ServicioDetallesAsignacionComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
-  { path: 'serviciosEnCurso', component: ServicioEnCursoComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
-
+  
   
 
   { path: 'personalActualizar', component: PersonalActualizarComponent, pathMatch: 'prefix',

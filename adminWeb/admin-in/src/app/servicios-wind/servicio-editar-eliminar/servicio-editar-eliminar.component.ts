@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormControlDirective} from '@angular/forms';
-import { ServiceModel } from '../models/servicio';
-import { TiposServiciosModel } from '../models/tipoServicio.model';
-import { ClienteWAService } from '../services/cliente-wa.service';
+import { ServiceModel } from '../../models/servicio';
+import { TiposServiciosModel } from '../../models/tipoServicio.model';
+import { ClienteWAService } from '../../services/cliente-wa.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 

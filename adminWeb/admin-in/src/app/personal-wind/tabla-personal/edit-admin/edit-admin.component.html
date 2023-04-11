@@ -3,7 +3,7 @@
     <div>
 
         <label class="label-email">Nombres</label>
-        <input type="text" id="fname"  name="first_name" placeholder="Ingrese el nombre" tabindex="1" matInput class="form-control form-control-lg" required
+        <input type="text" id="first_name"  name="first_name" placeholder="Ingrese el nombre" tabindex="1" matInput class="form-control form-control-lg" required
         formControlName="first_name" />
         <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
  
@@ -12,7 +12,7 @@
     
     <div>
       <label class="label-email">Apellidos</label>
-      <input type="text" id="fname"  name="last_name" placeholder="Ingrese el apellido" tabindex="1" matInput class="form-control form-control-lg" required
+      <input type="text" id="last_name" name="last_name" placeholder="Ingrese el apellido" tabindex="1" matInput class="form-control form-control-lg" required
       formControlName="last_name"/>
       <mat-error *ngIf="registerForm.controls['last_name'].errors?.['required']"> *</mat-error>
     </div>
@@ -20,7 +20,7 @@
     <div>
 
       <label class="label-email">email</label>
-      <input type="email" id="fname"  name="email" placeholder="Ingrese el email" tabindex="1" matInput class="form-control form-control-lg" required
+      <input type="email" id="email"  name="email" placeholder="Ingrese el email" tabindex="1" matInput class="form-control form-control-lg" required
       formControlName="email" />
       <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
 
@@ -30,7 +30,7 @@
     <div>
 
       <label class="label-email">Password</label>
-      <input type="password" id="fname"  name="password" placeholder="Ingrese la contraseña" tabindex="1" matInput class="form-control form-control-lg" required
+      <input type="password" id="password"  name="password" placeholder="Ingrese la contraseña" tabindex="1" matInput class="form-control form-control-lg" required
       formControlName="password" />
       <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
 
@@ -40,9 +40,11 @@
   <div>
 
     <label class="label-email">numero de telefono</label>
-    <input type="text" id="fname"  name="phone_number" placeholder="Ingrese el numero de telefono" tabindex="1" matInput class="form-control form-control-lg" required
+    <input type="text" id="phone_number"  name="phone_number" placeholder="Ingrese el numero de telefono" tabindex="1" matInput class="form-control form-control-lg" required
     formControlName="phone_number" />
     <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
+    <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['telefonoCelular']"> El número de teléfono celular no es válido.</mat-error>
+    <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['codigoArea']">El número de teléfono celular debe empezar con 09.</mat-error>
 
 
   </div>
@@ -50,9 +52,11 @@
   <div>
 
     <label class="label-email">Cédula de identidad</label>
-    <input type="text" id="fname"  name="dni" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
+    <input type="text" id="dni"  name="dni" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
     formControlName="dni" />
     <mat-error *ngIf="registerForm.controls['dni'].errors?.['required']"> *</mat-error>
+    <mat-error *ngIf="registerForm.controls['dni'].hasError('pocosCaracteres')">Debe tener 10 digitos</mat-error>
+    <mat-error *ngIf="registerForm.controls['dni'].hasError('cedulaInvalida')">cedula no valida</mat-error>
 
 
   </div>
@@ -60,9 +64,10 @@
   <div>
 
     <label class="label-email">año de nacimiento</label>
-    <input type="date" id="fname"  name="birthdate" placeholder="Ingrese el año de nacimiento" tabindex="1" matInput class="form-control form-control-lg" required
+    <input type="date" id="birthdate"  name="birthdate" placeholder="Ingrese el año de nacimiento" tabindex="1" matInput class="form-control form-control-lg" required
     formControlName="birthdate" />
     <mat-error *ngIf="registerForm.controls['birthdate'].errors?.['required']"> *</mat-error>
+    <mat-error *ngIf="registerForm.controls['birthdate'].hasError('age')">Debe ser mayor a 18 años</mat-error> 
 
 
   </div>
@@ -84,7 +89,7 @@
     <div>
 
         <label class="label-email">Direccion</label>
-        <input type="text" id="fname"  name="address" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
+        <input type="text" id="address"  name="address" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
         formControlName="address" />
         <mat-error *ngIf="registerForm.controls['address'].errors?.['required']"> *</mat-error>
     

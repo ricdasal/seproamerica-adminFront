@@ -22,7 +22,13 @@ export class AgregararmamentoDialogComponent implements OnInit {
     ) { }
 
     camposCompletos: boolean = false;
+
     lista_sucursales: Array<any> = []
+    lista_colores: Array<any> = [];
+    lista_marcas: Array<any> = [];
+    lista_categoria: Array<any> = [];
+    lista_municion: Array<any> = [];
+
     armamento: ArmamentoModel = new ArmamentoModel();
     registerForm!: FormGroup;
     hide = true;
@@ -34,15 +40,19 @@ export class AgregararmamentoDialogComponent implements OnInit {
     ngOnInit(): void {
 
       this.obtenerSucursales();
+      this.obtenerColoresArma();
+      this.obtenerMarcasArma();
+      this.obtenerCategoriasArma();
+      this.obtenerMunicion();
       this.registerForm = this.formBuilder.group({
         'serial_number': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'brand': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        'category': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'brand': [null, [Validators.required, ]],
+        'category': [null, [Validators.required, ]],
         'model': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
         'branch': [null, [Validators.required, ]],
         'ammo': [null, [Validators.required,]],
         'year': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'color': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]]
+        'color': [null, [Validators.required, ]]
                    
       });
     }
@@ -79,5 +89,43 @@ export class AgregararmamentoDialogComponent implements OnInit {
       }
     })
   }
+
+  obtenerColoresArma(){
+    this.clienteWAService.obtenerColoresEquipamento()
+    .subscribe({
+      next: (res: any) =>{
+        this.lista_colores = this.lista_colores.concat(res.colors);
+      }
+    })
+   }
+  
+   obtenerMarcasArma(){
+    this.clienteWAService.obtenerMarcasArma()
+    .subscribe({
+      next: (res: any) =>{
+        this.lista_marcas = this.lista_marcas.concat(res.brands);
+      }
+      
+    })
+   }
+  
+   obtenerCategoriasArma(){
+    this.clienteWAService.obtenerCategoriaArmas()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_categoria = this.lista_categoria.concat(res.weapon_type);
+  
+      }
+    })
+   }
+
+   obtenerMunicion(){
+    this.clienteWAService.obtenerMunicion()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_municion = this.lista_municion.concat(res);
+      }
+    })
+   }
 
 }

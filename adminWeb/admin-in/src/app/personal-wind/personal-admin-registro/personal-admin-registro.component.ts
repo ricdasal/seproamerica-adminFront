@@ -8,6 +8,7 @@ import { ClienteWAService } from '../../services/cliente-wa.service';
 import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterModel } from '../../models/register.model';
+import { CedulaLongitud, CedulaValidator, ageValidator, telefonoCelularValidator } from '../funciones-utiles';
 
 @Component({
   selector: 'app-personal-admin-registro',
@@ -80,9 +81,9 @@ export class PersonalAdminRegistroComponent implements OnInit {
       'last_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       'email': [null, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')/*, Validators.email*/]],
       'password': [null, [Validators.required, Validators.minLength(8)]],
-      'phone_number': [null, [Validators.required, Validators.minLength(9), Validators.maxLength(13), Validators.pattern(/^(09|\+5939)([0-9]){8}$/)]], //Validators.pattern('^(0){1}(9){1}[0-9]{8}$')
-      'dni': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$'), Validators.pattern(/^([0-9]{10})$/)]],
-      'birthdate': [null, [Validators.required]],
+      'phone_number': [null, [Validators.required, Validators.minLength(9), Validators.maxLength(13),telefonoCelularValidator]], //Validators.pattern('^(0){1}(9){1}[0-9]{8}$')
+      'dni': [null, [Validators.required, Validators.pattern('^[0-9]*$'), Validators.pattern(/^([0-9]{10})$/), CedulaValidator,  CedulaLongitud]],
+      'birthdate': [null, [Validators.required, ageValidator(18)]],
       'gender': [null, [Validators.required]],
       'address': [null, [Validators.required]],
       'charge' : ["administrador", ],

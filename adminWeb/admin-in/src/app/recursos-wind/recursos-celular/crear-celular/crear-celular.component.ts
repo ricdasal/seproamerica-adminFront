@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CandadoModel } from 'src/app/models/candado.model';
+import { telefonoCelularValidator } from 'src/app/personal-wind/funciones-utiles';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
@@ -12,6 +13,8 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 })
 export class CrearCelularComponent implements OnInit {
   lista_sucursales: Array<any> = [];
+  lista_marcas: Array<any> = [];
+  lista_colors: Array<any> = [];
   registerForm!: FormGroup;
   hide = true;
     //Indicador si registro fue guardado en la base de datos o no
@@ -29,14 +32,17 @@ export class CrearCelularComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      'brand': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      'brand': [null, [Validators.required, ]],
       'model': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-      'phone_number':[null, [Validators.required]],
-      'color': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      'phone_number':[null, [Validators.required, telefonoCelularValidator]],
+      'color': [null, [Validators.required,]],
       'purchase_date': [null, [Validators.required,Validators.pattern('^[0-9]*$')]],
       'branch': [null, Validators.required]
          
     });
+    this.obtenerColores();
+    this.obtenerMarca();
+    this.obtenerSucursales();
   }
 
   obtenerSucursales(){
@@ -71,6 +77,24 @@ crearCelular(registerForm: any){
     }
   })
 
+}
+
+obtenerMarca(){
+  this.clienteWAService.obtenerMarcaTelefono()
+  .subscribe({
+   next: (res: any) => {
+     this.lista_marcas = this.lista_marcas.concat(res.brands)
+   }
+  })
+}
+
+obtenerColores(){
+ this.clienteWAService.obtenerColoresEquipamento()
+ .subscribe({
+   next: (res: any) => {
+     this.lista_colors = this.lista_colors.concat(res.colors)
+   }
+ })
 }
 
 

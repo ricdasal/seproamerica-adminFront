@@ -19,8 +19,16 @@
               
               <div>
                 <label class="label-email">Marca</label>
-                <input type="text" id="fname"  name="brand" placeholder="Ingrese la marca" tabindex="1" matInput class="form-control form-control-lg" required
-                formControlName="brand"/>
+                <div>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Escoge una marca</mat-label>
+                    <mat-select formControlName="brand">
+                      <mat-option *ngFor="let marca of lista_marcas" value="{{marca}}" id="{{marca}}">{{marca}}</mat-option>
+              
+                    </mat-select>
+                  </mat-form-field>
+            
+                </div>
                 <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
               </div>
 
@@ -37,21 +45,38 @@
               <div>
 
                 <label class="label-email">Categoría</label>
-                <input type="text" id="fname"  name="category" placeholder="Ingrese la categoria" tabindex="1" matInput class="form-control form-control-lg" required
-                formControlName="category" />
+                <div>
+                  <mat-form-field appearance="fill">
+                    <mat-label>Escoge una categoria</mat-label>
+                    <mat-select formControlName="category">
+                      <mat-option *ngFor="let categoria of lista_categoria" value="{{categoria}}" id="{{categoria}}">{{categoria}}</mat-option>
+              
+                    </mat-select>
+                  </mat-form-field>
+            
+                </div>
+                
                 <mat-error *ngIf="registerForm.controls['category'].errors?.['required']"> *</mat-error>
-        
-
+          
+          
             </div>
 
             <div>
 
               <label class="label-email">Munición</label>
-              <input type="text" id="fname"  name="ammo" placeholder="Ingrese la municion" tabindex="1" matInput class="form-control form-control-lg" required
-              formControlName="ammo" />
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Escoge una municion</mat-label>
+                  <mat-select formControlName="ammo">
+                    <mat-option *ngFor="let municion of lista_municion" value="{{municion.caliber}}" id="{{municion.caliber}}">{{municion.caliber}}</mat-option>
+            
+                  </mat-select>
+                </mat-form-field>
+          
+              </div>
               <mat-error *ngIf="registerForm.controls['ammo'].errors?.['required']"> *</mat-error>
-      
-
+          
+          
             </div>
 
             <div>
@@ -67,8 +92,16 @@
             <div>
 
               <label class="label-email">Color</label>
-              <input type="text" id="fname"  name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
-              formControlName="color" />
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Escoge un color</mat-label>
+                  <mat-select formControlName="color">
+                    <mat-option *ngFor="let color of lista_colores" value="{{color}}" id="{{color}}">{{color}}</mat-option>
+            
+                  </mat-select>
+                </mat-form-field>
+          
+              </div>
               <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
       
 

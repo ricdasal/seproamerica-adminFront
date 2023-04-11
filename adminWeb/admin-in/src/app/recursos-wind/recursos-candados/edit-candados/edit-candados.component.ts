@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacion } from 'src/app/personal-wind/tabla-personal/edit-admin/edit-admin.component';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
@@ -17,19 +18,22 @@ export class EditCandadosComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private clienteWAService: ClienteWAService,
+    public dialog: MatDialog
   ) { }
 
   lista_sucursales: Array<any> = [];
+  lista_colores: Array<any> = [];
   registerForm!: FormGroup;
 
   ngOnInit(): void {
-    this.obtenerSucursales()
+    this.obtenerSucursales();
+    this.obtenerColores();
       this.registerForm = this.formBuilder.group({
         'id': [this.candado.id],
         'serial_number': [this.candado.serial_number, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
         'brand': [this.candado.brand, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
         'model': [this.candado.model, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'color': [this.candado.color, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'color': [this.candado.color, [Validators.required, ]],
         'branch':[this.candado.branch, [Validators.required]],
         'provider': [this.candado.provider, [ Validators.pattern('^[a-zA-Z0-9-]+$')]]
       });
@@ -44,6 +48,9 @@ export class EditCandadosComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
+        this.dialog.open(DialogoConfirmacion, {
+          data: res.message
+        });
       }
     })
 
@@ -63,6 +70,16 @@ export class EditCandadosComponent implements OnInit {
 
   onClickNO(): void{
     this.dialogRef.close();
+  }
+
+  obtenerColores(){
+    this.clienteWAService.obtenerColoresEquipamento()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_colores = this.lista_colores.concat(res.colors)
+
+      }
+    })
   }
 
 }

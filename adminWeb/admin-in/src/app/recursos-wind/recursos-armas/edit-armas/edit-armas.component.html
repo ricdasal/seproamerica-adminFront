@@ -1,19 +1,28 @@
-<form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)=" editarArma(this.registerForm)" novalidate>
-  
+<form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="editarArma(this.registerForm)">
     <div>
 
         <label class="label-email">Número de serie</label>
-        <input type="text" id="fname"  name="serial_number" placeholder="Ingrese el Número de serie" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="serial_number" />
-        <mat-error *ngIf="registerForm.controls['serial_number'].errors?.['required']"> *</mat-error>
+        <input type="text" id="fname"  name="serial_number" placeholder="Ingrese el Número de serie" matInput class="form-control form-control-lg" required
+        formControlName= "serial_number" />
+        <!-- <mat-error *ngIf="registerForm.controls['serial_number'].errors?.['required']"> *</mat-error> -->
  
 
     </div>
     
     <div>
       <label class="label-email">Marca</label>
-      <input type="text" id="fname"  name="brand" placeholder="Ingrese la marca" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="brand"/>
+      <!-- <input type="text" id="fname"  name="brand" placeholder="Ingrese la marca" tabindex="1" matInput class="form-control form-control-lg" required
+      formControlName="brand"/> -->
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una marca</mat-label>
+          <mat-select formControlName="brand">
+            <mat-option *ngFor="let marca of lista_marcas" value="{{marca}}" id="{{marca}}">{{marca}}</mat-option>
+    
+          </mat-select>
+        </mat-form-field>
+  
+      </div>
       <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
     </div>
 
@@ -22,7 +31,7 @@
       <label class="label-email">Modelo</label>
       <input type="text" id="fname"  name="model" placeholder="Ingrese el modelo" tabindex="1" matInput class="form-control form-control-lg" required
       formControlName="model" />
-      <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
+      <!-- <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error> -->
 
 
     </div>
@@ -30,8 +39,19 @@
     <div>
 
       <label class="label-email">Categoría</label>
-      <input type="text" id="fname"  name="category" placeholder="Ingrese la categoria" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="category" />
+      <!-- <input type="text" id="fname"  name="category" placeholder="Ingrese la categoria" tabindex="1" matInput class="form-control form-control-lg" required
+      formControlName="category" /> -->
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una categoria</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let categoria of lista_categoria" value="{{categoria}}" id="{{categoria}}">{{categoria}}</mat-option>
+    
+          </mat-select>
+        </mat-form-field>
+  
+      </div>
+      
       <mat-error *ngIf="registerForm.controls['category'].errors?.['required']"> *</mat-error>
 
 
@@ -40,8 +60,16 @@
   <div>
 
     <label class="label-email">Munición</label>
-    <input type="text" id="fname"  name="ammo" placeholder="Ingrese la municion" tabindex="1" matInput class="form-control form-control-lg" required
-    formControlName="ammo" />
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Escoge una municion</mat-label>
+        <mat-select formControlName="ammo">
+          <mat-option *ngFor="let municion of lista_municion" value="{{municion.caliber}}" id="{{municion.caliber}}">{{municion.caliber}}</mat-option>
+  
+        </mat-select>
+      </mat-form-field>
+
+    </div>
     <mat-error *ngIf="registerForm.controls['ammo'].errors?.['required']"> *</mat-error>
 
 
@@ -50,9 +78,9 @@
   <div>
 
     <label class="label-email">Año</label>
-    <input type="text" id="fname"  name="year" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
+    <input type="number" id="fname"  name="year" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
     formControlName="year" />
-    <mat-error *ngIf="registerForm.controls['year'].errors?.['required']"> *</mat-error>
+    <!-- <mat-error *ngIf="registerForm.controls['year'].errors?.['required']"> *</mat-error> -->
 
 
   </div>
@@ -60,8 +88,18 @@
   <div>
 
     <label class="label-email">Color</label>
-    <input type="text" id="fname"  name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
-    formControlName="color" />
+    <!-- <input type="text" id="fname"  name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
+    formControlName="color" /> -->
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Escoge un color</mat-label>
+        <mat-select formControlName="color">
+          <mat-option *ngFor="let color of lista_colores" value="{{color}}" id="{{color}}">{{color}}</mat-option>
+  
+        </mat-select>
+      </mat-form-field>
+
+    </div>
     <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
 
 
@@ -79,29 +117,8 @@
           </mat-select>
         </mat-form-field>
           
-          <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+          <!-- <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error> -->
       </div>
-
-  <!--
-    <h4>mat-select</h4>
-<mat-form-field appearance="fill">
-<mat-label>Choose an option</mat-label>
-<mat-select [disabled]="disableSelect.value">
-<mat-option value="option1">Option 1</mat-option>
-<mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-<mat-option value="option3">Option 3</mat-option>
-</mat-select>
-</mat-form-field>
-
-<div *ngFor="let sucursal of lista_sucursales" class="">
-            <input class="text" type="radio" formControlName="branch"  
-                id="{{sucursal.id}}" value={{sucursal.name}} name="branch"> 
-            <label class="label-email" for="{{sucursal.id}}">
-                  {{sucursal.name}}
-            </label>
-          </div>
-  -->
-
 
 </div>
       

@@ -23,7 +23,8 @@ export class AgregarcandadosDialogComponent implements OnInit {
     private clienteWAService: ClienteWAService,
     ) { }
 
-    lista_sucursales: Array<any> = []
+    lista_sucursales: Array<any> = [];
+    lista_colores: Array<any> = [];
     camposCompletos: boolean = false;
 
     candado: CandadoModel = new CandadoModel();
@@ -35,7 +36,8 @@ export class AgregarcandadosDialogComponent implements OnInit {
     p: boolean = false;
   
     ngOnInit(): void {
-      this.obtenerSucursales()
+      this.obtenerSucursales();
+      this.obtenerColores();
       this.registerForm = this.formBuilder.group({
         'serial_number': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
         'brand': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
@@ -74,6 +76,16 @@ export class AgregarcandadosDialogComponent implements OnInit {
     .subscribe({
       next: (res)=>{
         this.lista_sucursales = this.lista_sucursales.concat(res);
+      }
+    })
+  }
+
+  obtenerColores(){
+    this.clienteWAService.obtenerColoresEquipamento()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_colores = this.lista_colores.concat(res.colors)
+
       }
     })
   }

@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { telefonoCelularValidator } from 'src/app/personal-wind/funciones-utiles';
+import { DialogoConfirmacion } from 'src/app/personal-wind/tabla-personal/edit-admin/edit-admin.component';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
@@ -12,6 +14,8 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 export class EditCelularComponent implements OnInit {
 
   lista_sucursales: Array<any> = [];
+  lista_marcas: Array<any> = [];
+  lista_colors: Array<any> = [];
   registerForm!: FormGroup;
 
   constructor(
@@ -20,20 +24,23 @@ export class EditCelularComponent implements OnInit {
     public dialogRef: MatDialogRef<any>,
     private http: HttpClient,
     private clienteWAService: ClienteWAService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       'id': [this.celular.id],
-      'brand': [this.celular.brand, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      'brand': [this.celular.brand, [Validators.required, ]],
       'model': [this.celular.model, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-      'phone_number':[this.celular.phone_number, [Validators.required]],
-      'color': [this.celular.color, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      'phone_number':[this.celular.phone_number, [Validators.required, telefonoCelularValidator]],
+      'color': [this.celular.color, [Validators.required, ]],
       'purchase_date': [this.celular.purchase_date, [Validators.required,Validators.pattern('^[0-9]*$')]],
       'branch': [this.celular.branch, Validators.required]
          
     });
-    this.obtenerSucursales()
+    this.obtenerSucursales();
+    this.obtenerColores();
+    this.obtenerMarca();
   }
 
   obtenerSucursales(){
@@ -62,9 +69,30 @@ export class EditCelularComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
+        this.dialog.open(DialogoConfirmacion, {
+          data: res.message
+        });
       }
     })
 
+  }
+
+  obtenerMarca(){
+     this.clienteWAService.obtenerMarcaTelefono()
+     .subscribe({
+      next: (res: any) => {
+        this.lista_marcas = this.lista_marcas.concat(res.brands)
+      }
+     })
+  }
+
+  obtenerColores(){
+    this.clienteWAService.obtenerColoresEquipamento()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_colors = this.lista_colors.concat(res.colors)
+      }
+    })
   }
 
 }

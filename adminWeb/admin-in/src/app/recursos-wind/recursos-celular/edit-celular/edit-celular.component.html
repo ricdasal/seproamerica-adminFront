@@ -3,8 +3,15 @@
     <div>
 
         <label class="label-email">Marca</label>
-        <input type="text" id="fname"  name="marca" placeholder="Ingrese el marca" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="brand"/>
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Escoge una marca</mat-label>
+              <mat-select formControlName="brand">
+                <mat-option *ngFor="let marca of lista_marcas" value="{{marca}}" id="{{marca}}">{{marca}}</mat-option>
+  
+              </mat-select>
+          </mat-form-field>      
+        </div>
         <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
  
 
@@ -12,7 +19,7 @@
     
     <div>
       <label class="label-email">Modelo</label>
-      <input type="text" id="fname"  name="marca" placeholder="Ingrese la marca" tabindex="1" matInput class="form-control form-control-lg" required
+      <input type="text" id="fname"  name="marca" placeholder="Ingrese el modelo" tabindex="1" matInput class="form-control form-control-lg" required
       formControlName="model">
       <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
     </div>
@@ -28,8 +35,17 @@
 
   <div>
       <label class="label-email">Color</label>
-      <input type="text" class="text" id="fname" name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="color"/>
+      <!-- <input type="text" class="text" id="fname" name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
+      formControlName="color"/> -->
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge un color</mat-label>
+            <mat-select formControlName="color">
+              <mat-option *ngFor="let color of lista_colors" value="{{color}}" id="{{color}}">{{color}}</mat-option>
+
+            </mat-select>
+        </mat-form-field>      
+      </div>
       <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
     </div>
 
@@ -43,13 +59,15 @@
 
       <div>
         <label class="label-email">Sucursal</label>
-        <mat-form-field appearance="fill">
-          <mat-label>Escoge una sucursal</mat-label>
-            <mat-select formControlName="branch">
-              <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
-
-            </mat-select>
-        </mat-form-field>      
+        <div>
+          <mat-form-field appearance="fill">
+            <mat-label>Escoge una sucursal</mat-label>
+              <mat-select formControlName="branch">
+                <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
+  
+              </mat-select>
+          </mat-form-field>      
+        </div>
         <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
       </div>
 

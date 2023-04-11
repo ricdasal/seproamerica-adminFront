@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { CrearGruposComponent } from './crear-grupos/crear-grupos.component';
+import { CedulaValidator, CedulaLongitud, ageValidator, telefonoCelularValidator } from '../funciones-utiles';
 
 @Component({
   selector: 'app-personal-registro',
@@ -98,9 +99,9 @@ export class PersonalRegistroComponent implements OnInit {
       'first_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       'last_name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
       'email': [null, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')]],
-      'phone_number': [null, [Validators.required, Validators.minLength(9), Validators.maxLength(10), Validators.pattern('^(0){1}(9){1}[0-9]{8}$')]],
-      'dni': [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^(09|125)[0-9]*$')]],
-      'birthdate': [null, [Validators.required]],
+      'phone_number': [null, [Validators.required, Validators.minLength(9), Validators.maxLength(10), telefonoCelularValidator]],
+      'dni': [null, [Validators.required, CedulaValidator,  CedulaLongitud]],
+      'birthdate': [null, [Validators.required,  ageValidator(18)]],
       'gender': [null, [Validators.required]],
       'address': [null, [Validators.required]],
       'charge':[null, [Validators.required ]],

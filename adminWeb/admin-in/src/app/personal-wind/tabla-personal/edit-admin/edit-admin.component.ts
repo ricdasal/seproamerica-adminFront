@@ -1,15 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { CedulaValidator, CedulaLongitud, ageValidator, telefonoCelularValidator } from '../../funciones-utiles';
 
 @Component({
   selector: 'app-edit-admin',
   templateUrl: './edit-admin.component.html',
   styleUrls: ['./edit-admin.component.css']
 })
-export class EditAdminComponent implements OnInit {
+export class EditAdminComponent implements OnInit, AfterViewInit {
 
   lista_sucursales: Array<any> = [];
   lista_cargos: Array<any> = [];
@@ -24,31 +25,41 @@ export class EditAdminComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private clienteWAService: ClienteWAService,
     private http: HttpClient,
+    public dialog: MatDialog
     
   ) { }
 
-  ngOnInit(): void {
-    this.obtenerSucursales();
+  ngAfterViewInit(): void {
+   
+    
+  }
 
-    this.registerForm = this.formBuilder.group({
-      'id': [this.admin.id],
-      'first_name': [this.admin.first_name, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      'last_name': [this.admin.last_name, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      'email': [this.admin.email, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')/*, Validators.email*/]],
-      'password': [this.admin.password, [Validators.required, Validators.minLength(8)]],
-      'phone_number': [this.admin.phone_number, [Validators.required, Validators.minLength(9), Validators.maxLength(13), Validators.pattern(/^(09|\+5939)([0-9]){8}$/)]], //Validators.pattern('^(0){1}(9){1}[0-9]{8}$')
-      'dni': [this.admin.dni, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$'), Validators.pattern(/^([0-9]{10})$/)]],
-      'birthdate': [this.admin.birthdate, [Validators.required]],
-      'gender': [this.admin.gender, [Validators.required]],
-      'address': [this.admin.address, [Validators.required]],
-      'charge' : ["administrador", ],
-      'branch' : [this.admin.branch, [Validators.required]],
-      'group' : ["administrador", ],
+  ngOnInit(): void {
+    console.log(this.admin);
+    this.obtenerSucursales();
+    this.registerForm = new FormGroup({
+      id: new FormControl(this.admin.id),
+      first_name: new FormControl(this.admin.first_name, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
+      last_name: new FormControl(this.admin.last_name, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]),
+      email: new FormControl(this.admin.email, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')]),
+      password: new FormControl(this.admin.password, [Validators.required, Validators.minLength(8)]),
+      phone_number: new FormControl(this.admin.phone_number, [Validators.required, Validators.minLength(9), Validators.maxLength(13), Validators.pattern(/^(09|\+5939)([0-9]){8}$/), telefonoCelularValidator]),
+      dni: new FormControl(this.admin.dni, [Validators.required, Validators.pattern('^(09|125)[0-9]*$'), CedulaValidator,  CedulaLongitud]),
+      birthdate: new FormControl(this.admin.birthdate, [Validators.required, ageValidator(18)]),
+      gender: new FormControl(this.admin.gender, [Validators.required]),
+      address: new FormControl(this.admin.address, [Validators.required]),
+      charge: new FormControl("administrador"),
+      branch: new FormControl(this.admin.branch, [Validators.required]),
+      group: new FormControl("administrador"),
+
+
+
     })
+
+    
   }
 
   editarAdmin(registerForm: any){
-    console.log(registerForm.value)
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
@@ -57,6 +68,9 @@ export class EditAdminComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
+        this.dialog.open(DialogoConfirmacion, {
+          data: res.message
+        });
       }
     })
 
@@ -79,5 +93,27 @@ export class EditAdminComponent implements OnInit {
     })
   }
 
+  
 
+
+}
+
+
+@Component({
+  selector: 'dialogo-confirmacion-dialog',
+  templateUrl: '../../personal-confirmacion.html',
+})
+export class DialogoConfirmacion {
+
+  constructor(
+    public dialogRef: MatDialogRef<any>,
+    @Inject(MAT_DIALOG_DATA) public message: any,
+  ){
+
+  }
+
+  onClickNO(): void{
+    this.dialogRef.close();
+    
+  }
 }

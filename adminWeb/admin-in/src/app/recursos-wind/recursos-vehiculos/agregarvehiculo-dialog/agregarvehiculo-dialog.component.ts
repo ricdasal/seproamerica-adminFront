@@ -24,6 +24,10 @@ export class AgregarvehiculoDialogComponent implements OnInit {
 
     camposCompletos: boolean = false;
     lista_sucursales: Array<any> = [];
+    lista_colores: Array<any> = [];
+    lista_categoria: Array<any> = [];
+    lista_marcas: Array<any> = [];
+    lista_motor: Array<any> = [];
 
     registerForm!: FormGroup;
     hide = true;
@@ -34,16 +38,20 @@ export class AgregarvehiculoDialogComponent implements OnInit {
   
     ngOnInit(): void {
       this.obtenerSucursales();
+      this.obtenerCategoria();
+      this.obtenerColores();
+      this.obtenerMarcas();
+      this.obtenerMotor();
       this.registerForm = this.formBuilder.group({
 
         'plate': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'brand': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'brand': [null, [Validators.required, ]],
         'model': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'color': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+        'color': [null, [Validators.required, ]],
         'year': [null, [Validators.required, Validators.minLength(4),Validators.pattern('^[0-9]*$')]],
         'branch': [null, [Validators.required]],
-        'category': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'engine': [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
+        'category': [null, [Validators.required, ]],
+        'engine': [null, [Validators.required, ]],
         'gas_tank_capacity': [null, [Validators.required, ]],
 
            
@@ -79,4 +87,41 @@ export class AgregarvehiculoDialogComponent implements OnInit {
         }
       })
     }
+
+    
+  obtenerColores(){
+    this.clienteWAService.obtenerColoresEquipamento()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_colores = this.lista_colores.concat(res.colors);
+      }
+    })
+  }
+
+  obtenerCategoria(){
+    this.clienteWAService.obtenerCategoriaVehiculos()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_categoria = this.lista_categoria.concat(res.categories);
+      }
+    })
+  }
+
+  obtenerMarcas(){
+    this.clienteWAService.obtenerMarcasVehiculos()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_marcas = this.lista_marcas.concat(res.brands)
+      }
+    })
+  }
+
+  obtenerMotor(){
+    this.clienteWAService.obtenerMotorVehiculo()
+    .subscribe({
+      next: (res: any) => {
+        this.lista_motor =  this.lista_motor.concat(res.engines);
+      }
+    })
+  }
 }

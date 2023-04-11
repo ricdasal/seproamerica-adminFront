@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, FormControlDirective} from '@angular/forms';
-import { map } from 'rxjs';
-import { ServiceModel } from '../models/servicio';
-import { TiposServiciosModel } from '../models/tipoServicio.model';
-import { ClienteWAService } from '../services/cliente-wa.service';
-import { ElementoTablaModel } from '../models/elementoTabla';
+import { ServiceModel } from '../../models/servicio';
+import { TiposServiciosModel } from '../../models/tipoServicio.model';
+import { ClienteWAService } from '../../services/cliente-wa.service';
+import { ElementoTablaModel } from '../../models/elementoTabla';
 import { MatTableDataSource } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
-import { getMatIconNoHttpProviderError } from '@angular/material/icon';
+
 
 export interface TablaElemento {
   kilometro: string;
@@ -57,6 +55,7 @@ export class ServicioCrearComponent implements OnInit {
   valid: any = {}
 
   registerForm!: FormGroup;
+  lista_staff: Array<any> = []
 
   servicio: ServiceModel = new ServiceModel();
 
@@ -144,13 +143,34 @@ export class ServicioCrearComponent implements OnInit {
   ngOnInit(): void {
     this.obtener_servicios()
     const datosUsuario=JSON.parse(localStorage.getItem("datoUsuario")!)
-    this.cedula_Admin=datosUsuario.cedula
+    //this.cedula_Admin=datosUsuario.cedula
     this.obtener_idAdmin(this.cedula_Admin.toString())
-    this.registerForm = this.formBuilder.group({
-      'nombreServicio': [this.servicio.nombreServicio, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      'costo': [this.servicio.costo, [Validators.required, Validators.pattern('^[0-9]*\.[0-9]*$')]],
-      'tipo_Servicio': [this.servicio.tipo_Servicio, [Validators.required]],
-    });
+    this.obtenerStaff();
+
+
+    this.registerForm = new FormGroup({
+      name: new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]),
+      description: new FormControl(null,  [Validators.required,]),
+      set_price: new FormControl(false),
+      staff: new FormControl([], [Validators.required]),
+      staff_is_optional: new FormControl([]),
+      staff_number_is_optional: new FormControl([]),
+      staff_pprice_per_hour: new FormControl([]),
+      staff_base_hour: new FormControl([]),
+      equipment: new FormControl([]),
+      equipment_is_optional: new FormControl([]),
+      equipment_number_is_optional: new FormControl([]),
+      equipment_price: new FormControl([]),
+      price_range1: new FormControl(0),
+      price_range2: new FormControl(0),
+      price_range3: new FormControl(0),
+      lower_limit1: new FormControl(null),
+      upper_limit1: new FormControl(null),
+      lower_limit2: new FormControl(null),
+      upper_limit2: new FormControl(null),
+      lower_limit3: new FormControl(null),
+      upper_limit3: new FormControl(null),   
+    })
 
     this.inventario_Requerido.set('vehiculo', false);
     this.inventario_Requerido.set('armamento', false);
@@ -164,7 +184,14 @@ export class ServicioCrearComponent implements OnInit {
 
   }
 
- 
+  obtenerStaff(){
+    this.clienteWAService.obtenerCargos()
+    .subscribe({
+      next: (res: any) => {
+         this.lista_staff = this.lista_staff.concat(res);
+      }
+    })
+  }
 
   //Metodo para crear servicio
   crear_Servicio(){

@@ -55,15 +55,14 @@ import { ModalMensajeriaComponent } from './components/modals/modal-mensajeria/m
 import { ModalPerfilComponent } from './components/modals/modal-perfil/modal-perfil.component';
 import { ModalNotificacionesComponent } from './components/modals/modal-notificaciones/modal-notificaciones.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { ServicioCrearComponent } from './servicio-crear/servicio-crear.component';
-import { ServicioEditarEliminarComponent } from './servicio-editar-eliminar/servicio-editar-eliminar.component';
-import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio/tipo-servicio.component';
+import { ServicioCrearComponent } from './servicios-wind/servicio-crear/servicio-crear.component';
+import { ServicioEditarEliminarComponent } from './servicios-wind/servicio-editar-eliminar/servicio-editar-eliminar.component';
 import { ServicioPorAsignarComponent } from './servicios-wind/servicio-por-asignar/servicio-por-asignar/servicio-por-asignar.component';
 import { ServicioEnCursoComponent } from './servicios-wind/servicio-en-curso/servicio-en-curso/servicio-en-curso.component';
 import { PersonalActualizarComponent } from './personal-wind/personal-actualizar/personal-actualizar.component';
 import { PersonalAdminRegistroComponent } from './personal-wind/personal-admin-registro/personal-admin-registro.component';
 
-import { ServicioDetallesAsignacionComponent } from './servicio-detalles-asignacion/servicio-detalles-asignacion.component';
+import { ServicioDetallesAsignacionComponent } from './servicios-wind/servicio-detalles-asignacion/servicio-detalles-asignacion.component';
 import { ErrorWindComponent } from './inicio-sesion/error-wind/error-wind.component';
 import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-clientes.component';
 import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-personal.component';
@@ -91,6 +90,7 @@ import { EditArmasComponent } from './recursos-wind/recursos-armas/edit-armas/ed
 import { EditarCuentaComponent } from './personal-wind/tabla-cuentas-telefono/editar-cuenta/editar-cuenta.component';
 import { EditAdminComponent } from './personal-wind/tabla-personal/edit-admin/edit-admin.component';
 import { EditPersonalComponent } from './personal-wind/tabla-personal/edit-personal/edit-personal.component';
+import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio.component';
 
 
 
@@ -124,7 +124,6 @@ import { EditPersonalComponent } from './personal-wind/tabla-personal/edit-perso
     ModalNotificacionesComponent,
     ServicioCrearComponent,
     ServicioEditarEliminarComponent,
-    TipoServicioComponent,
     ServicioPorAsignarComponent,
     ServicioEnCursoComponent,
     PersonalActualizarComponent,
@@ -158,6 +157,7 @@ import { EditPersonalComponent } from './personal-wind/tabla-personal/edit-perso
     EditarCuentaComponent,
     EditAdminComponent,
     EditPersonalComponent,
+    TipoServicioComponent
   ],
   imports: [
     BrowserModule,

@@ -34,6 +34,8 @@
     <input type="text" id="fname"  name="phone_number" placeholder="Ingrese el numero de telefono" tabindex="1" matInput class="form-control form-control-lg" required
     formControlName="phone_number" />
     <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
+    <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['telefonoCelular']"> El número de teléfono celular no es válido.</mat-error>
+    <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['codigoArea']">El número de teléfono celular debe empezar con 09.</mat-error>
 
 
   </div>
@@ -44,6 +46,8 @@
     <input type="text" id="fname"  name="dni" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
     formControlName="dni" />
     <mat-error *ngIf="registerForm.controls['dni'].errors?.['required']"> *</mat-error>
+    <mat-error *ngIf="registerForm.controls['dni'].hasError('pocosCaracteres')">Debe tener 10 digitos</mat-error>
+    <mat-error *ngIf="registerForm.controls['dni'].hasError('cedulaInvalida')">cedula no valida</mat-error>
 
 
   </div>
@@ -54,6 +58,7 @@
     <input type="date" id="fname"  name="birthdate" placeholder="Ingrese la fecha de nacimiento" tabindex="1" matInput class="form-control form-control-lg" required
     formControlName="birthdate" />
     <mat-error *ngIf="registerForm.controls['birthdate'].errors?.['required']"> *</mat-error>
+    <mat-error *ngIf="registerForm.controls['birthdate'].hasError('age')">Debe ser mayor a 18 años</mat-error> 
 
 
   </div>
@@ -118,7 +123,7 @@
 
 <div class="column botonesConf">
   <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
-  <button class="botonesConf" type="submit" mat-button [mat-dialog-close]="true">Guardar</button>
+  <button class="botonesConf" type="submit" mat-button [mat-dialog-close]="true" [disabled]="!registerForm.valid">Guardar</button>
 </div>
       
 </form>

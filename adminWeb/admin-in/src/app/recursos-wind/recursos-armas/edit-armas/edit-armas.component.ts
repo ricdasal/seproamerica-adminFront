@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DialogoConfirmacion } from 'src/app/personal-wind/tabla-personal/edit-admin/edit-admin.component';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
@@ -12,7 +13,12 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 export class EditArmasComponent implements OnInit {
 
   lista_sucursales: Array<any> = [];
-  registerForm!: FormGroup;
+  lista_colores: Array<any> = [];
+  lista_marcas: Array<any> = [];
+  lista_categoria: Array<any> = [];
+  lista_municion: Array<any> = [];
+  registerForm!: FormGroup
+
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public arma: any,
@@ -20,22 +26,29 @@ export class EditArmasComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private clienteWAService: ClienteWAService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
     this.obtenerSucursales();
-      this.registerForm = this.formBuilder.group({
-        'id': [this.arma.id],
-        'serial_number': [this.arma.serial_number, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'brand': [this.arma.brand, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-        'category': [this.arma.category, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'model': [this.arma.model, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'branch': [this.arma.branch, [Validators.required, ]],
-        'ammo': [this.arma.ammo, [Validators.required,]],
-        'year': [this.arma.year, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]],
-        'color': [this.arma.color, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]]
-                   
-      });
+    this.obtenerColoresArma();
+    this.obtenerMarcasArma();
+    this.obtenerCategoriasArma();
+    this.obtenerMunicion();
+    
+    console.log(this.arma);
+    this.registerForm = new FormGroup({
+      id: new FormControl(this.arma.id),
+      serial_number: new FormControl(this.arma.serial_number, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]),
+      brand: new FormControl(this.arma.brand, [Validators.required, ]),
+      category: new FormControl(this.arma.category, [Validators.required,]),
+      model: new FormControl(this.arma.model, [Validators.required, ]),
+      branch: new FormControl(this.arma.branch, [Validators.required, ]),
+      ammo: new FormControl(this.arma.ammo, [Validators.required,]),
+      year: new FormControl(this.arma.year, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]),
+      color: new FormControl(this.arma.color, [Validators.required]),
+
+    })
   }
 
   obtenerSucursales(){
@@ -64,9 +77,52 @@ export class EditArmasComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
+        this.dialog.open(DialogoConfirmacion, {
+          data: res.message
+        });
+        
       }
     })
 
   }
+
+ obtenerColoresArma(){
+  this.clienteWAService.obtenerColoresEquipamento()
+  .subscribe({
+    next: (res: any) =>{
+      console.log(res); 
+      this.lista_colores = this.lista_colores.concat(res.colors);
+    }
+  })
+ }
+
+ obtenerMarcasArma(){
+  this.clienteWAService.obtenerMarcasArma()
+  .subscribe({
+    next: (res: any) =>{
+      this.lista_marcas = this.lista_marcas.concat(res.brands );
+    }
+    
+  })
+ }
+
+ obtenerCategoriasArma(){
+  this.clienteWAService.obtenerCategoriaArmas()
+  .subscribe({
+    next: (res: any) => {
+      this.lista_categoria = this.lista_categoria.concat(res.weapon_type);
+
+    }
+  })
+ }
+
+ obtenerMunicion(){
+  this.clienteWAService.obtenerMunicion()
+  .subscribe({
+    next: (res: any) => {
+      this.lista_municion = this.lista_municion.concat(res);
+    }
+  })
+ }
 
 }

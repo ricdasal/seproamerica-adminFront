@@ -1,18 +1,52 @@
-<app-header></app-header>
 
-<div class="wrapper">
-    <div class="bottom_nav" >
-      <div id="navbarResponsive2">
-      <ul>
-        <li><a href="#">En Curso</a></li>
-        <li><a href="#">Por asignar</a></li>
-        <li><a href="#">Tipo</a></li>
-        
-      </ul>
+
+<div class="contenido">
+  <form [formGroup]="registerForm">
+    <div class="item">
+      <label >Nombre del servicio</label>
+      <input   type="text" id="fname" name="name"  matInput
+         required formControlName="name"/>
+      <mat-error *ngIf="registerForm.controls['name'].errors?.['required']"> *</mat-error>
+      <mat-error *ngIf="registerForm.controls['name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+
     </div>
+
+    <div class="item">
+      <label >Descripcion</label>
+      <textarea name="description" id="description" cols="30" rows="5"matInput
+      required formControlName="description"></textarea>
+     
     </div>
+
+    <div class="item">
+      <label >Fijar precio?</label>
+      <p><mat-checkbox formControlName="set_price">Si</mat-checkbox></p>
+    </div>
+
+    <div class="item">
+      <mat-form-field appearance="outline" *ngIf="this.registerForm.value.set_price">
+        <mat-label>Staff</mat-label>
+        <mat-select multiple formControlName="staff">
+        <mat-option *ngFor="let staff of lista_staff" [value]="staff.name">{{staff.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+
+
+
+  </form>
+
 </div>
 
+
+
+
+
+
+
+<!-- 
 <div class="contenido">
     <form class="row" [formGroup]="registerForm" enctype="multipart/form-data">
       <div class="col-3">
@@ -62,9 +96,9 @@
   
         
   
-        <!--<div class="item">
+        <div class="item">
           <label  >TELÉFONO</label>
-        </div>-->
+        </div>
         
       </div>
 
@@ -78,7 +112,6 @@
           </div>
          
 
-          <!--<div class="col">-->
             <div class="form-check">
               <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
@@ -97,7 +130,7 @@
                 Candado Satelital
               </label>
             </div>
-          <!--</div>-->
+
         </div><br><br>
   
          
@@ -148,7 +181,6 @@
        
       </div>
   
-      <!--Pantalla para confirmar registro-->
       <div class="modal fade" id="modalDos" data-bs-backdrop="static" [ngStyle]="{'display':display}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -167,7 +199,6 @@
   
     </form>
 
-    <!--Código para presentar tabla-->
     <div *ngIf="mostrar_tabla"  class="item" id="tabla">
       <label>TABLA DE PRECIO POR KILÓMETRO</label>
       <h6>Indicaciones: Ingrese números decimales usando punto (.) y únicamente dos decimales</h6>
@@ -230,4 +261,4 @@
       <p *ngIf="tres_digitos_no_valido" style="color:rgb(168, 13, 13);">Solo pueden haber tres dígitos decimales</p>
     </div>
   
-</div>
+</div> -->

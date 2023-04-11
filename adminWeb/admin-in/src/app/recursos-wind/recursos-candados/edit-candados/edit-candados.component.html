@@ -30,12 +30,23 @@
           </div>
 
           <div>
-              <label class="label-email">Color</label>
-              <input type="text" class="text" id="fname" name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
-              formControlName="color"/>
-              <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
+
+            <label class="label-email">Color</label>
+            <div>
+              <mat-form-field appearance="fill">
+                <mat-label>Escoge un color</mat-label>
+                <mat-select formControlName="color">
+                  <mat-option *ngFor="let color of lista_colores" value="{{color}}" id="{{color}}">{{color}}</mat-option>
+          
+                </mat-select>
+              </mat-form-field>
+        
+            </div>
+            <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
+        
+        
           </div>
-              
+            
           <div>
             <label class="label-email">Sucursal</label>
             <mat-form-field appearance="fill">

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { InicioSesionModel } from '../models/inicioSesion.model';
 import { RegisterModel } from '../models/register.model';
 import { SucursalModel } from '../models/sucursal.model';
 import { Administrador_Obtener_Model } from '../models/admin_Obtener';
@@ -111,12 +109,110 @@ export class ClienteWAService {
   DJANGO_SERVER_EDITAR_CUENTAS: string =  this.BASE_URL + "users/phoneAccount/";
 
 
+  //endpoints utiles
+  DJANGO_SERVER_OBTENER_COLORES_EQUIPAMENTO: string = this.BASE_URL + "equipment/color/";
+  DJANGO_SERVER_OBTENER_MARCAS_TELEFONO:string =  this.BASE_URL + "equipment/brandPhone/";
+  DJANGO_SERVER_OBTENER_MARCAS_ARMA: string =  this.BASE_URL + "equipment/brandWeapon/";
+  DJANGO_SERVER_OBTENER_CATEGORIA_ARMAS: string =  this.BASE_URL + "equipment/weaponTypes/";
+  DJANGO_SERVER_OBTENER_CATEGORIA_VEHICULO: string =  this.BASE_URL + "equipment/category/";
+  DJANGO_SERVER_OBTENER_MARCAS_VEHICULO: string = this.BASE_URL + "equipment/brandVehicle/";
+  DJANGO_SERVER_OBTENER_MOTOR_VEHICULO: string = this.BASE_URL + "equipment/engine/";
+  DJANGO_SERVER_OBTENER_MUNICION: string = this.BASE_URL + "equipment/ammoList/"
+
+  //servicios
+  DJANGO_SERVER_OBTENER_NOMBRE_SERVICIOS: string = this.BASE_URL + "services/serviceNames/"
+  DJANGO_SERVER_OBTENER_CARGOS: string =  this.BASE_URL + "users/chargeList/"
 
 
 
   constructor(private http: HttpClient) { }
 
-  
+
+  obtenerColoresEquipamento(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_COLORES_EQUIPAMENTO, {headers})
+  }
+
+  obtenerMarcaTelefono(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_MARCAS_TELEFONO, {headers})
+  }
+
+  obtenerMarcasArma(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_MARCAS_ARMA, {headers})
+  }
+
+  obtenerCategoriaArmas(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_CATEGORIA_ARMAS, {headers})
+
+  }
+
+  obtenerCategoriaVehiculos(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_CATEGORIA_VEHICULO, {headers})
+  }
+
+  obtenerMarcasVehiculos(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_MARCAS_VEHICULO, {headers})
+  }
+
+  obtenerMotorVehiculo(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_MOTOR_VEHICULO, {headers})
+  }
+
+  obtenerMunicion(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_MUNICION, {headers})
+
+  }
+
+  obtenerNombreServicios(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_NOMBRE_SERVICIOS, {headers})
+
+  }
+
+  obtenerCargos(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_CARGOS, {headers})
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
   /*Basandome en la pagina https://www.bezkoder.com/angular-crud-app/ */
   create(data: any): Observable<any>{
     return this.http.post(this.DJANGO_SERVER, data)
