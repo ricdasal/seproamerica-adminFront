@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormControlDirective} from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormControlDirective, FormArray} from '@angular/forms';
 import { ServiceModel } from '../../models/servicio';
 import { TiposServiciosModel } from '../../models/tipoServicio.model';
 import { ClienteWAService } from '../../services/cliente-wa.service';
@@ -55,7 +55,8 @@ export class ServicioCrearComponent implements OnInit {
   valid: any = {}
 
   registerForm!: FormGroup;
-  lista_staff: Array<any> = []
+  lista_staff: Array<any> = [];
+  lista_staff_base_hours: Array<any> = [];
 
   servicio: ServiceModel = new ServiceModel();
 
@@ -133,11 +134,15 @@ export class ServicioCrearComponent implements OnInit {
   km_inicial_no_valido = false
   km_destino_no_valido = false
   tres_digitos_no_valido = false
+
+  staff_group!: FormGroup; // Formulario reactivo
+  items!: FormArray; // FormArray para los items
   
 
   constructor(
     private formBuilder: FormBuilder, 
-    private clienteWAService: ClienteWAService
+    private clienteWAService: ClienteWAService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -152,11 +157,7 @@ export class ServicioCrearComponent implements OnInit {
       name: new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z0-9-]+$')]),
       description: new FormControl(null,  [Validators.required,]),
       set_price: new FormControl(false),
-      staff: new FormControl([], [Validators.required]),
-      staff_is_optional: new FormControl([]),
-      staff_number_is_optional: new FormControl([]),
-      staff_pprice_per_hour: new FormControl([]),
-      staff_base_hour: new FormControl([]),
+      staff_group:new FormArray([]),
       equipment: new FormControl([]),
       equipment_is_optional: new FormControl([]),
       equipment_number_is_optional: new FormControl([]),
@@ -171,6 +172,25 @@ export class ServicioCrearComponent implements OnInit {
       lower_limit3: new FormControl(null),
       upper_limit3: new FormControl(null),   
     })
+
+    /*staff: new FormControl([], [Validators.required]),
+      staff_is_optional: new FormControl([]),
+      staff_number_is_optional: new FormControl([]),
+      staff_price_per_hour: new FormControl([]),
+      staff_base_hour: new FormControl([]),
+    */
+    
+
+    this.staff_group = new FormGroup({
+      staff: new FormControl(null, [Validators.required]),
+      staff_is_optional: new FormControl(null),
+      staff_number_is_optional: new FormControl(null),
+      staff_price_per_hour: new FormControl(null),
+      staff_base_hour: new FormControl(null),
+    })
+
+
+
 
     this.inventario_Requerido.set('vehiculo', false);
     this.inventario_Requerido.set('armamento', false);
@@ -192,6 +212,25 @@ export class ServicioCrearComponent implements OnInit {
       }
     })
   }
+
+  addItem() {
+    this.registerForm.value.staff_group.push(this.staff_group.value);
+    this.staff_group = new FormGroup({
+      staff: new FormControl(null, [Validators.required]),
+      staff_is_optional: new FormControl(false),
+      staff_number_is_optional: new FormControl(null),
+      staff_price_per_hour: new FormControl(null),
+      staff_base_hour: new FormControl(null),
+    })
+  }
+
+  crearServicio_test(registerForm: any){
+    console.log(registerForm.value);  
+  }
+
+
+  
+  
 
   //Metodo para crear servicio
   crear_Servicio(){
