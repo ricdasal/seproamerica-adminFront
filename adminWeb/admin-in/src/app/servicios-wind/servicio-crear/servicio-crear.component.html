@@ -23,16 +23,16 @@
       <p><mat-checkbox formControlName="set_price">Si</mat-checkbox></p>
     </div>
 
-    <div class="item">
+    <!-- <div class="item">
       <mat-form-field appearance="outline" *ngIf="this.registerForm.value.set_price">
         <mat-label>Staff</mat-label>
         <mat-select multiple formControlName="staff">
         <mat-option *ngFor="let staff of lista_staff" [value]="staff.name">{{staff.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-
-
+    </div> -->
+    <br><br><br><br>
+    <h2>Staff</h2>
       
     <form [formGroup]="staff_group" (ngSubmit)="addGuardia()">
       <div class="item">
@@ -67,8 +67,49 @@
       <!-- Agrega más campos estáticos aquí -->
 
       <!-- Botón para agregar nuevo item -->
-      <button type="submit">Agregar Item</button>
+      <button type="submit">Agregar staff</button>
     </form>
+
+    <br><br><br><br>
+
+    <h2>Equipamiento</h2>
+    <form [formGroup]="staff_group" (ngSubmit)="addEquipamiento()">
+      <div class="item">
+        <mat-form-field appearance="outline">
+          <mat-label>Staff</mat-label>
+          <mat-select formControlName="staff">
+          <mat-option *ngFor="let staff of lista_staff" [value]="staff.name">{{staff.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="item">
+        <label >staff opcional?</label>
+        <p><mat-checkbox formControlName="staff_is_optional">Si</mat-checkbox></p>
+      </div>
+
+      <div class="item">
+        <label >numero de staff es opcional?</label>
+        <p><mat-checkbox formControlName="staff_number_is_optional">Si</mat-checkbox></p>
+      </div>
+
+      <div class="item">
+        <label >Precio del personal por hora</label>
+        <input   type="number"  matInput
+           required formControlName="staff_price_per_hour"/>
+      </div>
+
+      <div class="item">
+        <label >Precio base del personal por hora</label>
+        <input   type="number"  matInput
+           required formControlName="staff_base_hour"/>
+      </div>
+      <!-- Agrega más campos estáticos aquí -->
+
+      <!-- Botón para agregar nuevo item -->
+      <button type="submit">Agregar staff</button>
+    </form>
+
+
     
     
 

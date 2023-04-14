@@ -136,7 +136,9 @@ export class ServicioCrearComponent implements OnInit {
   tres_digitos_no_valido = false
 
   staff_group!: FormGroup; // Formulario reactivo
-  items!: FormArray; // FormArray para los items
+  equipment_group!: FormGroup;
+
+  equipamiento_list: Array<any> =['vehiculo', 'candado', 'celular', 'armamento'];
   
 
   constructor(
@@ -158,10 +160,7 @@ export class ServicioCrearComponent implements OnInit {
       description: new FormControl(null,  [Validators.required,]),
       set_price: new FormControl(false),
       staff_group:new FormArray([]),
-      equipment: new FormControl([]),
-      equipment_is_optional: new FormControl([]),
-      equipment_number_is_optional: new FormControl([]),
-      equipment_price: new FormControl([]),
+      equipment_group: new FormArray([]),
       price_range1: new FormControl(0),
       price_range2: new FormControl(0),
       price_range3: new FormControl(0),
@@ -189,6 +188,14 @@ export class ServicioCrearComponent implements OnInit {
       staff_base_hour: new FormControl(null),
     })
 
+    this.equipment_group =  new FormGroup({
+      equipment: new FormControl(null),
+      equipment_is_optional: new FormControl(false),
+      equipment_number_is_optional: new FormControl(false),
+      equipment_price: new FormControl(0),
+
+    })
+
 
 
 
@@ -213,15 +220,27 @@ export class ServicioCrearComponent implements OnInit {
     })
   }
 
-  addItem() {
+  addGuardia() {
     this.registerForm.value.staff_group.push(this.staff_group.value);
     this.staff_group = new FormGroup({
       staff: new FormControl(null, [Validators.required]),
       staff_is_optional: new FormControl(false),
-      staff_number_is_optional: new FormControl(null),
-      staff_price_per_hour: new FormControl(null),
+      staff_number_is_optional: new FormControl(false),
+      staff_price_per_hour: new FormControl(0),
       staff_base_hour: new FormControl(null),
     })
+  }
+
+  addEquipamiento(){
+    this.registerForm.value.equipment_group.push(this.equipment_group.value);
+    this.equipment_group =  new FormGroup({
+      equipment: new FormControl(null),
+      equipment_is_optional: new FormControl(false),
+      equipment_number_is_optional: new FormControl(false),
+      equipment_price: new FormControl(0),
+
+    })
+    
   }
 
   crearServicio_test(registerForm: any){
