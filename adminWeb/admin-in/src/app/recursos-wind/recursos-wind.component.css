@@ -42,7 +42,7 @@
 }
   
 #navbarResponsive2{
-  background-color: rgb(157, 13, 13);
+  background-color: black;
   border-radius: 50px 50px 0px 0px;
   margin-bottom: 0cm;
   padding-bottom: 0px;
@@ -62,3 +62,5 @@
   cursor: pointer
   
 }
+
+

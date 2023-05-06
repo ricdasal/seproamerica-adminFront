@@ -48,11 +48,10 @@ a{
 
 /*estilos para contenido*/
 .contenido{
-  background-color: pink;
+  background-color: whitesmoke;
   width: 100%;
-  max-width: 100vh;
   padding: 40px 20px 20px 20px;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 form.row{
@@ -73,6 +72,8 @@ form.row{
 .item{
   display: flex;
   flex-direction: column;
+  width: 30vh;
+  gap: 3vh;
 
 }
 .item input{
@@ -135,3 +136,16 @@ mat-form-field div{
   padding: 10px;
   border-radius: 32px;
 }
+
+.fila{
+  display: flex; 
+  gap: 10vh; 
+  width: auto;
+}
+/* 
+.mat-form-field{
+}
+
+.mat-label{
+  background-color: white;
+} */

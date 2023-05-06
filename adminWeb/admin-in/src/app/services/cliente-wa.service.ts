@@ -45,7 +45,6 @@ export class ClienteWAService {
   DJANGO_SERVER_ELIMINAR_PERSONALOP: string = this.BASE_URL+"api/eliminarPersonalOperativo";
   DJANGO_SERVER_OBTENER_PERSONALOP_ESPECIFICO: string = this.BASE_URL+"api/obtener_personalop_especifico";
   DJANGO_SERVER_ACTUALIZAR_PERSONALOP: string = this.BASE_URL+"api/actualizar_personalop";
-  DJANGO_SERVER_OBTENER_PEDIDOS: string = this.BASE_URL+"api/solicitarServicio";
   DJANGO_SERVER_ACTUALIZAR_PEDIDO: string = this.BASE_URL+"api/actualizar_pedido_servicio";
   DJANGO_SERVER_OBTENER_ADMINISTRADOR_ESPECIFICO: string = this.BASE_URL+"api/obtenerAdministrador_especifico";
   DJANGO_SERVER_OBTENER_CLIENTE_TABLA_CLIENTE: string = this.BASE_URL+"api/obtener_cliente_tabla_cliente";
@@ -122,7 +121,20 @@ export class ClienteWAService {
   //servicios
   DJANGO_SERVER_OBTENER_NOMBRE_SERVICIOS: string = this.BASE_URL + "services/serviceNames/"
   DJANGO_SERVER_OBTENER_CARGOS: string =  this.BASE_URL + "users/chargeList/"
+  DJANGO_SERVER_REGISTRAR_SERVICIOS: string = this.BASE_URL + "services/service/"
+  DJANGO_SERVER_OBTENER_SERVICIOS_POR_ID:string = this.BASE_URL + "services/serviceByID/?id="
+  
 
+  //pedidos
+  DJANGO_SERVER_OBTENER_PEDIDOS: string = this.BASE_URL + "services/orderAll/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_POR_ID:string =  this.BASE_URL + "services/orderClient/?id="
+  DJANGO_SERVER_MODIFICAR_PEDIDO: string =  this.BASE_URL + "services/orderClient/?id="
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_EAP: string = this.BASE_URL + "services/ordersRestList/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_PENDIENTE: string = this.BASE_URL + "services/ordersPending/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_ACEPTADO: string  = this.BASE_URL + "services/ordersAccepted/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_PAGADO: string = this.BASE_URL + "services/ordersPaid/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_EN_PROCESO: string = this.BASE_URL + "services/ordersProcess/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_ELIMINADO: string = this.BASE_URL + "services/ordersDeleted/"
 
 
   constructor(private http: HttpClient) { }
@@ -199,10 +211,100 @@ export class ClienteWAService {
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     return this.http.get(this.DJANGO_SERVER_OBTENER_CARGOS, {headers})
+  }
 
+  registrarServicios(value: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.post(this.DJANGO_SERVER_REGISTRAR_SERVICIOS, value,{headers})
+  
+  }
 
+  obtenerServicioPorId(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_SERVICIOS_POR_ID}${id}`, {headers})
 
   }
+
+  obtenerPedidos(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_PEDIDOS, {headers})
+  }
+
+  obtenerPedidosPorId(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_POR_ID}${id}`, {headers})
+  }
+
+  obtener_personalOp(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this. DJANGO_SERVER_OBTENER_PERSONAL_OP, {headers});
+  }
+
+   obtener_vehiculos(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_VEHICULOS, {headers});
+  }
+
+  obtener_candados(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_CANDADOS, {headers});
+  }
+
+  obtener_armamentos(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_ARMAMENTOS, {headers});
+  }
+
+  obtener_mobiles(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_MOVIL, {headers})
+  }
+
+  obtener_cuentas(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(this.DJANGO_SERVER_OBTENER_CUENTAS_TELEFONO, {headers})
+  }
+
+  obtenerClientePorID(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_CLIENTE  }${id}`, {headers})
+
+  }
+
+  actualizarPedido(data: any, id: any){
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.put(`${this.DJANGO_SERVER_MODIFICAR_PEDIDO}${id}`, data.value, {headers})
+  }
+
+
+  
+
+
 
 
 
@@ -285,10 +387,6 @@ export class ClienteWAService {
     return this.http.get<ServiceModel>(`${this.DJANGO_SERVER_SELECCIONAR_ACTUALIZAR_ELIMINAR}/${nombre_servicio_seleccionar}`)
   }
 
-  //Request para obtener todo el personal Operativo
-  obtener_personalOp(): Observable<PersonalOpModel[]>{
-    return this.http.get<PersonalOpModel[]>(this.DJANGO_SERVER_OBTENER_PERSONAL_OP);
-  }
 
   //Request para eliminar un personal operativo
   eliminar_personaOp(cedula: any): Observable<any>{
@@ -316,25 +414,16 @@ export class ClienteWAService {
   }
 
   //Request para obtener los vehiculos
-  obtener_vehiculos(): Observable<VehiculoModel[]>{
-    return this.http.get<VehiculoModel[]>(this.DJANGO_SERVER_OBTENER_VEHICULOS);
-  }
+  
 
   //Request para obtener candado
-  obtener_candados(): Observable<CandadoModel[]>{
-    return this.http.get<CandadoModel[]>(this.DJANGO_SERVER_OBTENER_CANDADOS);
-  }
+  
 
   //Request para obtener el armamento
-  obtener_armamentos(): Observable<ArmamentoModel[]>{
-    return this.http.get<ArmamentoModel[]>(this.DJANGO_SERVER_OBTENER_ARMAMENTOS);
-  }
+  
 
   //Request para obtener mobiles
-  obtener_mobiles(): Observable<MobilModel[]>{
-    return this.http.get<MobilModel[]>(this.DJANGO_SERVER_OBTENER_MOBIL)
-  }
-
+  
   //Request para actualizar pedido de servicio
   actualizar_pedido(id_pedido: any, data: any): Observable<any> {
     return this.http.put(`${this.DJANGO_SERVER_ACTUALIZAR_PEDIDO}/${id_pedido}/`, data);

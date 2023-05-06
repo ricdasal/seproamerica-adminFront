@@ -17,3 +17,12 @@ table {
     align-items: center;
     
   }
+
+  .mat-table{
+    background-color: white;
+  }
+
+  th{
+    background-color: black;
+    color: white;
+  }

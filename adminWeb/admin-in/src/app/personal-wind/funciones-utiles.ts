@@ -94,3 +94,14 @@ export function CedulaLongitud(control: AbstractControl): {[key: string]: any } 
   
     return null;
   }
+
+  export function maximoElementosValidator(maximo: number): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const lista = control.value;
+      if (lista && lista.length > maximo) {
+        return {'maximoElementos': true};
+      } else {
+        return null;
+      }
+    };
+  }

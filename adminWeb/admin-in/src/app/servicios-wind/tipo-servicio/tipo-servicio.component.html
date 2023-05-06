@@ -56,6 +56,10 @@
   </div>
  -->
   
+ <div class="area_Boton" style="margin-top: 5rem;">
+  <button type="button" class="btn_Crear_Servicio btn btn-primary" (click)=" crearServicio()" >Crear Servicio</button>
+</div>
+<br>
  <div class="ventanaPrincipal">
 
   <div style="margin: auto;" *ngFor="let servicio of lista_Servicio" id="{{servicio.id}}" class="servicio_especifico">
@@ -64,7 +68,7 @@
     <div class="detalles">
       <h1>{{servicio.name}}</h1>
       <img class="logo-servicio" src="../../assets/Iconos/app sepro vectores-19.png" alt="">
-      <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="">
+      <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="" (click)="verServicio(servicio.id)">
     </div>
   </div>
 
@@ -73,6 +77,4 @@
 
 
 
-<div class="area_Boton" style="margin-top: 5rem;">
-  <button type="button" class="btn_Crear_Servicio btn btn-primary" (click)="crearServicio()">Crear Servicio</button>
-</div>
+

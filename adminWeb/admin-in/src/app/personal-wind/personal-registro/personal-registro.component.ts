@@ -144,12 +144,12 @@ export class PersonalRegistroComponent implements OnInit {
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
 
-    this.http.request('GET',"https://seproamerica2022.pythonanywhere.com/users/operationalGroupList/", {headers})
+    this.http.request('GET',"https://seproamerica2022.pythonanywhere.com/users/chargeList/", {headers})
     .subscribe({
       next: (data: any) => {
         console.log(data)
-        this.lista_cargos = this.lista_cargos.concat(data['groups']);
-        this.lista_grupos = this.lista_grupos.concat(data['groups']);
+        this.lista_cargos = this.lista_cargos.concat(data);
+        this.lista_grupos = this.lista_grupos.concat(data);
         
       }
     })
@@ -158,7 +158,7 @@ export class PersonalRegistroComponent implements OnInit {
 
   crearGrupos(){
     const ventanaGrupos =  this.dialog.open(CrearGruposComponent, {
-      width: '100vh',
+      width: '150vh',
       height: '50vh',
     })
   }

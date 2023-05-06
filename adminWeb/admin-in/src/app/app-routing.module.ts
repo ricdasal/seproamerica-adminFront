@@ -30,6 +30,7 @@ import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-per
 import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-clientes.component';
 import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
 import { EditVehiculosComponent } from './recursos-wind/recursos-vehiculos/edit-vehiculos/edit-vehiculos.component';
+import { CrearGruposComponent } from './personal-wind/personal-registro/crear-grupos/crear-grupos.component';
 
 
 
@@ -38,6 +39,7 @@ import { EditVehiculosComponent } from './recursos-wind/recursos-vehiculos/edit-
 
 
 const routes: Routes = [
+  
   { path: 'login', 
   component: InicioSesionComponent, pathMatch: 'prefix',},
   //canActivate:[NoPermitidoSinSesionActivaGuard]},
@@ -88,15 +90,20 @@ const routes: Routes = [
     canActivate:[PermitidoConSesionActivaGuard] },
     { path: 'serviciosEnCurso', component: ServicioEnCursoComponent, pathMatch: 'prefix',
     canActivate:[PermitidoConSesionActivaGuard] },
+    {path: 'crearServicio', component: ServicioCrearComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard]},
     { path: '', redirectTo: '/serviciosVentana/serviciosTipo', pathMatch: 'prefix'},
   ] },
 
 
   
-
+  
   { path: 'registro', component: RegistroComponent, pathMatch: 'prefix',    
   canActivate:[NoPermitidoSinSesionActivaGuard]},
   { path: 'perfil', component: PerfilComponent, pathMatch: 'prefix',    
+  canActivate:[PermitidoConSesionActivaGuard]},
+
+  {path: 'grupos', component: CrearGruposComponent, pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard]},
 
 

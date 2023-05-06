@@ -1,10 +1,14 @@
+<div class="general">
 
-  <button class="btn btn-primary"  mat-button (click)="openDialog()">
-    Agregar Candado
-  </button>
 
   
   <div class="informacion mat-elevation-z8">
+
+    <div class="caja">     
+      <button class="btn btn-primary botones"  mat-button (click)="openDialog()">
+        Agregar Candado
+      </button>
+    </div>
     <table mat-table [dataSource]="CandadoList" class="mat-elevation-z8" #tabla1>
   
       <ng-container matColumnDef="Numero Serie">
@@ -36,3 +40,6 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
   
   </div>
+
+</div>
+  

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PedidoModel } from '../../models/pedido.model';
 import { PersonalOpModel } from '../../models/personalOp.models';
 import { VehiculoModel } from '../../models/vehiculo.model';
@@ -8,6 +8,12 @@ import { CandadoModel } from '../../models/candado.model';
 import { ArmamentoModel } from '../../models/armamento.model';
 import { MobilModel } from '../../models/mobil.model';
 import { DATE_PIPE_DEFAULT_TIMEZONE, Time } from "@angular/common";
+import { FormArray, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { RegistroComponent } from 'src/app/registro/registro.component';
+import { Observable, map, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ComunicarComponentesService } from 'src/app/services/comunicar-componentes.service';
+import { maximoElementosValidator } from 'src/app/personal-wind/funciones-utiles';
 
 
 @Component({
@@ -15,36 +21,51 @@ import { DATE_PIPE_DEFAULT_TIMEZONE, Time } from "@angular/common";
   templateUrl: './servicio-detalles-asignacion.component.html',
   styleUrls: ['./servicio-detalles-asignacion.component.css']
 })
-export class ServicioDetallesAsignacionComponent implements OnInit {
+export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewInit {
 
   actualizado!:boolean | null
 
-  pedido_a_asignar: PedidoModel = new PedidoModel();
+  // pedido_a_asignar: PedidoModel = new PedidoModel();
 
-  lista_personalOp?: PersonalOpModel[]
+  lista_personalOp: Array<any> = [];
 
-  lista_guardias: PersonalOpModel[] = []
-  lista_guardaespaldas: PersonalOpModel[] = [];
-  lista_conductor: PersonalOpModel[] = [];
-  lista_motorizado: PersonalOpModel[] = [];
+  lista_guardias: Array<any> = []
+  lista_guardaespaldas: Array<any> = [];
+  lista_conductor: Array<any> = [];
+  lista_motorizado: Array<any> = [];
 
-  lista_vehiculos: VehiculoModel[] = [];
-  lista_candados: CandadoModel[] = [];
-  lista_armamentos: ArmamentoModel[] = [];
-  lista_moviles: MobilModel[] = [];
 
-  lider_elegido: PersonalOpModel = new PersonalOpModel();
+  
+
+  lista_vehiculos: Array<any> = [];
+  lista_candados: Array<any> = [];
+  lista_armamentos: Array<any> = [];
+  lista_moviles:Array<any> = [];
+  lista_cuentas_temp: Array<any> = [];
+  lista_cuentas: Array<any> = [];
+
+  lista_estados: Array<any> = ['pendiente', 'aceptado', 'pagado', 'en proceso', 'eliminado']
+  
+  lista_staff_object: Array<any> = []
+  
+  lista_equipment_object: Array<any> = []
+
+  lider_elegido!: any
+  cuenta_asignada!: any
+  costo!: any;
+  nombre_servicio: any = {} ;
+  nombre_cliente: any = {};
 
   detalles_asignados: string = "";
 
-  guardias_escogidos: PersonalOpModel[] = [];
-  guardaespaldas_escogidos: PersonalOpModel[] = [];
-  conductores_escogidos: PersonalOpModel[] = [];
-  motorizados_escogidos: PersonalOpModel[] = [];
-  vehiculos_escogidos: VehiculoModel[] = [];
-  candados_escogidos: CandadoModel[] = [];
-  armamentos_escogidos: ArmamentoModel[] = [];
-  moviles_escogidos: MobilModel[] = [];
+  guardias_escogidos: Array<any> = [];
+  guardaespaldas_escogidos: Array<any> = [];
+  conductores_escogidos: Array<any> = [];
+  motorizados_escogidos:Array<any> = [];
+  vehiculos_escogidos: Array<any> = [];
+  candados_escogidos: Array<any> = [];
+  armamentos_escogidos: Array<any> = [];
+  moviles_escogidos: Array<any> = [];
 
   hora = {
     hours: 0,
@@ -52,143 +73,326 @@ export class ServicioDetallesAsignacionComponent implements OnInit {
   }
 
   //Variable que se usa para presentar los datos actualizados del pedido
-  pedido_actualizar: PedidoModel = {
+  pedido_a_asignar: any = {
     idPedido: 0,
-    nombre_Servicio: "",
-    costo: 0,
     fecha_Solicitud: new Date(),
-    fecha_Finalizacion: new Date(),
     fecha_Inicio: new Date(),
     hora_Inicio: this.hora,
+    fecha_Finalizacion: new Date(),
     hora_Finalizacion: this.hora,
+    duracion: this.hora,
+    costo: 0,
+    metodo_Pago: 0,
+    estado: 0,
     latitud_Origen: 0,
     longitud_Origen: 0,
     latitud_Destino: 0,
     longitud_Destino: 0,
-    cantidad_Empleados_Asignados: 0,
-    cantidad_vehiculos: 0,
-    detalle: "",
-    estado: 0,
-    metodo_Pago: 0,
+    cliente_solicitante: 0,
     idServicio: 0,
+    cuenta_telefono: 0,
+    staff: new Array<any>,
+    staff_is_optional: new Array<any>,
+    staff_number_is_optional: new Array<any>,
+    staff_selected: new Array<any>,
+    cantidad_Empleados_Asignados: new Array<any>,
+    equipment: new Array<any>,
+    equipment_id_optional: new Array<any>,
+    equipment_number_id_optional: new Array<any>,
+    equipment_selected: new Array<any>,
+    equipment_number: new Array<any>,
+    nombre_Servicio: "",
     administrador_Encargado: 0,
-    cliente_solicitante: 0
+    
   }
 
+  cantidadEmpleadosRequeridos= 0;
+  registerForm!: FormGroup;
 
-  constructor(private clienteWAservice: ClienteWAService) { }
+  guardiasBool: Boolean = false;
+  guardaespaldasBool: Boolean = false;
+  conductorBool: Boolean = false;
+  motorizadosBool: Boolean = false;
+
+  vehiculosBool: Boolean = false;
+  candadosBool: Boolean = false;
+  armamentoBool: Boolean = false;
+
+  costoBoolean: Boolean = false;
+
+  info_pedido!: any;
+  asigned_staff!: FormGroup;
+  asigned_equipment!: FormGroup;
+
+  datos_cargados: Boolean = false;
+  data: any;
+
+
+  constructor(
+    private clienteWAservice: ClienteWAService,
+    private router: Router,
+    private comunicador: ComunicarComponentesService
+    ) {
+
+     }
 
   ngOnInit(): void {
-    this.presentar_detalles_pedido()
+
+
+    this.registerForm = new FormGroup({
+      start_date:  new FormControl(null),
+      start_time: new FormControl(null),
+      end_date: new FormControl(null),
+      end_time: new FormControl(null),
+      duration: new FormControl(null),
+      total: new FormControl(null),
+      payment_method: new FormControl(null),
+      status: new FormControl(null, [Validators.required]),
+      origin_lat: new FormControl(null),
+      origin_lng: new FormControl(null),
+      destination_lat: new FormControl(null),
+      destination_lng: new FormControl(null),
+      phone_account: new FormControl('', [Validators.required]),
+      staff_selected: new FormControl(null),
+      staff_number: new FormControl(null),
+      equipment_selected: new FormControl(null),
+      equipment_number: new FormControl(null),
+      assigned_staff: new FormArray([], [Validators.required]),
+      staff_leader: new FormControl('', [Validators.required]),
+      assigned_equipment: new FormControl([], [Validators.required])
+
+    })
+
+    
+    this.presentar_detalles_pedido();
+
+    this.asigned_staff = new FormGroup({
+      guardias: new FormControl([]),
+      conductores: new FormControl([]),
+      motorizados: new FormControl([]),
+      guardaespaldas: new FormArray([])
+    })
+
+    this.asigned_equipment = new FormGroup({
+      vehiculos: new FormControl([]),
+      candados: new FormControl([]),
+      armamentos: new FormControl([]),
+      movil: new FormControl('')
+    })
+
+
+    this.obtenerNumeroPersonal()
     this.obtener_todo_personalOp()
     this.obtener_todo_vehiculo()
     this.obtener_todo_candado()
     this.obtener_todo_armamento()
     this.obtener_todo_movil()
-    console.log("Lista de guardia")
-    console.log(this.lista_guardias)
-    console.log("Lista de guardaespaldas")
-    console.log(this.lista_guardaespaldas)
-    console.log("Lista de conductores")
-    console.log(this.lista_conductor)
-    console.log("Lista de motorizados")
-    console.log(this.lista_motorizado)
+    this.obtener_todo_cuentas()
   }
 
+
+  ngAfterViewInit(){
+
+
+  }
+
+  verLista_guardias(){
+    console.log(this.guardias_escogidos)
+    console.log(this.data);
+  }
+
+
   presentar_detalles_pedido(){
-    let info_pedido = JSON.parse(localStorage.getItem('pedido_seleccionado')!)
-    this.pedido_a_asignar.idPedido = info_pedido.idPedido
-    this.pedido_a_asignar.nombre_Servicio = info_pedido.nombre_Servicio
-    this.pedido_a_asignar.costo = info_pedido.costo
-    this.pedido_a_asignar.fecha_Solicitud = info_pedido.fecha_Solicitud.toLocaleString().slice(0, 10) + " " + info_pedido.fecha_Solicitud.toLocaleString().slice(11, 19)
-    this.pedido_a_asignar.fecha_Finalizacion = info_pedido.fecha_Finalizacion
-    this.pedido_a_asignar.fecha_Inicio = info_pedido.fecha_Inicio
-    this.pedido_a_asignar.hora_Inicio = info_pedido.hora_Inicio
-    this.pedido_a_asignar.hora_Finalizacion = info_pedido.hora_Finalizacion
-    this.pedido_a_asignar.latitud_Origen = info_pedido.latitud_Origen
-    this.pedido_a_asignar.longitud_Origen = info_pedido.longitud_Origen 
-    this.pedido_a_asignar.latitud_Destino = info_pedido.latitud_Destino
-    this.pedido_a_asignar.longitud_Destino = info_pedido.longitud_Destino
-    this.pedido_a_asignar.cantidad_Empleados_Asignados = info_pedido.cantidad_Empleados_Asignados
-    this.pedido_a_asignar.cantidad_vehiculos = info_pedido.cantidad_vehiculos
-    this.pedido_a_asignar.detalle = info_pedido.detalle 
-    this.pedido_a_asignar.estado = info_pedido.estado
-    this.pedido_a_asignar.metodo_Pago = info_pedido.metodo_Pago
-    this.pedido_a_asignar.idServicio = info_pedido.idServicio
-    this.pedido_a_asignar.administrador_Encargado = info_pedido.administrador_Encargado
-    this.pedido_a_asignar.cliente_solicitante = info_pedido.cliente_solicitante
+    this.clienteWAservice.obtenerPedidosPorId(localStorage.getItem("pedido_seleccionado"))
+    .subscribe({
+      next: (info_pedido: any) =>{
+        console.log(info_pedido)
+        this.pedido_a_asignar.idPedido = info_pedido.id;
+        // this.pedido_a_asignar.nombre_Servicio = info_pedido.nombre_Servicio
+        this.pedido_a_asignar.costo = info_pedido.total;
+        this.pedido_a_asignar.fecha_Solicitud = info_pedido.date_request;
+        this.pedido_a_asignar.fecha_Finalizacion = info_pedido.end_date;
+        this.pedido_a_asignar.fecha_Inicio = info_pedido.start_date;
+        this.pedido_a_asignar.hora_Inicio = info_pedido.start_time;
+        this.pedido_a_asignar.hora_Finalizacion = info_pedido.end_time;
+        this.pedido_a_asignar.duracion = info_pedido.duration
+        this.pedido_a_asignar.costo = info_pedido.total
+        this.pedido_a_asignar.latitud_Origen = info_pedido.origin_lat;
+        this.pedido_a_asignar.longitud_Origen = info_pedido.origin_lng; 
+        this.pedido_a_asignar.latitud_Destino = info_pedido.destination_lat;
+        this.pedido_a_asignar.longitud_Destino = info_pedido.destination_lng;
+        this.pedido_a_asignar.cantidad_Empleados_Asignados = this.pedido_a_asignar.cantidad_Empleados_Asignados.concat(info_pedido.staff_number)
+        this.pedido_a_asignar.staff_selected = this.pedido_a_asignar.staff_selected.concat(info_pedido.staff_selected)
+        this.pedido_a_asignar.equipment_selected = this.pedido_a_asignar.equipment_selected.concat(info_pedido.equipment_selected)
+        this.pedido_a_asignar.equipment_number = this.pedido_a_asignar.equipment_number.concat(info_pedido.equipment_number)
+        // this.pedido_a_asignar.cantidad_vehiculos = info_pedido.cantidad_vehiculos
+        this.pedido_a_asignar.detalle = info_pedido.detalle 
+        this.pedido_a_asignar.estado = info_pedido.status;
+        this.pedido_a_asignar.metodo_Pago = info_pedido.payment_method;
+        this.pedido_a_asignar.idServicio = info_pedido.service;
+        // this.pedido_a_asignar.administrador_Encargado = info_pedido.administrador_Encargado
+        this.pedido_a_asignar.cliente_solicitante = info_pedido.client;
+        this.pedido_a_asignar.staff = this.pedido_a_asignar.staff.concat(info_pedido.staff);
+        this.pedido_a_asignar.equipment = this.pedido_a_asignar.equipment.concat(info_pedido.equipment);
+  
+        for(let i in this.pedido_a_asignar.cantidad_Empleados_Asignados){
+          console.log(this.pedido_a_asignar.cantidad_Empleados_Asignados[i])
+          this.cantidadEmpleadosRequeridos = this.cantidadEmpleadosRequeridos +  Number(this.pedido_a_asignar.cantidad_Empleados_Asignados[i]);
+        }
+  
+        this.ocultarCampos();  
+        this.registerForm.patchValue({
+          start_date:  info_pedido.start_date,
+          start_time: info_pedido.start_time,
+          end_date: info_pedido.end_date,
+          end_time: info_pedido.end_time,
+          duration:info_pedido.duration,
+          total: info_pedido.total,
+          payment_method: info_pedido.payment_method,
+          status: info_pedido.status,
+          origin_lat: info_pedido.origin_lat,
+          origin_lng: info_pedido.origin_lng,
+          destination_lat: info_pedido.destination_lat,
+          destination_lng: info_pedido.destination_lng,
+          staff_selected: info_pedido.staff_selected,
+          staff_number: info_pedido.staff_number,
+          equipment_selected: info_pedido.equipment_selected,
+          equipment_number: info_pedido.equipment_number,
+      
+          
+        })
+        
 
-    let ar = this.pedido_a_asignar.detalle.split('|')
-    console.log("Aqui empieza el split")
-    console.log(ar)
-    let lider = ar[0].toString()
-    let guardias = ar[1]
-    let guardaespaldas = ar[2]
-    let conductores = ar[3]
-    let motorizados = ar[4]
-    let vehiculos = ar[5]
-    let candados = ar[6]
-    let armamento = ar[7]
-    let movil = ar[8]
+        this.armarStaffObject();
+        this. armarEquipmentObject();
+        this.obtenerNombreServicio(info_pedido.service);
+        this.obtenerNombreCliente(info_pedido.client);
 
-    console.log("Se ha asignado movil?")
-    console.log(movil)
+        this.datos_cargados = true;
 
-    let elem = document.getElementById("detalles")
-    if(elem?.innerHTML != undefined && movil != undefined){
-      elem.innerHTML = `
-        <br>
-        <p>${lider}</p>
-        <p>${guardias}</p>
-        <p>${guardaespaldas}</p>
-        <p>${conductores}</p>
-        <p>${motorizados}</p>
-        <p>${vehiculos}</p>
-        <p>${candados}</p>
-        <p>${armamento}</p>
-        <p>${movil}</p>
+      }      
+    })
+  }
 
-      `
-    }else {
-      elem!.innerHTML = `
-        <h3>Porfavor seleccione al equipo y armamento para el pedido</h3>
-      `
+  armarStaffObject(){
+    for(let index in this.pedido_a_asignar.staff){
+      let staff = {
+        nombre: this.pedido_a_asignar.staff[index],
+        cantidad: this.pedido_a_asignar.cantidad_Empleados_Asignados[index]
+      }
+      this.lista_staff_object.push(staff);
+
     }
   }
 
-  presentar_detalles_asignados(){
-    /*alert(
-      "Lider elegido: " + this.lider_elegido.nombres + "\n"
-      + "Guardias asignados: " + this.guardias_escogidos + "\n"
-      + "Guardaespaldas asignados: " + this.guardaespaldas_escogidos + "\n"
-      + "conductores asignados: " + this.conductores_escogidos + "\n"
-      + "motorizados asignados: " + this.motorizados_escogidos + "\n"
-      + "vehiculos asignados: " + this.vehiculos_escogidos + "\n"
-      + "candados asignados: " + this.candados_escogidos + "\n"
-      + "armamento asignado: " + this.armamentos_escogidos + "\n"
-      + "movil asignado: " + this.moviles_escogidos + "\n"
-    )*/
+  armarEquipmentObject(){
+    for(let index in this.pedido_a_asignar.equipment){
+      let equipment = {
+        nombre: this.pedido_a_asignar.equipment[index],
+        cantidad: this.pedido_a_asignar.equipment_number[index]
+      }
 
-    let detalles = 
-    "Lider elegido: " + this.lider_elegido.nombres + "|"
-    + "Guardias asignados: " + this.guardias_escogidos + "|"
-    + "Guardaespaldas asignados: " + this.guardaespaldas_escogidos + "|"
-    + "conductores asignados: " + this.conductores_escogidos + "|"
-    + "motorizados asignados: " + this.motorizados_escogidos + "|"
-    + "vehiculos asignados: " + this.vehiculos_escogidos + "|"
-    + "candados asignados: " + this.candados_escogidos + "|"
-    + "armamento asignado: " + this.armamentos_escogidos + "|"
-    + "movil asignado: " + this.moviles_escogidos + "|"
-
-    //console.log(this.detalles_asignados)
-    console.log("moviles")
-    console.log(this.moviles_escogidos)
-    console.log("Estos son los detalles")
-    console.log(detalles)
-    return detalles
-
+      this.lista_equipment_object.push(equipment);
+    }
   }
 
+  obtenerNumeroPersonal(){
+    for(let i in this.pedido_a_asignar.cantidad_Empleados_Asignados){
+      this.cantidadEmpleadosRequeridos += Number(i);
+    } 
+    console.log(this.pedido_a_asignar.cantidad_Empleados_Asignados);
+  }
+
+  obtenerNombreServicio(id: any){
+    this.clienteWAservice.obtenerServicioPorId(id)
+    .subscribe({
+      next: (data: any) => {
+        this.nombre_servicio = data;
+      }
+    })
+  }
+
+  obtenerNombreCliente(id: any){
+    this.clienteWAservice.obtenerClientePorID(id)
+    .subscribe({
+      next: (data: any) => {
+        this.nombre_cliente =  data;
+
+      }
+    })
+  }
+
+  imprimirFormulario(){
+    let lista = this.registerForm.value.assigned_staff
+    if(this.asigned_staff.value.guardias.length != 0){
+      for(let personal of this.asigned_staff.value.guardias){
+        this.registerForm.value.assigned_staff.push(personal.split(';')[0])
+      }
+    }
+
+    if(this.asigned_staff.value.conductores.length != 0){
+      for(let personal of this.asigned_staff.value.conductores){
+        this.registerForm.value.assigned_staff.push(personal.split(';')[0])
+      }
+
+    }
+
+    if(this.asigned_staff.value.motorizados.length != 0){
+      for(let personal of this.asigned_staff.value.motorizados){
+        this.registerForm.value.assigned_staff.push(personal.split(';')[0])
+      }
+
+    }
+
+    if(this.asigned_staff.value.guardaespaldas.length != 0){
+      for(let personal of this.asigned_staff.value.guardaespaldas){
+        this.registerForm.value.assigned_staff.push(personal.split(';')[0])
+      }
+      
+    }
+
+    if(this.asigned_equipment.value.vehiculos.length != 0){
+      for(let equipamento of this.asigned_equipment.value.vehiculos){
+        this.registerForm.value.assigned_equipment.push(equipamento.split(';')[0]);
+      }
+    }
+    if(this.asigned_equipment.value.candados.length != 0){
+      for(let equipamento of this.asigned_equipment.value.candados){
+        this.registerForm.value.assigned_equipment.push(equipamento.split(';')[0]);
+      }
+    }
+    if(this.asigned_equipment.value.armamentos.length != 0){
+      for(let equipamento of this.asigned_equipment.value.armamentos){
+        this.registerForm.value.assigned_equipment.push(equipamento.split(';')[0]);
+      }
+    }
+
+    if(this.asigned_equipment.value.movil != ''){
+      this.registerForm.value.assigned_equipment.push(this.asigned_equipment.value.movil.split(';')[0]);
+    }
+
+    let temp_leader = this.registerForm.value.staff_leader;
+    this.registerForm.value.staff_leader = temp_leader.split(';')[0];
+
+    let temp_account =  this.registerForm.value.phone_account
+    this.registerForm.value.phone_account = temp_account.split(';')[0]
+
+    console.log(this.registerForm.value)
+    this.clienteWAservice.actualizarPedido(this.registerForm ,this.pedido_a_asignar.idPedido)
+    .subscribe({
+      next: (data:any) =>{
+        console.log(data);
+      }
+    })
+    
+
+    
+  }
+
+
+
+
+ 
   //Funncion para actualizar los detalles del pedido
   actualizar_pedido(): void {
     const info_pedido_actualizar = {
@@ -258,22 +462,44 @@ export class ServicioDetallesAsignacionComponent implements OnInit {
   obtener_todo_personalOp(){
     this.clienteWAservice.obtener_personalOp()
     .subscribe({
-      next: (data) => {
-        this.lista_personalOp = data;
-        console.log(data)
+      next: (data: any) => {
+        this.lista_personalOp = this.lista_personalOp.concat(data);
         this.division_cargos()
       },
       error: (e) => console.error(e)
     })
   }
 
-  //Metodo para obtener todos los vehiculos
+  division_cargos(){
+
+    this.lista_personalOp?.forEach( (personal: any) => {
+      
+
+      if(personal.charge == 'guardia'){
+        this.lista_guardias.push(personal);
+      }
+      else if(personal.charge == 'guardaespaldas'){
+        this.lista_guardaespaldas.push(personal);
+      }
+      else if(personal.charge == 'chofer'){
+        this.lista_conductor.push(personal);
+      }
+      else if(personal.charge == 'motorizado'){
+        this.lista_motorizado.push(personal);
+      }
+
+
+    })
+    console.log(this.lista_motorizado)
+
+  }
+ 
   obtener_todo_vehiculo(){
     this.clienteWAservice.obtener_vehiculos()
     .subscribe({
-      next: (data) => {
-        this.lista_vehiculos = data;
-        console.log(data)
+      next: (data: any) => {
+        // console.log(data)
+        this.lista_vehiculos = this.lista_vehiculos.concat(data);
       },
       error: (e) => console.error(e)
     });
@@ -283,8 +509,9 @@ export class ServicioDetallesAsignacionComponent implements OnInit {
   obtener_todo_candado(){
     this.clienteWAservice.obtener_candados()
     .subscribe({
-      next: (data) => {
-        this.lista_candados = data;
+      next: (data: any) => {
+        // console.log(data)
+        this.lista_candados =  this.lista_candados.concat(data);
       },
       error: (e) => console.error(e)
     });
@@ -294,8 +521,8 @@ export class ServicioDetallesAsignacionComponent implements OnInit {
   obtener_todo_armamento(){
     this.clienteWAservice.obtener_armamentos()
     .subscribe({
-      next: (data) => {
-        this.lista_armamentos = data;
+      next: (data: any) => {
+        this.lista_armamentos = this.lista_armamentos.concat(data);
       },
       error: (e) => console.error(e)
     });
@@ -305,41 +532,182 @@ export class ServicioDetallesAsignacionComponent implements OnInit {
   obtener_todo_movil(){
     this.clienteWAservice.obtener_mobiles()
     .subscribe({
-      next: (data) => {
-        this.lista_moviles = data;
+      next: (data: any) => {
+        this.lista_moviles = this.lista_moviles.concat(data);
       },
       error: (e) => console.error(e)
     });
   }
 
-  division_cargos(){
-    console.log("Funcion division cargos")
-    this.lista_personalOp?.forEach( (personal) => {
-      console.log(personal)
-      let valores_cargo_trabajo = personal.cargo_trabajo.split("=>")[1]
-      let arreglo_cargos = valores_cargo_trabajo.split('|')
-      for(let indice in arreglo_cargos){
-        //console.log(arreglo_cargos[indice].replaceAll(' ',''))
-        arreglo_cargos[indice] = arreglo_cargos[indice].replaceAll(' ','')
-        if(arreglo_cargos[indice] == "guardia"){
-          this.lista_guardias.push(personal)
-        }else if(arreglo_cargos[indice] == "guardaespaldas"){
-          this.lista_guardaespaldas.push(personal)
-        }else if(arreglo_cargos[indice] == "conductor"){
-          this.lista_conductor.push(personal)
-        }else if(arreglo_cargos[indice] == "motorizado"){
-          this.lista_motorizado.push(personal)
-        }
+  obtener_todo_cuentas(){
+    this.clienteWAservice.obtener_cuentas()
+    .subscribe({
+      next: (data: any) =>{
+        this.lista_cuentas_temp =  this.lista_cuentas_temp.concat(data)
+        this.lista_cuentas_temp.forEach((cuentas) =>{
+          if(cuentas.is_active){
+            this.lista_cuentas.push(cuentas)
+          }
+
+        })
+
+      }
+    })
+  }
+
+  ocultarCampos(){
+    this.pedido_a_asignar.staff.forEach((staff : any) => {
+      if(staff == 'guardia'){
+        this.guardiasBool = true;
+        
+      }
+      else if (staff == 'chofer'){
+        this.conductorBool = true;
+        
+
+      }
+      else if(staff  == 'motorizado'){
+        this.motorizadosBool = true;
+      }
+      else if (staff == 'guardaespaldas' ){
+        this.guardaespaldasBool = true;
         
       }
     })
-    console.log("Fin funcion division cargos")
+
+    this.pedido_a_asignar.equipment.forEach((equipment: any) => {
+      if(equipment == 'vehículo'){
+        this.vehiculosBool = true;
+        
+      }
+      else if(equipment == 'armamento'){
+        this.armamentoBool = true;
+
+      }
+      else if(equipment == 'candado satelital'){
+        this.candadosBool = true;
+      }
+    })
+
+    if(this.pedido_a_asignar.costo == 0){
+      this.costoBoolean = true;
+    }
 
   }
+
+  
 
   imprimir_lider(){
     console.log(this.lider_elegido)
   }
 
+  concatenarListas(): Array<any>{
+    let lista: Array<any> = [];
+
+    lista =  lista.concat(this.asigned_staff.value.guardias);
+    lista = lista.concat(this.asigned_staff.value.guardaespaldas);
+    lista = lista.concat(this.asigned_staff.value.motorizados);
+    lista = lista.concat(this.asigned_staff.value.conductores);
+
+    return lista;
+
+  }
+
+  presentar_detalles_asignados(){
+    /*alert(
+      "Lider elegido: " + this.lider_elegido.nombres + "\n"
+      + "Guardias asignados: " + this.guardias_escogidos + "\n"
+      + "Guardaespaldas asignados: " + this.guardaespaldas_escogidos + "\n"
+      + "conductores asignados: " + this.conductores_escogidos + "\n"
+      + "motorizados asignados: " + this.motorizados_escogidos + "\n"
+      + "vehiculos asignados: " + this.vehiculos_escogidos + "\n"
+      + "candados asignados: " + this.candados_escogidos + "\n"
+      + "armamento asignado: " + this.armamentos_escogidos + "\n"
+      + "movil asignado: " + this.moviles_escogidos + "\n"
+    )*/
+
+    // let detalles = 
+    // "Lider elegido: " + this.lider_elegido.nombres + "|"
+    // + "Guardias asignados: " + this.guardias_escogidos + "|"
+    // + "Guardaespaldas asignados: " + this.guardaespaldas_escogidos + "|"
+    // + "conductores asignados: " + this.conductores_escogidos + "|"
+    // + "motorizados asignados: " + this.motorizados_escogidos + "|"
+    // + "vehiculos asignados: " + this.vehiculos_escogidos + "|"
+    // + "candados asignados: " + this.candados_escogidos + "|"
+    // + "armamento asignado: " + this.armamentos_escogidos + "|"
+    // + "movil asignado: " + this.moviles_escogidos + "|"
+
+    // //console.log(this.detalles_asignados)
+    // console.log("moviles")
+    // console.log(this.moviles_escogidos)
+    // console.log("Estos son los detalles")
+    // console.log(detalles)
+    // return detalles
+
+  }
+
+
 
 }
+
+
+
+
+// let info_pedido = JSON.parse(localStorage.getItem('pedido_seleccionado')!)
+    // this.pedido_a_asignar.idPedido = info_pedido.idPedido
+    // this.pedido_a_asignar.nombre_Servicio = info_pedido.nombre_Servicio
+    // this.pedido_a_asignar.costo = info_pedido.costo
+    // this.pedido_a_asignar.fecha_Solicitud = info_pedido.fecha_Solicitud.toLocaleString().slice(0, 10) + " " + info_pedido.fecha_Solicitud.toLocaleString().slice(11, 19)
+    // this.pedido_a_asignar.fecha_Finalizacion = info_pedido.fecha_Finalizacion
+    // this.pedido_a_asignar.fecha_Inicio = info_pedido.fecha_Inicio
+    // this.pedido_a_asignar.hora_Inicio = info_pedido.hora_Inicio
+    // this.pedido_a_asignar.hora_Finalizacion = info_pedido.hora_Finalizacion
+    // this.pedido_a_asignar.latitud_Origen = info_pedido.latitud_Origen
+    // this.pedido_a_asignar.longitud_Origen = info_pedido.longitud_Origen 
+    // this.pedido_a_asignar.latitud_Destino = info_pedido.latitud_Destino
+    // this.pedido_a_asignar.longitud_Destino = info_pedido.longitud_Destino
+    // this.pedido_a_asignar.cantidad_Empleados_Asignados = info_pedido.cantidad_Empleados_Asignados
+    // this.pedido_a_asignar.cantidad_vehiculos = info_pedido.cantidad_vehiculos
+    // this.pedido_a_asignar.detalle = info_pedido.detalle 
+    // this.pedido_a_asignar.estado = info_pedido.estado
+    // this.pedido_a_asignar.metodo_Pago = info_pedido.metodo_Pago
+    // this.pedido_a_asignar.idServicio = info_pedido.idServicio
+    // this.pedido_a_asignar.administrador_Encargado = info_pedido.administrador_Encargado
+    // this.pedido_a_asignar.cliente_solicitante = info_pedido.cliente_solicitante
+
+    // let ar = this.pedido_a_asignar.detalle.split('|')
+    // console.log("Aqui empieza el split")
+    // console.log(ar)
+    // let lider = ar[0].toString()
+    // let guardias = ar[1]
+    // let guardaespaldas = ar[2]
+    // let conductores = ar[3]
+    // let motorizados = ar[4]
+    // let vehiculos = ar[5]
+    // let candados = ar[6]
+    // let armamento = ar[7]
+    // let movil = ar[8]
+
+    // console.log("Se ha asignado movil?")
+    // console.log(movil)
+
+    // let elem = document.getElementById("detalles")
+    // if(elem?.innerHTML != undefined && movil != undefined){
+    //   elem.innerHTML = `
+    //     <br>
+    //     <p>${lider}</p>
+    //     <p>${guardias}</p>
+    //     <p>${guardaespaldas}</p>
+    //     <p>${conductores}</p>
+    //     <p>${motorizados}</p>
+    //     <p>${vehiculos}</p>
+    //     <p>${candados}</p>
+    //     <p>${armamento}</p>
+    //     <p>${movil}</p>
+
+    //   `
+    // }else {
+    //   elem!.innerHTML = `
+    //     <h3>Porfavor seleccione al equipo y armamento para el pedido</h3>
+    //   `
+    // }

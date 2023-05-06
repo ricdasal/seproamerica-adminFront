@@ -91,6 +91,7 @@ import { EditarCuentaComponent } from './personal-wind/tabla-cuentas-telefono/ed
 import { EditAdminComponent } from './personal-wind/tabla-personal/edit-admin/edit-admin.component';
 import { EditPersonalComponent } from './personal-wind/tabla-personal/edit-personal/edit-personal.component';
 import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio.component';
+import { InfoServicioComponent } from './servicios-wind/info-servicio/info-servicio.component';
 
 
 
@@ -157,7 +158,8 @@ import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servi
     EditarCuentaComponent,
     EditAdminComponent,
     EditPersonalComponent,
-    TipoServicioComponent
+    TipoServicioComponent,
+    InfoServicioComponent
   ],
   imports: [
     BrowserModule,

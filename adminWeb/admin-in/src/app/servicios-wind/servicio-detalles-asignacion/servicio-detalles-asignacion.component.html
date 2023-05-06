@@ -1,19 +1,5 @@
-<app-header></app-header>
-
-<div class="wrapper">
-    <div class="bottom_nav" >
-      <div id="navbarResponsive2">
-      <ul>
-        <li><a  routerLinkActive="active" routerLink="/serviciosEnCurso">En Curso</a></li>
-        <li><a routerLinkActive="active" routerLink="/serviciosPorAsignar">Por asignar</a></li>
-        <li><a routerLinkActive="active" routerLink="/serviciosTipo" href="#">Tipo</a></li>
-        
-      </ul>
-    </div>
-    </div>
-</div>
-
-<div class="row">
+<div *ngIf="this.datos_cargados">
+  <div class="row">
 
     <div class="column">
       <div id="Datos_Servicio">
@@ -26,12 +12,12 @@
 
         <div id="Fila_Datos">
           <h5>Nombre del servicio:    </h5>
-          <h5 id="valor">{{pedido_a_asignar.nombre_Servicio}}</h5>
+          <h5 id="valor">{{this.nombre_servicio.name}}</h5>
         </div>
 
         <div id="Fila_Datos">
           <h5>Usuario solicitante:</h5>
-          <h5 id="valor">{{pedido_a_asignar.cliente_solicitante}}</h5>
+          <h5 id="valor">{{this.nombre_cliente.first_name}} {{this.nombre_cliente.last_name}}</h5>
         </div>
 
         <div id="Fila_Datos">
@@ -61,21 +47,107 @@
 
         <div id="Fila_Datos">
           <h5>Cantidad de empleados requeridos:</h5>
-          <h5 id="valor">{{pedido_a_asignar.cantidad_Empleados_Asignados}}</h5>
+          <h5 id="valor">{{this.cantidadEmpleadosRequeridos}}</h5>
         </div>
 
-        <div id="Fila_Datos">
-          <h5>Cantidad de vehiculos requeridos:</h5>
-          <h5 id="valor">{{pedido_a_asignar.cantidad_vehiculos}}</h5>
+        <div id="Fila_Datos" *ngFor="let staff of this.lista_staff_object">
+          <h5>Cantidad de empleados requeridos {{staff.nombre}}:</h5>
+          <h5 id="valor">{{staff.cantidad}}</h5>
+        </div>
+
+
+
+        <div id="Fila_Datos" *ngFor="let equipment of this.lista_equipment_object">
+          <h5>Cantidad de {{equipment.nombre}} requeridos:</h5>
+          <h5 id="valor">{{equipment.cantidad}}</h5>
         </div>
 
         <div id="Fila_Datos">
           <h5>Metodo de pago: </h5>
-          <h5 id="valor">Efectivo</h5>
+          <h5 id="valor">{{pedido_a_asignar.metodo_Pago}}</h5>
         </div>
 
-        <h5>Detalles:</h5>
+        <div id="Fila_Datos">
+          <h5>Estado:</h5>
+          <h5 id="valor">{{registerForm.value.status}}</h5>
+
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Staff leader:</h5>
+          <h5 id="valor">{{this.registerForm.value.staff_leader.split(';')[1]}} {{this.registerForm.value.staff_leader.split(';')[2]}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Pago</h5>
+          <h5 id="valor">${{this.registerForm.value.total}}</h5>
+        </div>
+
+        <div id="Fila_Datos">
+          <h5>Cuenta asignada</h5>
+          <h5 id="valor">{{this.registerForm.value.phone_account.split(";")[1]}}</h5>
+        </div>
+
+        <h3 >Detalles:</h3>
         <h5 id="detalles"></h5>
+
+          <!-- <h5>pago: {{pedido_a_asignar.costo}}</h5> -->
+
+          <h4 id="Fila_Datos">Staff</h4>
+        
+          <h5  *ngIf="this.asigned_staff.value.guardias.length != 0">lista guardias: 
+            <p *ngFor="let guardias of this.asigned_staff.value.guardias">
+              {{guardias.split(';')[1]}} {{guardias.split(';')[2]}}
+            </p>
+          </h5>
+
+          <h5 *ngIf="this.asigned_staff.value.guardaespaldas.length != 0">lista guardaespaldas: 
+            <p *ngFor="let guardaespalda of this.asigned_staff.value.guardaespaldas">
+              {{guardaespalda.split(';')[1]}} {{guardaespalda.split(';')[2]}}
+            </p>
+          </h5>
+
+          <h5 *ngIf="this.asigned_staff.value.motorizados.length != 0">lista motorizados: 
+            <p *ngFor="let motorizado of this.asigned_staff.value.motorizados">
+              {{motorizado.split(';')[1]}} {{motorizado.split(';')[2]}}
+            </p>
+          </h5>
+
+          <h5 *ngIf="this.asigned_staff.value.conductores.length != 0">lista conductores: 
+            <p *ngFor="let conductor of this.asigned_staff.value.conductores">
+              {{conductor.split(';')[1]}} {{conductor.split(';')[2]}}
+            </p>
+          </h5>
+
+          <h4 id="Fila_Datos">Equipamento</h4>
+
+          <h5 *ngIf="this.asigned_equipment.value.vehiculos.length != 0">
+            Lista vehiculos:
+            <p *ngFor="let vehiculo of this.asigned_equipment.value.vehiculos">
+              modelo: {{vehiculo.split(';')[1]}}, placa: {{vehiculo.split(';')[2]}}
+            </p>
+          </h5>
+
+          <h5 *ngIf="this.asigned_equipment.value.candados.length != 0">
+            Lista Candados:
+            <p *ngFor="let candado of this.asigned_equipment.value.candados">
+              numero serial: {{candado.split(';')[1]}}, marca: {{candado.split(';')[2]}}, modelo: {{candado.split(';')[2]}}
+            </p>
+          </h5>
+
+          <h5 *ngIf="this.asigned_equipment.value.armamentos.length != 0">
+            Lista armamentos:
+            <p *ngFor="let armamento of this.asigned_equipment.value.armamentos">
+              numero serial: {{armamento.split(';')[1]}}, marca: {{armamento.split(';')[2]}}, modelo: {{armamento.split(';')[2]}}
+            </p>
+          </h5>
+
+          <h5 *ngIf="this.asigned_equipment.value.movil.length != 0">
+               móviles:
+            <p>
+              numero serial: {{this.asigned_equipment.value.movil.split(';')[1]}}, marca: {{this.asigned_equipment.value.movil.split(';')[2]}}, modelo: {{this.asigned_equipment.value.movil.split(';')[2]}}
+            </p>
+          </h5>
 
       </div>
     </div>
@@ -87,102 +159,157 @@
       <br>
       <br>
 
-      <label >Empleado Lider</label>
-      <div class="input-group">
-        <select [(ngModel)]="lider_elegido" name="select" id="selectOption" class="custom-select custom-select-lg form-control" required="">
-            <option *ngFor="let personal of lista_personalOp" [ngValue]="personal">
-                {{personal.nombres}}
-            </option>
-        </select>
-      </div><br>
+      <form [formGroup]="registerForm" (ngSubmit)="imprimirFormulario()">
 
+        <label >Empleado Lider</label>
+        <div class="input-group">
+          <select formControlName="staff_leader"  name="select" id="selectOption" class="custom-select custom-select-lg form-control" required="">
+              <option *ngFor="let personal of this.concatenarListas()" value="{{personal}}">
+                  {{personal.split(';')[1]}} {{personal.split(';')[2]}} 
+              </option>
+          </select>
+        </div><br>
+
+        <form [formGroup]="asigned_staff">
+
+            <mat-form-field *ngIf="this.guardiasBool" appearance="fill">
+              <mat-label>Guardias</mat-label>
+              <mat-select formControlName="guardias" multiple>
+                <mat-option *ngFor="let personal of lista_guardias" value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
+                  {{personal.first_name}} {{personal.last_name}}
+                </mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="asigned_staff.controls['guardias'].hasError('maximoElementos')">
+                No se pueden agregar más de n elementos a la lista.
+              </mat-error>
+            </mat-form-field>
+          <br>
+      
+          <mat-form-field *ngIf="this.guardaespaldasBool" appearance="fill">
+            <mat-label>Guardaespaldas</mat-label>
+            <mat-select formControlName="guardaespaldas" multiple>
+              <mat-option *ngFor="let personal of lista_guardaespaldas"  value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
+                {{personal.first_name}} {{personal.last_name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+      
+          <mat-form-field *ngIf="this.conductorBool" appearance="fill">
+            <mat-label>Conductores</mat-label>
+            <mat-select formControlName="conductores" multiple>
+              <mat-option *ngFor="let personal of lista_conductor"  value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
+                {{personal.first_name}} {{personal.last_name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+      
+          <mat-form-field *ngIf="this.motorizadosBool" appearance="fill">
+            <mat-label>Motorizados</mat-label>
+            <mat-select formControlName="motorizados" multiple>
+              <mat-option *ngFor="let personal of lista_motorizado"  value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
+                {{personal.first_name}} {{personal.last_name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+        </form>
+
+
+        <form  [formGroup]="asigned_equipment" >
+          <mat-form-field *ngIf="this.vehiculosBool" appearance="fill">
+            <mat-label>Vehiculos</mat-label>
+            <mat-select formControlName="vehiculos" multiple>
+              <mat-option *ngFor="let vehiculo of lista_vehiculos" value="{{vehiculo.id}};{{vehiculo.model}};{{vehiculo.plate}}">
+                placa: {{vehiculo.plate}}
+                modelo: {{vehiculo.model}}
+      
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+      
+          <mat-form-field *ngIf="this.candadosBool" appearance="fill">
+            <mat-label>Candados</mat-label>
+            <mat-select formControlName="candados" multiple>
+              <mat-option *ngFor="let candado of lista_candados" value="{{candado.id}};{{candado.serial_number}};{{candado.brand}};{{candado.model}}">
+              {{candado.brand}} {{candado.model}}
+                
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+      
+          <mat-form-field *ngIf="this.armamentoBool" appearance="fill">
+            <mat-label>Armamento</mat-label>
+            <mat-select formControlName="armamentos" multiple>
+              <mat-option *ngFor="let armamento of lista_armamentos" value="{{armamento.id}};{{armamento.brand}};{{armamento.model}}">
+                {{armamento.model}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+      
+          <mat-form-field appearance="fill">
+            <mat-label>Movil</mat-label>
+            <mat-select formControlName="movil">
+              <mat-option *ngFor="let movil of lista_moviles" value="{{movil.id}};{{movil.brand}};{{movil.model}}">
+                modelo: {{movil.model}}
+                <!-- numero de telefono: {{movil.phone_number}} -->
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <br>
+
+        </form>
+  
       <mat-form-field appearance="fill">
-        <mat-label>Guardias</mat-label>
-        <mat-select [(ngModel)]="guardias_escogidos" multiple>
-          <mat-option *ngFor="let personal of lista_guardias" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
-            {{personal.nombres}}
+        <mat-label>Cuenta asignada</mat-label>
+        <mat-select formControlName="phone_account" >
+          <mat-option *ngFor="let cuenta of lista_cuentas" value="{{cuenta.id}};{{cuenta.first_name}}">
+            {{cuenta.first_name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-     <br>
+      <br>
 
-     <mat-form-field appearance="fill">
-      <mat-label>Guardaespaldas</mat-label>
-      <mat-select [(ngModel)]="guardaespaldas_escogidos" multiple>
-        <mat-option *ngFor="let personal of lista_guardaespaldas" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
-          {{personal.nombres}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Conductores</mat-label>
-      <mat-select [(ngModel)]="conductores_escogidos" multiple>
-        <mat-option *ngFor="let personal of lista_conductor" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
-          {{personal.nombres}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-
-    <mat-form-field appearance="fill">
-      <mat-label>Motorizados</mat-label>
-      <mat-select [(ngModel)]="motorizados_escogidos" multiple>
-        <mat-option *ngFor="let personal of lista_motorizado" value="{{personal.nombres}}-Cedula: {{personal.numCedula}}">
-          {{personal.nombres}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option  *ngFor="let estado of lista_estados" value="{{estado}}">
+            {{estado}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+  
+      <mat-form-field *ngIf="this.costoBoolean" appearance="fill">
+        <mat-label>Costo</mat-label>
+        <input formControlName="total" matInput type="number" >
+      </mat-form-field>
+      <br>
+  
+      
+  
+      
+  
+      <button mat-flat-button color="primary" type="submit">Actualizar pedido</button>
 
 
-    <mat-form-field appearance="fill">
-      <mat-label>Vehiculos</mat-label>
-      <mat-select [(ngModel)]="vehiculos_escogidos" multiple>
-        <mat-option *ngFor="let vehiculo of lista_vehiculos" value="{{vehiculo.placa}}-{{vehiculo.marca}}-{{vehiculo.modelo}}-{{vehiculo.color}}">
-          {{vehiculo.marca}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
+      </form>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Candados</mat-label>
-      <mat-select [(ngModel)]="candados_escogidos" multiple>
-        <mat-option *ngFor="let candado of lista_candados" value="{{candado.marca}}">
-          {{candado.marca}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
+      
 
-    <mat-form-field appearance="fill">
-      <mat-label>Armamento</mat-label>
-      <mat-select [(ngModel)]="armamentos_escogidos" multiple>
-        <mat-option *ngFor="let armamento of lista_armamentos" value="{{armamento.clase}}">
-          {{armamento.clase}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
+      
 
-    <mat-form-field appearance="fill">
-      <mat-label>Movil</mat-label>
-      <mat-select [(ngModel)]="moviles_escogidos">
-        <mat-option *ngFor="let movil of lista_moviles" value="{{movil.numeroCell}}">
-          {{movil.marca}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <br>
-
-
-
-    <input type="image" id="img-guardar" (click)="actualizar_pedido()" src="../../assets/Iconos/app sepro vectores-46.png"
-    alt="">
+    <!-- <input type="image" id="img-guardar" (click)="actualizar_pedido()" src="../../assets/Iconos/app sepro vectores-46.png"
+    alt=""> -->
 
     </div>
 
+
+</div>
 
 </div>

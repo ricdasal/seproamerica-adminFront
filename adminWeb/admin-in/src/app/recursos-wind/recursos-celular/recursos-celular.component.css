@@ -21,13 +21,31 @@ td{
 }
 
 .informacion{
-    
   text-align: center;
 }
 
-.td-style{
-  
-   
+.td-style{   
   align-items: center;
+}
+
+.botones{
+  color: white; 
+  background-color: black;
+  margin: 3vh;
+}
+
+th{
+  background-color: black;
+  color: white;
+}
+
+td{
+  background-color: whitesmoke;
+}
+
+.caja{
+  display: grid;
+  place-items: center;
+  gap: 3vh;
   
 }

@@ -1,10 +1,14 @@
 
-    <button class="btn btn-primary" mat-button (click)="openDialog()">
-      Agregar Vehiculo
-    </button>
+    
 
     
     <div class="informacion mat-elevation-z8">
+
+      <div class="caja">
+        <button class="btn btn-primary botones" mat-button (click)="openDialog()">
+          Agregar Vehiculo
+        </button>
+      </div>
       <table mat-table [dataSource]=" VehiculoList" class="mat-elevation-z8" #tabla1>
     
         <ng-container matColumnDef="Placa">

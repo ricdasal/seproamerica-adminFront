@@ -1,9 +1,17 @@
+<div class="general">
 
-<button class="btn btn-primary" (click)="openDialog()">
-  Agregar Armamento
-</button>
   
-<div class="informacion mat-elevation-z8">
+
+  
+<div class="informacion mat-elevation-z8 general">
+
+  <div class="caja">  
+    <button mat-button class="btn btn-primary botones" (click)="openDialog()">
+      Agregar Armamento
+    </button>
+  </div>
+
+
   <table mat-table [dataSource]="ArmamentoList" class="mat-elevation-z8" #tabla1>
 
     <ng-container matColumnDef="Numero Serie">
@@ -40,5 +48,7 @@
     <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
+</div>
 
 </div>

@@ -1,21 +1,26 @@
-<div style="display: flex; align-items: end; margin: 5vh">
-  <button type="button" (click)="crearPersonalOperativo()" >Crear Personal Operativo</button>
-  <button type="button" (click)="crearPersonalAdministrativo()">Crear Personal Administrativo</button>
+<div class="caja">
+  <div class="subcaja" >
+    <button mat-flat-button class="botones" type="button" (click)="crearPersonalOperativo()" >Crear Personal Operativo</button>
+    <button mat-flat-button class="botones" type="button" (click)="crearPersonalAdministrativo()">Crear Personal Administrativo</button>
+  </div>
+  
 </div>
   
 
 <div class="informacion mat-elevation-z8">
-  <h4>Filtro</h4>
-  <mat-form-field appearance="fill">
-    <mat-label>Filtro</mat-label>
-    <mat-select [(ngModel)]="selectedValue" name="food">
-      <mat-option *ngFor="let filtro of filtros"  [value]="filtro.value">
-        {{filtro.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <p> {{selectedValue}} </p>
-  <button (click)=" obtenerUsuarioFiltro()">Filtrar</button>
+  <div style=" display: flex;width: auto;">
+    <mat-form-field appearance="fill" >
+      <mat-label>Seleccione el tipo de usuario</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="food">
+        <mat-option *ngFor="let filtro of filtros"  [value]="filtro.value">
+          {{filtro.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-fab style="background-color: black; color: white;" (click)=" obtenerUsuarioFiltro()">Filtrar</button>
+  </div>
+ 
     
   <table mat-table [dataSource]="lista_personal" class="mat-elevation-z8" #tabla1>
 

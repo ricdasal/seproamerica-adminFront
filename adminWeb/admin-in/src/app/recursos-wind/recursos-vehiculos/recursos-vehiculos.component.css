@@ -19,3 +19,31 @@ td{
 .pointer{
   cursor: pointer;
 }
+
+.general{
+  display: flex; 
+  flex-direction: column; 
+  gap: 3vh;
+}
+
+.botones{
+  color: white; 
+  background-color: black;
+  margin: 3vh;
+}
+
+th{
+  background-color: black;
+  color: white;
+}
+
+td{
+  background-color: whitesmoke;
+}
+
+.caja{
+  display: grid;
+  place-items: center;
+  gap: 3vh;
+  
+}

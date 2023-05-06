@@ -1,7 +1,7 @@
 
 
 <div class="contenido">
-  <form [formGroup]="registerForm" (ngSubmit)="crearServicio_test(registerForm)">
+  <form [formGroup]="registerForm" (ngSubmit)="crearServicio(registerForm)">
     <div class="item">
       <label >Nombre del servicio</label>
       <input   type="text" id="fname" name="name"  matInput
@@ -23,18 +23,10 @@
       <p><mat-checkbox formControlName="set_price">Si</mat-checkbox></p>
     </div>
 
-    <!-- <div class="item">
-      <mat-form-field appearance="outline" *ngIf="this.registerForm.value.set_price">
-        <mat-label>Staff</mat-label>
-        <mat-select multiple formControlName="staff">
-        <mat-option *ngFor="let staff of lista_staff" [value]="staff.name">{{staff.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div> -->
-    <br><br><br><br>
+    <br><br>
     <h2>Staff</h2>
       
-    <form [formGroup]="staff_group" (ngSubmit)="addGuardia()">
+    <form [formGroup]="staff_group" (ngSubmit)="addGuardia()" class="formato-mini-form">
       <div class="item">
         <mat-form-field appearance="outline">
           <mat-label>Staff</mat-label>
@@ -53,72 +45,203 @@
         <p><mat-checkbox formControlName="staff_number_is_optional">Si</mat-checkbox></p>
       </div>
 
-      <div class="item">
+      <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Precio del personal por hora</label>
         <input   type="number"  matInput
            required formControlName="staff_price_per_hour"/>
       </div>
 
-      <div class="item">
-        <label >Precio base del personal por hora</label>
+      <div class="item" *ngIf="this.registerForm.value.set_price">
+        <label >Horas base del personal</label>
         <input   type="number"  matInput
            required formControlName="staff_base_hour"/>
       </div>
-      <!-- Agrega más campos estáticos aquí -->
+      
+      <button type="submit" [disabled]="!this.staff_group.valid" style="width: 4rem; height: 4rem;" mat-fab color="warn">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add" ></mat-icon>
+      </button>
 
-      <!-- Botón para agregar nuevo item -->
-      <button type="submit">Agregar staff</button>
-    </form>
+      
+    </form><br>
 
-    <br><br><br><br>
+    <table mat-table [dataSource]="this.staff_table" class="mat-elevation-z8 demo-table">
+    
+      <ng-container matColumnDef="Staff">
+        <th mat-header-cell *matHeaderCellDef> Staff </th>
+        <td mat-cell *matCellDef="let element"> {{element.staff}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="Staff opcional">
+        <th mat-header-cell *matHeaderCellDef> Staff Opcional </th>
+        <td mat-cell *matCellDef="let element"> {{element.staff_is_optional}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="numero de staff ocional">
+        <th mat-header-cell *matHeaderCellDef> Numero de staff opcional </th>
+        <td mat-cell *matCellDef="let element"> {{element.staff_number_is_optional}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="precio de personal por hora">
+        <th mat-header-cell *matHeaderCellDef> Precio de personal por hora </th>
+        <td mat-cell *matCellDef="let element"> {{element.staff_price_per_hour}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Horas base del personal">
+        <th mat-header-cell *matHeaderCellDef> Horas base del personal </th>
+        <td mat-cell *matCellDef="let element"> {{element.staff_base_hour}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="botones">
+        <th mat-header-cell *matHeaderCellDef> </th>
+       <button mat-button *matCellDef="let element" type="button" (click)="eliminarStaff(element)">Eliminar</button>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsStaff"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsStaff;"></tr>
+      
+    </table>
+   
+
+    <br><br>
 
     <h2>Equipamiento</h2>
-    <form [formGroup]="staff_group" (ngSubmit)="addEquipamiento()">
+    <form [formGroup]="equipment_group" (ngSubmit)="addEquipamiento()" class="formato-mini-form">
       <div class="item">
         <mat-form-field appearance="outline">
-          <mat-label>Staff</mat-label>
-          <mat-select formControlName="staff">
-          <mat-option *ngFor="let staff of lista_staff" [value]="staff.name">{{staff.name}}</mat-option>
+          <mat-label>Equipamiento</mat-label>
+          <mat-select formControlName="equipment">
+          <mat-option *ngFor="let equipamiento of equipamiento_list" [value]="equipamiento">{{equipamiento}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
       <div class="item">
-        <label >staff opcional?</label>
-        <p><mat-checkbox formControlName="staff_is_optional">Si</mat-checkbox></p>
+        <label >equipamiento opcional?</label>
+        <p><mat-checkbox formControlName="equipment_is_optional">Si</mat-checkbox></p>
       </div>
 
       <div class="item">
-        <label >numero de staff es opcional?</label>
-        <p><mat-checkbox formControlName="staff_number_is_optional">Si</mat-checkbox></p>
+        <label >numero de equipamiento es opcional?</label>
+        <p><mat-checkbox formControlName="equipment_number_is_optional">Si</mat-checkbox></p>
       </div>
 
-      <div class="item">
-        <label >Precio del personal por hora</label>
+      <div class="item" *ngIf="this.registerForm.value.set_price">
+        <label >Precio del equipamiento</label>
         <input   type="number"  matInput
-           required formControlName="staff_price_per_hour"/>
+           required formControlName="equipment_price"/>
       </div>
-
-      <div class="item">
-        <label >Precio base del personal por hora</label>
-        <input   type="number"  matInput
-           required formControlName="staff_base_hour"/>
-      </div>
-      <!-- Agrega más campos estáticos aquí -->
 
       <!-- Botón para agregar nuevo item -->
-      <button type="submit">Agregar staff</button>
+      <button type="submit" [disabled]="!this.equipment_group.valid" style="width: 4rem; height: 4rem;"mat-fab color="warn">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="add" ></mat-icon>
+      </button>
     </form>
 
-
+    <table mat-table [dataSource]="this.equipment_table" class="mat-elevation-z8 demo-table">
     
+      <ng-container matColumnDef="equipamiento">
+        <th mat-header-cell *matHeaderCellDef> Equipamiento </th>
+        <td mat-cell *matCellDef="let element"> {{element.equipment}} </td>
+      </ng-container>
     
-
+      <ng-container matColumnDef="equipamiento es optional">
+        <th mat-header-cell *matHeaderCellDef> Equipamiento es opcional? </th>
+        <td mat-cell *matCellDef="let element"> {{element.equipment_is_optional}} </td>
+      </ng-container>
     
+      <ng-container matColumnDef="numero de equipamiento es optional">
+        <th mat-header-cell *matHeaderCellDef> Numero de equipamiento opcional </th>
+        <td mat-cell *matCellDef="let element"> {{element.equipment_number_is_optional}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="precio del equipamiento">
+        <th mat-header-cell *matHeaderCellDef> Precio del equipamiento</th>
+        <td mat-cell *matCellDef="let element"> {{element.equipment_price}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="botones">
+        <th mat-header-cell *matHeaderCellDef> </th>
+       <button mat-button *matCellDef="let element" type="button" (click)="eliminarEquipamiento(element)">Eliminar</button>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsEquipment"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsEquipment;"></tr>
+      
+    </table>
 
 
 
 
-    <button type="submit">enviar</button>
+    <br><br>
+    
+    <div class="item">
+      <label >Requiere origen y destino (ubicacion)</label>
+      <p><mat-checkbox formControlName="requires_origin_and_destination">Si</mat-checkbox></p>
+    </div>
+
+    <div  *ngIf="this.registerForm.value.requires_origin_and_destination ">
+      <div class="item" *ngIf="this.registerForm.value.set_price">
+        <label >Precio base</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="base_price"/>
+      </div>
+
+      <div class="item" *ngIf="this.registerForm.value.set_price">
+        <label >Precio Rango 1</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="price_range1"/>
+      </div>
+
+      <div class="item" *ngIf="this.registerForm.value.set_price">
+        <label >Precio Rango 2</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="price_range2"/>
+      </div>
+      
+      <div class="item" *ngIf="this.registerForm.value.set_price">
+        <label >Precio Rango 3</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="price_range3"/>
+      </div>
+
+      <div class="item">
+        <label >Inicio Rango 1</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="lower_limit1"/>
+      </div>
+
+      <div class="item">
+        <label >Fin Rango 1</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="upper_limit1"/>
+      </div>
+
+      <div class="item">
+        <label >Inicio Rango 2</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="lower_limit2"/>
+      </div>
+
+      <div class="item">
+        <label >Fin Rango 2</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="upper_limit2"/>
+      </div>
+
+      <div class="item">
+        <label >Inicio Rango 3</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="lower_limit3"/>
+      </div>
+
+      <div class="item">
+        <label >Fin Rango 3</label>
+        <input   type="number" id="fname" name="name"  matInput
+           required formControlName="upper_limit3"/>
+      </div>
+    </div>
+
+
+    <button mat-button type="submit">enviar</button>
   </form>
 
   

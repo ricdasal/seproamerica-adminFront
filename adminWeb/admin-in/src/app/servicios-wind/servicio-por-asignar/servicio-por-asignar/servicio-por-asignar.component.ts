@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { PedidoModel } from 'src/app/models/pedido.model';
+import { Router } from '@angular/router';
+import { ComunicarComponentesService } from 'src/app/services/comunicar-componentes.service';
 
 @Component({
   selector: 'app-servicio-por-asignar',
@@ -18,10 +20,40 @@ export class ServicioPorAsignarComponent implements OnInit {
   //cedula
   cedula_cliente_analizar: string | String = ""
 
-  constructor(private clienteWAService: ClienteWAService) { }
+  lista_pedidos_asignar: Array<any> = [];
+
+  constructor(
+    private clienteWAService: ClienteWAService,
+    private router: Router,
+    private comunicacion: ComunicarComponentesService
+    ) { }
 
   ngOnInit(): void {
-    this.obtener_Pedidos_Request()
+    //this.obtener_Pedidos_Request()
+    this.obtenerPedidos()
+
+  }
+
+  obtenerPedidos(){
+    this.clienteWAService.obtenerPedidos()
+    .subscribe({
+      next: (pedidos: any) => {
+        // for(let pedido of pedidos){
+        //   console.log(pedido)
+        //   if(pedido.status == 'pendiente'){
+            
+        //     this.lista_pedidos_asignar.push(pedido)
+        //   }
+          
+        // }
+        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(pedidos);
+
+      }
+    })
+  }
+
+  detallesServicio(id: any) {
+    
   }
 
   //Obtener pedidos desde un request
@@ -62,14 +94,8 @@ export class ServicioPorAsignarComponent implements OnInit {
 
   }
 
-  encontrar_pedido_especifico(id: Number){
-    for(let pedido of this.lista_pedidos!){
-      if(pedido.idPedido == id){
-        console.log("El pedido seleccionado es: ")
-        console.log(pedido)
-        localStorage.setItem("pedido_seleccionado", JSON.stringify(pedido))
-      }
-    }
+  encontrar_pedido_especifico(id: any){
+    localStorage.setItem("pedido_seleccionado", id);
 
   }
 

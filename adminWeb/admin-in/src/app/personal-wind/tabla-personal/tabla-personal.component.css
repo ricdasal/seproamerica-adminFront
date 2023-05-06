@@ -17,3 +17,34 @@ table {
     align-items: center;
     
   }
+
+  .botones{
+    color: white; 
+    background-color: black;
+  }
+
+  .subcaja{
+    display: flex; 
+    gap: 12vh;
+  }
+
+  .caja{
+    display: grid; 
+    place-items:center; 
+    gap: 3vh; 
+    margin: 5vh;
+  }
+
+  .mat-form-field{
+    width: 100%;
+    margin-left: 7vh;
+  }
+
+  .mat-table{
+    background-color: white;
+  }
+
+  th{
+    background-color: black;
+    color: white;
+  }
