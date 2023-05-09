@@ -301,6 +301,23 @@ export class ClienteWAService {
     return this.http.put(`${this.DJANGO_SERVER_MODIFICAR_PEDIDO}${id}`, data.value, {headers})
   }
 
+  obtenerPedidosEnProceso(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_EN_PROCESO}`, {headers})
+
+    
+  }
+
+  obtenerPedidosEAP(){
+    //Eliminado Aceptado Pagado
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_EAP}`, {headers})
+  }
+
 
   
 

@@ -96,3 +96,32 @@
    margin-top: -5%;
    margin-left: 2%;
   }
+
+  table {
+    margin: auto;
+    background-color: rgb(224, 224, 233);
+    margin-top: 12px;
+    width: 90%;
+    height: 100vh;
+  }
+
+  .informacion{
+    
+    text-align: center;
+  }
+
+  .td-style{
+    
+     
+    align-items: center;
+    
+  }
+
+  .mat-table{
+    background-color: white;
+  }
+
+  th{
+    background-color: black;
+    color: white;
+  }

@@ -1,3 +1,59 @@
-<div class="servicios">
+<div style="width: auto;">
+    <div class="informacion mat-elevation-z8">
+  
+        <table mat-table [dataSource]="lista_pedidos_en_proceso" class="mat-elevation-z8" #tabla1>
+      
+          <ng-container matColumnDef="Id">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Id </th>
+            <td mat-cell *matCellDef="let pedido">
+              {{pedido.client_first_name}}
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="Nombre">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Nombre </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.client_last_name}} </td>  
+          </ng-container>
+        
+        
+          <ng-container matColumnDef="Apellidos">
+              <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Apellidos </th>
+              <td mat-cell *matCellDef="let pedido"> {{pedido.phone_number}}</td>
+            </ng-container>
+        
+        
+            <ng-container matColumnDef="Servicio">
+              <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Servicio </th>
+              <td mat-cell *matCellDef="let pedido"> {{pedido.service_name}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Fecha de inicio">
+                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Fecha de inicio </th>
+                <td mat-cell *matCellDef="let pedido"> {{pedido.start_date}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Hora de inicio">
+                <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Hora de inicio </th>
+                <td mat-cell *matCellDef="let pedido"> {{pedido.start_time}}</td>
+            </ng-container>
+
+
+        
+            <ng-container matColumnDef="Opciones" style="text-align:center;">
+              <th mat-header-cell *matHeaderCellDef ></th>
+              <td mat-cell *matCellDef="let pedido; let i = index" class="td-style">
+                <button mat-button style="background-color: black; color: white;"> ver mapa </button>
+                <!-- <a><mat-icon class="pointer" (click)=" verpedido(pedido.id)"  style="color: rgb(75, 75, 201);" matTooltip="Ver detalles">remove_red_eye</mat-icon> </a> <!--(click)="enviar_personalop_seleccionado(pedido.id)"(click)="verPersonal(pedido.id)"-->
+                <!-- <a><mat-icon class="pointer" (click)="eliminarpedido(pedido.id)"  data-bs-toggle="modal" data-bs-target="#modalDos" data-bs-dismiss="modal" style="color: rgb(177, 85, 86);" matTooltip="Eliminar">delete</mat-icon></a> (click)="guardar_cedula_eliminar(pedido.numCedula)" -->
+               </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    
+    
       
 </div>

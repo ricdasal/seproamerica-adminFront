@@ -35,21 +35,15 @@ export class ServicioPorAsignarComponent implements OnInit {
   }
 
   obtenerPedidos(){
-    this.clienteWAService.obtenerPedidos()
+    this.clienteWAService.obtenerPedidosEAP()
     .subscribe({
-      next: (pedidos: any) => {
-        // for(let pedido of pedidos){
-        //   console.log(pedido)
-        //   if(pedido.status == 'pendiente'){
-            
-        //     this.lista_pedidos_asignar.push(pedido)
-        //   }
-          
-        // }
-        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(pedidos);
-
+      next: (data: any) => {
+        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
       }
     })
+
+    
+    
   }
 
   detallesServicio(id: any) {
