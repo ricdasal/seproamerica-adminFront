@@ -1,56 +1,67 @@
 
-<div class="servicios">
 
-    <!--<div *ngFor="let pedido of lista_pedidos">
-        <p>{{pedido.nombre_Servicio}}</p>
-        <button routerLink="/serviciosDetallesAsignacion" (click)="encontrar_pedido_especifico(pedido.idPedido)">{{pedido.nombre_Servicio}}</button>
-    </div>-->
-    <div class="contenedor-servicios">
-      <div class="pedido" *ngFor="let pedido of lista_pedidos_asignar">
-        <!--  -->
-       
-          <div id="IdServicio" class="elemento-pedido">
-            <p id="Sub_Titulo">ID SERVICIO</p>
-            <p>{{pedido.id}}</p>
-          </div>
-  
-          <div id="Fecha_Solicitud" class="elemento-pedido">
-            <p id="Sub_Titulo">Fecha de solicitud</p>
-            <p>{{pedido.date_request}}</p>
-          </div>
-  
-          <div id="Fecha_Servicio" class="elemento-pedido">
-            <p id="Sub_Titulo">Fecha de Servicio</p>
-            <p>{{pedido.start_date}}</p>
-          </div>
-  
-          <div id="Solicitante" class="elemento-pedido">
-            <p id="Sub_Titulo">Solicitante</p>
-            <p>{{pedido.client_first_name}} {{pedido.client_last_name}}</p>
-          </div>
-  
-          <div id="Distancia" class="elemento-pedido">
-            <p id="Sub_Titulo">Dni del solicitante</p>
-            <p>{{pedido.client_dni}}</p>
-          </div>
-  
-          <div id="Servicio" class="elemento-pedido">
-            <p id="Sub_Titulo">Servicio</p>
-            <p>{{pedido.service_name}}</p>
-          </div>
-  
-         
-  
-          <div id="Botones" class="elemento-pedido" style="display: flex; flex-direction: column;">
-            <button mat-flat-button color="primary" routerLink="/serviciosVentana/serviciosDetallesAsignacion" (click)="encontrar_pedido_especifico(pedido.id)">Detalles</button>
-            <!-- <button >Cancelar</button> -->
-          </div>
-  
-          <br><br>
-  
-        </div>
+
+<div >
+  <div >
+
+      <table mat-table [dataSource]="lista_pedidos_asignar"  #tabla1>
     
+        <ng-container matColumnDef="Id">
+          <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Id </th>
+          <td mat-cell *matCellDef="let pedido">
+            {{pedido.id}}
+          </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="Fecha de solicitud">
+          <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Nombre </th>
+          <td mat-cell *matCellDef="let pedido"> {{pedido.date_request}} </td>  
+        </ng-container>
+      
+      
+        <ng-container matColumnDef="Fecha de servicio">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Apellidos </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.start_date}}</td>
+          </ng-container>
+      
+      
+          <ng-container matColumnDef="Solicitante">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Servicio </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.client_first_name}} {{pedido.client_last_name}}</td>
+          </ng-container>
 
-    </div>
+
+          <ng-container matColumnDef="Fecha de inicio">
+              <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Fecha de inicio </th>
+              <td mat-cell *matCellDef="let pedido"> {{pedido.start_date}}</td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="Dni del solictante">
+              <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Hora de inicio </th>
+              <td mat-cell *matCellDef="let pedido"> {{pedido.client_dni}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Servicio">
+              <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Hora de inicio </th>
+              <td mat-cell *matCellDef="let pedido"> {{pedido.service_name}}</td>
+          </ng-container>
+
+
+
+      
+          <ng-container matColumnDef="Opciones" style="text-align:center;">
+            <th mat-header-cell *matHeaderCellDef ></th>
+            <td mat-cell *matCellDef="let pedido; let i = index" class="td-style">
+              <button mat-flat-button color="primary" routerLink="/serviciosVentana/serviciosDetallesAsignacion" (click)="encontrar_pedido_especifico(pedido.id)">Detalles</button>
+              <button mat-flat-button color="warn">Cancelar</button>
+             </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
   
+  
+    
 </div>

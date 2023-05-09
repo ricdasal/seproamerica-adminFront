@@ -134,3 +134,14 @@
 .contenedor_servicios > * {
   flex: 0 0 15%;
 }
+
+li{
+  color: white;
+}
+
+li:hover { 
+  padding: 10px;
+  border-radius: 32px;
+  background-color: rgb(203, 56, 56);
+  color: pink;
+}

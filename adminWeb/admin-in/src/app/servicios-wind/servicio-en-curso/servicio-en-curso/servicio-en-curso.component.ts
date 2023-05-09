@@ -12,25 +12,7 @@ export class ServicioEnCursoComponent implements OnInit {
     private clienteWAservice: ClienteWAService
   ) { }
 
-  /**
-   * client_dni: "0917398563"
-​​
-client_first_name: "Leonardo"
-​​
-client_last_name: "Pincay Jaramillo"
-​​
-date_request: "2023-04-13"
-​​
-id: 3
-​
-service_name: "Chofer seguro"
-​​
-start_date: "2023-04-13"
-​​
-start_time: "19:48:00
-​​
-status: "en proceso"
-   */
+
 
   lista_pedidos_en_proceso: Array<any> = []
   columnas: string[] = ['Id','Nombre','Apellidos','Servicio', 'Fecha de inicio', 'Hora de inicio','Opciones'];

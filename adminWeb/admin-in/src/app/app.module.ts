@@ -14,7 +14,7 @@ import { MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 
@@ -92,6 +92,8 @@ import { EditAdminComponent } from './personal-wind/tabla-personal/edit-admin/ed
 import { EditPersonalComponent } from './personal-wind/tabla-personal/edit-personal/edit-personal.component';
 import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio.component';
 import { InfoServicioComponent } from './servicios-wind/info-servicio/info-servicio.component';
+import { MapWindComponent } from './servicios-wind/servicio-en-curso/map-wind/map-wind.component';
+
 
 
 
@@ -159,7 +161,8 @@ import { InfoServicioComponent } from './servicios-wind/info-servicio/info-servi
     EditAdminComponent,
     EditPersonalComponent,
     TipoServicioComponent,
-    InfoServicioComponent
+    InfoServicioComponent,
+    MapWindComponent
   ],
   imports: [
     BrowserModule,
@@ -183,6 +186,7 @@ import { InfoServicioComponent } from './servicios-wind/info-servicio/info-servi
     MatFormFieldModule,
     MatCardModule,
     MatCheckboxModule,
+    GoogleMapsModule
     
 
   ],

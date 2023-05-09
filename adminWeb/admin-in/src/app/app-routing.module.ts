@@ -31,6 +31,7 @@ import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-cli
 import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
 import { EditVehiculosComponent } from './recursos-wind/recursos-vehiculos/edit-vehiculos/edit-vehiculos.component';
 import { CrearGruposComponent } from './personal-wind/personal-registro/crear-grupos/crear-grupos.component';
+import { MapWindComponent } from './servicios-wind/servicio-en-curso/map-wind/map-wind.component';
 
 
 
@@ -105,6 +106,8 @@ const routes: Routes = [
 
   {path: 'grupos', component: CrearGruposComponent, pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard]},
+
+  {path: 'map', component: MapWindComponent, pathMatch: 'prefix'},
 
 
 

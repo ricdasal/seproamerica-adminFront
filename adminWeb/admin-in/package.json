@@ -16,11 +16,11 @@
     "@angular/compiler": "^14.0.7",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
+    "@angular/google-maps": "^14.0.0",
     "@angular/material": "^14.2.4",
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
-    
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.2",
     "crypto-js": "^4.1.1",

@@ -318,6 +318,38 @@ export class ClienteWAService {
     return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_EAP}`, {headers})
   }
 
+  obtenerPedidosPendientes(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_PENDIENTE}`, {headers})
+
+  }
+
+  obtenerPedidosEliminados(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_ELIMINADO}`, {headers})
+
+  }
+
+  obtenerPedidosAceptados(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_ACEPTADO}`, {headers})
+
+  }
+
+  obtenerPedidosPagados(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_PAGADO}`, {headers})
+
+  }
+
 
   
 
