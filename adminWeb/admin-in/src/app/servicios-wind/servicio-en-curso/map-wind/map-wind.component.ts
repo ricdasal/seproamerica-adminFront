@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MapDirectionsService} from '@angular/google-maps';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { map, Observable } from 'rxjs';
 
 @Component({
@@ -10,10 +11,17 @@ import { map, Observable } from 'rxjs';
 export class MapWindComponent implements OnInit {
   directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
 
-  constructor(mapDirectionsService: MapDirectionsService) {
+  constructor(
+    mapDirectionsService: MapDirectionsService,
+    @Inject(MAT_DIALOG_DATA) public pedido: any,
+    public dialogRef: MatDialogRef<any>,
+    
+    
+    ) {
+
     const request: google.maps.DirectionsRequest = {
-      destination: {lat: -2.1468681900820856, lng: -79.88437406276634}, //-2.1468681900820856, -79.88437406276634
-      origin: {lat: -2.1758583229414237, lng: -79.88188497287582},//-2.1758583229414237, -79.88188497287582
+      destination: {lat: this.pedido.destination_lat, lng: this.pedido.destination_lng}, //-2.1468681900820856, -79.88437406276634
+      origin: {lat: this.pedido.origin_lat, lng: this.pedido.origin_lng},//-2.1758583229414237, -79.88188497287582
       travelMode: google.maps.TravelMode.DRIVING
     };
     this.directionsResults$ = mapDirectionsService.route(request)

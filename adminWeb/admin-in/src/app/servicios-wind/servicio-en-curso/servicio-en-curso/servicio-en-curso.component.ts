@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { MapWindComponent } from '../map-wind/map-wind.component';
 
 @Component({
   selector: 'app-servicio-en-curso',
@@ -9,7 +11,8 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 export class ServicioEnCursoComponent implements OnInit {
 
   constructor(
-    private clienteWAservice: ClienteWAService
+    private clienteWAservice: ClienteWAService,
+    public dialog: MatDialog
   ) { }
 
 
@@ -30,7 +33,24 @@ export class ServicioEnCursoComponent implements OnInit {
 
       }
     })
+  }
 
+
+  abrirMapa(id: any){
+
+    this.clienteWAservice.obtenerPedidosPorId(id)
+    .subscribe({
+      next: (pedido: any) => {
+        console.log(pedido)
+        const ventanaGrupos =  this.dialog.open(MapWindComponent, {
+          width: '100vh',
+          height: '80vh',
+          data: pedido
+        })
+
+      }
+    })
+    
 
   }
 
