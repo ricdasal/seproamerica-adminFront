@@ -1,19 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { PedidoModel } from '../../models/pedido.model';
-import { PersonalOpModel } from '../../models/personalOp.models';
-import { VehiculoModel } from '../../models/vehiculo.model';
+import { AfterViewInit, Component, Inject, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ClienteWAService } from '../../services/cliente-wa.service';
-import {MatSelectModule} from '@angular/material/select';
-import { CandadoModel } from '../../models/candado.model';
-import { ArmamentoModel } from '../../models/armamento.model';
-import { MobilModel } from '../../models/mobil.model';
-import { DATE_PIPE_DEFAULT_TIMEZONE, Time } from "@angular/common";
 import { FormArray, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { RegistroComponent } from 'src/app/registro/registro.component';
-import { Observable, map, tap } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ComunicarComponentesService } from 'src/app/services/comunicar-componentes.service';
-import { maximoElementosValidator } from 'src/app/personal-wind/funciones-utiles';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MapWindComponent } from '../servicio-en-curso/map-wind/map-wind.component';
 
 
 @Component({
@@ -21,7 +12,7 @@ import { maximoElementosValidator } from 'src/app/personal-wind/funciones-utiles
   templateUrl: './servicio-detalles-asignacion.component.html',
   styleUrls: ['./servicio-detalles-asignacion.component.css']
 })
-export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewInit {
+export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewInit, OnChanges {
 
   actualizado!:boolean | null
 
@@ -66,7 +57,7 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
   candados_escogidos: Array<any> = [];
   armamentos_escogidos: Array<any> = [];
   moviles_escogidos: Array<any> = [];
-
+ 
   hora = {
     hours: 0,
     minutes: 0
@@ -127,18 +118,63 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
   datos_cargados: Boolean = false;
   data: any;
 
+  cantidad_guardias = 0;
+  cantidad_conductores = 0;
+  cantidad_guardaespaldas = 0;
+  cantidad_motorizados = 0;
+
+  cantidad_vehiculos = 0;
+  cantidad_candados = 0;
+  cantidad_armamentos = 0;
+
+
+  boton_deshabilitado_guardia: boolean = false;
+  boton_deshabilitado_conductor: boolean = false;
+  boton_deshabilitado_guardaespalda: boolean = false;
+  boton_deshabilitado_motorizado: boolean = false;
+
+  boton_deshabilitado_empleado_lider: boolean = true;
+  boton_deshabilitado_vehiculo: boolean = false;
+  boton_deshabilitado_candados: boolean = false;
+  boton_deshabilitado_armamento: boolean = false;
+  boton_deshabilitado_movil: boolean = true;
+  boton_deshabilitado_cuenta_asignada: boolean = true;
+  boton_deshabilitado_estado: boolean = true ;
+
+/*
+console.log(boton_deshabilitado_guardia)
+console.log(boton_deshabilitado_conductor)
+console.log(boton_deshabilitado_guardaespalda)
+console.log(boton_deshabilitado_motorizado)
+console.log(boton_deshabilitado_empleado_lider)
+console.log(boton_deshabilitado_vehiculo)
+console.log(boton_deshabilitado_candados)
+console.log(boton_deshabilitado_armamento)
+console.log(boton_deshabilitado_movil)
+console.log(boton_deshabilitado_cuenta_asignada)
+console.log(boton_deshabilitado_estado)
+console.log(--------------------------------------------)
+*/ 
+  
+
+
+
+
+  mensaje: string = '';
+
 
   constructor(
     private clienteWAservice: ClienteWAService,
     private router: Router,
-    private comunicador: ComunicarComponentesService
+    private comunicador: ComunicarComponentesService,
+    public dialog: MatDialog
     ) {
 
      }
 
   ngOnInit(): void {
 
-
+/** */
     this.registerForm = new FormGroup({
       start_date:  new FormControl(null),
       start_time: new FormControl(null),
@@ -170,7 +206,7 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
       guardias: new FormControl([]),
       conductores: new FormControl([]),
       motorizados: new FormControl([]),
-      guardaespaldas: new FormArray([])
+      guardaespaldas: new FormControl([]),
     })
 
     this.asigned_equipment = new FormGroup({
@@ -181,7 +217,7 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
     })
 
 
-    this.obtenerNumeroPersonal()
+
     this.obtener_todo_personalOp()
     this.obtener_todo_vehiculo()
     this.obtener_todo_candado()
@@ -190,17 +226,258 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
     this.obtener_todo_cuentas()
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
+  }
+
+  controlButtonGuardia(event: any){
+  
+
+    if (this.asigned_staff.value.guardias.length == this.cantidad_guardias) {
+      this.boton_deshabilitado_guardia = false;
+    }
+    else{
+      this.boton_deshabilitado_guardia = true;
+    }
+    
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+
+  }
+
+  controlButtonGuardaespalda(event: any){
+    if (this.asigned_staff.value.guardaespaldas.length == this.cantidad_guardaespaldas) {
+      this.boton_deshabilitado_guardaespalda = false;
+    }
+    else{
+      this.boton_deshabilitado_guardaespalda = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+
+  }
+
+  controlButtonConductor(event: any){
+    if (this.asigned_staff.value.conductores.length == this.cantidad_conductores) {
+      this.boton_deshabilitado_conductor = false;
+    }
+    else{
+      this.boton_deshabilitado_conductor = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+    
+
+  }
+
+  controlButtonMotorizado(event: any){
+    if (this.asigned_staff.value.motorizados.length == this.cantidad_motorizados) {
+      this.boton_deshabilitado_motorizado = false;
+    }
+    else{
+      this.boton_deshabilitado_motorizado = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+
+  }
+
+
+  controlButtonEmpleadoLider(event: any){
+    if(this.registerForm.value.staff_leader != null){
+      this.boton_deshabilitado_empleado_lider = false;
+    }
+    else{
+      this.boton_deshabilitado_empleado_lider = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+
+  }
+
+  controlButtonVehiculos(event: any){
+    if(this.asigned_equipment.value.vehiculos.length == this.cantidad_vehiculos){
+      this.boton_deshabilitado_vehiculo = false;
+    }
+    else{
+      this.boton_deshabilitado_vehiculo = true;
+
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+
+  }
+  controlButtonCandados(event: any){
+    if(this.asigned_equipment.value.candados.length == this.cantidad_candados){
+      this.boton_deshabilitado_candados = false;
+    }
+    else{
+      this.boton_deshabilitado_candados = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+  }
+  controlButtonArmamento(event: any){
+    if(this.asigned_equipment.value.armamentos.length == this.cantidad_armamentos){
+      this.boton_deshabilitado_armamento = false;
+    }
+    else{
+      this.boton_deshabilitado_armamento = true;
+
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+  }
+  controlButtonMovil(event: any){
+    if(this.asigned_equipment.value.movil != null){
+      this.boton_deshabilitado_movil = false;
+    }
+    else{
+      this.boton_deshabilitado_movil = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+
+  }
+
+  controlButtonControlCuenta(event: any){
+    if(this.registerForm.value.phone_account != null){
+      this.boton_deshabilitado_cuenta_asignada = false;
+    }
+    else{
+      this.boton_deshabilitado_cuenta_asignada = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+  }
+
+  controlButtonStatus(event: any){
+    if(this.registerForm.value.status != null){
+      this.boton_deshabilitado_estado = false;
+    }
+    else{
+      this.boton_deshabilitado_estado = true;
+    }
+    console.log(this.boton_deshabilitado_guardia)
+    console.log(this.boton_deshabilitado_conductor)
+    console.log(this.boton_deshabilitado_guardaespalda)
+    console.log(this.boton_deshabilitado_motorizado)
+    console.log(this.boton_deshabilitado_empleado_lider)
+    console.log(this.boton_deshabilitado_vehiculo)
+    console.log(this.boton_deshabilitado_candados)
+    console.log(this.boton_deshabilitado_armamento)
+    console.log(this.boton_deshabilitado_movil)
+    console.log(this.boton_deshabilitado_cuenta_asignada)
+    console.log(this.boton_deshabilitado_estado)
+    console.log("--------------------------------------------")
+  }
+
+
 
   ngAfterViewInit(){
 
 
   }
-
-  verLista_guardias(){
-    console.log(this.guardias_escogidos)
-    console.log(this.data);
-  }
-
 
   presentar_detalles_pedido(){
     this.clienteWAservice.obtenerPedidosPorId(localStorage.getItem("pedido_seleccionado"))
@@ -238,6 +515,47 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
         for(let i in this.pedido_a_asignar.cantidad_Empleados_Asignados){
           console.log(this.pedido_a_asignar.cantidad_Empleados_Asignados[i])
           this.cantidadEmpleadosRequeridos = this.cantidadEmpleadosRequeridos +  Number(this.pedido_a_asignar.cantidad_Empleados_Asignados[i]);
+        }
+
+        for(let i in info_pedido.staff){
+          console.log(info_pedido.staff[i])
+          if(info_pedido.staff[i] == 'guardia'){
+            this.cantidad_guardias = info_pedido.staff_number[i];
+            this.boton_deshabilitado_guardia = true
+
+          }
+          if(info_pedido.staff[i] == 'chofer'){
+            this.cantidad_conductores = info_pedido.staff_number[i];
+            this.boton_deshabilitado_conductor = true;
+          }
+
+          if(info_pedido.staff[i] == 'chofer guardaespaldas'){
+            this.cantidad_guardaespaldas = info_pedido.staff_number[i];
+            this.boton_deshabilitado_guardaespalda = true;
+          }
+
+          if(info_pedido.staff[i] == 'motorizado'){
+            this.cantidad_motorizados = info_pedido.staff_number[i];
+            this.boton_deshabilitado_motorizado = true;
+          }
+
+        }
+
+
+        for(let i in info_pedido.equipment){
+          console.log(info_pedido.equipment[i])
+          if(info_pedido.equipment[i] == 'vehículo'){
+            this.cantidad_vehiculos = info_pedido.equipment_number[i]
+            this.boton_deshabilitado_vehiculo = true;
+          }
+          if(info_pedido.equipment[i] == 'armamento'){
+            this.cantidad_armamentos = info_pedido.equipment_number[i];
+            this.boton_deshabilitado_armamento = true;
+          }
+          if(info_pedido.equipment[i] == 'candado satelital'){
+            this.cantidad_candados = info_pedido.equipment_number[i];
+            this.boton_deshabilitado_candados = true;
+          }
         }
   
         this.ocultarCampos();  
@@ -296,13 +614,6 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
     }
   }
 
-  obtenerNumeroPersonal(){
-    for(let i in this.pedido_a_asignar.cantidad_Empleados_Asignados){
-      this.cantidadEmpleadosRequeridos += Number(i);
-    } 
-    console.log(this.pedido_a_asignar.cantidad_Empleados_Asignados);
-  }
-
   obtenerNombreServicio(id: any){
     this.clienteWAservice.obtenerServicioPorId(id)
     .subscribe({
@@ -323,6 +634,7 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
   }
 
   imprimirFormulario(){
+    console.log(this.registerForm.value)
     let lista = this.registerForm.value.assigned_staff
     if(this.asigned_staff.value.guardias.length != 0){
       for(let personal of this.asigned_staff.value.guardias){
@@ -375,89 +687,34 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
     this.registerForm.value.staff_leader = temp_leader.split(';')[0];
 
     let temp_account =  this.registerForm.value.phone_account
+    console.log(temp_account);
+    this.registerForm.value.phone_account = null;
     this.registerForm.value.phone_account = temp_account.split(';')[0]
+    console.log( this.registerForm.value.phone_account)
 
     console.log(this.registerForm.value)
-    this.clienteWAservice.actualizarPedido(this.registerForm ,this.pedido_a_asignar.idPedido)
+
+    
+    
+    this.clienteWAservice.actualizarPedido(this.registerForm, this.pedido_a_asignar.idPedido)
     .subscribe({
       next: (data:any) =>{
         console.log(data);
-      }
-    })
-    
-
-    
-  }
-
-
-
-
- 
-  //Funncion para actualizar los detalles del pedido
-  actualizar_pedido(): void {
-    const info_pedido_actualizar = {
-      idPedido: this.pedido_a_asignar.idPedido,
-      nombre_Servicio: this.pedido_a_asignar.nombre_Servicio,
-      costo: this.pedido_a_asignar.costo,
-      fecha_Solicitud: this.pedido_a_asignar.fecha_Solicitud,
-      fecha_Finalizacion: this.pedido_a_asignar.fecha_Finalizacion,
-      fecha_Inicio: this.pedido_a_asignar.fecha_Inicio,
-      hora_Inicio: this.pedido_a_asignar.hora_Inicio,
-      hora_Finalizacion: this.pedido_a_asignar.hora_Finalizacion,
-      latitud_Origen: this.pedido_a_asignar.latitud_Origen,
-      longitud_Origen: this.pedido_a_asignar.longitud_Origen,
-      latitud_Destino: this.pedido_a_asignar.latitud_Destino,
-      longitud_Destino: this.pedido_a_asignar.longitud_Destino,
-      cantidad_Empleados_Asignados: this.pedido_a_asignar.cantidad_Empleados_Asignados,
-      cantidad_vehiculos: this.pedido_a_asignar.cantidad_vehiculos,
-      detalle: this.presentar_detalles_asignados(),
-      //Se indica el dos porque ahora el pedidio cambia de estar "en espera" a "activo"
-      estado: 1,
-      metodo_Pago: this.pedido_a_asignar.metodo_Pago,
-      idServicio: this.pedido_a_asignar.idServicio,
-      //Aqui hay que poner el id del administrador que lo cambia a activo
-      administrador_Encargado: this.pedido_a_asignar.administrador_Encargado,
-      cliente_solicitante: this.pedido_a_asignar.cliente_solicitante
-    }
-    console.log("Info a actualizar")
-    console.log(info_pedido_actualizar)
-    this.clienteWAservice.actualizar_pedido(this.pedido_a_asignar.idPedido, info_pedido_actualizar)
-    .subscribe({
-      next: (res) => {
-        console.log("Se ha actualizado el pedido")
-        this.pedido_a_asignar.costo = res.costo
-        this.pedido_a_asignar.fecha_Solicitud = res.fecha_Solicitud
-        this.pedido_a_asignar.fecha_Finalizacion = res.fecha_Finalizacion
-        this.pedido_a_asignar.fecha_Inicio = res.fecha_Inicio
-        this.pedido_a_asignar.hora_Inicio = res.hora_Inicio
-        this.pedido_a_asignar.hora_Finalizacion = res.hora_Finalizacion
-        this.pedido_a_asignar.latitud_Origen = res.latitud_Origen
-        this.pedido_a_asignar.longitud_Origen = res.longitud_Origen
-        this.pedido_a_asignar.latitud_Destino = res.latitud_Destino
-        this.pedido_a_asignar.longitud_Destino = res.longitud_Destino
-        this.pedido_a_asignar.cantidad_Empleados_Asignados = res.cantidad_Empleados_Asignados
-        this.pedido_a_asignar.cantidad_vehiculos = res.cantidad_vehiculos
-        this.pedido_a_asignar.detalle = res.detalle
-        this.pedido_a_asignar.estado = res.estado
-        this.pedido_a_asignar.metodo_Pago = res.metodo_Pago
-        this.pedido_a_asignar.idServicio= res.idServicio
-        this.pedido_a_asignar.administrador_Encargado = res.administrador_Encargado
-        this.pedido_a_asignar.cliente_solicitante = res.cliente_solicitante
-
-        this.actualizado = true
-
-        localStorage.setItem('pedido_seleccionado', JSON.stringify(res))
-
-        window.location.reload()
+   
+        this.dialog.open(AsignacionConfirmacion, {
+          width: '100vh',
+          height: '50vh',
+          data: data
+          
+        })
         
-      },
-      error: (e) => {
-        this.actualizado = false
-        console.log(e)
       }
-    });
+      
+    })  
 
+    
   }
+
 
   obtener_todo_personalOp(){
     this.clienteWAservice.obtener_personalOp()
@@ -478,7 +735,7 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
       if(personal.charge == 'guardia'){
         this.lista_guardias.push(personal);
       }
-      else if(personal.charge == 'guardaespaldas'){
+      else if(personal.charge == 'chofer guardaespaldas'){
         this.lista_guardaespaldas.push(personal);
       }
       else if(personal.charge == 'chofer'){
@@ -569,7 +826,7 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
       else if(staff  == 'motorizado'){
         this.motorizadosBool = true;
       }
-      else if (staff == 'guardaespaldas' ){
+      else if (staff == 'chofer guardaespaldas' ){
         this.guardaespaldasBool = true;
         
       }
@@ -594,7 +851,6 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
     }
 
   }
-
   
 
   imprimir_lider(){
@@ -613,101 +869,55 @@ export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewIni
 
   }
 
-  presentar_detalles_asignados(){
-    /*alert(
-      "Lider elegido: " + this.lider_elegido.nombres + "\n"
-      + "Guardias asignados: " + this.guardias_escogidos + "\n"
-      + "Guardaespaldas asignados: " + this.guardaespaldas_escogidos + "\n"
-      + "conductores asignados: " + this.conductores_escogidos + "\n"
-      + "motorizados asignados: " + this.motorizados_escogidos + "\n"
-      + "vehiculos asignados: " + this.vehiculos_escogidos + "\n"
-      + "candados asignados: " + this.candados_escogidos + "\n"
-      + "armamento asignado: " + this.armamentos_escogidos + "\n"
-      + "movil asignado: " + this.moviles_escogidos + "\n"
-    )*/
+  
 
-    // let detalles = 
-    // "Lider elegido: " + this.lider_elegido.nombres + "|"
-    // + "Guardias asignados: " + this.guardias_escogidos + "|"
-    // + "Guardaespaldas asignados: " + this.guardaespaldas_escogidos + "|"
-    // + "conductores asignados: " + this.conductores_escogidos + "|"
-    // + "motorizados asignados: " + this.motorizados_escogidos + "|"
-    // + "vehiculos asignados: " + this.vehiculos_escogidos + "|"
-    // + "candados asignados: " + this.candados_escogidos + "|"
-    // + "armamento asignado: " + this.armamentos_escogidos + "|"
-    // + "movil asignado: " + this.moviles_escogidos + "|"
+  abrirUbicacion(){
+    this.clienteWAservice.obtenerPedidosPorId(this.pedido_a_asignar.idPedido)
+    .subscribe({
+      next: (pedido: any) => {
+        console.log(pedido)
+        const ventanaGrupos =  this.dialog.open(MapWindComponent, {
+          width: '100vh',
+          height: '80vh',
+          data: pedido
+        })
 
-    // //console.log(this.detalles_asignados)
-    // console.log("moviles")
-    // console.log(this.moviles_escogidos)
-    // console.log("Estos son los detalles")
-    // console.log(detalles)
-    // return detalles
-
+      }
+    })
   }
-
 
 
 }
 
 
 
+@Component({
+  selector: 'asignacion-confirmacion-dialog',
+  templateUrl: 'asignacion-confirmacion.html',
+})
+export class AsignacionConfirmacion {
 
-// let info_pedido = JSON.parse(localStorage.getItem('pedido_seleccionado')!)
-    // this.pedido_a_asignar.idPedido = info_pedido.idPedido
-    // this.pedido_a_asignar.nombre_Servicio = info_pedido.nombre_Servicio
-    // this.pedido_a_asignar.costo = info_pedido.costo
-    // this.pedido_a_asignar.fecha_Solicitud = info_pedido.fecha_Solicitud.toLocaleString().slice(0, 10) + " " + info_pedido.fecha_Solicitud.toLocaleString().slice(11, 19)
-    // this.pedido_a_asignar.fecha_Finalizacion = info_pedido.fecha_Finalizacion
-    // this.pedido_a_asignar.fecha_Inicio = info_pedido.fecha_Inicio
-    // this.pedido_a_asignar.hora_Inicio = info_pedido.hora_Inicio
-    // this.pedido_a_asignar.hora_Finalizacion = info_pedido.hora_Finalizacion
-    // this.pedido_a_asignar.latitud_Origen = info_pedido.latitud_Origen
-    // this.pedido_a_asignar.longitud_Origen = info_pedido.longitud_Origen 
-    // this.pedido_a_asignar.latitud_Destino = info_pedido.latitud_Destino
-    // this.pedido_a_asignar.longitud_Destino = info_pedido.longitud_Destino
-    // this.pedido_a_asignar.cantidad_Empleados_Asignados = info_pedido.cantidad_Empleados_Asignados
-    // this.pedido_a_asignar.cantidad_vehiculos = info_pedido.cantidad_vehiculos
-    // this.pedido_a_asignar.detalle = info_pedido.detalle 
-    // this.pedido_a_asignar.estado = info_pedido.estado
-    // this.pedido_a_asignar.metodo_Pago = info_pedido.metodo_Pago
-    // this.pedido_a_asignar.idServicio = info_pedido.idServicio
-    // this.pedido_a_asignar.administrador_Encargado = info_pedido.administrador_Encargado
-    // this.pedido_a_asignar.cliente_solicitante = info_pedido.cliente_solicitante
+  constructor(
+    public dialogRef: MatDialogRef<any>,
+    @Inject(MAT_DIALOG_DATA) public message: any,
+    private clientWAservice: ClienteWAService,
+    private router:Router
+  ){
 
-    // let ar = this.pedido_a_asignar.detalle.split('|')
-    // console.log("Aqui empieza el split")
-    // console.log(ar)
-    // let lider = ar[0].toString()
-    // let guardias = ar[1]
-    // let guardaespaldas = ar[2]
-    // let conductores = ar[3]
-    // let motorizados = ar[4]
-    // let vehiculos = ar[5]
-    // let candados = ar[6]
-    // let armamento = ar[7]
-    // let movil = ar[8]
+  }
 
-    // console.log("Se ha asignado movil?")
-    // console.log(movil)
+  // asignarPedido(form: any, id: any){
+  //   this.clientWAservice.actualizarPedido(form ,id)
+  //   .subscribe({
+  //     next: (data:any) =>{
+  //       console.log(data);
+  //     }
+  //   })
+  // }
 
-    // let elem = document.getElementById("detalles")
-    // if(elem?.innerHTML != undefined && movil != undefined){
-    //   elem.innerHTML = `
-    //     <br>
-    //     <p>${lider}</p>
-    //     <p>${guardias}</p>
-    //     <p>${guardaespaldas}</p>
-    //     <p>${conductores}</p>
-    //     <p>${motorizados}</p>
-    //     <p>${vehiculos}</p>
-    //     <p>${candados}</p>
-    //     <p>${armamento}</p>
-    //     <p>${movil}</p>
+  onClickNO(): void{
+    this.dialogRef.close();
+    this.router.navigate(['serviciosVentana/serviciosPorAsignar'])
+  }
+}
 
-    //   `
-    // }else {
-    //   elem!.innerHTML = `
-    //     <h3>Porfavor seleccione al equipo y armamento para el pedido</h3>
-    //   `
-    // }
