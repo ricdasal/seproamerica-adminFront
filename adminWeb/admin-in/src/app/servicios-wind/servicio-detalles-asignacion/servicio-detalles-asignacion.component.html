@@ -11,11 +11,6 @@
           <h5 id="valor">{{pedido_a_asignar.idPedido}}</h5>
         </div>
 
-        <div class="Fila_Datos" >
-          <h5>Ubicacion:   </h5>
-          <h5><button mat-button style="font-size: large;" (click)="abrirUbicacion()">Abrir ubicacion</button></h5>
-        </div>
-
         <div class="Fila_Datos">
           <h5>Usuario solicitante:</h5>
           <h5 id="valor">{{this.nombre_cliente.first_name}} {{this.nombre_cliente.last_name}}</h5>
@@ -29,6 +24,11 @@
         <div class="Fila_Datos">
           <h5>Fecha de solicitud:</h5>
           <h5 id="valor">{{pedido_a_asignar.fecha_Solicitud}}</h5>
+        </div>
+
+        <div class="Fila_Datos" >
+          <h5>Ubicacion:   </h5>
+          <h5><button mat-button style="font-size: large;" (click)="abrirUbicacion()">Abrir ubicacion</button></h5>
         </div>
 
         <div class="Fila_Datos">
