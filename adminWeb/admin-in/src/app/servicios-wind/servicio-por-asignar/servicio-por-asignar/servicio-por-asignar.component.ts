@@ -13,14 +13,19 @@ export class ServicioPorAsignarComponent implements OnInit {
 
   //Lista de pedidos
   lista_pedidos?: PedidoModel[];
+  selectedValue: string | undefined;
 
   //Lista cedulas en string
   lista_cedulas: string[] = []
+
+  tipos_pedidos: Array<any> = ['Todos los pedidos', 'Pedidos pagados', 'Pedidos aceptados', 'Pedidos Pendientes', 'Pedidos Eliminados']
 
   //cedula
   cedula_cliente_analizar: string | String = ""
 
   lista_pedidos_asignar: Array<any> = [];
+
+
 
   lista_pedidos_en_proceso: Array<any> = []
   columnas: string[] = ['Id','Fecha de solicitud','Fecha de servicio','Solicitante', 'Dni del solictante', 'Servicio','Opciones'];
@@ -38,7 +43,15 @@ export class ServicioPorAsignarComponent implements OnInit {
   }
 
   obtenerPedidos(){
+    this.lista_pedidos_asignar = [];
     this.clienteWAService.obtenerPedidosEAP()
+    .subscribe({
+      next: (data: any) => {
+        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+      }
+    })
+
+    this.clienteWAService.obtenerPedidosPendientes()
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
@@ -47,6 +60,53 @@ export class ServicioPorAsignarComponent implements OnInit {
 
     
     
+  }
+
+  obtenerPedidosEliminados(){
+    this.lista_pedidos_asignar = [];
+    this.clienteWAService.obtenerPedidosEliminados()
+    .subscribe({
+      next: (data: any) => {
+        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        
+      }
+    })
+  }
+
+  obtenerPedidosAceptados(){
+    this.lista_pedidos_asignar = [];
+    this.clienteWAService.obtenerPedidosAceptados()
+    .subscribe({
+      next: (data: any) => {
+        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        
+      }
+    })
+
+  }
+
+  obtenerPedidosPagados(){
+    this.lista_pedidos_asignar = [];
+    this.clienteWAService.obtenerPedidosPagados()
+    .subscribe({
+      next: (data: any) => {
+        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        
+      }
+    })
+
+  }
+
+  obtenerPedidosPendientes(){
+    this.lista_pedidos_asignar = [];
+    this.clienteWAService.obtenerPedidosPendientes()
+    .subscribe({
+      next: (data: any) => {
+        this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        
+      }
+    })
+
   }
 
   detallesServicio(id: any) {
@@ -104,6 +164,26 @@ export class ServicioPorAsignarComponent implements OnInit {
 
       }
     })
+  }
+
+
+  //['Todos los pedidos', 'Pedidos pagados', 'Pedidos aceptados', 'Pedidos Pendientes', 'Pedidos Eliminados']
+  filtroPedidos(){
+    if(this.selectedValue == 'Todos los pedidos'){
+      this.obtenerPedidos();
+    }
+    else if(this.selectedValue == 'Pedidos Eliminados'){
+      this.obtenerPedidosEliminados();
+    }
+    else if(this.selectedValue == 'Pedidos pagados'){
+      this.obtenerPedidosPagados();
+    }
+    else if(this.selectedValue == 'Pedidos aceptados'){
+      this.obtenerPedidosAceptados();
+    }
+    else if(this.selectedValue == 'Pedidos Pendientes'){
+      this.obtenerPedidosPendientes();
+    }
   }
 
 

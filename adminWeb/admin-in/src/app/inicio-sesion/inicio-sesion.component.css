@@ -8,14 +8,17 @@
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background: linear-gradient(to right, rgb(243, 0, 0), rgb(100, 6, 6))
     }
-section{
+.section{
   --background: none;
-  background-image: url("../../assets/Fondo-Web-Administrador.png");
+  position: relative;
+  background-image: url("../../assets/img/foto_seguridad.png");
   background-position: center; 
   background-repeat: no-repeat; 
   background-size: cover; 
   height: 100%;
+
 }
+
 .container{
   position: absolute;
   top: 50%;
@@ -23,6 +26,7 @@ section{
   transform: translate(-50%, -50%);
   text-align: center;
   justify-content: end;
+
 }
 
 .formulario{
@@ -30,15 +34,27 @@ display: flex;
 text-align: center;
 justify-content: center;
 }
+
 mat-form-field {
   padding: 0;
   margin: 0;
-  background-color: white;
+  color: white!important;
+  /* background-color: white; */
 
 }
 mat-icon{
   color: gray;
 }
+
+
+/* ::ng-deep .mat-form-field-underline {
+  background-color: red !important;   
+} */
+
+/* .mat-form-field-underline {
+  background-color: red !important; 
+} */
+
 #text-crear-cuenta{
   font-size: 16px;
   color: white;
@@ -93,14 +109,14 @@ mat-icon{
 
 .button-format{
   width: 18rem !important;
-  background-color: #3da631 !important;
+  background-color: rgb(243, 0, 0), !important;
   padding: 0.5rem !important;
   border-radius: 30px !important;
   color: white !important;
 }
 
 .button-format:disabled{
-  background-color: #6ba765 !important;
+  background-color: rgb(100, 6, 6) !important;
   color: whitesmoke !important;
 }
 
@@ -113,3 +129,5 @@ mat-icon{
 .label-style{
   font-size: 1rem !important;
 }
+
+

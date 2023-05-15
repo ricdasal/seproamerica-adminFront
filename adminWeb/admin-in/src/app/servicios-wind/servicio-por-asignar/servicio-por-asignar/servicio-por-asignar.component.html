@@ -4,6 +4,17 @@
 <div >
   <div >
 
+    <div style=" display: flex;width: auto; flex-direction: column;">
+      <mat-form-field appearance="fill" >
+        <mat-label>Seleccione el tipo de servicio</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="food">
+          <mat-option *ngFor="let filtro of tipos_pedidos" (click)="filtroPedidos()"  [value]="filtro">
+            {{filtro}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+
       <table mat-table [dataSource]="lista_pedidos_asignar"  #tabla1>
     
         <ng-container matColumnDef="Id">

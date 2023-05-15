@@ -1,27 +1,15 @@
-<section>
-
+<!-- <section class="section">
   <div class="container">
-    <div class="mensaje-info" *ngIf="esAdmin==false">
-      <h1>No tiene cuenta de administrador</h1>
-    </div>
-    <div class="mensaje-info" *ngIf="estaRegistrado==false">
-      <h1>Usuario no Registrado</h1>
-    </div>
-    <div class="mensaje-info" *ngIf="exito==false">
-      <h1>Contraseña incorrecta</h1>
-    </div>
-    <div class="mb-4">
+    <div >
       <img width="300px" src="../../assets/logo.png" class="img-logo">
     </div>
-    <div class="formulario mb-md-5 mt-5 mt-md-4 pb-5">
+    <div class="formulario ">
 
-            <form [formGroup]="form"  autocomplete="off"  (ngSubmit)="loginAdmin(form)" class="transparente"> <!--(ngSubmit)="saveDetails(form)"-->
+            <form [formGroup]="form"  autocomplete="off"  (ngSubmit)="loginAdmin(form)" class="transparente"> 
                 <div>
                     <mat-form-field appearance="fill" class="input-format">
-                        <mat-label class="label-style">Email:</mat-label>
-                       <input matInput type="email" name="correo" formControlName="email" placeholder="Your email">
-                        <!-- <mat-icon matSuffix>mail_outline</mat-icon>
-                        <!--<mat-hint>ingrese el correo que se le proporciono en la empresa</mat-hint>-->
+                        <mat-label class="label-style" style="color: whitesmoke">Email:</mat-label>
+                       <input matInput type="email" name="correo" formControlName="email" placeholder="Your email" style="color: white">
                         <mat-error *ngIf="form.controls['email'].errors?.['required']" class="error-style">Se requiere el email</mat-error>
                         <mat-error *ngIf="form.controls['email'].errors?.['pattern']" class="error-style">ingrese un email válido</mat-error>
                     </mat-form-field>
@@ -29,11 +17,11 @@
     
                 <div>
                     <mat-form-field appearance="fill" class="input-format">
-                        <mat-label>Contraseña</mat-label>
+                        <mat-label style="color: whitesmoke">Contraseña</mat-label>
                         <input matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
                             formControlName="password" name="password">
                         <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
-                        <mat-error class="error-style">Se requiere contraseña</mat-error>
+                        <mat-error style="color: whitesmoke" class="error-style">Se requiere contraseña</mat-error>
                     </mat-form-field>
                 </div>
     
@@ -51,7 +39,43 @@
   </div>
 
 <div id="firma">www.seproamerica.com.ec</div>
-</section>
+</section> -->
+
+
+<div class="section" style="display: flex; align-items: center; flex-direction: column; ">
+  <div style="margin-top: 10%;">
+    <img width="300px" src="../../assets/logo.png" class="img-logo">
+
+  <form [formGroup]="form"  autocomplete="off"  (ngSubmit)="loginAdmin(form)" class="transparente"> 
+    <div>
+        <mat-form-field appearance="fill" class="input-format">
+            <mat-label class="label-style" style="color: whitesmoke">Email:</mat-label>
+           <input matInput type="email" name="correo" formControlName="email" placeholder="Your email" style="color: white">
+            <mat-error *ngIf="form.controls['email'].errors?.['required']" class="error-style">Se requiere el email</mat-error>
+            <mat-error *ngIf="form.controls['email'].errors?.['pattern']" class="error-style">ingrese un email válido</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field appearance="fill" class="input-format">
+            <mat-label style="color: whitesmoke">Contraseña</mat-label>
+            <input matInput [type]="flag ? 'password' : 'text'" placeholder="Enter your password"
+                formControlName="password" name="password">
+            <mat-icon (click)="flag=!flag" matSuffix>{{ flag ? 'visibility' : 'visibility_off' }}</mat-icon>
+            <mat-error style="color: whitesmoke" class="error-style">Se requiere contraseña</mat-error>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <button mat-raised-button color="primary" type="submit"  ngClick="Submit" [disabled]="!form.valid" class="button-format">Login</button>
+    </div>
+
+</form>
+
+<div id="firma">www.seproamerica.com.ec</div>
+  </div>
+
+</div>
 <!--Comentario para probar integracion-->
 
 
