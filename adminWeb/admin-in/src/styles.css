@@ -6,3 +6,17 @@ html, body{
   
  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+th{
+  font-family: 'Bahnschrift';
+  font-weight: bolder;
+}
+
+td{
+  font-family: 'Bahnschrift';
+  text-align: center;
+}
+
+button{
+  font-family: 'Bahnschrift';
+}

@@ -68,19 +68,24 @@ export class PerfilComponent implements OnInit {
       this.user.correo=datosUsuario.correo
       this.user.telefono=datosUsuario.telefono
       this.user.contrasenia=datosUsuario.contrasenia
+
+      this.registerForm = new FormGroup({
+        
+
+      })
      
       
-      this.registerForm = this.formBuilder.group({
-        'apellidos': {value:[this.user.apellidos, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],disabled:!this.editable},
-        'nombres': {value:[this.user.nombres, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],disabled:!this.editable},
-        'cedula': {value:[this.user.cedula, [Validators.required, Validators.minLength(10),Validators.pattern('^[0-9]*$')]],disabled:!this.editable},
-        'fechaNac': {value:[this.user.fechaNac, []],disabled:!this.editable},
-        'sexo': {value:[this.user.sexo, [Validators.required]],disabled:!this.editable},
-        'correo': {value:[this.user.correo, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')/*, Validators.email*/]],disabled:!this.editable},
-        'telefono': {value:[this.user.telefono, [Validators.required, Validators.minLength(9), Validators.maxLength(10), Validators.pattern('^(0){1}(9){1}[0-9]{8}$')]],disabled:!this.editable},
-        'contrasenha': {value:[this.user.contrasenia, [Validators.required, Validators.minLength(8)]],disabled:!this.editable},
+      // this.registerForm = this.formBuilder.group({
+      //   'apellidos': {value:[this.user.apellidos, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],disabled:!this.editable},
+      //   'nombres': {value:[this.user.nombres, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],disabled:!this.editable},
+      //   'cedula': {value:[this.user.cedula, [Validators.required, Validators.minLength(10),Validators.pattern('^[0-9]*$')]],disabled:!this.editable},
+      //   'fechaNac': {value:[this.user.fechaNac, []],disabled:!this.editable},
+      //   'sexo': {value:[this.user.sexo, [Validators.required]],disabled:!this.editable},
+      //   'correo': {value:[this.user.correo, [Validators.required, Validators.pattern('^([a-zA-Z0-9_\.-]+)@([a-z0-9]+)\\.([a-z\.]{2,6})$')/*, Validators.email*/]],disabled:!this.editable},
+      //   'telefono': {value:[this.user.telefono, [Validators.required, Validators.minLength(9), Validators.maxLength(10), Validators.pattern('^(0){1}(9){1}[0-9]{8}$')]],disabled:!this.editable},
+      //   'contrasenha': {value:[this.user.contrasenia, [Validators.required, Validators.minLength(8)]],disabled:!this.editable},
   
-      });
+      // });
       
   
       //this.registerForm.disable()

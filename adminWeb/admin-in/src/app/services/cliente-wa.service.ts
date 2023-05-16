@@ -140,6 +140,14 @@ export class ClienteWAService {
   constructor(private http: HttpClient) { }
 
 
+  obtenerUsuarioAdmin(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_ADMINISTRADOR}${id}`, {headers})
+
+  }
+
   obtenerColoresEquipamento(){
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`

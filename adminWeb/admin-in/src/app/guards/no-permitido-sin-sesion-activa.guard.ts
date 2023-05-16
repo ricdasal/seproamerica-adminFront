@@ -11,15 +11,13 @@ export class NoPermitidoSinSesionActivaGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return false;
-    /*console.log(localStorage.getItem('ingresado'))
-    if(localStorage.getItem('ingresado')){
-      console.log("ingresado")
-      this.router.navigate(['/serviciosVentana'])
-      return false
-    }else{
-      console.log("no ingresado")
-      return true      
-    }*/
+    // console.log(localStorage.getItem('ACCESS_TOKEN'))
+    // if(localStorage.getItem('ACCESS_TOKEN')){
+    //   this.router.navigate(['/serviciosVentana'])
+    //   return false
+    // }else{
+    //   return true      
+    // }
 
   }
   

@@ -1,26 +1,19 @@
 <app-header></app-header>
-<h1 class="titulo">Datos Usuario</h1>
-<section class="vh-100 bg-image fondo">
+<div>
+    <h1 class="titulo">Datos Usuario</h1>
+    <section class="vh-100 bg-image fondo">
 
-    <div class="container-datos">
-        <div class=" fondo-datos" style="border-radius: 15px;">
-            <div class=" p-5">
-                <div id="opciones">
-                    <div id="img-perfil">
-                        <img src="../../assets/Iconos/app sepro vectores-82.png" alt="">
-                    </div>
+        
 
-                    <div>
-                        <h2 id="salir" (click)="logout()" >
-                            <mat-icon >exit_to_app</mat-icon>
-                            Cerrar Sesión
-                        </h2>
-                    </div>
-                </div>
+    </section>
+</div>
 
-                <!--h2 class="text-uppercase text-center mb-5">Datos de registro</h2-->
 
-                <form id="demoForm" class="needs-validation" [formGroup]="registerForm" autocomplete="on"
+
+   
+
+
+                <!-- <form id="demoForm" class="needs-validation" [formGroup]="registerForm" autocomplete="on"
                     (ngSubmit)="registerForm.valid " novalidate>
 
                     <div class="form-outline mb-4">
@@ -98,7 +91,7 @@
                         <mat-error *ngIf="registerForm.controls['correo'].errors?.['required']"> *</mat-error>
                         <mat-error *ngIf="registerForm.controls['correo'].errors?.['pattern']"> Debe contener una
                             extensión válida</mat-error>
-                        <!--<mat-error *ngIf="registerForm.controls['correo'].errors?.['email']"> Correo no válido</mat-error>-->
+
 
 
                     </div>
@@ -152,7 +145,6 @@
 
                     </div>
 
-                    <!--Pantalla para confirmar registro-->
                     <div class="modal fade" id="modalDos" data-bs-backdrop="static" data-bs-keyboard="false"
                         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -180,7 +172,6 @@
                         </div>
                     </div>
 
-                    <!--Pantalla de datos no guardados-->
                     <ng-container *ngIf="submitted">
                         <div *ngIf="submitted" class="modal fade" id="modalFallido" data-bs-backdrop="static"
                             data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
@@ -201,8 +192,26 @@
                 </form>
 
 
+         
+</section> -->
+
+
+<!-- <div class="container-datos">
+    <div class=" fondo-datos" style="border-radius: 15px;">
+        <div class=" p-5">
+            <div id="opciones">
+                <div id="img-perfil">
+                    <img src="../../assets/Iconos/app sepro vectores-82.png" alt="">
+                </div>
+
+                <div>
+                    <h2 id="salir" (click)="logout()" >
+                        <mat-icon >exit_to_app</mat-icon>
+                        Cerrar Sesión
+                    </h2>
+                </div>
             </div>
+           </div>
         </div>
     </div>
-
-</section>
+ -->

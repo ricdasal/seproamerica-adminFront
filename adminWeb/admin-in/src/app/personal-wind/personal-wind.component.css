@@ -75,3 +75,8 @@
     text-align: center;
     color: white;
   }
+
+  .wrapper{
+    font-family: 'Bahnschrift';
+    font-weight: bolder;
+  }

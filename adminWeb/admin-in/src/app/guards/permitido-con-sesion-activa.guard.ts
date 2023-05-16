@@ -12,12 +12,9 @@ export class PermitidoConSesionActivaGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     //return true;
-    console.log(localStorage.getItem('ingresado'))
-    if(localStorage.getItem('ingresado')){
-      console.log("ingresado")
+    if(localStorage.getItem('ACCESS_TOKEN')){
       return true
     }else{
-      console.log("no ingresado")
       this.router.navigate(['/login'])
       
       return true      

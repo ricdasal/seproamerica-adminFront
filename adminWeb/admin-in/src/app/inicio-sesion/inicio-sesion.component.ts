@@ -262,8 +262,15 @@ export class InicioSesionComponent implements OnInit {
       this.isSubmitted = true;
       console.log('si entro acá');
       console.log(res);
+
       localStorage.setItem('ACCESS_TOKEN', res['token']);
       localStorage.setItem("ingresado", "true");
+      const user_token = res['token'];
+      const base64Url = user_token.split('.')[1];
+      const base64 = base64Url.replace('-', '+').replace('_','/');
+      const payload = JSON.parse(atob(base64));
+      const uid = payload.user_id.toString();
+      localStorage.setItem('user_id', uid);
       this.router.navigate(["/serviciosVentana/"+ res['token']]);
     },
     error => {
