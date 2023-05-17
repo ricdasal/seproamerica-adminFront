@@ -135,6 +135,8 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_PAGADO: string = this.BASE_URL + "services/ordersPaid/"
   DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_EN_PROCESO: string = this.BASE_URL + "services/ordersProcess/"
   DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_ELIMINADO: string = this.BASE_URL + "services/ordersDeleted/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_FINALIZADOS: string =  this.BASE_URL + "services/ordersEnded/"
+  DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_REEMBOLSADO: string =  this.BASE_URL + "services/ordersRefund/"
 
 
   constructor(private http: HttpClient) { }
@@ -355,6 +357,22 @@ export class ClienteWAService {
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_PAGADO}`, {headers})
+
+  }
+
+  obtenerPedidosFinalizado(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_FINALIZADOS}`, {headers})
+
+  }
+
+  obtenerPedidosReembolsado(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_REEMBOLSADO}`, {headers})
 
   }
 

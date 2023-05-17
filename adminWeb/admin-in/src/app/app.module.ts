@@ -93,6 +93,7 @@ import { EditPersonalComponent } from './personal-wind/tabla-personal/edit-perso
 import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servicio.component';
 import { InfoServicioComponent } from './servicios-wind/info-servicio/info-servicio.component';
 import { MapWindComponent } from './servicios-wind/servicio-en-curso/map-wind/map-wind.component';
+import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap.component';
 
 
 
@@ -162,7 +163,8 @@ import { MapWindComponent } from './servicios-wind/servicio-en-curso/map-wind/ma
     EditPersonalComponent,
     TipoServicioComponent,
     InfoServicioComponent,
-    MapWindComponent
+    MapWindComponent,
+    ServicioEapComponent
   ],
   imports: [
     BrowserModule,

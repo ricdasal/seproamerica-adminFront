@@ -32,6 +32,7 @@ import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-tel
 import { EditVehiculosComponent } from './recursos-wind/recursos-vehiculos/edit-vehiculos/edit-vehiculos.component';
 import { CrearGruposComponent } from './personal-wind/personal-registro/crear-grupos/crear-grupos.component';
 import { MapWindComponent } from './servicios-wind/servicio-en-curso/map-wind/map-wind.component';
+import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap.component';
 
 
 
@@ -87,6 +88,8 @@ const routes: Routes = [
     canActivate:[PermitidoConSesionActivaGuard], children: []},
     { path: 'serviciosPorAsignar', component: ServicioPorAsignarComponent, pathMatch: 'prefix',
     canActivate:[PermitidoConSesionActivaGuard] },
+    {path: 'todosLosServicios', component: ServicioEapComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard]},
     { path: 'serviciosDetallesAsignacion', component: ServicioDetallesAsignacionComponent, pathMatch: 'prefix',
     canActivate:[PermitidoConSesionActivaGuard] },
     { path: 'serviciosEnCurso', component: ServicioEnCursoComponent, pathMatch: 'prefix',
