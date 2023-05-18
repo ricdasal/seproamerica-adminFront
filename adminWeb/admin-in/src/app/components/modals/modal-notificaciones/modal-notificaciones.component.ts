@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval } from 'rxjs';
 import { NotificacionesService } from 'src/app/services/notificaciones/notificaciones.service';
+import { initializeApp } from "firebase/app";
+
 
 @Component({
   selector: 'app-modal-notificaciones',
@@ -9,6 +11,25 @@ import { NotificacionesService } from 'src/app/services/notificaciones/notificac
   styleUrls: ['./modal-notificaciones.component.css']
 })
 export class ModalNotificacionesComponent implements OnInit {
+
+  firebaseConfig = {
+
+    apiKey: "AIzaSyDWEsnR-K7xcEb-VRIfu9bJ8lvCOJMRINo",
+  
+    authDomain: "prueba-firebase-3d024.firebaseapp.com",
+  
+    projectId: "prueba-firebase-3d024",
+  
+    storageBucket: "prueba-firebase-3d024.appspot.com",
+  
+    messagingSenderId: "278441992033",
+  
+    appId: "1:278441992033:web:5aec7c0db588cbf53d6f20"
+  
+  };
+
+  app = initializeApp(this.firebaseConfig);
+  
   
 
   constructor(

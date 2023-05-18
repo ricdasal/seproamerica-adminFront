@@ -10,6 +10,11 @@ import { map, Observable } from 'rxjs';
 })
 export class MapWindComponent implements OnInit {
   directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
+  request: google.maps.DirectionsRequest= {
+    destination: {},
+    origin: {},
+    travelMode: google.maps.TravelMode.DRIVING
+  }
 
   constructor(
     mapDirectionsService: MapDirectionsService,
@@ -18,13 +23,25 @@ export class MapWindComponent implements OnInit {
     
     
     ) {
+      if(this.pedido.destination_lat == null || this.pedido.destination_lng == null){
+        this.request = {
+          destination: {lat: this.pedido.origin_lat, lng: this.pedido.origin_lng}, //-2.1468681900820856, -79.88437406276634
+          origin: {lat: this.pedido.origin_lat, lng: this.pedido.origin_lng},//-2.1758583229414237, -79.88188497287582
+          travelMode: google.maps.TravelMode.DRIVING
+        }
 
-    const request: google.maps.DirectionsRequest = {
-      destination: {lat: this.pedido.destination_lat, lng: this.pedido.destination_lng}, //-2.1468681900820856, -79.88437406276634
-      origin: {lat: this.pedido.origin_lat, lng: this.pedido.origin_lng},//-2.1758583229414237, -79.88188497287582
-      travelMode: google.maps.TravelMode.DRIVING
-    };
-    this.directionsResults$ = mapDirectionsService.route(request)
+      }
+      else{
+          this.request = {
+          destination: {lat: this.pedido.destination_lat, lng: this.pedido.destination_lng}, //-2.1468681900820856, -79.88437406276634
+          origin: {lat: this.pedido.origin_lat, lng: this.pedido.origin_lng},//-2.1758583229414237, -79.88188497287582
+          travelMode: google.maps.TravelMode.DRIVING
+        };
+        
+
+      }
+    
+    this.directionsResults$ = mapDirectionsService.route(this.request)
     .pipe(map(response => response.result));
   }
 
@@ -36,7 +53,7 @@ export class MapWindComponent implements OnInit {
   ];
 
   
-  center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
+  center: google.maps.LatLngLiteral = {lat: this.pedido.origin_lat, lng: this.pedido.origin_lng};
   zoom = 4;
 
 
