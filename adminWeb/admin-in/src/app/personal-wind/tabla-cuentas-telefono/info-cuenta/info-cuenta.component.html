@@ -1,14 +1,16 @@
 <mat-card class="example-card" style=" height:40vh;max-width: 100vh;max-height: 100vh;">
     <mat-card-header>
       <mat-card-title-group >
-        <mat-card-title>Usuario: {{this.cuentaTelefono.email}}</mat-card-title>
-        <mat-card-subtitle>Contraseña: {{this.cuentaTelefono.password}}</mat-card-subtitle>
-        <img mat-card-md-image style="margin-left: 30vh; width:20vh; height:20vh;" src="assets/logo.png"  alt="Image of a Shiba Inu">
+        <mat-card-title><b>Cuenta: </b>{{this.cuentaTelefono.email}}</mat-card-title>
+        <mat-card-subtitle>Contraseña: {{this.cuentaTelefono.password}}</mat-card-subtitle>    
       </mat-card-title-group>
+      <img mat-card-md-image src="assets/logo.png"  alt="Image of a Shiba Inu">
     </mat-card-header>
     <mat-card-content>
-      <b>Activo:</b> {{this.cuentaTelefono.is_active}}<br>
-      <b>Nombre dispositivo:</b> {{this.cuentaTelefono.first_name}}<br>
+      <p><b>Activo:</b> {{this.cuentaTelefono.is_active}}</p>
+      <p><b>Nombre dispositivo:</b> {{this.cuentaTelefono.first_name}}</p>
+      
+      
 
     </mat-card-content>
   </mat-card>

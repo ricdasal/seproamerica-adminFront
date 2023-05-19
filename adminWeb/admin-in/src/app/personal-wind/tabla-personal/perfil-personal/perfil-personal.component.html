@@ -3,18 +3,18 @@
       <mat-card-title-group >
         <mat-card-title>{{this.personal.first_name}} {{this.personal.last_name}}</mat-card-title>
         <mat-card-subtitle>{{this.personal.dni}}</mat-card-subtitle>
-        <img mat-card-md-image style="margin-left: 50vh;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
       </mat-card-title-group>
+      <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
     </mat-card-header>
     <mat-card-content>
-      <b>Correo electronico:</b> {{this.personal.email}}<br>
-      <b>Direccion:</b> {{this.personal.address}}<br> 
-      <b>Fecha de nacimiento:</b> {{this.personal.birthdate}}<br>
-      <b>Genero:</b> {{this.personal.gender}}<br>
-      <b>Telefono:</b> {{this.personal.phone_number}}<br>
-      <b>Activo:</b> {{this.personal.is_active}}<br>
-      <b>Sucursal:</b> {{this.personal.branch}}<br>
-      <b>Grupo:</b> {{this.personal.group}}<br>
-      
+      <p><b>Correo electronico:</b> {{this.personal.email}}</p>
+      <p><b>Direccion:</b> {{this.personal.address}}</p>
+      <p><b>Fecha de nacimiento:</b> {{this.personal.birthdate}}</p>
+      <p><b>Genero:</b> {{this.personal.gender}}</p>
+      <p><b>Telefono:</b> {{this.personal.phone_number}}</p>
+      <p><b>Activo:</b> {{this.personal.is_active}}</p>
+      <p><b>Sucursal:</b> {{this.personal.branch}}</p>
+      <p><b>Grupo:</b> {{this.personal.group}}</p>
+
     </mat-card-content>
   </mat-card>

@@ -1,10 +1,23 @@
-body{
-    background-color: white !important;
-    margin: 0 !important;
+
+.mat-card-header {
+    display: flex;
+    gap: 3rem;
 }
 
-.example-card {
-    max-width: 100%;
-    max-height: 200%;
-    margin-bottom: 8px;
-  }
+.mat-card{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.mat-card-content{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+p{
+    margin: 0;
+}

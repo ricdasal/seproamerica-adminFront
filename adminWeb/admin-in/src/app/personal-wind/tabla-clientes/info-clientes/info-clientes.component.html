@@ -1,19 +1,20 @@
-<mat-card class="example-card" >
+<mat-card >
     <mat-card-header>
       <mat-card-title-group >
         <mat-card-title>{{this.cliente.first_name}} {{this.cliente.last_name}}</mat-card-title>
-        <mat-card-subtitle>cedula: {{this.cliente.dni}}</mat-card-subtitle>
-        <img mat-card-md-image style="margin-left: 50vh;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
+        <mat-card-subtitle>cedula: {{this.cliente.dni}}</mat-card-subtitle>  
       </mat-card-title-group>
+      <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
     </mat-card-header>
     <mat-card-content>
-      <b>Correo electronico:</b> {{this.cliente.email}}<br>
-      <b>Direccion:</b> {{this.cliente.address}}<br> 
-      <b>Fecha de nacimiento:</b> {{this.cliente.birthdate}}<br>
-      <b>Genero:</b> {{this.cliente.gender}}<br>
-      <b>Telefono:</b> {{this.cliente.phone_number}}<br>
-      <b>Activo:</b> {{this.cliente.is_active}}<br>
-      <b>Grupo:</b> {{this.cliente.group}}<br>
+      <p><b>Correo electronico:</b> {{this.cliente.email}}</p>
+      <p><b>Direccion:</b> {{this.cliente.address}}</p>
+      <p><b>Fecha de nacimiento:</b> {{this.cliente.birthdate}}</p>
+      <p><b>Genero:</b> {{this.cliente.gender}}</p>
+      <p><b>Telefono:</b> {{this.cliente.phone_number}}</p>
+      <p><b>Activo:</b> {{this.cliente.is_active}}</p>
+      <p><b>Grupo:</b> {{this.cliente.group}}</p>
+      
       
     </mat-card-content>
   </mat-card>

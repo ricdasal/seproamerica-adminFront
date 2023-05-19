@@ -114,8 +114,8 @@ export class TablaPersonalComponent implements OnInit {
       .subscribe({
         next: (admin: any) => {
           const ventanaGrupos =  this.dialog.open(PerfilAdminComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '70vh',
+            height: '57vh',
             data: admin
           })
         }
@@ -127,8 +127,8 @@ export class TablaPersonalComponent implements OnInit {
       .subscribe({
         next: (personal: any) => {
           const ventanaGrupos =  this.dialog.open(PerfilPersonalComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '70vh',
+            height: '57vh',
             data: personal
           })
         }

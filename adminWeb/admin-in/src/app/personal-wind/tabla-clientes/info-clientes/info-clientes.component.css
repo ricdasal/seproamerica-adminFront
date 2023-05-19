@@ -1,0 +1,22 @@
+.mat-card-header {
+    display: flex;
+    gap: 3rem;
+}
+
+.mat-card{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    background-color: whitesmoke;
+}
+
+.mat-card-content{
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+p{
+    margin: 0;
+}
