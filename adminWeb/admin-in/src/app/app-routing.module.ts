@@ -117,8 +117,11 @@ const routes: Routes = [
   
   
 
-  { path: 'personalActualizar', component: PersonalActualizarComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
+    { path: 'personalActualizar', component: PersonalAdminRegistroComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard] },
+    {path: 'personalActualiza', component: PersonalRegistroComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard]},
+
   
   { path: 'reportesVentana', component: ReportesWindComponent, pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard] },

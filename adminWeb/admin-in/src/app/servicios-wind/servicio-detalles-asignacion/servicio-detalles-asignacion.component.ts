@@ -586,6 +586,19 @@ console.log(--------------------------------------------)
         this.obtenerNombreServicio(info_pedido.service);
         this.obtenerNombreCliente(info_pedido.client);
 
+        //lista_estados: Array<any> = ['pendiente', 'aceptado', 'pagado', 'en proceso', 'eliminado']
+        //this.pedido_a_asignar.estado
+
+        if(this.pedido_a_asignar.estado == 'pendiente'){
+          this.lista_estados = ['aceptado', 'eliminado'];
+        }
+        else if(this.pedido_a_asignar.estado == 'pagado'){
+          this.lista_estados = ['reembolsado']
+        }
+        else{
+          this.lista_estados = ['eliminado'];
+        }
+
         this.datos_cargados = true;
 
       }      

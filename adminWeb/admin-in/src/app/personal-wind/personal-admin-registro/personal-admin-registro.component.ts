@@ -269,7 +269,7 @@ export class PersonalAdminRegistroComponent implements OnInit {
   }
 
   //
-  setImagen(){
+    setImagen(event: any){
     /*this.user.fotoOp = event.target.files[0];
     this.registerForm.get('fotoOp')?.setValue(this.user.fotoOp);*/
   }

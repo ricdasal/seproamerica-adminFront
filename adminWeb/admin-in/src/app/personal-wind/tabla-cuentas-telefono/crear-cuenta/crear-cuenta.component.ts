@@ -12,6 +12,7 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 export class CrearCuentaComponent implements OnInit {
 
   registerForm!: FormGroup;
+  hide = true;
 
   constructor(
     private formBuilder: FormBuilder,

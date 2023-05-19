@@ -1,38 +1,57 @@
 
 
-<div class="column">
-    
-    <form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="registrarCuenta(registerForm)">
+<div class="contenido">
+  <h3>Crear Cuenta Telefono</h3>
+  <form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="registrarCuenta(registerForm)" class="formulario">
 
-    <div>
+    <div class="grupo_formulario">
+      <div class="item">
         <label class="label-email">Nombre cuenta</label>
-        <input type="text" id="fname"  name="first_name" placeholder="Ingrese el nombre de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="first_name"
-        />
-        <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
+
+        <mat-form-field appearance="fill">
+          <mat-label>nombre de cuenta</mat-label>
+          <input type="text" id="fname"  name="first_name" placeholder="Ingrese el nombre de la cuenta" matInput required formControlName="first_name"/>
+          <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
     </div>
 
 
-    <div>
+    <div class="item"> 
       <label class="label-email">Email</label>
-      <input type="email" id="fname"  name="marca" placeholder="Ingrese el email de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="email"
-      />
-      <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>nombre de cuenta</mat-label>
+        <input type="email" id="fname"  name="marca" placeholder="Ingrese el email de la cuenta"  matInput required formControlName="email"/>
+        <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+      </mat-form-field>
     </div>
     
-    <div> 
+    <div class="item"> 
           <label class="label-email">Password</label>
-          <input type="password" id="fname"  name="marca" placeholder="Ingrese la contraseña de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
-          formControlName="password"
-          />
-          <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
-  </div>
+          <mat-form-field class="input-format" appearance="fill">
+            <mat-label>Ingrese contraseña</mat-label>
+            <input id="pass" matInput [type]="hide ? 'password' : 'text'" formControlName="password" name="password">
+                  <mat-icon (click)="hide=!hide" matSuffix>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+                  <mat-error *ngIf="registerForm.controls['password'].errors?.['minlength']"> Minimo 8 caracteres</mat-error>
+                  <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
+          </mat-form-field>
+
+    </div>
 
   
-    <div class="column botonesConf">
-      <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
-      <button class="botonesConf" type="submit" mat-button [mat-dialog-close]="true">Guardar</button>
+    
+    </div>
+
+    <div class="caja_botones">
+      <button mat-raised-button color="primary" class="format-button" type="submit" [disabled]="!registerForm.valid" [mat-dialog-close]="true">Guardar</button>
+      <button mat-raised-button color="warn" class="format-button" (click)="onClickNO()">Cancelar</button>              
+      
     </div>
     
-</form>
+  </form>
+
+</div>
+
+    
+
+ 

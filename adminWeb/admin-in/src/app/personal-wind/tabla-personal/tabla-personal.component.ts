@@ -175,14 +175,14 @@ export class TablaPersonalComponent implements OnInit {
 
   crearPersonalOperativo(){
     const ventanaGrupos =  this.dialog.open(PersonalRegistroComponent, {
-      width: '90%',
+      width: '70vh',
       height: '80vh',
     })
   }
 
   crearPersonalAdministrativo(){
     const ventanaGrupos =  this.dialog.open(PersonalAdminRegistroComponent, {
-      width: '90%',
+      width: '70vh',
       height: '80vh',
     })
 

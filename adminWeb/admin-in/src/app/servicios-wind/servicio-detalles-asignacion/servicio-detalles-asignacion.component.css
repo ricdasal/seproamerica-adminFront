@@ -33,6 +33,21 @@
     text-transform: uppercase;
     font-size: 12px;
   }
+
+  .format-button{
+    font-size: 1.5rem;
+    color: white;
+    /* background-color: #40ce50; */
+    border-radius: 1.5rem;
+    width: 100%;
+    border: none;
+    font-weight: bolder;
+  }
+  
+  .format-button:disabled{
+    /* background-color: lightgreen; */
+    color: whitesmoke;
+  }
   
 
 
@@ -145,3 +160,11 @@
   gap: 0.5rem;
   /* background-color: white; */
 }
+
+
+
+
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white;
+}
+
