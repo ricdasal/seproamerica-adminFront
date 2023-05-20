@@ -1,10 +1,10 @@
-<div id="mySidenav" class="sidenav">
+<!-- <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>
     <a href="#">Contact</a>
-</div>
+</div> -->
 
 <div class="wrapper">
     <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
@@ -20,7 +20,7 @@
                 aria-expanded="false" aria-label="Toggle navigation"  style="background-color: black !important">
                 <mat-icon fontIcon="menu" ></mat-icon>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
+            <div >
                 <ul class="navbar-nav font_element">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded link-style"
                         routerLink="/serviciosVentana" >Servicios</a></li>
@@ -35,8 +35,8 @@
             </div>
 
         </div>
-        <div id="sidebar" class="icons">
-            <ul>
+        <div  class="icons"><!--style="background-color: black;"-->
+            <ul style="display: flex; color: black; list-style: none; gap: 2rem;" >
                 <li>
                     <div (click)="abrirModalMensajeria()"  class="">
                         <img  class="logoI" src="../../assets/Iconos/app-sepro-vectores-chat.png">

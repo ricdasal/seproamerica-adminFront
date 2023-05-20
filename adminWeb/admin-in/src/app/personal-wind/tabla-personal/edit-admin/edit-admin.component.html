@@ -1,121 +1,148 @@
-<form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)=" editarAdmin(this.registerForm)" novalidate>
+
+<div class="contenido">
+  <h3>Editar administrador</h3>
+
+  <form [formGroup]="registerForm" (ngSubmit)=" editarAdmin(this.registerForm)" class="formulario">
+
+    <div class="grupo_formulario">
+
+      <div class="item">
   
-    <div>
-
-        <label class="label-email">Nombres</label>
-        <input type="text" id="first_name"  name="first_name" placeholder="Ingrese el nombre" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="first_name" />
-        <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
- 
-
-    </div>
-    
-    <div>
-      <label class="label-email">Apellidos</label>
-      <input type="text" id="last_name" name="last_name" placeholder="Ingrese el apellido" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="last_name"/>
-      <mat-error *ngIf="registerForm.controls['last_name'].errors?.['required']"> *</mat-error>
-    </div>
-
-    <div>
-
-      <label class="label-email">email</label>
-      <input type="email" id="email"  name="email" placeholder="Ingrese el email" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="email" />
-      <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
-
-
-    </div>
-
-    <div>
-
-      <label class="label-email">Password</label>
-      <input type="password" id="password"  name="password" placeholder="Ingrese la contraseña" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="password" />
-      <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
-
-
-  </div>
-
-  <div>
-
-    <label class="label-email">numero de telefono</label>
-    <input type="text" id="phone_number"  name="phone_number" placeholder="Ingrese el numero de telefono" tabindex="1" matInput class="form-control form-control-lg" required
-    formControlName="phone_number" />
-    <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
-    <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['telefonoCelular']"> El número de teléfono celular no es válido.</mat-error>
-    <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['codigoArea']">El número de teléfono celular debe empezar con 09.</mat-error>
-
-
-  </div>
-
-  <div>
-
-    <label class="label-email">Cédula de identidad</label>
-    <input type="text" id="dni"  name="dni" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
-    formControlName="dni" />
-    <mat-error *ngIf="registerForm.controls['dni'].errors?.['required']"> *</mat-error>
-    <mat-error *ngIf="registerForm.controls['dni'].hasError('pocosCaracteres')">Debe tener 10 digitos</mat-error>
-    <mat-error *ngIf="registerForm.controls['dni'].hasError('cedulaInvalida')">cedula no valida</mat-error>
-
-
-  </div>
-
-  <div>
-
-    <label class="label-email">año de nacimiento</label>
-    <input type="date" id="birthdate"  name="birthdate" placeholder="Ingrese el año de nacimiento" tabindex="1" matInput class="form-control form-control-lg" required
-    formControlName="birthdate" />
-    <mat-error *ngIf="registerForm.controls['birthdate'].errors?.['required']"> *</mat-error>
-    <mat-error *ngIf="registerForm.controls['birthdate'].hasError('age')">Debe ser mayor a 18 años</mat-error> 
-
-
-  </div>
-
-  
-    <div>
-        <label class="label-email">Genero</label>
+        <label >Nombres</label>
         <mat-form-field appearance="fill">
-        <mat-label>Escoge una sucursal</mat-label>
-        <mat-select formControlName="gender">
-            <mat-option *ngFor="let genero of lista_generos" value="{{genero}}" id="{{genero}}">{{genero}}</mat-option>
+          <mat-label>nombre</mat-label>
+          <input type="text" id="first_name"  name="first_name" placeholder="Ingrese el nombre" matInput required formControlName="first_name" />          
+          <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+        
+      </div>
+    
+      <div class="item">
+        <label >Apellidos</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Apellidos</mat-label>
+          <input type="text" id="last_name" name="last_name" placeholder="Ingrese el apellido" matInput required formControlName="last_name"/>
+          <mat-error *ngIf="registerForm.controls['last_name'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+      </div>
+    
+      <div class="item">
+    
+        <label >Email</label>
 
-        </mat-select>
-        </mat-form-field>    
-        <mat-error *ngIf="registerForm.controls['gender'].errors?.['required']"> *</mat-error>
-    </div>
+        <mat-form-field appearance="fill">
+          <mat-label>email</mat-label>
+          <input type="email" id="email"  name="email" placeholder="Ingrese el email"  matInput  required formControlName="email" />
+          <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
 
-
-    <div>
-
-        <label class="label-email">Direccion</label>
-        <input type="text" id="address"  name="address" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="address" />
-        <mat-error *ngIf="registerForm.controls['address'].errors?.['required']"> *</mat-error>
     
     
-    </div>
+      </div>
+    
+      <div class="item">
+    
+        <label >Password</label>
+        <mat-form-field class="input-format" appearance="fill">
+          <mat-label>Ingrese contraseña</mat-label>
+          <input type="password" id="password"  name="password" placeholder="Ingrese la contraseña"  matInput  required formControlName="password" />
+          <mat-icon (click)="hide=!hide" matSuffix>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+          <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
 
+      </div>
+    
+      <div class="item">
+    
+      <label >numero de telefono</label>
+        <mat-form-field appearance="fill">
+          <mat-label>numero de telefono</mat-label>
+          <input type="text" id="phone_number"  name="phone_number" placeholder="Ingrese el numero de telefono"  matInput  required formControlName="phone_number" />
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['telefonoCelular']"> El número de teléfono celular no es válido.</mat-error>
+          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['codigoArea']">El número de teléfono celular debe empezar con 09.</mat-error>
+        </mat-form-field>
 
-    <label class="label-email">Sucursales</label>
-      <div>
+    
+    
+      </div>
+    
+      <div class="item">
+    
+        <label >Cédula de identidad</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Cédula de identidad</mat-label>
+          <input type="text" id="dni"  name="dni" placeholder="Ingrese el año"  matInput  required formControlName="dni" />
+          <mat-error *ngIf="registerForm.controls['dni'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['dni'].hasError('pocosCaracteres')">Debe tener 10 digitos</mat-error>
+          <mat-error *ngIf="registerForm.controls['dni'].hasError('cedulaInvalida')">cedula no valida</mat-error>
+        </mat-form-field>
+
+      </div>
+    
+      <div class="item">
+    
+        <label >Fecha de nacimiento</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de nacimiento</mat-label>
+          <input type="date" id="birthdate"  name="birthdate" placeholder="Ingrese el año de nacimiento"  matInput  required formControlName="birthdate" />
+          <mat-error *ngIf="registerForm.controls['birthdate'].errors?.['required']"> *</mat-error>
+          <mat-error *ngIf="registerForm.controls['birthdate'].hasError('age')">Debe ser mayor a 18 años</mat-error> 
+        </mat-form-field>
+
+      </div>
+    
+    
+      <div class="item">
+          <label >Genero</label>
+          <mat-form-field appearance="fill">
+            <mat-label>Selecciona un genero</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option *ngFor="let genero of lista_generos" value="{{genero}}" id="{{genero}}">{{genero}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="registerForm.controls['gender'].errors?.['required']"> *</mat-error>
+
+          </mat-form-field>    
+      </div>
+    
+    
+      <div class="item">
+    
+          <label >Direccion</label>
+          <mat-form-field appearance="fill">
+            <mat-label>Direccion</mat-label>
+            <input type="text" id="address"  name="address" placeholder="Ingrese el año"  matInput  required formControlName="address" />
+            <mat-error *ngIf="registerForm.controls['address'].errors?.['required']"> *</mat-error>
+          </mat-form-field> 
+      </div>
+    
+    
+      <div class="item">
+        <label >Sucursales</label>
         <mat-form-field appearance="fill">
           <mat-label>Escoge una sucursal</mat-label>
           <mat-select formControlName="branch">
             <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
-
+    
           </mat-select>
+          <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
         </mat-form-field>
           
-          <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
-      </div>
-      
           
-
-
-<div class="column botonesConf">
-  <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
-  <button class="botonesConf" type="submit" mat-button [mat-dialog-close]="true">Guardar</button>
-</div>
       
-</form>
+      </div>
+    
+      <div class="item">
+        <button  mat-raised-button color="primary" class="format-button" type="submit" [mat-dialog-close]="true" [disabled]="!registerForm.valid">Guardar</button>
+        <button  mat-raised-button color="warn" class="format-button"  (click)="onClickNO()">Cancelar</button>              
+      </div>
+
+    </div>
+    
+        
+  </form>
+
+
+</div>
+
+

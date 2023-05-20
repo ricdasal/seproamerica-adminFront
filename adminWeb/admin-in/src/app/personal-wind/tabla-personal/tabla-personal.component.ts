@@ -207,8 +207,8 @@ export class TablaPersonalComponent implements OnInit {
         next: (admin: any) => {
           console.log(admin);
           const ventanaGrupos =  this.dialog.open(EditAdminComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '70vh',
+            height: '80vh',
             data: admin
           })
         }
@@ -220,8 +220,8 @@ export class TablaPersonalComponent implements OnInit {
       .subscribe({
         next: (personal: any) => {
           const ventanaGrupos =  this.dialog.open(EditPersonalComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '70vh',
+            height: '80vh',
             data: personal
           })
         }

@@ -22,6 +22,7 @@ export class EditarCuentaComponent implements OnInit {
   ) { }
 
   registerForm!: FormGroup;
+  hide = true;
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({

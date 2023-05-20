@@ -1,37 +1,50 @@
-<div class="column">
-    
-    <form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="editarCuenta(registerForm)">
+<div class="contenido">
+    <h3>Editar Cuenta</h3>
+    <form class="formulario" [formGroup]="registerForm" (ngSubmit)="editarCuenta(registerForm)">
 
-    <div>
-        <label class="label-email">Nombre cuenta</label>
-        <input type="text" id="fname"  name="first_name" placeholder="Ingrese el nombre de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="first_name"
-        />
-        <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
-    </div>
+      <div class="grupo_formulario">
+        <div class="item">
+          <label >Nombre cuenta</label>
+          <mat-form-field appearance="fill">
+            <mat-label>nombre</mat-label>
+            <input type="text" id="first_name"  name="first_name" placeholder="Ingrese el nombre" matInput required formControlName="first_name" />          
+            <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
+          </mat-form-field>
 
-
-    <div>
-      <label class="label-email">Email</label>
-      <input type="email" id="fname"  name="marca" placeholder="Ingrese el email de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="email"
-      />
-      <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
-    </div>
-    
-    <div> 
-          <label class="label-email">Password</label>
-          <input type="password" id="fname"  name="marca" placeholder="Ingrese la contraseña de la cuenta" tabindex="1" matInput class="form-control form-control-lg" required
-          formControlName="password"
-          />
-          <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
-  </div>
-
+      </div>
   
-    <div class="column botonesConf">
-      <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
-      <button class="botonesConf" type="submit" mat-button [mat-dialog-close]="true">Guardar</button>
+  
+      <div class="item">
+        <label >Email</label>
+        <mat-form-field appearance="fill">
+          <mat-label>nombre</mat-label>
+          <input type="email"   name="marca" placeholder="Ingrese el email de la cuenta"  matInput  required formControlName="email"/>
+          <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+
+      </div>
+      
+      <div class="item"> 
+            <label >Password</label>
+            <mat-form-field class="input-format" appearance="fill">
+              <mat-label>Ingrese contraseña</mat-label>
+              <input type="password"   name="marca" placeholder="Ingrese la contraseña de la cuenta"  matInput required formControlName="password"/>
+                <mat-icon (click)="hide=!hide" matSuffix>{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+                <mat-error *ngIf="registerForm.controls['password'].errors?.['required']"> *</mat-error>
+            </mat-form-field>
+
     </div>
+  
+    
+      <div class="item">
+        <button class="format-button" type="submit" mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="!this.registerForm.valid">Guardar</button>
+        <button class="format-button" mat-raised-button color="warn" (click)="onClickNO()">Cancelar</button>              
+
+      </div>
+
+      </div>
+
+    
     
 </form>
 
