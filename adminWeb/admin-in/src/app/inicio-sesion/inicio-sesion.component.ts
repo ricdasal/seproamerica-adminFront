@@ -79,12 +79,12 @@ export class InicioSesionComponent implements OnInit {
         contrasenha: [this.user.contrasenia, [Validators.required, Validators.minLength(8)]]
       });
       console.log(router.url)
-      this.enviar.emit(this.router.url)
+      // this.enviar.emit(this.router.url)
       console.log("contruhijo")
 
   }
   ngAfterContentInit(){
-    console.log("ngafetcontetinithijo")
+    // console.log("ngafetcontetinithijo")
     this.enviar.emit(this.router.url)
 
   }
@@ -271,6 +271,13 @@ export class InicioSesionComponent implements OnInit {
       const payload = JSON.parse(atob(base64));
       const uid = payload.user_id.toString();
       localStorage.setItem('user_id', uid);
+
+      this.clienteWAService.obtenerUsuarioAdmin(uid)
+      .subscribe({
+        next: (data: any) =>{
+          localStorage.setItem('group',data.group)
+        }
+      })
       this.router.navigate(["/serviciosVentana/"+ res['token']]);
     },
     error => {

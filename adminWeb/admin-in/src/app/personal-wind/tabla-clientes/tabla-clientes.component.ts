@@ -73,7 +73,7 @@ export class TablaClientesComponent implements OnInit {
   eliminarCliente(cliente: any){
     const ventanaGrupos =  this.dialog.open(EliminarClientesComponent, {
       width: '100vh',
-      height: '50vh',
+      height: '70vh',
       data: cliente
     })
   }

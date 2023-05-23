@@ -14,6 +14,8 @@ import { NotificacionesService } from '../services/notificaciones/notificaciones
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  showFiller = false;
+
   constructor(
     private modalService: ModalsService,
     private authService: AuthService,
@@ -69,5 +71,10 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  isSidenavOpen = false;
+
+  toggleSidenav() {
+    this.isSidenavOpen = !this.isSidenavOpen;
+  }
 
 }

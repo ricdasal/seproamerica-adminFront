@@ -43,7 +43,9 @@ export class RecursosArmasComponent{
      //metodo de agregar vehiculo
      openDialog(): void{
       const dialogRef = this.dialog.open(AgregararmamentoDialogComponent,{
-        data: 'Agregar Nueva Armamento'
+        data: 'Agregar Nueva Armamento',
+        width: '80vh',
+        height: '70vh',
       });
       
       dialogRef.afterClosed().subscribe(res => {
@@ -106,8 +108,6 @@ export class RecursosArmasComponent{
     }
 
     editarArma(id: any){
-       
-
 
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
@@ -117,8 +117,8 @@ export class RecursosArmasComponent{
       .subscribe({
         next: (arma: any) => {
           this.dialog.open(EditArmasComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '80vh',
+            height: '70vh',
             data: arma
         })   
          

@@ -1,161 +1,135 @@
-<div mat-dialog-content>{{message}}</div>
-<div mat-dialog-actions>
+
+<div class="contenido">
+  <h3>Crear Armamento</h3>
+
+  <form [formGroup]="registerForm" (ngSubmit)="registrarCandado(this.registerForm)">
+
+    <div class="grupo_formulario">
+      <div class="item">
+
+        <label>Número de serie</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Número de serie</mat-label>
+          <input type="text" id="fname"  name="serial_number" placeholder="Ingrese el Número de serie"  matInput required formControlName="serial_number" />          
+          <mat-error *ngIf="registerForm.controls['serial_number'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+
+      </div>
     
+      <div class="item">
+        <label >Marca</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una marca</mat-label>
+          <mat-select formControlName="brand">
+            <mat-option *ngFor="let marca of lista_marcas" value="{{marca}}" id="{{marca}}">{{marca}}</mat-option>
+    
+          </mat-select>
+          <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
 
-    <div class="cuerpo">
-      <div class="campos row">
-          <div class="column">
-              <form id="login-form" class="login-form" [formGroup]="registerForm" (ngSubmit)="registrarCandado(this.registerForm)" novalidate>
+       
+      </div>
+
+      <div class="item">
+
+        <label>Modelo</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Modelo</mat-label>
+          <input type="text" id="fname"  name="model" placeholder="Ingrese el modelo"  matInput  required formControlName="model" />
+          <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="item">
+
+        <label class="label-email">Categoría</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una categoria</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let categoria of lista_categoria" value="{{categoria}}" id="{{categoria}}">{{categoria}}</mat-option>  
+          </mat-select>
+          <mat-error *ngIf="registerForm.controls['category'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+
+
+      </div>
+
+      <div class="item">
+
+        <label class="label-email">Munición</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una municion</mat-label>
+          <mat-select formControlName="ammo">
+            <mat-option *ngFor="let municion of lista_municion" value="{{municion.caliber}}" id="{{municion.caliber}}">{{municion.caliber}}</mat-option>
+    
+          </mat-select>
+          <mat-error *ngIf="registerForm.controls['ammo'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <div class="item">
+
+        <label class="label-email">Año</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Año</mat-label>
+          <input type="text" id="fname"  name="year" placeholder="Ingrese el año"  matInput required formControlName="year" />
+          <mat-error *ngIf="registerForm.controls['year'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+
+
+
+
+      </div>
+
+      <div class="item">
+
+        <label class="label-email">Color</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge un color</mat-label>
+          <mat-select formControlName="color">
+            <mat-option *ngFor="let color of lista_colores" value="{{color}}" id="{{color}}">{{color}}</mat-option>
+    
+          </mat-select>
+          <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+>
+
+
+      </div>
+
+      <div class="item">
+
+        <label class="label-email">Sucursales</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una sucursal</mat-label>
+          <mat-select formControlName="branch">
+            <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
+
+          </mat-select>
+          <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
+
+        </mat-form-field>
+          
+
+      </div>
+      
+          
+
+
+      <div class="caja_botones">
+        <button mat-raised-button color="warn" class="format-button" (click)="onClickNO()">Cancelar</button>              
+        <button mat-raised-button color="primary" class="format-button" type="submit" [mat-dialog-close]="true">Guardar</button>
+      </div>
+      
+
+
+    </div>
+    
+  </form>
+
   
-              <div>
+</div>
 
-                  <label class="label-email">Número de serie</label>
-                  <input type="text" id="fname"  name="serial_number" placeholder="Ingrese el Número de serie" tabindex="1" matInput class="form-control form-control-lg" required
-                  formControlName="serial_number" />
-                  <mat-error *ngIf="registerForm.controls['serial_number'].errors?.['required']"> *</mat-error>
-           
 
-              </div>
-              
-              <div>
-                <label class="label-email">Marca</label>
-                <div>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Escoge una marca</mat-label>
-                    <mat-select formControlName="brand">
-                      <mat-option *ngFor="let marca of lista_marcas" value="{{marca}}" id="{{marca}}">{{marca}}</mat-option>
-              
-                    </mat-select>
-                  </mat-form-field>
-            
-                </div>
-                <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
-              </div>
-
-              <div>
-
-                <label class="label-email">Modelo</label>
-                <input type="text" id="fname"  name="model" placeholder="Ingrese el modelo" tabindex="1" matInput class="form-control form-control-lg" required
-                formControlName="model" />
-                <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
-         
-
-              </div>
-
-              <div>
-
-                <label class="label-email">Categoría</label>
-                <div>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Escoge una categoria</mat-label>
-                    <mat-select formControlName="category">
-                      <mat-option *ngFor="let categoria of lista_categoria" value="{{categoria}}" id="{{categoria}}">{{categoria}}</mat-option>
-              
-                    </mat-select>
-                  </mat-form-field>
-            
-                </div>
-                
-                <mat-error *ngIf="registerForm.controls['category'].errors?.['required']"> *</mat-error>
-          
-          
-            </div>
-
-            <div>
-
-              <label class="label-email">Munición</label>
-              <div>
-                <mat-form-field appearance="fill">
-                  <mat-label>Escoge una municion</mat-label>
-                  <mat-select formControlName="ammo">
-                    <mat-option *ngFor="let municion of lista_municion" value="{{municion.caliber}}" id="{{municion.caliber}}">{{municion.caliber}}</mat-option>
-            
-                  </mat-select>
-                </mat-form-field>
-          
-              </div>
-              <mat-error *ngIf="registerForm.controls['ammo'].errors?.['required']"> *</mat-error>
-          
-          
-            </div>
-
-            <div>
-
-              <label class="label-email">Año</label>
-              <input type="text" id="fname"  name="year" placeholder="Ingrese el año" tabindex="1" matInput class="form-control form-control-lg" required
-              formControlName="year" />
-              <mat-error *ngIf="registerForm.controls['year'].errors?.['required']"> *</mat-error>
-      
-
-            </div>
-
-            <div>
-
-              <label class="label-email">Color</label>
-              <div>
-                <mat-form-field appearance="fill">
-                  <mat-label>Escoge un color</mat-label>
-                  <mat-select formControlName="color">
-                    <mat-option *ngFor="let color of lista_colores" value="{{color}}" id="{{color}}">{{color}}</mat-option>
-            
-                  </mat-select>
-                </mat-form-field>
-          
-              </div>
-              <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
-      
-
-            </div>
-
-            <div>
-
-              <label class="label-email">Sucursales</label>
-                <div>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Escoge una sucursal</mat-label>
-                    <mat-select formControlName="branch">
-                      <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
-
-                    </mat-select>
-                  </mat-form-field>
-                    
-                    <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
-                </div>
-
-            <!--
-              <h4>mat-select</h4>
-<mat-form-field appearance="fill">
-  <mat-label>Choose an option</mat-label>
-  <mat-select [disabled]="disableSelect.value">
-    <mat-option value="option1">Option 1</mat-option>
-    <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-    <mat-option value="option3">Option 3</mat-option>
-  </mat-select>
-</mat-form-field>
-
-<div *ngFor="let sucursal of lista_sucursales" class="">
-                      <input class="text" type="radio" formControlName="branch"  
-                          id="{{sucursal.id}}" value={{sucursal.name}} name="branch"> 
-                      <label class="label-email" for="{{sucursal.id}}">
-                            {{sucursal.name}}
-                      </label>
-                    </div>
-            -->
-      
-
-          </div>
-                
-                    
-          
-
-          <div class="column botonesConf">
-            <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
-            <button class="botonesConf" type="submit" mat-button [mat-dialog-close]="true">Guardar</button>
-          </div>
-                
-              <!--
-              <input type="submit" value="Confirmar" />
-              -->
-      </form>
-      </div> 
-  </div>

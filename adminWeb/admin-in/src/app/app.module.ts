@@ -15,7 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { GoogleMapsModule } from '@angular/google-maps';
-
+import {MatSidenavModule} from '@angular/material/sidenav'; 
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -188,7 +188,8 @@ import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap
     MatFormFieldModule,
     MatCardModule,
     MatCheckboxModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatSidenavModule
     
 
   ],

@@ -1,84 +1,86 @@
-<form  id="login-form" class="login-form" [formGroup]="registerForm" autocomplete="on" (ngSubmit)="editarCelular(registerForm)">
-   
-    <div>
-
-        <label class="label-email">Marca</label>
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge una marca</mat-label>
-              <mat-select formControlName="brand">
-                <mat-option *ngFor="let marca of lista_marcas" value="{{marca}}" id="{{marca}}">{{marca}}</mat-option>
+<div class="contenido">
+  <h3>Crear celular</h3>
+  <form  [formGroup]="registerForm" (ngSubmit)="editarCelular(registerForm)">
+   <div class="grupo_formulario">
+     <div class="item">
+        <label >Marca</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una marca</mat-label>
+            <mat-select formControlName="brand">
+              <mat-option *ngFor="let marca of lista_marcas" value="{{marca}}" id="{{marca}}">{{marca}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
+        </mat-form-field> 
+      </div>
   
-              </mat-select>
-          </mat-form-field>      
-        </div>
-        <mat-error *ngIf="registerForm.controls['brand'].errors?.['required']"> *</mat-error>
- 
-
-    </div>
-    
-    <div>
-      <label class="label-email">Modelo</label>
-      <input type="text" id="fname"  name="marca" placeholder="Ingrese el modelo" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="model">
-      <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
-    </div>
-    
-    <div>
+      <div class="item">
+        <label >Modelo</label>
+        <mat-form-field appearance="fill">
+          <mat-label>modelo</mat-label>
+          <input type="text" id="fname"  name="marca" placeholder="Ingrese el modelo"  matInput  required formControlName="model">
+          <mat-error *ngIf="registerForm.controls['model'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+        
+      </div>
       
-          <label class="label-email">Número de teléfono</label>
-          <input type="text" id="fname"  name="marca" placeholder="Ingrese el numero de teléfono" tabindex="1" matInput class="form-control form-control-lg" required
-          formControlName="phone_number"/>
+      <div class="item">
+        <label >Número de teléfono</label>
+        <mat-form-field appearance="fill">
+          <mat-label>numero de telefono</mat-label>
+          <input type="text" id="fname"  name="marca" placeholder="Ingrese el numero de teléfono"  matInput required formControlName="phone_number"/>
           <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
-       
-  </div>
-
-  <div>
-      <label class="label-email">Color</label>
-      <!-- <input type="text" class="text" id="fname" name="color" placeholder="Ingrese el color" tabindex="1" matInput class="form-control form-control-lg" required
-      formControlName="color"/> -->
-      <div>
+        </mat-form-field>
+      </div>
+  
+      <div class="item">
+        <label >Color</label>
         <mat-form-field appearance="fill">
           <mat-label>Escoge un color</mat-label>
             <mat-select formControlName="color">
               <mat-option *ngFor="let color of lista_colors" value="{{color}}" id="{{color}}">{{color}}</mat-option>
+  
+            </mat-select>
+            <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
+        </mat-form-field> 
+      </div>
+  
+  
+      <div class="item">
+        <label >Año compra</label>
+        <mat-form-field appearance="fill">
+          <mat-label>numero de telefono</mat-label>
+          <input type="date" class="text" id="fname" name="color" placeholder="Ingrese el año de compra"  matInput  required formControlName="purchase_date" />
+          <mat-error *ngIf="registerForm.controls['purchase_date'].errors?.['required']"> *</mat-error>
+        </mat-form-field>
+
+      </div>
+  
+  
+      <div class="item">
+        <label >Sucursal</label>
+        <mat-form-field appearance="fill">
+          <mat-label>Escoge una sucursal</mat-label>
+            <mat-select formControlName="branch">
+              <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
 
             </mat-select>
         </mat-form-field>      
-      </div>
-      <mat-error *ngIf="registerForm.controls['color'].errors?.['required']"> *</mat-error>
-    </div>
-
-    <div>
-        <label class="label-email">Año compra</label>
-        <input type="date" class="text" id="fname" name="color" placeholder="Ingrese el año de compra" tabindex="1" matInput class="form-control form-control-lg" required
-        formControlName="purchase_date" />
-        <mat-error *ngIf="registerForm.controls['purchase_date'].errors?.['required']"> *</mat-error>
-      </div>
-
-
-      <div>
-        <label class="label-email">Sucursal</label>
-        <div>
-          <mat-form-field appearance="fill">
-            <mat-label>Escoge una sucursal</mat-label>
-              <mat-select formControlName="branch">
-                <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
-  
-              </mat-select>
-          </mat-form-field>      
-        </div>
         <mat-error *ngIf="registerForm.controls['branch'].errors?.['required']"> *</mat-error>
       </div>
-
+  
+      
+      
+      <div class="caja_botones">
+        <button mat-raised-button color="warn" class="format-button" (click)="onClickNO()">Cancelar</button>              
+        <button mat-raised-button color="primary" class="format-button" type="submit" [mat-dialog-close]="true">Guardar</button>
+      </div>
     
-    
-    <div class="column botonesConf">
-      <button class="botonesConf" mat-button (click)="onClickNO()">Cancelar</button>              
-      <button class="botonesConf" mat-button type="submit" [mat-dialog-close]="true">Guardar</button>
+      
+      
     </div>
     
-    <!--
-    <input type="submit" value="Confirmar" />
-    -->
-</form>
+  </form>
+  
+
+</div>
+

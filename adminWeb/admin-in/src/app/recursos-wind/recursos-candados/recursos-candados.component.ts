@@ -40,7 +40,9 @@ export class RecursosCandadosComponent implements OnInit {
      //metodo de agregar vehiculo
      openDialog(): void{
       const dialogRef = this.dialog.open(AgregarcandadosDialogComponent,{
-        data: 'Agregar Nuevo Candado'
+        data: 'Agregar Nuevo Candado',
+        width: '80vh',
+        height: '70vh',
       });
       
       dialogRef.afterClosed().subscribe(res => {
@@ -102,8 +104,8 @@ export class RecursosCandadosComponent implements OnInit {
         next: (candado: any) => {
           console.log(candado);
           const ventanaGrupos =  this.dialog.open(EditCandadosComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '80vh',
+            height: '70vh',
             data: candado
           })
         }

@@ -6,6 +6,8 @@
     <a href="#">Contact</a>
 </div> -->
 
+
+
 <div class="wrapper">
     <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
         <div class="logo">
@@ -13,6 +15,8 @@
                     src="https://www.seproamerica.com.ec/wp-content/uploads/2019/07/Seproamerica-privada-y-electronica-grande-logo-seguridad-ecuador.png"
                     height="90px"></a>
         </div>
+
+       
         <div class="container">
 
             <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
@@ -23,19 +27,27 @@
             <div >
                 <ul class="navbar-nav font_element">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded link-style"
-                        routerLink="/serviciosVentana" >Servicios</a></li>
+                        routerLink="/serviciosVentana" >Servicios</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded link-style"
-                            routerLink="/personalVentana"> Usuarios</a></li>
+                            routerLink="/personalVentana"> Usuarios</a>
+                    </li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded link-style"
-                            routerLink="/recursosVentana">Recursos</a></li>
+                            routerLink="/recursosVentana">Recursos</a>
+                    </li>
                     <li  class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded link-style"
-                            routerLink="/reportesVentana">Reportes</a> </li>
+                            routerLink="/reportesVentana">Reportes</a> 
+                    </li>
+
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded link-style"
+                        routerLink="/serviciosVentana" >Configuraciones</a>
+                    </li>
                 </ul>
                 
             </div>
 
         </div>
-        <div  class="icons"><!--style="background-color: black;"-->
+        <div  class="icons">
             <ul style="display: flex; color: black; list-style: none; gap: 2rem;" >
                 <li>
                     <div (click)="abrirModalMensajeria()"  class="">
@@ -61,3 +73,73 @@
         </div>
     </nav>
 </div>
+
+<!-- <div class="wrapper">
+    <div  class="logo" (click)="toggleSidenav()">
+        <a class="navbar-brand" ><img
+                src="https://www.seproamerica.com.ec/wp-content/uploads/2019/07/Seproamerica-privada-y-electronica-grande-logo-seguridad-ecuador.png"
+                height="90px"></a>
+    </div>
+        
+    
+    <div class="sidenav elementos-sidenav" [ngClass]="{'sidenav-open': isSidenavOpen, 'sidenav-closed': !isSidenavOpen}">
+       
+        <div class="logo" (click)="toggleSidenav()">
+            <a ><img
+                    src="https://www.seproamerica.com.ec/wp-content/uploads/2019/07/Seproamerica-privada-y-electronica-grande-logo-seguridad-ecuador.png"
+                    height="90px"></a>
+        </div>
+
+        <div style="display: flex; flex-direction: column;">
+            <ul  class="ul-sidenav">
+                <li class="elemento-sidenav"><a
+                    routerLink="/serviciosVentana" >Servicios</a>
+                </li>
+                <li class="elemento-sidenav"><a
+                        routerLink="/personalVentana"> Usuarios</a>
+                </li>
+                <li class="elemento-sidenav"><a
+                        routerLink="/recursosVentana">Recursos</a>
+                </li>
+                <li class="elemento-sidenav"><a
+                        routerLink="/reportesVentana">Reportes</a> 
+                </li>
+
+                <li class="elemento-sidenav"><a
+                    routerLink="/serviciosVentana" >Configuraciones</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+        
+    <div style="justify-content: flex-end;">
+        <ul class="ul-derecho">
+            <li>
+                <div (click)="abrirModalMensajeria()"  class="">
+                    <img  class="logoI" src="../../assets/Iconos/app-sepro-vectores-chat.png">
+                </div>
+            </li>
+            <li>
+                <div (click)="abrirModalPerfil()"  class=" ">
+                     <img  class="logoI "  src="../../assets/Iconos/app-sepro-vectores-perfil.png">
+                </div>
+            </li>
+            <li>
+                <div  (click)="abrirModalNotificaciones()"  class="">
+                    <img class="logoI "  src="../../assets/Iconos/app-sepro-vectores-notificaciones.png">
+                </div>
+
+                <div class="badge"><span>{{notificacionService.noti_no_leida_num}}</span></div>
+
+            </li>
+            
+
+        </ul>
+    </div>
+
+    
+
+</div> -->
+

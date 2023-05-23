@@ -70,8 +70,8 @@ export class RecursosCelularComponent implements OnInit {
 
     crearCelulares(){
       const ventanaGrupos =  this.dialog.open(CrearCelularComponent, {
-        width: '100vh',
-        height: '50vh',
+        width: '80vh',
+        height: '70vh',
       })
 
     }
@@ -94,8 +94,8 @@ export class RecursosCelularComponent implements OnInit {
         next: (celular: any) => {
           console.log(celular);
           const ventanaGrupos =  this.dialog.open(EditCelularComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '80vh',
+            height: '70vh',
             data: celular
           })
         }

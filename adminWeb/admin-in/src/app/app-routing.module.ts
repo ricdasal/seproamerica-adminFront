@@ -43,7 +43,7 @@ import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap
 const routes: Routes = [
   
   { path: 'login', 
-  component: InicioSesionComponent, pathMatch: 'prefix',},
+  component: InicioSesionComponent, pathMatch: 'prefix', canActivate:[NoPermitidoSinSesionActivaGuard]},
   //canActivate:[NoPermitidoSinSesionActivaGuard]},
   { path: 'personalVentana', component: PersonalWindComponent,
     children: [
@@ -130,7 +130,7 @@ const routes: Routes = [
   
 
 
-  { path: '', redirectTo: '/login', pathMatch: 'prefix' },
+  { path: '', redirectTo: '/login', pathMatch: 'prefix', },
 
   { path: '**', component: NotFoundComponent, pathMatch: 'prefix' },
 

@@ -10,14 +10,13 @@ export class NoPermitidoSinSesionActivaGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return false;
-    // console.log(localStorage.getItem('ACCESS_TOKEN'))
-    // if(localStorage.getItem('ACCESS_TOKEN')){
-    //   this.router.navigate(['/serviciosVentana'])
-    //   return false
-    // }else{
-    //   return true      
-    // }
+
+    if(!localStorage.getItem('ACCESS_TOKEN')){
+      return true;
+    }
+    else{
+      return false;
+    }
 
   }
   

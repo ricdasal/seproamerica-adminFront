@@ -41,7 +41,9 @@ export class RecursosVehiculosComponent implements OnInit {
      //metodo de agregar vehiculo
      openDialog(): void{
       const dialogRef = this.dialog.open(AgregarvehiculoDialogComponent,{
-        data: 'Agregar Nueva Vehiculo'
+        data: 'Agregar Nueva Vehiculo',
+        width: '80vh',
+        height: '70vh',
       });
       
       dialogRef.afterClosed().subscribe(res => {
@@ -105,8 +107,8 @@ export class RecursosVehiculosComponent implements OnInit {
         next: (vehiculo: any) => {
           console.log(vehiculo);
           this.dialog.open(EditVehiculosComponent, {
-            width: '100vh',
-            height: '50vh',
+            width: '80vh',
+            height: '70vh',
             data: vehiculo
           })
         }

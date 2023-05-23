@@ -23,13 +23,8 @@
   padding: 10px;
 }
 
-.icons ul {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 0cm;
-  list-style: none;
-  align-items: center;
-}
+
+
 
 .principalNav {
   grid-area: principalNav;
@@ -38,7 +33,10 @@
 .logo {
   grid-area: logo;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 2rem;
+
 }
 
 .bottom_nav {
@@ -46,6 +44,149 @@
   color: #15967d;
 
 }
+
+.ul-sidenav{
+  display: flex; 
+  list-style: none;
+  flex-direction: column;
+}
+
+.ul-derecho{
+  display: flex; 
+  flex-direction: row;
+  list-style: none;
+}
+
+
+.badge{
+  background-color: rgb(255, 255, 255);
+  color: rgb(187, 21, 21);
+  border-radius: 16px;
+  padding: 5px;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+}
+
+
+.link-style{
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.wrapper{
+  
+  margin-bottom: 2rem;
+} */
+
+.font_element{
+  font-family: 'Bahnschrift';
+  font-size: larger;
+
+}
+
+
+
+.sidenav {
+  display: flex;
+  width: 200px;
+  height: 100%;
+  position:fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #f8f8f8;
+  padding-top: 20px;
+  transition: transform 0.3s ease-in-out;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.elementos-sidenav{
+  display: flex; 
+  flex-direction: column; 
+  overflow: hidden; 
+  white-space: nowrap;
+}
+
+
+.sidenav-open {
+  transform: translateX(0);
+}
+
+.sidenav-closed {
+  transform: translateX(-200px);
+}
+
+.toggle-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background: none;
+  border: none;
+  z-index: 2;
+}
+
+.toggle-button span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin-bottom: 4px;
+  background-color: #000;
+  transition: transform 0.3s ease-in-out;
+}
+
+.toggle-button.open span:first-child {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.toggle-button.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle-button.open span:last-child {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.main-content {
+  margin-left: 200px; /* Ajusta el margen izquierdo para que el contenido principal no se solape con el sidenav */
+  /* Agrega otros estilos según sea necesario */
+}
+
+.logoI {
+  width: 60px;
+  height: 60px;
+  background-color: rgb(157, 13, 13);
+  border: solid rgb(255, 255, 255);
+  border-radius: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ::ng-deep.mat-dialog-container {
+  background-color: rgb(187, 21, 21);
+
+} */
+
+/* .wrapper{
+  display: flex; 
+  margin-bottom: 2rem; 
+  margin-left: 3rem; 
+  margin-right: 3rem;
+  justify-content: space-between;
+}
+
+.elemento-sidenav > a{
+  text-decoration: none;
+  
+} */
+
 
 #mainNav .navbar-brand {
   color: black;
@@ -825,111 +966,3 @@
   color: #fff;
 }
 
-
-/*para el sidebar*/
-
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 0;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-#sidebar {
-  background-color: black;
-  transition: margin-left .5s;
-  padding: 16px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 0;
-  }
-
-  .sidenav a {
-    font-size: 18px;
-  }
-}
-
-.logoI {
-  width: 60px;
-  height: 60px;
-  /* background-color: rgb(157, 13, 13); */
-  /*border: solid rgb(255, 255, 255);*/
-  border-radius: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.img-item {
-  width: 40px;
-  height: 40px;
-  color: blue;
-}
-/*::ng-deep.mat-dialog-container {
-      background-color: rgb(187, 21, 21);
-
-}*/
-.icons ul li{
-  position: relative;
-}
-.badge{
-  background-color: rgb(255, 255, 255);
-  color: rgb(187, 21, 21);
-  border-radius: 16px;
-  padding: 5px;
-  position: absolute;
-  top: -5px;
-  right: -5px;
-}
-
-
-.link-style{
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.wrapper{
-  
-  margin-bottom: 2rem;
-}
-
-.font_element{
-  font-family: 'Bahnschrift';
-  font-size: larger;
-
-}
-
-
-.sidenav-nuevo{
-  display: flex;
-}
