@@ -1,0 +1,43 @@
+<div class="contenido">
+    <h1>Crear Cargos</h1>
+
+    <form class="row" [formGroup]="registerForm" (ngSubmit)="crear_cargos(registerForm)">
+
+        <div class="item">
+            <label >Nombre del cargo</label>
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre del cargo</mat-label>
+              <input  type="text" id="fname" name="nombres"  matInput required formControlName="name" />
+            </mat-form-field>
+          </div>
+
+        <div class="item">
+            <label >Descripcion</label>
+            <mat-form-field appearance="fill">
+                <label >Descripcion</label>
+                <input   type="text" id="fname" name="nombres"  matInput
+                   required formControlName="description" />
+            </mat-form-field>
+
+        </div>
+
+
+
+        <div class="item">
+            <label>Tipo de cargo</label>
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione una</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option *ngFor="let group_type of lista_group_type" [value]="group_type">{{group_type}}</mat-option>
+                    
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+        <button mat-raised-button color="primary" class="format-button" >registrar</button>
+
+
+
+    </form>
+</div>

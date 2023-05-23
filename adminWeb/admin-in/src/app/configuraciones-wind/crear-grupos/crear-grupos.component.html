@@ -1,0 +1,52 @@
+
+
+<div class="contenido">
+    <h1>Crear Grupos de Usuario</h1>
+    <form class="row" [formGroup]="registerForm" (ngSubmit)="guardar_grupos(registerForm)"> 
+        <div class="item">
+            <label >Nombre del grupo</label>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nombre del grupo</mat-label>
+                <input   type="text" id="fname" name="nombres"  matInput required formControlName="name" /> 
+            </mat-form-field>
+
+               
+  
+        </div>
+
+        <div class="item">
+            <label>Permisos</label>
+            <mat-form-field appearance="fill">
+                <mat-label>permisos</mat-label>
+                <mat-select multiple formControlName="permissions">
+                <mat-option *ngFor="let permiso of lista_permisos" [value]="permiso">{{permiso}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+
+        <div class="item">
+            <label>Tipo de usuario</label>
+            <mat-form-field appearance="fill">
+                <mat-label>Seleccione un tipo de usuario</mat-label>
+                <mat-select formControlName="group_type">
+                    <mat-option *ngFor="let group_type of lista_group_type" [value]="group_type">{{group_type}}</mat-option>
+                    
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+    
+         <button mat-raised-button color="primary" (click)="registrarGrupo()">registrar</button>
+
+
+
+    </form>
+
+
+    
+</div>
+
+
+
+  

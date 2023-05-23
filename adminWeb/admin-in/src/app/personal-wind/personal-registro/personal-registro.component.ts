@@ -8,7 +8,7 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { CrearGruposComponent } from './crear-grupos/crear-grupos.component';
+import { CrearGruposComponent } from '../../configuraciones-wind/crear-grupos/crear-grupos.component';
 import { CedulaValidator, CedulaLongitud, ageValidator, telefonoCelularValidator } from '../funciones-utiles';
 
 @Component({

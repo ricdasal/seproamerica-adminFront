@@ -30,9 +30,12 @@ import { TablaPersonalComponent } from './personal-wind/tabla-personal/tabla-per
 import { TablaClientesComponent } from './personal-wind/tabla-clientes/tabla-clientes.component';
 import { TablaCuentasTelefonoComponent } from './personal-wind/tabla-cuentas-telefono/tabla-cuentas-telefono.component';
 import { EditVehiculosComponent } from './recursos-wind/recursos-vehiculos/edit-vehiculos/edit-vehiculos.component';
-import { CrearGruposComponent } from './personal-wind/personal-registro/crear-grupos/crear-grupos.component';
+import { CrearGruposComponent } from './configuraciones-wind/crear-grupos/crear-grupos.component';
 import { MapWindComponent } from './servicios-wind/servicio-en-curso/map-wind/map-wind.component';
 import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap.component';
+import { PermitidoConTipoDeUsuarioGuard } from './guards/permitido-con-tipo-de-usuario.guard';
+import { ConfiguracionesWindComponent } from './configuraciones-wind/configuraciones-wind.component';
+import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-cargos.component';
 
 
 
@@ -101,14 +104,21 @@ const routes: Routes = [
 
 
   
-  
+  {path: 'configuraciones', component: ConfiguracionesWindComponent, pathMatch: 'prefix', 
+  canActivate:[PermitidoConSesionActivaGuard, PermitidoConTipoDeUsuarioGuard], children: [
+    {path: 'grupos', component: CrearGruposComponent, pathMatch: 'prefix',
+    canActivate:[PermitidoConSesionActivaGuard, PermitidoConTipoDeUsuarioGuard]},
+    {path: 'cargos', component: CrearCargosComponent, pathMatch:'prefix',
+    canActivate:[PermitidoConSesionActivaGuard, PermitidoConTipoDeUsuarioGuard]},
+    { path: '', redirectTo: '/configuraciones/grupos', pathMatch: 'prefix'},
+
+  ]},
   { path: 'registro', component: RegistroComponent, pathMatch: 'prefix',    
   canActivate:[NoPermitidoSinSesionActivaGuard]},
   { path: 'perfil', component: PerfilComponent, pathMatch: 'prefix',    
   canActivate:[PermitidoConSesionActivaGuard]},
 
-  {path: 'grupos', component: CrearGruposComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard]},
+  
 
   {path: 'map', component: MapWindComponent, pathMatch: 'prefix'},
 

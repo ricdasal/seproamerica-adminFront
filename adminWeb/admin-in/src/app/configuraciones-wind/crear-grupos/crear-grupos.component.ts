@@ -11,13 +11,13 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 export class CrearGruposComponent implements OnInit {
 
   registerForm!: FormGroup;
-  registerForm1!: FormGroup;
+  
 
-  permisos = new FormControl('');
+  // permisos = new FormControl('');
   lista_permisos: Array<any> = [];
 
   lista_group_type: Array<any> = ["administrativo", "cliente", "operativo"];
-  group_types = new FormControl('');
+  // group_types = new FormControl([]);
 
  
 
@@ -31,19 +31,24 @@ export class CrearGruposComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerPermisos();
 
-    this.registerForm = this.formBuilder.group({
-      'name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      'permissions': [this.permisos, [Validators. required]],
-      'group_type': [this.group_types, [Validators.required]]
+    
+
+    // this.registerForm = this.formBuilder.group({
+    //   'name': [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+    //   'permissions': [this.permisos, [Validators. required]],
+    //   'group_type': [this.group_types, [Validators.required]]
+
+    // })
+
+    this.registerForm = new FormGroup({
+      name: new FormControl(''),
+      permissions: new FormControl(''),
+      group_type: new FormControl([]),
 
     })
 
-    this.registerForm1 =  this.formBuilder.group({
-      "name":  [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      "description": [null, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      "type":[null, [Validators.required]]
 
-    })
+    
     
   }
 
@@ -82,20 +87,7 @@ export class CrearGruposComponent implements OnInit {
   }
 
 
-  crear_cargos(form: any){
 
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
-    });
-    this.http.post(`https://seproamerica2022.pythonanywhere.com/users/charge/`, form.value, {headers}).
-    subscribe({
-      next: (data: any) => {
-        console.log(data);
-      }
-        
-      
-    })
-  }
 
 
 

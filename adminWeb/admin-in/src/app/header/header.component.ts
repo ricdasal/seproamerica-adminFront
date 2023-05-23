@@ -77,4 +77,12 @@ export class HeaderComponent implements OnInit {
     this.isSidenavOpen = !this.isSidenavOpen;
   }
 
+  mostrarConfiguracion(): boolean{
+    const usuario = localStorage.getItem('group');
+    if(usuario == 'administrador'){
+      return true;
+    }
+    return false;
+  }
+
 }

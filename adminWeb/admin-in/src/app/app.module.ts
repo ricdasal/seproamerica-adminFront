@@ -16,6 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { GoogleMapsModule } from '@angular/google-maps';
 import {MatSidenavModule} from '@angular/material/sidenav'; 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,7 +34,7 @@ import { RecursosCelularComponent } from './recursos-wind/recursos-celular/recur
 import { RecursosArmasComponent } from './recursos-wind/recursos-armas/recursos-armas.component';
 
 import { PersonalRegistroComponent } from './personal-wind/personal-registro/personal-registro.component';
-import { CrearGruposComponent } from './personal-wind/personal-registro/crear-grupos/crear-grupos.component';
+import { CrearGruposComponent } from './configuraciones-wind/crear-grupos/crear-grupos.component';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
@@ -94,6 +95,9 @@ import { TipoServicioComponent } from './servicios-wind/tipo-servicio/tipo-servi
 import { InfoServicioComponent } from './servicios-wind/info-servicio/info-servicio.component';
 import { MapWindComponent } from './servicios-wind/servicio-en-curso/map-wind/map-wind.component';
 import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap.component';
+import { DirectivaUsuariosDirective } from './inicio-sesion/directiva-usuarios/directiva-usuarios.directive';
+import { ConfiguracionesWindComponent } from './configuraciones-wind/configuraciones-wind.component';
+import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-cargos.component';
 
 
 
@@ -164,7 +168,10 @@ import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap
     TipoServicioComponent,
     InfoServicioComponent,
     MapWindComponent,
-    ServicioEapComponent
+    ServicioEapComponent,
+    DirectivaUsuariosDirective,
+    ConfiguracionesWindComponent,
+    CrearCargosComponent
   ],
   imports: [
     BrowserModule,
@@ -189,7 +196,8 @@ import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap
     MatCardModule,
     MatCheckboxModule,
     GoogleMapsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressSpinnerModule
     
 
   ],
