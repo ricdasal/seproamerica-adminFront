@@ -1,23 +1,29 @@
 
 
-<div class="contenido">
+<div class="contenido" style="display: flex; flex-direction: column; gap: 5rem; padding: 5rem;">
 
   <h1>Crear Servicio</h1>
   
-  <form [formGroup]="registerForm" (ngSubmit)="crearServicio(registerForm)">
+  <form [formGroup]="registerForm" (ngSubmit)="crearServicio(registerForm)" style="display: flex; flex-direction: column; gap: 3rem;">
     <div class="item">
       <label >Nombre del servicio</label>
-      <input   type="text" id="fname" name="name"  matInput
-         required formControlName="name"/>
-      <mat-error *ngIf="registerForm.controls['name'].errors?.['required']"> *</mat-error>
-      <mat-error *ngIf="registerForm.controls['name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre del servicio</mat-label>
+        <input   type="text" id="fname" name="name"  matInput required formControlName="name"/>
+        <mat-error *ngIf="registerForm.controls['name'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+      </mat-form-field>
 
     </div>
 
     <div class="item">
       <label >Descripcion</label>
-      <textarea name="description" id="description" cols="30" rows="5"matInput
-      required formControlName="description"></textarea>
+      <mat-form-field appearance="fill">
+        <mat-label>Descripcion</mat-label>
+        <textarea name="description" id="description" cols="30" rows="5"matInput required formControlName="description"></textarea>
+          <mat-error *ngIf="registerForm.controls['name'].errors?.['required']"> *</mat-error>
+        <mat-error *ngIf="registerForm.controls['name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+      </mat-form-field>
      
     </div>
 
@@ -26,11 +32,12 @@
       <p><mat-checkbox formControlName="set_price">Si</mat-checkbox></p>
     </div>
 
-    <br><br>
-    <h2>Staff</h2>
       
+    <h2>Staff</h2>
     <form [formGroup]="staff_group" (ngSubmit)="addGuardia()" class="formato-mini-form">
+      
       <div class="item">
+        <label >Staff</label>
         <mat-form-field appearance="outline">
           <mat-label>Staff</mat-label>
           <mat-select formControlName="staff">
@@ -50,14 +57,18 @@
 
       <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Precio del personal por hora</label>
-        <input   type="number"  matInput
-           required formControlName="staff_price_per_hour"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Precio del personal por hora</mat-label>
+          <input   type="number"  matInput required formControlName="staff_price_per_hour"/>
+        </mat-form-field>
       </div>
 
       <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Horas base del personal</label>
-        <input   type="number"  matInput
-           required formControlName="staff_base_hour"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Horas base del personal</mat-label>
+          <input   type="number"  matInput required formControlName="staff_base_hour"/>
+       </mat-form-field>
       </div>
       
       <button type="submit" [disabled]="!this.staff_group.valid" style="width: 4rem; height: 4rem;" mat-fab color="warn">
@@ -105,10 +116,10 @@
     </table>
    
 
-    <br><br>
-
     <h2>Equipamiento</h2>
+
     <form [formGroup]="equipment_group" (ngSubmit)="addEquipamiento()" class="formato-mini-form">
+
       <div class="item">
         <mat-form-field appearance="outline">
           <mat-label>Equipamiento</mat-label>
@@ -129,8 +140,10 @@
 
       <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Precio del equipamiento</label>
-        <input   type="number"  matInput
-           required formControlName="equipment_price"/>
+        <mat-form-field appearance="outline">
+          <mat-label>Precio del equipamiento</mat-label>
+          <input   type="number"  matInput required formControlName="equipment_price"/>
+       </mat-form-field>
       </div>
 
       <!-- Botón para agregar nuevo item -->
@@ -174,7 +187,6 @@
 
 
 
-    <br><br>
     
     <div class="item">
       <label >Requiere origen y destino (ubicacion)</label>
@@ -184,294 +196,97 @@
     <div  *ngIf="this.registerForm.value.requires_origin_and_destination ">
       <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Precio base</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="base_price"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Precio base</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="base_price"/>
+        </mat-form-field>
       </div>
 
       <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Precio Rango 1</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="price_range1"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Precio Rango 1</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="price_range1"/>
+        </mat-form-field>
       </div>
 
       <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Precio Rango 2</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="price_range2"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Precio Rango 2</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="price_range2"/>
+       </mat-form-field>
       </div>
       
       <div class="item" *ngIf="this.registerForm.value.set_price">
         <label >Precio Rango 3</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="price_range3"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Precio Rango 3</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="price_range3"/>
+        </mat-form-field>
       </div>
 
       <div class="item">
         <label >Inicio Rango 1</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="lower_limit1"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Inicio Rango 1</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="lower_limit1"/>
+        </mat-form-field>
       </div>
 
       <div class="item">
         <label >Fin Rango 1</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="upper_limit1"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Fin Rango 1</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="upper_limit1"/>
+       </mat-form-field>
       </div>
 
       <div class="item">
         <label >Inicio Rango 2</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="lower_limit2"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Inicio Rango 2</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="lower_limit2"/>
+        </mat-form-field>
       </div>
 
       <div class="item">
         <label >Fin Rango 2</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="upper_limit2"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Fin Rango 2</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="upper_limit2"/>
+       </mat-form-field>
       </div>
 
       <div class="item">
         <label >Inicio Rango 3</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="lower_limit3"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Inicio Rango 3</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="lower_limit3"/>
+       </mat-form-field>
       </div>
 
       <div class="item">
         <label >Fin Rango 3</label>
-        <input   type="number" id="fname" name="name"  matInput
-           required formControlName="upper_limit3"/>
+        <mat-form-field appearance="fill">
+          <mat-label>Fin Rango 3</mat-label>
+          <input   type="number" id="fname" name="name"  matInput required formControlName="upper_limit3"/>
+        </mat-form-field>
+        
       </div>
+
+  
     </div>
 
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <button mat-raised-button color="primary" type="submit" style="width: 50%;">enviar</button>
+    </div>
 
-    <button mat-button type="submit">enviar</button>
+  
   </form>
 
+
+    
+
   
-  <!-- Botón p
-
-
-</div>
-
-
-
-
-
-
-
-<!-- 
-<div class="contenido">
-    <form class="row" [formGroup]="registerForm" enctype="multipart/form-data">
-      <div class="col-3">
-        <div id="txtDatos">
-          DATOS DEL SERVICIO
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="item">
-          <label >NOMBRE DE SERVICIO</label>
-          <input   type="text" id="fname" name="nombreServicio"  tabindex="1" matInput
-             required formControlName="nombreServicio" [(ngModel)]="servicio.nombreServicio" />
-          <mat-error *ngIf="registerForm.controls['nombreServicio'].errors?.['required']"> *</mat-error>
-          <mat-error *ngIf="registerForm.controls['nombreServicio'].errors?.['pattern']"> Solo insertar letras</mat-error>
-  
-        </div>
-  
-        <div class="item">
-          <label>COSTO</label>
-          <input type="number" id="costo" name="costo" matInput  required
-            formControlName="costo" [(ngModel)]="servicio.costo" />
-          <mat-error *ngIf="registerForm.controls['costo'].errors?.['required']"> *</mat-error>
-          <mat-error *ngIf="registerForm.controls['costo'].errors?.['pattern']">Solo debe contener digitos</mat-error>
-        </div>
-
-
-        <div class="item">
-          <label>TIPO DE SERVICIO</label><br>
-          
-          <div *ngFor="let tipoServicio of lista_Tipos_Servicios" class="form-check">
-            <input class="form-check-input" type="radio" (click)="tipo_servicio_seleccionado(tipoServicio.idTipo)" (change)="tipo_servicio_s2($event, tipoServicio.tarifa)"
-          id="tipo_Servicio1" value="{{tipoServicio.idTipo}}" formControlName="tipo_Servicio" [(ngModel)]="servicio.tipo_Servicio">
-            <label class="form-check-label" for="gridRadios1">{{tipoServicio.tarifa}}</label>
-          </div>
-            
-          
-          <mat-error *ngIf="registerForm.controls['tipo_Servicio'].errors?.['required']"> *</mat-error>
-        </div>  
-  
-        
-  
-        <label class="form-label" for="form3Example1cg"></label>
-        <div class="form-outline mb-4">
-          <div class="form-check">
-          </div>
-        </div>
-  
-        
-  
-        <div class="item">
-          <label  >TELÉFONO</label>
-        </div>
-        
-      </div>
-
-
-      <div class="col">
-        <div class="row pe-4">
-          <div class="col">
-            <div  id="txtDatos">
-              INVENTARIO REQUERIDO EN EL SERVICIO
-           </div>
-          </div>
-         
-
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Vehículo
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault2">
-              <label class="form-check-label" for="flexRadioDefault2">
-                Armamento
-              </label>
-            </div>
-           <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="flexRadioDefault3">
-              <label class="form-check-label" for="flexRadioDefault3">
-                Candado Satelital
-              </label>
-            </div>
-
-        </div><br><br>
-  
-         
-        <div class="row pe-4">
-            <div class="col">
-              <div id="txtDatos">
-                TIPO DE PERSONAL EN EL SERVICIO
-             </div>
-            </div>
-            
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardia">
-              <label class="form-check-label" for="check_Guardia">
-                Guardia
-              </label>
-          </div>
-          <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Guardaespaldas">
-              <label class="form-check-label" for="check_Guardaespaldas">
-                Guardaespaldas
-              </label>
-          </div>
-          <div class="form-check">
-              <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="check_Conductor_Chofer">
-              <label class="form-check-label" for="check_Conductor_Chofer">
-                Conductor/Chofer
-              </label>
-          </div>
-
-          <br>
-          <br>
-
-
-          <label > Icono </label> 
-          <input type="file"  accept="uploads/png" (change)="setImagen($event)">
-
-          
-      </div>
-
-      <div class="row pe-4">
-        <div class="col cont-guardar">
-           <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-62.png"
-          data-bs-toggle="modal" data-bs-target="#modalDos" data-bs-dismiss="modal"
-           alt="" (click)="crear_Servicio()">
-        </div>
-      </div>
-          
-       
-      </div>
-  
-      <div class="modal fade" id="modalDos" data-bs-backdrop="static" [ngStyle]="{'display':display}" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel mensajeDeConfirmacion">Datos enviados</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <h3 id="mensajeDeConfirmacionDos"></h3>
-            </div>
-          </div>
-        </div>
-      </div>
-     
-  
-  
-    </form>
-
-    <div *ngIf="mostrar_tabla"  class="item" id="tabla">
-      <label>TABLA DE PRECIO POR KILÓMETRO</label>
-      <h6>Indicaciones: Ingrese números decimales usando punto (.) y únicamente dos decimales</h6>
-      <button mat-raised-button *ngIf="!editando_fila" color="primary" (click)="addRow()">Agregar nuevo</button>
-      <button mat-raised-button *ngIf="editando_fila" color="primary" (click)="addRow()" disabled>Agregar nuevo</button>
-      
-      <table mat-table [dataSource]="data_tabla_source" class="mat-elevation-z8">
-        <ng-container [matColumnDef]="col.key" *ngFor="let col of esquema_columnas">
-          <th mat-header-cell *matHeaderCellDef>
-            {{col.label}} 
-          </th>
-
-          <td mat-cell *matCellDef="let element">
-
-            <div [ngSwitch]="col.type" *ngIf="!element.isEdit">
-              <div class="btn-edit" *ngSwitchCase="'isEdit'">
-                <button mat-button *ngIf="!editando_fila" (click)="element.isEdit = !element.isEdit" (click)="fila_en_edicion()">Editar</button>
-                <button mat-button *ngIf="editando_fila" (click)="element.isEdit = !element.isEdit" disabled>Editar</button>
-
-                <button mat-button class="button_remove" *ngIf="!editando_fila" (click)="removeRow(element.id)">Eliminar</button>
-                <button mat-button class="button_remove" *ngIf="editando_fila" (click)="removeRow(element.id)" disabled>Eliminar</button>
-
-              </div>
-              <span *ngSwitchDefault>
-                {{ element[col.key]}}
-              </span>
-            </div> 
-
-            <div *ngIf="element.isEdit">
-              <div class="btn-edit" *ngIf="col.key === 'isEdit'; else dataField">
-                <button mat-button (click)="fila_en_no_edicion()" class="button_remove" (click)="removeRow(element.id)">Eliminar</button>
-                <button mat-button (click)="element.isEdit = esta_listo(element.isEdit, element.kilometro_inicial, element.kilometro_destino, element.id)" [disabled]="disableSubmit(element.id)">Hecho</button>
-              </div>
-              <ng-template #dataField>
-                <mat-form-field>
-                  <input
-                    min = 0
-                    step="0.01"
-                    ng-pattern = "/^[0-9]+(\.[0-9]{1,2})?$/"
-                    [required]="col.required"
-                    [pattern]="col.pattern"
-                    [type]="col.type"
-                    matInput
-                    [(ngModel)]="element[col.key]"
-                    (change)="inputHandler($event, element.id, col.key)"
-                  />
-                </mat-form-field>
-              </ng-template>
-            </div>
-
-          </td>
-        </ng-container>
-        
-        <tr mat-header-row *matHeaderRowDef="columnas_tabla"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnas_tabla;"></tr>
-      </table>
-      <p *ngIf="rango_no_valido" style="color:rgb(168, 13, 13);">Rango no válido</p>
-      <p *ngIf="km_inicial_no_valido" style="color:rgb(168, 13, 13);">Kilómetro inicial debe ser mayor que el anterior kilómetro de destino</p>
-      <p *ngIf="km_destino_no_valido" style="color:rgb(168, 13, 13);">Kilómetro destino debe ser menor que el siguiente kilómetro inicial</p>
-      <p *ngIf="tres_digitos_no_valido" style="color:rgb(168, 13, 13);">Solo pueden haber tres dígitos decimales</p>
-    </div>
-  
-</div> -->
+ 

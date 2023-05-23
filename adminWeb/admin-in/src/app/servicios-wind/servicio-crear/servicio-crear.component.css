@@ -61,17 +61,18 @@
   .item{
     display: flex;
     flex-direction: column;
+    gap: 3vh;
   
   }
-  .item input[type=text]{
+  /* .item input[type=text]{
     width: 100%;
     border-radius: 32px;
     border: none;
     background-color: white;
     padding: 10px;
-  }
+  } */
 
-  .item textarea{
+  /* .item textarea{
     width: 100%;
     border-radius: 32px;
     border: none;
@@ -86,7 +87,7 @@
     border: none;
     background-color: white;
     padding: 10px;
-  }
+  } */
   
   .item mat-form-field mat-datepicker{
     position: absolute;

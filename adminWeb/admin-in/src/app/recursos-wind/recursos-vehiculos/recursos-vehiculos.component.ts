@@ -92,7 +92,7 @@ export class RecursosVehiculosComponent implements OnInit {
     eliminarVehiculo(id: any){
       const ventanaGrupos =  this.dialog.open(EliminarVehiculoComponent, {
         width: '100vh',
-        height: '50vh',
+        height: '80vh',
         data: id
       })
     }
