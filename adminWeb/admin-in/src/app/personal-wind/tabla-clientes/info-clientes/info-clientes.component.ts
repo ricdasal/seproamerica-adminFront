@@ -13,6 +13,7 @@ export class InfoClientesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const temp: number = 0
   }
 
 

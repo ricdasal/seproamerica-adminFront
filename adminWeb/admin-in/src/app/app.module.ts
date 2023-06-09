@@ -98,6 +98,13 @@ import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap
 import { DirectivaUsuariosDirective } from './inicio-sesion/directiva-usuarios/directiva-usuarios.directive';
 import { ConfiguracionesWindComponent } from './configuraciones-wind/configuraciones-wind.component';
 import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-cargos.component';
+import { environment } from '../environments/environment';
+import { initializeApp } from "firebase/app";
+
+initializeApp(environment.firebase);
+
+
+
 
 
 
@@ -197,7 +204,11 @@ import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-
     MatCheckboxModule,
     GoogleMapsModule,
     MatSidenavModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFireMessagingModule,
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideMessaging(() => getMessaging()),
     
 
   ],
@@ -214,4 +225,10 @@ import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-
   bootstrap: [AppComponent]
 })
 
+
+
+
+
 export class AppModule { }
+
+

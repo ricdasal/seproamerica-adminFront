@@ -69,11 +69,11 @@
                 id="gridRadios1" value={{estado.idEstado}}
                 formControlName="estado" [(ngModel)]="personal.estado">
                 <label class="form-check-label" for="gridRadios1" 
-                *ngIf="estado.idEstado == personal.estado" [ngStyle]="{'color':'blue'}">
+                *ngIf="estado.idEstado === personal.estado" [ngStyle]="{'color':'blue'}">
                     {{estado.estado}}
                 </label>
                 <label class="form-check-label" for="gridRadios1" 
-                *ngIf="estado.idEstado != personal.estado">
+                *ngIf="estado.idEstado !== personal.estado">
                     {{estado.estado}}
                 </label>
             </div>
@@ -159,10 +159,10 @@
                   <input class="form-check-input" type="radio" formControlName="sucursal" [(ngModel)]="personal.sucursal" 
                       id="gridRadios1" value={{sucursal.idSucursal}}>
                   <label class="form-check-label" for="gridRadios1"
-                   *ngIf="sucursal.idSucursal == personal.sucursal" [ngStyle]="{'color':'blue'}">
+                   *ngIf="sucursal.idSucursal === personal.sucursal" [ngStyle]="{'color':'blue'}">
                         {{sucursal.direccion}}
                   </label>
-                  <label class="form-check-label" for="gridRadios1" *ngIf="sucursal.idSucursal != personal.sucursal">
+                  <label class="form-check-label" for="gridRadios1" *ngIf="sucursal.idSucursal !== personal.sucursal">
                     {{sucursal.direccion}}
                   </label>
                 </div>
@@ -260,10 +260,10 @@
                             style="background-color:green;">Actualizar</button>
 
                     </div>
-                    <div *ngIf="actualizado==true" class="mensaje-actualizar exito">
+                    <div *ngIf="actualizado===true" class="mensaje-actualizar exito">
                         Datos actualizados con éxito, puede cerrar esta ventana para ver sus cambios
                     </div>
-                    <div *ngIf="actualizado==false" class="mensaje-actualizar error">
+                    <div *ngIf="actualizado===false" class="mensaje-actualizar error">
                         Problemas al actualizar sus datos!. <br>
                         Cierre la ventana para reinintentar
                     </div>
@@ -310,7 +310,7 @@
 
   </form>
 
-  <div class="col cont-guardar" *ngIf="inexistente == true">
+  <div class="col cont-guardar" *ngIf="inexistente === true">
     <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-45.png"alt="" routerLink="/serviciosVentana">
   </div>
 

@@ -10,6 +10,7 @@ export class ActualizarPerfilComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    const temp: number = 0
   }
 
 }

@@ -138,6 +138,9 @@ export class ClienteWAService {
   DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_FINALIZADOS: string =  this.BASE_URL + "services/ordersEnded/"
   DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_REEMBOLSADO: string =  this.BASE_URL + "services/ordersRefund/"
 
+  //notificaciones
+  DJANGO_SERVER_REGISTRAR_TOKEN: string = this.BASE_URL + "notifications/fcmToken/"
+
 
   constructor(private http: HttpClient) { }
 
@@ -227,7 +230,7 @@ export class ClienteWAService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
-    return this.http.post(this.DJANGO_SERVER_REGISTRAR_SERVICIOS, value,{headers})
+    return this.http.post(this.DJANGO_SERVER_REGISTRAR_SERVICIOS, value, {headers}) 
   
   }
 
@@ -373,6 +376,15 @@ export class ClienteWAService {
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     return this.http.get(`${this.DJANGO_SERVER_OBTENER_PEDIDOS_CON_STATUS_REEMBOLSADO}`, {headers})
+
+  }
+
+
+  registrarTokenFCM(token: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.post(this.DJANGO_SERVER_REGISTRAR_SERVICIOS, token,{headers})
 
   }
 

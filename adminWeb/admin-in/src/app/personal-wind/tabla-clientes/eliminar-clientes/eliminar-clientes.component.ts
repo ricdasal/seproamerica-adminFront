@@ -19,6 +19,7 @@ export class EliminarClientesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const temp: number = 0
   }
 
   eliminarClientes(id: any){

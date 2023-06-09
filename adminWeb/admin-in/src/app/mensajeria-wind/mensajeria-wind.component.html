@@ -21,10 +21,10 @@
                         <div>
     
                             <span class="info-envio">{{message.nombre_perfil}}
-                                <span class="info-envio" *ngIf='message.usuario__rol==1'> - Administrador</span>
-                                <span class="info-envio" *ngIf='message.usuario__rol==1'>(Yo)</span>
-                                <span class="info-envio" *ngIf='message.usuario__rol==2'> - Cliente</span>
-                                <span class="info-envio" *ngIf='message.usuario__rol==3'> - Empleado</span>
+                                <span class="info-envio" *ngIf='message.usuario__rol===1'> - Administrador</span>
+                                <span class="info-envio" *ngIf='message.usuario__rol===1'>(Yo)</span>
+                                <span class="info-envio" *ngIf='message.usuario__rol===2'> - Cliente</span>
+                                <span class="info-envio" *ngIf='message.usuario__rol===3'> - Empleado</span>
     
                             </span>
     
@@ -32,7 +32,7 @@
     
                             <p id="mensaje">{{message.texto.split(" ").splice(0, 8).join(" ")}} </p>
                             <span class="tiempo col " text-right><br>{{ message.tiempo | date:'short' }}</span>
-                            <div *ngIf="message.check_leido==false && message.usuario__correo!=usuario_actual" class="no-leido">
+                            <div *ngIf="message.check_leido===false && message.usuario__correo!==usuario_actual" class="no-leido">
                             
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                     <!-- class="sms-general" [ngClass]="{'sms-recibido' : message.correo_usuario==mensajeriaService.usuario_receptor,'sms-enviado' : message.correo_usuario==mensajeriaService.usuario_logeado}">-->
                     <div id="lista" class="lista-mensajes">
                         <p *ngFor="let message of mensajeriaService.contactosMensajes" class="sms-general row"
-                            [ngClass]="{'sms-recibido' : message.usuario__correo==mensajeriaService.usuario_receptor,'sms-enviado' : message.usuario__correo==mensajeriaService.usuario_logeado}">
+                            [ngClass]="{'sms-recibido' : message.usuario__correo===mensajeriaService.usuario_receptor,'sms-enviado' : message.usuario__correo===mensajeriaService.usuario_logeado}">
                             <span class="text-center col">{{message.texto}}</span>
                             <span class="tiempo col " text-right><br>{{ message.tiempo | date:'short' }}</span>
 

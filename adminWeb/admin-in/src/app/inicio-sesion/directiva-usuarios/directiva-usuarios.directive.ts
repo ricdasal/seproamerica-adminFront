@@ -11,6 +11,7 @@ export class DirectivaUsuariosDirective implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const temp: number = 0
     
   }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { InicioSesionModel } from '../models/inicioSesion.model';
 import { RegisterModel } from '../models/register.model';
 import { AdminRegisterModel } from '../models/adminRegistro';
@@ -17,7 +17,7 @@ import { MatDialog } from '@angular/material/dialog';
   templateUrl: './inicio-sesion.component.html',
   styleUrls: ['./inicio-sesion.component.css']
 })
-export class InicioSesionComponent implements OnInit {
+export class InicioSesionComponent implements OnInit, AfterContentInit, AfterViewInit {
 
   @Output() enviar = new EventEmitter<string>();
   ruta!:string

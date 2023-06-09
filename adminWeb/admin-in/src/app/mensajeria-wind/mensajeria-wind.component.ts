@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { interval } from 'rxjs';
 import { MensajeriaService, smsInfo2 } from '../services/mensajeria/mensajeria.service';
@@ -9,7 +9,7 @@ import { ModalsService } from '../services/modals/modals.service';
   templateUrl: './mensajeria-wind.component.html',
   styleUrls: ['./mensajeria-wind.component.css']
 })
-export class MensajeriaWindComponent implements OnInit {
+export class MensajeriaWindComponent implements OnInit, OnDestroy {
   textSms = "";
   data_ventana_principal_canal_nuevo: any
   nombre_usuario_receptor = ""

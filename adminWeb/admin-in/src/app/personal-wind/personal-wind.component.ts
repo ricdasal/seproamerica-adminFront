@@ -49,6 +49,7 @@ export class PersonalWindComponent implements OnInit{
  
 
     ngOnInit(): void {
+      const temp: number = 0
       
       /*this._infPersonalService.getAllPersonalOp().subscribe(respuesta => {
         this.dataSource = respuesta as any;
