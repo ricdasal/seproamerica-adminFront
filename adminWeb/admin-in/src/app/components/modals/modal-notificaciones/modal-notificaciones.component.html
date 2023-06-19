@@ -39,12 +39,23 @@
     
 </section> -->
 
-<div *ngFor="let notificacion of lista_notificaciones">
+<!-- <div *ngFor="let notificacion of lista_notificaciones">
     <h1>{{ notificacion.notification.title }}</h1>
     <h2>{{ notificacion.notification.body }}</h2>
     <audio hidden controls src='../../../../assets/audio/audio_alerta.mp3' type="audio/mp3">
         Your browser does not support the <code>audio</code> element.
     </audio>
-  </div><div *ngIf="this.lista_notificaciones.length === 0;">
+  </div>
+   -->
+  <!-- <div *ngIf="this.lista_notificaciones.length === 0;">
     No Message Arrived
+  </div> -->
+
+  <div *ngIf="this.lista_notificaciones.length !== 0;">
+    <div *ngFor="let notificacion of this.lista_notificaciones" >
+        <h3>{{notificacion.title}}</h3>
+        <h4>{{notificacion.message}}</h4>
+
+    </div>
+
   </div>

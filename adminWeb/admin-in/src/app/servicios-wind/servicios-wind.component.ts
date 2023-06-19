@@ -48,13 +48,13 @@ export class ServiciosWindComponent implements OnInit {
   }
 
   obtener_servicios(): void{
-    this.clienteWAService.obtener_servicios_creados()
-    .subscribe({
-      next: (data) => {
-        this.lista_Servicio = data;
-      },
-      error: (e) => console.error(e)
-    })
+    // this.clienteWAService.obtener_servicios_creados()
+    // .subscribe({
+    //   next: (data) => {
+    //     this.lista_Servicio = data;
+    //   },
+    //   error: (e) => console.error(e)
+    // })
   }
 
   //Metodo para enviar el nombre del servicio a querer editar al componente de edicion

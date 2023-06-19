@@ -12,7 +12,7 @@ import { MapWindComponent } from '../servicio-en-curso/map-wind/map-wind.compone
   templateUrl: './servicio-detalles-asignacion.component.html',
   styleUrls: ['./servicio-detalles-asignacion.component.css']
 })
-export class ServicioDetallesAsignacionComponent implements OnInit, AfterViewInit, OnChanges {
+export class ServicioDetallesAsignacionComponent implements OnInit, OnChanges {
 
   actualizado!:boolean | null
 
@@ -473,12 +473,6 @@ console.log(--------------------------------------------)
   }
 
 
-
-  ngAfterViewInit(){
-
-
-  }
-
   presentar_detalles_pedido(){
     this.clienteWAservice.obtenerPedidosPorId(localStorage.getItem("pedido_seleccionado"))
     .subscribe({
@@ -899,15 +893,44 @@ console.log(--------------------------------------------)
     })
   }
 
+  enviarNotificacionAlCliente(){
+    /**
+     * title":"Servicio <nombre> aceptado",
+      "message":"su servicio de <nombre> ha sido aceptado",
+      "user":16
+     */
+
+      let notificacion = {
+        title: "Servicio " + this.nombre_servicio.name + " aceptado." ,
+        message: "Su servicio de " + this.nombre_servicio.name + " ha sido aceptado",
+        user: this.pedido_a_asignar.cliente_solicitante
+      }
+
+      console.log(notificacion)
+      this.clienteWAservice.enviarNotificacionCliente(notificacion)
+      .subscribe({
+        next: (response: any) => {
+          console.log(response);
+        },
+        error: (error) => {
+          console.log(error)
+        }
+      })
+  }
+
+  
+
 
 }
 
 
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'asignacion-confirmacion-dialog',
   templateUrl: 'asignacion-confirmacion.html',
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class AsignacionConfirmacion {
 
   constructor(

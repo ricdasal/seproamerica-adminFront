@@ -8,10 +8,6 @@ import { TiposServiciosModel } from '../models/tipoServicio.model';
 import { ServiceModel } from '../models/servicio';
 import { PersonalOpModel } from '../models/personalOp.models';
 import { PedidoModel } from '../models/pedido.model';
-import { VehiculoModel} from '../models/vehiculo.model';
-import { ArmamentoModel } from '../models/armamento.model';
-import { CandadoModel } from '../models/candado.model';
-import { MobilModel } from '../models/mobil.model';
 import { ClienteTablaModel } from '../models/cliente_tabla.model';
 import { UsuarioModel } from '../models/usuario.model';
 
@@ -140,6 +136,8 @@ export class ClienteWAService {
 
   //notificaciones
   DJANGO_SERVER_REGISTRAR_TOKEN: string = this.BASE_URL + "notifications/fcmToken/"
+  DJANGO_SERVER_ENVIAR_NOTIFICACION: string =  this.BASE_URL + "notifications/orderClientNoti/"
+  DJANGO_SERVER_OBTENER_NOTIFICACIONES: string = this.BASE_URL + "notifications/adminNoti/"
 
 
   constructor(private http: HttpClient) { }
@@ -384,10 +382,25 @@ export class ClienteWAService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
-    return this.http.post(this.DJANGO_SERVER_REGISTRAR_SERVICIOS, token,{headers})
+    return this.http.post(this.DJANGO_SERVER_REGISTRAR_TOKEN, token, {headers})
 
   }
 
+  enviarNotificacionCliente(notificacion: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.post(this.DJANGO_SERVER_ENVIAR_NOTIFICACION, notificacion, {headers})
+
+  }
+
+  obtenerListaNotificaciones(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_NOTIFICACIONES}`, {headers})
+
+  }
 
   
 

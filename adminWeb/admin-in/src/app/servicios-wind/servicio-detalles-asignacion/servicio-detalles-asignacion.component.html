@@ -104,25 +104,25 @@
         </div>
           
         
-          <h5  *ngIf="this.asigned_staff.value.guardias.length != 0">lista guardias: 
+          <h5  *ngIf="this.asigned_staff.value.guardias.length !== 0">lista guardias: 
             <p *ngFor="let guardias of this.asigned_staff.value.guardias">
               {{guardias.split(';')[1]}} {{guardias.split(';')[2]}}
             </p>
           </h5>
 
-          <h5 *ngIf="this.asigned_staff.value.guardaespaldas.length != 0">lista guardaespaldas: 
+          <h5 *ngIf="this.asigned_staff.value.guardaespaldas.length !== 0">lista guardaespaldas: 
             <p *ngFor="let guardaespalda of this.asigned_staff.value.guardaespaldas">
               {{guardaespalda.split(';')[1]}} {{guardaespalda.split(';')[2]}}
             </p>
           </h5>
 
-          <h5 *ngIf="this.asigned_staff.value.motorizados.length != 0">lista motorizados: 
+          <h5 *ngIf="this.asigned_staff.value.motorizados.length !== 0">lista motorizados: 
             <p *ngFor="let motorizado of this.asigned_staff.value.motorizados">
               {{motorizado.split(';')[1]}} {{motorizado.split(';')[2]}}
             </p>
           </h5>
 
-          <h5 *ngIf="this.asigned_staff.value.conductores.length != 0">lista conductores: 
+          <h5 *ngIf="this.asigned_staff.value.conductores.length !== 0">lista conductores: 
             <p *ngFor="let conductor of this.asigned_staff.value.conductores">
               {{conductor.split(';')[1]}} {{conductor.split(';')[2]}}
             </p>
@@ -134,28 +134,28 @@
 
           
 
-          <h5 *ngIf="this.asigned_equipment.value.vehiculos.length != 0">
+          <h5 *ngIf="this.asigned_equipment.value.vehiculos.length !== 0">
             Lista vehiculos:
             <p *ngFor="let vehiculo of this.asigned_equipment.value.vehiculos">
               modelo: {{vehiculo.split(';')[1]}}, placa: {{vehiculo.split(';')[2]}}
             </p>
           </h5>
 
-          <h5 *ngIf="this.asigned_equipment.value.candados.length != 0">
+          <h5 *ngIf="this.asigned_equipment.value.candados.length !== 0">
             Lista Candados:
             <p *ngFor="let candado of this.asigned_equipment.value.candados">
               numero serial: {{candado.split(';')[1]}}, marca: {{candado.split(';')[2]}}, modelo: {{candado.split(';')[2]}}
             </p>
           </h5>
 
-          <h5 *ngIf="this.asigned_equipment.value.armamentos.length != 0">
+          <h5 *ngIf="this.asigned_equipment.value.armamentos.length !== 0">
             Lista armamentos:
             <p *ngFor="let armamento of this.asigned_equipment.value.armamentos">
               numero serial: {{armamento.split(';')[1]}}, marca: {{armamento.split(';')[2]}}, modelo: {{armamento.split(';')[2]}}
             </p>
           </h5>
 
-          <h5 *ngIf="this.asigned_equipment.value.movil.length != 0">
+          <h5 *ngIf="this.asigned_equipment.value.movil.length !== 0">
                móviles:
             <p>
               numero serial: {{this.asigned_equipment.value.movil.split(';')[1]}}, marca: {{this.asigned_equipment.value.movil.split(';')[2]}}, modelo: {{this.asigned_equipment.value.movil.split(';')[2]}}
@@ -315,9 +315,10 @@
           (this.boton_deshabilitado_guardia || this.boton_deshabilitado_conductor || this.boton_deshabilitado_guardaespalda || this.boton_deshabilitado_motorizado || 
           this.boton_deshabilitado_empleado_lider || this.boton_deshabilitado_vehiculo || this.boton_deshabilitado_candados || this.boton_deshabilitado_armamento || 
           this.boton_deshabilitado_movil || this.boton_deshabilitado_cuenta_asignada || this.boton_deshabilitado_estado)"
-        type="submit">Asignar pedido</button>
+        type="submit" (click)="enviarNotificacionAlCliente()">Asignar pedido</button>
 
       <button mat-flat-button color="warn">Reembolso</button>
+      <!-- <button mat-flat-button color="success" type="button" (click)="enviarNotificacionAlCliente()">Print</button> -->
 
 
       </form>

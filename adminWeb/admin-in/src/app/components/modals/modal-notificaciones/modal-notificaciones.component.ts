@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { getMessaging, getToken, onMessage} from "firebase/messaging";
 import { AppComponent } from 'src/app/app.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
   selector: 'app-modal-notificaciones',
@@ -53,6 +54,8 @@ export class ModalNotificacionesComponent implements OnInit {
     },
 
   ]
+
+
  token: string = '';
 
   title = 'af-notification';
@@ -69,41 +72,26 @@ export class ModalNotificacionesComponent implements OnInit {
     public notificacionService:NotificacionesService,
     private router:Router,
     private http: HttpClient,
-    // private appcomponent: AppComponent,
-    // private firebase: Firebase
+    private clienteWAService: ClienteWAService
   ) { 
-    //console.log(notificacionService.obtenerListaNotificaciones())
     
   }
 
 
   ngOnInit(): void {
-    console.log(this.app)
-    // this.requestPermission();
-    console.log("------------------------------------")
-    // this.requestPermission();
-    // if(this.token != ''){
-    //   this.enviar_mensaje()
-    // }
+    this.obtenerNotificaciones();
 
-    
-    
-    // this.lista_notificaciones.concat(this.appcomponent.lista_notificaciones)
+  }
 
-    // onMessage(messaging, (payload) => {
-    //   console.log('Message received. ', payload);
-    //   this.message=payload;
-    // });
-  
-
-    // const messaging = getMessaging();
-    // Add the public key generated from the console here. provideMessaging(() => getMessaging())
-    // this.firebase
-    // onMessage( payload  => {
-    //   console.log(payload);
-    // }) 
-    // getMessaging()
-   
+  obtenerNotificaciones(){
+    this.clienteWAService.obtenerListaNotificaciones()
+    .subscribe({
+      next: (notificaciones: any) => {
+        this.lista_notificaciones = [];
+        this.lista_notificaciones = this.lista_notificaciones.concat(notificaciones);
+        console.log(notificaciones);
+      }
+    })
   }
 
  requestPermission() {
