@@ -51,3 +51,41 @@
     background-color: rgb(22, 184, 22);
     color: white ;
 }
+
+.notificacion{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    background-color: #3b7bc2;
+    color: #fcfcfc;
+    padding: 3vh;
+    border-radius: 2vh;
+
+}
+
+.ventana-notificaciones{
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+
+}
+
+.header-notificaciones{
+    background-color: #d12927;
+    color: #fcfcfc;
+    padding: 3vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3vh;
+}
+
+.logoI {
+    width: 10vh;
+    height: 10vh;
+    background-color: #d12927;
+    border-radius: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

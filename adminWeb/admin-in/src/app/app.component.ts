@@ -92,7 +92,7 @@ export class AppComponent implements OnInit{
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
       console.log('Message received. ', payload);
-      this.reproducir_alerta();
+      // this.reproducir_alerta();
       this.message=payload;
     });
 

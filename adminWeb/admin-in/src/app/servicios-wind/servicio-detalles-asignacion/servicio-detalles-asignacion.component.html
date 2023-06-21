@@ -27,7 +27,7 @@
         </div>
 
         <div class="Fila_Datos" >
-          <h5>Ubicacion:   </h5>
+          <h5>Ubicación:   </h5>
           <h5><button mat-button style="font-size: large;" (click)="abrirUbicacion()">Abrir ubicacion</button></h5>
         </div>
 
@@ -37,7 +37,7 @@
         </div>
 
         <div class="Fila_Datos">
-          <h5>Fecha Finalizacion:</h5>
+          <h5>Fecha Finalización:</h5>
           <h5 id="valor">{{pedido_a_asignar.fecha_Finalizacion}}</h5>
         </div>
 
@@ -47,12 +47,12 @@
         </div>
 
         <div class="Fila_Datos">
-          <h5>Hora Finalizacion:</h5>
+          <h5>Hora Finalización:</h5>
           <h5 id="valor">{{pedido_a_asignar.hora_Finalizacion}}</h5>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Metodo de pago: </h5>
+          <h5>Método de pago: </h5>
           <h5 id="valor">{{pedido_a_asignar.metodo_Pago}}</h5>
         </div>
 
@@ -63,7 +63,7 @@
         </div>
 
         <div class="Fila_Datos">
-          <h5>Staff leader:</h5>
+          <h5>Empleado líder:</h5>
           <h5 id="valor">{{this.registerForm.value.staff_leader.split(';')[1]}} {{this.registerForm.value.staff_leader.split(';')[2]}}</h5>
         </div>
 
@@ -168,7 +168,7 @@
 
 
     <div class="column" style="text-align:start;">
-      <h2>Asignacion</h2>
+      <h2>Asignación</h2>
       <br>
       <br>
 
@@ -223,7 +223,7 @@
         </form>
 
         <mat-form-field appearance="fill">
-          <mat-label>Empleado lider</mat-label>
+          <mat-label>Empleado líder</mat-label>
           <mat-select (ngModelChange)="controlButtonEmpleadoLider($event)" formControlName="staff_leader">
             <mat-option *ngFor="let personal of this.concatenarListas()" value="{{personal}}"> 
               {{personal.split(';')[1]}} {{personal.split(';')[2]}}
@@ -235,7 +235,7 @@
 
         <form  [formGroup]="asigned_equipment" >
           <mat-form-field *ngIf="this.vehiculosBool" appearance="fill">
-            <mat-label>Vehiculos</mat-label>
+            <mat-label>Vehículos</mat-label>
             <mat-select (ngModelChange)="controlButtonVehiculos($event)" formControlName="vehiculos" multiple>
               <mat-option *ngFor="let vehiculo of lista_vehiculos" value="{{vehiculo.id}};{{vehiculo.model}};{{vehiculo.plate}}">
                 placa: {{vehiculo.plate}}
@@ -268,7 +268,7 @@
           <br>
       
           <mat-form-field appearance="fill">
-            <mat-label>Movil</mat-label>
+            <mat-label>Móvil</mat-label>
             <mat-select (ngModelChange)="controlButtonMovil($event)" formControlName="movil">
               <mat-option *ngFor="let movil of lista_moviles" value="{{movil.id}};{{movil.brand}};{{movil.model}}">
                 modelo: {{movil.model}}

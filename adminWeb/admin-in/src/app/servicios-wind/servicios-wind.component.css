@@ -146,4 +146,5 @@ li:hover {
   border-radius: 32px;
   background-color: rgb(203, 56, 56);
   color: pink;
+  cursor: pointer;
 }

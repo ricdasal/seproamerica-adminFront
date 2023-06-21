@@ -27,7 +27,7 @@ export class ServicioPorAsignarComponent implements OnInit {
 
 
   lista_pedidos_en_proceso: Array<any> = []
-  columnas: string[] = ['Id','Fecha de solicitud','Fecha de servicio','Solicitante', 'Dni del solictante', 'Servicio','Opciones'];
+  columnas: string[] = ['Id','Fecha de solicitud','Fecha de servicio', 'Hora de inicio', 'Solicitante', 'Dni del solictante', 'Servicio','Opciones'];
 
   constructor(
     private clienteWAService: ClienteWAService,
@@ -46,6 +46,20 @@ export class ServicioPorAsignarComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.lista_pedidos_asignar.sort(
+          (a, b) => {
+            const dateA = new Date(a.date_request);
+            const dateB = new Date(b.date_request);
+          
+            if (dateA < dateB) {
+              return 1;
+            } else if (dateA > dateB) {
+              return -1;
+            } else {
+              return 0;
+            }
+          }
+        )
         
       }
     })

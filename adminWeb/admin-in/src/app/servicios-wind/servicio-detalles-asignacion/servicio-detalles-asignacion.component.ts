@@ -709,8 +709,8 @@ console.log(--------------------------------------------)
         console.log(data);
    
         this.dialog.open(AsignacionConfirmacion, {
-          width: '100vh',
-          height: '50vh',
+          width: '25vh',
+          height: '25vh',
           data: data
           
         })

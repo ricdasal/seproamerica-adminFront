@@ -25,6 +25,11 @@
             <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Fecha de servicio </th>
             <td mat-cell *matCellDef="let pedido"> {{pedido.start_date}}</td>
           </ng-container>
+
+          <ng-container matColumnDef="Hora de inicio">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Hora de inicio </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.start_time}}</td>
+          </ng-container>
       
       
           <ng-container matColumnDef="Solicitante">
@@ -56,7 +61,7 @@
             <th mat-header-cell *matHeaderCellDef ></th>
             <td mat-cell *matCellDef="let pedido; let i = index" class="td-style" style="display: flex; gap: 1rem;">
               <button mat-flat-button color="primary" routerLink="/serviciosVentana/serviciosDetallesAsignacion" (click)="encontrar_pedido_especifico(pedido.id)">Detalles</button>
-              <button mat-flat-button color="accent">Editar pedido</button>
+              <!-- <button mat-flat-button color="accent">Editar pedido</button> -->
               <button mat-flat-button color="warn">Cancelar</button>
              </td>
           </ng-container>
