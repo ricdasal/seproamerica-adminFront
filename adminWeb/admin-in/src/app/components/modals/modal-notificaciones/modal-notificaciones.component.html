@@ -59,10 +59,14 @@
         No Message Arrived
     </div>
     
-    <div *ngIf="this.lista_notificaciones.length !== 0;" class="ventana-notificaciones">
-        <div *ngFor="let notificacion of this.lista_notificaciones" class="notificacion">
+    <div *ngIf="this.lista_notificaciones.length !== 0;" class="ventana-notificaciones" 
+        >
+        <div *ngFor="let notificacion of this.lista_notificaciones" 
+        class="notificacion"
+        (click)="obtenerPedido(notificacion.order)">
             <h3>{{notificacion.title}}</h3>
             <h4>{{notificacion.message}}</h4>
+            <h4>Orden #: {{notificacion.order}}</h4>
     
         </div>
     

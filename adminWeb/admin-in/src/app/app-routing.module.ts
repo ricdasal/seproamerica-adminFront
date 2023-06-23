@@ -36,11 +36,7 @@ import { ServicioEapComponent } from './servicios-wind/servicio-eap/servicio-eap
 import { PermitidoConTipoDeUsuarioGuard } from './guards/permitido-con-tipo-de-usuario.guard';
 import { ConfiguracionesWindComponent } from './configuraciones-wind/configuraciones-wind.component';
 import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-cargos.component';
-
-
-
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NotificacionModalComponent } from './components/modals/notificacion-modal/notificacion-modal.component';
 
 
 const routes: Routes = [
@@ -121,6 +117,7 @@ const routes: Routes = [
   
 
   {path: 'map', component: MapWindComponent, pathMatch: 'prefix'},
+  {path: 'notificacion', component: NotificacionModalComponent, pathMatch:'prefix'},
 
 
 
@@ -147,7 +144,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: "reload"})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

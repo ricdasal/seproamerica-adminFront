@@ -79,6 +79,7 @@ export class ServicioDetallesAsignacionComponent implements OnInit, OnChanges {
     longitud_Origen: 0,
     latitud_Destino: 0,
     longitud_Destino: 0,
+    distancia_en_km: 0,
     cliente_solicitante: 0,
     idServicio: 0,
     cuenta_telefono: 0,
@@ -224,6 +225,7 @@ console.log(--------------------------------------------)
     this.obtener_todo_armamento()
     this.obtener_todo_movil()
     this.obtener_todo_cuentas()
+    
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -492,6 +494,7 @@ console.log(--------------------------------------------)
         this.pedido_a_asignar.longitud_Origen = info_pedido.origin_lng; 
         this.pedido_a_asignar.latitud_Destino = info_pedido.destination_lat;
         this.pedido_a_asignar.longitud_Destino = info_pedido.destination_lng;
+        this.pedido_a_asignar.distancia_en_km = info_pedido.km_distance;
         this.pedido_a_asignar.cantidad_Empleados_Asignados = this.pedido_a_asignar.cantidad_Empleados_Asignados.concat(info_pedido.staff_number)
         this.pedido_a_asignar.staff_selected = this.pedido_a_asignar.staff_selected.concat(info_pedido.staff_selected)
         this.pedido_a_asignar.equipment_selected = this.pedido_a_asignar.equipment_selected.concat(info_pedido.equipment_selected)

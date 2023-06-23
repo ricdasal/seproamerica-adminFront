@@ -10,6 +10,7 @@ import { getMessaging, getToken, onMessage} from "firebase/messaging";
 import { AppComponent } from 'src/app/app.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modal-notificaciones',
@@ -72,7 +73,8 @@ export class ModalNotificacionesComponent implements OnInit {
     public notificacionService:NotificacionesService,
     private router:Router,
     private http: HttpClient,
-    private clienteWAService: ClienteWAService
+    private clienteWAService: ClienteWAService,
+    public dialogRef: MatDialogRef<any>,
   ) { 
     
   }
@@ -94,16 +96,31 @@ export class ModalNotificacionesComponent implements OnInit {
     })
   }
 
- requestPermission() {
+  obtenerPedido(id: any){
+    localStorage.setItem("pedido_seleccionado", id);
+    this.router.navigate(["/serviciosVentana/serviciosDetallesAsignacion/"]);
+    if(window.location.href.split("#")[1] == "/serviciosVentana/serviciosDetallesAsignacion"){
+      window.location.reload() 
+    }
+    this.onClickNO();
+  }
+
+  onClickNO(): void{
+    this.dialogRef.close();
+    
+  }
+
+
+  requestPermission() {
     console.log('Requesting permission...');
     Notification.requestPermission().then((permission) => {
       if (permission === 'granted') {
         console.log('Notification permission granted.');
       }
     })
- }
+  }
 
-requestPermission1() {
+  requestPermission1() {
   const messaging = getMessaging();
   
   getToken(messaging, 
@@ -120,71 +137,71 @@ requestPermission1() {
        }     }).catch((err) => {
       console.log('An error occurred while retrieving token. ', err);
   });
-}
-listen() {
-  const messaging = getMessaging();
-  onMessage(messaging, (payload) => {
-    console.log('Message received. ', payload);
+  }
+  listen() {
+    const messaging = getMessaging();
+    onMessage(messaging, (payload) => {
+      console.log('Message received. ', payload);
 
-    this.message=payload;
+      this.message=payload;
 
-    this.lista_notificaciones.push(this.message);
-  });
-}
+      this.lista_notificaciones.push(this.message);
+    });
+  }
 
 
-enviar_mensaje(){
-  const url = 'https://fcm.googleapis.com/fcm/send';
-  const serverKey = 'AIzaSyDWEsnR-K7xcEb-VRIfu9bJ8lvCOJMRINo';
-  const notification = {
-    title: 'First Notification',
-    body: 'Hello from Jishnu!!'
-  };
+  enviar_mensaje(){
+    const url = 'https://fcm.googleapis.com/fcm/send';
+    const serverKey = 'AIzaSyDWEsnR-K7xcEb-VRIfu9bJ8lvCOJMRINo';
+    const notification = {
+      title: 'First Notification',
+      body: 'Hello from Jishnu!!'
+    };
 
 
   
   
 
-  console.log(this.token)
-  
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `key=${serverKey}`
-  });
-  
-  const data = {
-    notification: notification,
-    to: this.token
-  };
-  
-  this.http.post(url, data, { headers })
-    .subscribe(
-      (response) => {
-        console.log('Respuesta:', response);
-        // Realiza acciones adicionales con la respuesta
-      },
-      (error) => {
-        console.error('Error en la solicitud:', error);
-        // Maneja el error de manera adecuada
-      }
-    );
+    console.log(this.token)
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `key=${serverKey}`
+    });
+    
+    const data = {
+      notification: notification,
+      to: this.token
+    };
+    
+    this.http.post(url, data, { headers })
+      .subscribe(
+        (response) => {
+          console.log('Respuesta:', response);
+          // Realiza acciones adicionales con la respuesta
+        },
+        (error) => {
+          console.error('Error en la solicitud:', error);
+          // Maneja el error de manera adecuada
+        }
+      );
 
 
 
 
 
 
-// Send a message to devices subscribed to the provided topic.
-// getMessaging().send(message)
-//   .then((response) => {
-//     // Response is a message ID string.
-//     console.log('Successfully sent message:', response);
-//   })
-//   .catch((error) => {
-//     console.log('Error sending message:', error);
-//   });
+  // Send a message to devices subscribed to the provided topic.
+  // getMessaging().send(message)
+  //   .then((response) => {
+  //     // Response is a message ID string.
+  //     console.log('Successfully sent message:', response);
+  //   })
+  //   .catch((error) => {
+  //     console.log('Error sending message:', error);
+  //   });
 
-}
+  }
 
   leerNotificacion(notificacion: any){
     console.log(notificacion)
@@ -207,4 +224,5 @@ enviar_mensaje(){
     }
   }
  
+  
 }

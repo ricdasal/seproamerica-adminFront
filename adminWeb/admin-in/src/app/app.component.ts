@@ -14,6 +14,9 @@ import { getToken, onMessage, getMessaging } from 'firebase/messaging';
 import { environment } from 'src/environments/environment';
 import { ClienteWAService } from './services/cliente-wa.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { NotificacionModalComponent } from './components/modals/notificacion-modal/notificacion-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -37,7 +40,8 @@ export class AppComponent implements OnInit{
     private rutaActiva: ActivatedRoute,
     private notificacionService:NotificacionesService,
     private mensajeriaService:MensajeriaService,
-    private clienteWAService: ClienteWAService
+    private clienteWAService: ClienteWAService,
+    private dialog: MatDialog
      ) { 
       this.ruta=window.location.href.split("/").pop()
     console.log(this.ruta)
@@ -92,7 +96,11 @@ export class AppComponent implements OnInit{
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
       console.log('Message received. ', payload);
-      // this.reproducir_alerta();
+      this.reproducir_alerta();
+      this.dialog.open(NotificacionModalComponent, {
+        width: '250px',
+        data: payload
+      });
       this.message=payload;
     });
 
@@ -100,3 +108,4 @@ export class AppComponent implements OnInit{
   }
 
 }
+

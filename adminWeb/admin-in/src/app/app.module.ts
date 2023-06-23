@@ -100,6 +100,7 @@ import { ConfiguracionesWindComponent } from './configuraciones-wind/configuraci
 import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-cargos.component';
 import { environment } from '../environments/environment';
 import { initializeApp } from "firebase/app";
+import { NotificacionModalComponent } from './components/modals/notificacion-modal/notificacion-modal.component';
 
 initializeApp(environment.firebase);
 
@@ -178,7 +179,8 @@ initializeApp(environment.firebase);
     ServicioEapComponent,
     DirectivaUsuariosDirective,
     ConfiguracionesWindComponent,
-    CrearCargosComponent
+    CrearCargosComponent,
+    NotificacionModalComponent
   ],
   imports: [
     BrowserModule,

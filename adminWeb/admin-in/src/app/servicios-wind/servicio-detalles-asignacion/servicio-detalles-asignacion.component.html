@@ -28,7 +28,12 @@
 
         <div class="Fila_Datos" >
           <h5>Ubicación:   </h5>
-          <h5><button mat-button style="font-size: large;" (click)="abrirUbicacion()">Abrir ubicacion</button></h5>
+          <h5><button mat-button style="font-size: large;" (click)="abrirUbicacion()">Abrir ubicación</button></h5>
+        </div>
+
+        <div class="Fila_Datos">
+          <h5>Distancia en kilómetros:</h5>
+          <h5 id="valor">{{this.pedido_a_asignar.distancia_en_km}} Km</h5>
         </div>
 
         <div class="Fila_Datos">
@@ -291,7 +296,7 @@
       <br>
 
       <mat-form-field appearance="fill">
-        <mat-label>Status</mat-label>
+        <mat-label>Estado</mat-label>
         <mat-select (ngModelChange)="controlButtonStatus($event)" formControlName="status">
           <mat-option  *ngFor="let estado of lista_estados" value="{{estado}}">
             {{estado}}
@@ -317,7 +322,7 @@
           this.boton_deshabilitado_movil || this.boton_deshabilitado_cuenta_asignada || this.boton_deshabilitado_estado)"
         type="submit" (click)="enviarNotificacionAlCliente()">Asignar pedido</button>
 
-      <button mat-flat-button color="warn">Reembolso</button>
+      <!-- <button mat-flat-button color="warn">Reembolso</button> -->
       <!-- <button mat-flat-button color="success" type="button" (click)="enviarNotificacionAlCliente()">Print</button> -->
 
 
