@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { CedulaLongitud, CedulaValidator, ageValidator, telefonoCelularValidator } from '../../funciones-utiles';
-import { DialogoConfirmacion } from '../edit-admin/edit-admin.component';
+import { DialogoConfirmacionComponent } from '../edit-admin/edit-admin.component';
 
 @Component({
   selector: 'app-edit-personal',
@@ -67,7 +67,7 @@ export class EditPersonalComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
-        this.dialog.open(DialogoConfirmacion, {
+        this.dialog.open(DialogoConfirmacionComponent, {
           data: res.message
         });
       }

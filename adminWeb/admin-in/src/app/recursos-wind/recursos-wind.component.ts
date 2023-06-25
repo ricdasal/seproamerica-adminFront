@@ -10,6 +10,7 @@ export class RecursosWindComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let initializer = 0;
   }
   
 

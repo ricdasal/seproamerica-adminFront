@@ -49,10 +49,10 @@
             <input class="form-check-input" type="radio"
             id="tipo_Servicio1" value="{{tipoServicio.idTipo}}" [ngStyle]="{ 'color': 'white' }"
             formControlName="tipo_Servicio" [(ngModel)]="servicio.tipo_Servicio"
-             *ngIf="tipoServicio.idTipo == servicio.tipo_Servicio" (change)="tipo_servicio_s2($event, tipoServicio.tarifa)">
+             *ngIf="tipoServicio.idTipo === servicio.tipo_Servicio" (change)="tipo_servicio_s2($event, tipoServicio.tarifa)">
             <label class="form-check-label" for="gridRadios1"
-             *ngIf="tipoServicio.idTipo == servicio.tipo_Servicio" [ngStyle]="{ 'color': 'blue' }">{{tipoServicio.tarifa}}</label>
-             <label class="form-check-label" for="gridRadios1" *ngIf="tipoServicio.idTipo != servicio.tipo_Servicio">{{tipoServicio.tarifa}}</label>
+             *ngIf="tipoServicio.idTipo === servicio.tipo_Servicio" [ngStyle]="{ 'color': 'blue' }">{{tipoServicio.tarifa}}</label>
+             <label class="form-check-label" for="gridRadios1" *ngIf="tipoServicio.idTipo !== servicio.tipo_Servicio">{{tipoServicio.tarifa}}</label>
           </div>
             
           
@@ -211,17 +211,17 @@
                             style="background-color:green;">Actualizar</button>
 
                     </div>
-                    <div *ngIf="actualizado==true" class="mensaje-actualizar exito">
+                    <div *ngIf="actualizado === true" class="mensaje-actualizar exito">
                         Datos actualizados con éxito, puede cerrar esta ventana para ver sus cambios
                     </div>
-                    <div *ngIf="actualizado==false" class="mensaje-actualizar error">
+                    <div *ngIf="actualizado === false" class="mensaje-actualizar error">
                         Problemas al actualizar sus datos!. <br>
                         Cierre la ventana para reinintentar
                     </div>
-                    <div *ngIf="servicio_diferente==true" id="Mensaje_Error">
+                    <div *ngIf="servicio_diferente === true" id="Mensaje_Error">
                       Ya existe otro servicio con este nombre
                     </div>
-                    <div *ngIf="servicio_diferente==false" id="Mensaje_Error"></div>
+                    <div *ngIf="servicio_diferente === false" id="Mensaje_Error"></div>
 
                 </div>
             </div>
@@ -258,15 +258,15 @@
                       <button type="button" (click)="eliminar_Servicio()" class="btn btn-primary" id="btnEliminarConfirmacion"
                           style="background-color:rgb(128, 0, 0);">Confirmar eliminacion de servicio</button>
                           <button type="button" (click)="eliminar_Servicio()" class="btn btn-primary" id="btnEliminarConfirmacion"
-                          style="background-color:rgb(128, 0, 0);" *ngIf="eliminado == true" hidden>
+                          style="background-color:rgb(128, 0, 0);" *ngIf="eliminado === true" hidden>
                           Confirmar eliminacion de servicio</button>
 
                   </div>
-                  <div *ngIf="eliminado==true" class="mensaje-actualizar exito">
+                  <div *ngIf="eliminado === true" class="mensaje-actualizar exito">
                       Servicio eliminado con éxito <br>
                       
                   </div>
-                  <div *ngIf="eliminado==false" class="mensaje-actualizar error">
+                  <div *ngIf="eliminado === false" class="mensaje-actualizar error">
                       Problemas al eliminar el servicio. <br>
                       Cierre la ventana para reinintentar
                   </div>
@@ -364,7 +364,7 @@
       <p *ngIf="tres_digitos_no_valido" style="color:rgb(168, 13, 13);">Solo pueden haber tres dígitos decimales</p>
     </div>
 
-    <div class="col cont-guardar" *ngIf="inexistente == true">
+    <div class="col cont-guardar" *ngIf="inexistente === true">
       <input type="image" id="img-guardar" src="../../assets/Iconos/app sepro vectores-45.png"alt="" routerLink="/serviciosVentana">
     </div>
     

@@ -110,6 +110,16 @@ export class ModalNotificacionesComponent implements OnInit {
     
   }
 
+  eliminarNotificaciones(){
+    // this.clienteWAService.eliminarListaNotificaciones()
+    // .subscribe({
+    //   next: (res: any) => {
+    //     console.log(res);
+    //   }
+    // })
+    
+    // this.lista_notificaciones = [];
+  }
 
   requestPermission() {
     console.log('Requesting permission...');

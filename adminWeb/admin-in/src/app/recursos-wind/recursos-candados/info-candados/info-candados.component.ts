@@ -13,6 +13,7 @@ export class InfoCandadosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let initializer = 0;
   }
 
 }

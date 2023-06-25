@@ -402,12 +402,13 @@ export class ClienteWAService {
 
   }
 
-  
+  eliminarListaNotificaciones(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.delete(`${this.DJANGO_SERVER_OBTENER_NOTIFICACIONES}`, {headers})
 
-
-
-
-
+  }
 
 
 

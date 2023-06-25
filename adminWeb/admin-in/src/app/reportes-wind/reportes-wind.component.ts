@@ -10,6 +10,7 @@ export class ReportesWindComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let initializer = 0;
   }
 
 }

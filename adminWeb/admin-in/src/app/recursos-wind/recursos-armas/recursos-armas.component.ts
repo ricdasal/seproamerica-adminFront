@@ -20,7 +20,7 @@ import { EditArmasComponent } from './edit-armas/edit-armas.component';
 })
 
 
-export class RecursosArmasComponent{
+export class RecursosArmasComponent implements OnInit{
 
   emp:any;
     numSerie!: string;

@@ -13,6 +13,7 @@ export class InfoVehiculosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let initializer = 0;
   }
 
 }

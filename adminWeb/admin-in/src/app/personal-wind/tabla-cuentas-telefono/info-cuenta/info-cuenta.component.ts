@@ -13,6 +13,7 @@ export class InfoCuentaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let initializer = 0;
   }
 
 }

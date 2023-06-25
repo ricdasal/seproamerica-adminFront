@@ -19,6 +19,7 @@ export class EliminarCuentaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let initializer = 0;
   }
 
   eliminarCuenta(id: any){

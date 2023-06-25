@@ -3,7 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
-import { DialogoConfirmacion } from '../../tabla-personal/edit-admin/edit-admin.component';
+import { DialogoConfirmacionComponent } from '../../tabla-personal/edit-admin/edit-admin.component';
 
 @Component({
   selector: 'app-editar-cuenta',
@@ -42,8 +42,8 @@ export class EditarCuentaComponent implements OnInit {
     this.http.put(`${this.clienteWAService.DJANGO_SERVER_EDITAR_CUENTAS}`, registerForm.value, {headers})//
     .subscribe({
       next: (res: any) =>{
-        console.log(res);
-        this.dialog.open(DialogoConfirmacion, {
+        console.log(res); 
+        this.dialog.open(DialogoConfirmacionComponent, {
           data: res.message
         });
       }

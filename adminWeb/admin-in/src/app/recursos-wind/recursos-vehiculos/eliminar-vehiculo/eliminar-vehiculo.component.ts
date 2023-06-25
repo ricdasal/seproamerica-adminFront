@@ -18,6 +18,7 @@ export class EliminarVehiculoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let initializer = 0;
   }
 
   eliminarEquipamento(id: any){

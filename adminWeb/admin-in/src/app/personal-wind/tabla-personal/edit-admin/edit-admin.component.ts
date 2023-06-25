@@ -10,7 +10,7 @@ import { CedulaValidator, CedulaLongitud, ageValidator, telefonoCelularValidator
   templateUrl: './edit-admin.component.html',
   styleUrls: ['./edit-admin.component.css']
 })
-export class EditAdminComponent implements OnInit, AfterViewInit {
+export class EditAdminComponent implements OnInit {
 
   lista_sucursales: Array<any> = [];
   lista_cargos: Array<any> = [];
@@ -29,10 +29,6 @@ export class EditAdminComponent implements OnInit, AfterViewInit {
     
   ) { }
 
-  ngAfterViewInit(): void {
-   
-    
-  }
 
   ngOnInit(): void {
     console.log(this.admin);
@@ -68,7 +64,7 @@ export class EditAdminComponent implements OnInit, AfterViewInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
-        this.dialog.open(DialogoConfirmacion, {
+        this.dialog.open(DialogoConfirmacionComponent, {
           data: res.message
         });
       }
@@ -100,10 +96,10 @@ export class EditAdminComponent implements OnInit, AfterViewInit {
 
 
 @Component({
-  selector: 'dialogo-confirmacion-dialog',
+  selector: 'app-dialogo-confirmacion-dialog',
   templateUrl: '../../personal-confirmacion.html',
 })
-export class DialogoConfirmacion {
+export class DialogoConfirmacionComponent {
 
   constructor(
     public dialogRef: MatDialogRef<any>,

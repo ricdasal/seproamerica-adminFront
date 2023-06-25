@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { DialogoConfirmacion } from 'src/app/personal-wind/tabla-personal/edit-admin/edit-admin.component';
+import { DialogoConfirmacionComponent } from 'src/app/personal-wind/tabla-personal/edit-admin/edit-admin.component';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
@@ -77,7 +77,7 @@ export class EditArmasComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
-        this.dialog.open(DialogoConfirmacion, {
+        this.dialog.open(DialogoConfirmacionComponent, {
           data: res.message
         });
         
