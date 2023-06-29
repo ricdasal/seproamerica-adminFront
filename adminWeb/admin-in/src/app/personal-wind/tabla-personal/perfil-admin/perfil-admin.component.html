@@ -1,23 +1,40 @@
 
-  
-  <mat-card>
+<!--   
+  <mat-card style="display: flex; flex-direction: row; width: 100%; height: 100%;">
     <mat-card-header>
-      <mat-card-title-group >
+      <mat-card-title-group style="display: flex; flex-direction: column-reverse;">
+        <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
         <mat-card-title>{{this.admin.first_name}} {{this.admin.last_name}}</mat-card-title>
         <mat-card-subtitle><b>cedula: </b>{{this.admin.dni}}</mat-card-subtitle>
       </mat-card-title-group>
-      <img mat-card-md-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
     </mat-card-header>
-    <mat-card-content>
-      <p><b>Correo electronico:</b> {{this.admin.email}}</p>
-      <p><b>Direccion:</b> {{this.admin.address}}</p>
-      <p><b>Fecha de nacimiento:</b> {{this.admin.birthdate}}</p>
-      <p><b>Genero:</b> {{this.admin.gender}}</p>
-      <p><b>Telefono:</b> {{this.admin.phone_number}}</p>
-      <p><b>Activo:</b> {{this.admin.is_active}}</p>
-      <p><b>Sucursal:</b> {{this.admin.branch}}</p>
-      <p><b>Grupo:</b> {{this.admin.group}}</p>  
+    <mat-card-content style="display: flex; flex-direction: column;">
+      
     </mat-card-content>
-  </mat-card>
-  
+  </mat-card> -->
+
+<div class="contenedor-principal">
+  <div class="contenedor-secundario">
+    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu"> <!--{{this.admin.image}}-->
+    <div class="contenedor-informacion">
+      <h4>
+        {{this.admin.first_name}}<br>{{this.admin.last_name}}
+      </h4>
+      <h5 style="color: #959595;">
+        {{this.admin.dni}}
+      </h5>
+      <h4 *ngIf="this.admin.is_active" style="color: #34604e;"><b>Activo</b></h4>
+      <h4 *ngIf="!this.admin.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+    </div>
+  </div>
+  <div>
+    <h6><b>Correo:</b><br> <h6 class="color-gris">{{this.admin.email}}</h6></h6>
+    <h6><b>Direccion:</b> <br><h6 class="color-gris">{{this.admin.address}}</h6></h6>
+    <h6><b>Fecha de nacimiento:</b> <br><h6 class="color-gris">{{this.admin.birthdate}}</h6></h6>
+    <h6><b>Genero:</b> <br> <h6 class="color-gris">{{this.admin.gender}}</h6></h6>
+    <h6><b>Telefono:</b> <br> <h6 class="color-gris">{{this.admin.phone_number}}</h6></h6>
+    <h6><b>Sucursal:</b> <br> <h6 class="color-gris">{{this.admin.branch}}</h6></h6>
+    <h6><b>Grupo:</b> <br> <h6 class="color-gris">{{this.admin.group}}</h6></h6>  
+  </div>
+</div>
 

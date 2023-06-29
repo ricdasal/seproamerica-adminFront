@@ -7,9 +7,10 @@ import { InfPersonalService } from 'src/app/services/inf-personal.service';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CrearGruposComponent } from '../../configuraciones-wind/crear-grupos/crear-grupos.component';
 import { CedulaValidator, CedulaLongitud, ageValidator, telefonoCelularValidator } from '../funciones-utiles';
+import { MensajeConfirmacionCrearComponent } from 'src/app/components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
 
 @Component({
   selector: 'app-personal-registro',
@@ -89,7 +90,8 @@ export class PersonalRegistroComponent implements OnInit {
     private router:Router,
     private clienteWAService: ClienteWAService,
     private http: HttpClient,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public matDialogRef: MatDialogRef<any>
     ) { 
       console.log(router.url)
     }
@@ -131,6 +133,12 @@ export class PersonalRegistroComponent implements OnInit {
     this.http.post(`${this.clienteWAService.DJANGO_SERRVER_REGISTRAR_PERSONAL_OPERATIVO}`, form.value, {headers}).subscribe(
       (res: any) => {
         console.log(res);
+        const ventanaConfirmacion = this.dialog.open(MensajeConfirmacionCrearComponent,{
+          data: "Personal",
+          width: '70vh',
+          height: '50vh',
+        })
+
       },
       error => {
         console.log(error);

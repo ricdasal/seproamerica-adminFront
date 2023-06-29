@@ -37,7 +37,8 @@ export class ModalPerfilComponent implements OnInit {
   }
 
   logout(){
-    localStorage.clear()
+    localStorage.clear();
+    sessionStorage.clear();
     this.cookieService.deleteAll()
     //this.authService.logout()
     this.onCloseClick();

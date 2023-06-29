@@ -264,6 +264,7 @@ export class InicioSesionComponent implements OnInit, AfterContentInit, AfterVie
       console.log(res);
 
       localStorage.setItem('ACCESS_TOKEN', res['token']);
+      sessionStorage.setItem('ACCESS_TOKEN', res['token']);
       localStorage.setItem("ingresado", "true");
       const user_token = res['token'];
       const base64Url = user_token.split('.')[1];

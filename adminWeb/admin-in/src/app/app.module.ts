@@ -101,6 +101,9 @@ import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-
 import { environment } from '../environments/environment';
 import { initializeApp } from "firebase/app";
 import { NotificacionModalComponent } from './components/modals/notificacion-modal/notificacion-modal.component';
+import { MensajeConfirmacionComponent } from './components/modals/mensaje-confirmacion/mensaje-confirmacion.component';
+import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
+import { MensajeConfirmacionEliminarComponent } from './components/modals/mensaje-confirmacion-eliminar/mensaje-confirmacion-eliminar.component';
 
 initializeApp(environment.firebase);
 
@@ -180,7 +183,10 @@ initializeApp(environment.firebase);
     DirectivaUsuariosDirective,
     ConfiguracionesWindComponent,
     CrearCargosComponent,
-    NotificacionModalComponent
+    NotificacionModalComponent,
+    MensajeConfirmacionComponent,
+    MensajeConfirmacionCrearComponent,
+    MensajeConfirmacionEliminarComponent
   ],
   imports: [
     BrowserModule,

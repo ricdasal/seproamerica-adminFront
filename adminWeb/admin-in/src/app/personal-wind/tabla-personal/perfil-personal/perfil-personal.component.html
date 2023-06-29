@@ -1,4 +1,4 @@
-<mat-card class="example-card" >
+<!-- <mat-card class="example-card" >
     <mat-card-header>
       <mat-card-title-group >
         <mat-card-title>{{this.personal.first_name}} {{this.personal.last_name}}</mat-card-title>
@@ -17,4 +17,30 @@
       <p><b>Grupo:</b> {{this.personal.group}}</p>
 
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
+
+
+  <div class="contenedor-principal">
+    <div class="contenedor-secundario">
+      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu"> <!--{{this.personal.image}}-->
+      <div class="contenedor-informacion">
+        <h4>
+          {{this.personal.first_name}}<br>{{this.personal.last_name}}
+        </h4>
+        <h5 style="color: #959595;">
+          {{this.personal.dni}}
+        </h5>
+        <h4 *ngIf="this.personal.is_active" style="color: #34604e;"><b>Activo</b></h4>
+        <h4 *ngIf="!this.personal.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      </div>
+    </div>
+    <div>
+      <h6><b>Correo:</b><br> <h6 class="color-gris">{{this.personal.email}}</h6></h6>
+      <h6><b>Direccion:</b> <br><h6 class="color-gris">{{this.personal.address}}</h6></h6>
+      <h6><b>Fecha de nacimiento:</b> <br><h6 class="color-gris">{{this.personal.birthdate}}</h6></h6>
+      <h6><b>Genero:</b> <br> <h6 class="color-gris">{{this.personal.gender}}</h6></h6>
+      <h6><b>Telefono:</b> <br> <h6 class="color-gris">{{this.personal.phone_number}}</h6></h6>
+      <h6><b>Sucursal:</b> <br> <h6 class="color-gris">{{this.personal.branch}}</h6></h6>
+      <h6><b>Grupo:</b> <br> <h6 class="color-gris">{{this.personal.group}}</h6></h6>  
+    </div>
+  </div>

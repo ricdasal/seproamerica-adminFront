@@ -52,7 +52,20 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.requestPermission();
-    this.listen()
+    this.listen();
+    console.log(window.location.href.split('#')[1])
+    if(localStorage.getItem('ACCESS_TOKEN') && window.location.href.split('#')[1] == '/'){
+      console.log(this.router.url)
+      this.router.navigate(['/serviciosVentana/serviciosTipo']);
+      
+    }
+    // else if(localStorage.getItem('ACCESS_TOKEN') && (this.router.url == '/')){
+
+    // }
+    else if(!localStorage.getItem('ACCESS_TOKEN')){
+      this.router.navigate(['/login']);
+    }
+
    
   }
   reproducir_alerta() {
