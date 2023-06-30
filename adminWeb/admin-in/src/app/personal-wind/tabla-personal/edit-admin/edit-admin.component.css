@@ -14,14 +14,15 @@
   .formulario{
     display: flex;
     flex-direction: column;
-    gap: 5rem
+    align-items: center;
+    gap: 2rem
   }
   
   .item{
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 3vh;
+    gap: 0.5rem;
   
   }
 
@@ -32,11 +33,11 @@
   }
 
   .format-button{
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: white;
     /* background-color: #40ce50; */
     border-radius: 1.5rem;
-    width: 50vh;
+    width: 30vh;
     border: none;
     font-weight: bolder;
   }
@@ -50,5 +51,7 @@
   ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex{
     background-color: white;
   }
+
+  
 
  

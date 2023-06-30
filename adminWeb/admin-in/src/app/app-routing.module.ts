@@ -37,6 +37,8 @@ import { PermitidoConTipoDeUsuarioGuard } from './guards/permitido-con-tipo-de-u
 import { ConfiguracionesWindComponent } from './configuraciones-wind/configuraciones-wind.component';
 import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-cargos.component';
 import { NotificacionModalComponent } from './components/modals/notificacion-modal/notificacion-modal.component';
+import { MensajeConfirmacionComponent } from './components/modals/mensaje-confirmacion/mensaje-confirmacion.component';
+import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
 
 
 const routes: Routes = [
@@ -118,6 +120,7 @@ const routes: Routes = [
 
   {path: 'map', component: MapWindComponent, pathMatch: 'prefix'},
   {path: 'notificacion', component: NotificacionModalComponent, pathMatch:'prefix'},
+  // {path: 'confirmacion', component: MensajeConfirmacionCrearComponent, pathMatch: 'prefix'},
 
 
 

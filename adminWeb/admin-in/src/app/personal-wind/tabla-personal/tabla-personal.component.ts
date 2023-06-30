@@ -207,7 +207,7 @@ export class TablaPersonalComponent implements OnInit {
         next: (admin: any) => {
           console.log(admin);
           const ventanaGrupos =  this.dialog.open(EditAdminComponent, {
-            width: '70vh',
+            width: '90vh',
             height: '80vh',
             data: admin
           })

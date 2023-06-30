@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-mensaje-confirmacion-crear',
@@ -10,10 +10,15 @@ export class MensajeConfirmacionCrearComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    public matdialogref: MatDialogRef<any>
   ) { }
 
   ngOnInit(): void {
     let initializer = 0;
+  }
+
+  onClickNo(){
+    this.matdialogref.close();
   }
 
 }

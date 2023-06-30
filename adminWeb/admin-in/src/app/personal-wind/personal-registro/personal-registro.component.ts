@@ -347,6 +347,8 @@ export class PersonalRegistroComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  
 
+  onClickNo(){
+    this.matDialogRef.close();
+  }
 }

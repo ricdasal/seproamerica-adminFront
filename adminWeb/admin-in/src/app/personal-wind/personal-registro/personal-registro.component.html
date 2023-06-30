@@ -133,8 +133,8 @@
     </div>  
 
     <div>
-      <button mat-raised-button color="primary" class="format-button" type="submit" ngClick="submit" [disabled]="!registerForm.valid">Guardar</button>
-      <!-- <button mat-raised-button color="warn" class="format-button" type="button">Cancelar</button> -->
+      <button mat-raised-button color="primary" class="format-button" type="submit" ngClick="submit" [disabled]="!registerForm.valid" (click)="onClickNo()">Guardar</button>
+      <button mat-raised-button color="warn" class="format-button" type="button" (click)="onClickNo()">Cancelar</button>
     </div>
 
 
