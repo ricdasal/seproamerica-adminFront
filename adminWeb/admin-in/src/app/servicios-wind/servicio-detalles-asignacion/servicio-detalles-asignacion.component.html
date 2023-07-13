@@ -7,101 +7,102 @@
         <h2 >Datos del servicio</h2>
 
         <div class="Fila_Datos">
-          <h5>ID:</h5>
-          <h5 id="valor">{{pedido_a_asignar.idPedido}}</h5>
+          <h6>ID:</h6>
+          <h6 id="valor">{{pedido_a_asignar.idPedido}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Usuario solicitante:</h5>
-          <h5 id="valor">{{this.nombre_cliente.first_name}} {{this.nombre_cliente.last_name}}</h5>
+          <h6>Usuario solicitante:</h6>
+          <h6 id="valor">{{this.nombre_cliente.first_name}} {{this.nombre_cliente.last_name}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Nombre del servicio:    </h5>
-          <h5 id="valor">{{this.nombre_servicio.name}}</h5>
+          <h6>Nombre del servicio:    </h6>
+          <h6 id="valor">{{this.nombre_servicio.name}}</h6>
         </div>  
 
         <div class="Fila_Datos">
-          <h5>Fecha de solicitud:</h5>
-          <h5 id="valor">{{pedido_a_asignar.fecha_Solicitud}}</h5>
+          <h6>Fecha de solicitud:</h6>
+          <h6 id="valor">{{pedido_a_asignar.fecha_Solicitud}}</h6>
         </div>
 
         <div class="Fila_Datos" >
-          <h5>Ubicación:   </h5>
-          <h5><button mat-button style="font-size: large;" (click)="abrirUbicacion()">Abrir ubicación</button></h5>
+          <h6>Ubicación:   </h6>
+          <h6><button mat-button style="font-size:small;" (click)="abrirUbicacion()">Abrir ubicación</button></h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Distancia en kilómetros:</h5>
-          <h5 id="valor">{{this.pedido_a_asignar.distancia_en_km}} Km</h5>
+          <h6>Distancia en kilómetros:</h6>
+          <h6 id="valor">{{this.pedido_a_asignar.distancia_en_km}} Km</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Fecha Inicio: </h5>
-          <h5 id="valor">{{pedido_a_asignar.fecha_Inicio}}</h5>
+          <h6>Fecha Inicio: </h6>
+          <h6 id="valor">{{pedido_a_asignar.fecha_Inicio}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Fecha Finalización:</h5>
-          <h5 id="valor">{{pedido_a_asignar.fecha_Finalizacion}}</h5>
+          <h6>Fecha Finalización:</h6>
+          <h6 id="valor">{{pedido_a_asignar.fecha_Finalizacion}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Hora Inicio:</h5>
-          <h5 id="valor">{{pedido_a_asignar.hora_Inicio}}</h5>
+          <h6>Hora Inicio:</h6>
+          <h6 id="valor">{{pedido_a_asignar.hora_Inicio}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Hora Finalización:</h5>
-          <h5 id="valor">{{pedido_a_asignar.hora_Finalizacion}}</h5>
+          <h6>Hora Finalización:</h6>
+          <h6 id="valor">{{pedido_a_asignar.hora_Finalizacion}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Método de pago: </h5>
-          <h5 id="valor">{{pedido_a_asignar.metodo_Pago}}</h5>
+          <h6>Método de pago: </h6>
+          <h6 id="valor">{{pedido_a_asignar.metodo_Pago}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Estado:</h5>
-          <h5 id="valor">{{registerForm.value.status}}</h5>
+          <h6>Estado:</h6>
+          <h6 id="valor">{{registerForm.value.status}}</h6>
 
         </div>
 
         <div class="Fila_Datos">
-          <h5>Empleado líder:</h5>
-          <h5 id="valor">{{this.registerForm.value.staff_leader.split(';')[1]}} {{this.registerForm.value.staff_leader.split(';')[2]}}</h5>
+          <h6>Empleado líder:</h6>
+          <h6 id="valor">{{this.registerForm.value.staff_leader.split(';')[1]}} {{this.registerForm.value.staff_leader.split(';')[2]}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Pago</h5>
-          <h5 id="valor">${{this.registerForm.value.total}}</h5>
+          <h6>Pago</h6>
+          <h6 id="valor">${{this.registerForm.value.total}}</h6>
         </div>
 
         <div class="Fila_Datos">
-          <h5>Cuenta asignada</h5>
-          <h5 id="valor">{{this.registerForm.value.phone_account.split(";")[1]}}</h5>
+          <h6>Cuenta asignada</h6>
+          <h6 id="valor">{{this.registerForm.value.phone_account.split(";")[1]}}</h6>
         </div>
 
         
-        <h2 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de empleados requeridos:</h2>
+        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de empleados requeridos:</h4>
 
         
 
         <div class="Fila_Datos" *ngFor="let staff of this.lista_staff_object">
-          <h5>{{staff.nombre}}:</h5>
-          <h5 id="valor">{{staff.cantidad}}</h5>
+          <h6>{{staff.nombre}}:</h6>
+          <h6 id="valor">{{staff.cantidad}}</h6>
         </div>
 
-        <h2 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de equipamiento requerido</h2>
+        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de equipamiento requerido</h4>
 
         <div class="Fila_Datos" *ngFor="let equipment of this.lista_equipment_object">
-          <h5>{{equipment.nombre}}:</h5>
-          <h5 id="valor">{{equipment.cantidad}}</h5>
+          <h6>{{equipment.nombre}}:</h6>
+          <h6 id="valor">{{equipment.cantidad}}</h6>
         </div>
+        <br><br>
 
 
-        <h3 >Detalles:</h3>
-        <h5 id="detalles"></h5>
+        <h4>Detalles:</h4>
+        <h6 id="detalles"></h6>
 
 
         <div class="Fila_Datos">
@@ -109,29 +110,29 @@
         </div>
           
         
-          <h5  *ngIf="this.asigned_staff.value.guardias.length !== 0">lista guardias: 
+          <h6  *ngIf="this.asigned_staff.value.guardias.length !== 0">lista guardias: 
             <p *ngFor="let guardias of this.asigned_staff.value.guardias">
               {{guardias.split(';')[1]}} {{guardias.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
-          <h5 *ngIf="this.asigned_staff.value.guardaespaldas.length !== 0">lista guardaespaldas: 
+          <h6 *ngIf="this.asigned_staff.value.guardaespaldas.length !== 0">lista guardaespaldas: 
             <p *ngFor="let guardaespalda of this.asigned_staff.value.guardaespaldas">
               {{guardaespalda.split(';')[1]}} {{guardaespalda.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
-          <h5 *ngIf="this.asigned_staff.value.motorizados.length !== 0">lista motorizados: 
+          <h6 *ngIf="this.asigned_staff.value.motorizados.length !== 0">lista motorizados: 
             <p *ngFor="let motorizado of this.asigned_staff.value.motorizados">
               {{motorizado.split(';')[1]}} {{motorizado.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
-          <h5 *ngIf="this.asigned_staff.value.conductores.length !== 0">lista conductores: 
+          <h6 *ngIf="this.asigned_staff.value.conductores.length !== 0">lista conductores: 
             <p *ngFor="let conductor of this.asigned_staff.value.conductores">
               {{conductor.split(';')[1]}} {{conductor.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
           <div class="Fila_Datos">
             <h4 >Equipamento</h4>
@@ -139,33 +140,33 @@
 
           
 
-          <h5 *ngIf="this.asigned_equipment.value.vehiculos.length !== 0">
+          <h6 *ngIf="this.asigned_equipment.value.vehiculos.length !== 0">
             Lista vehiculos:
             <p *ngFor="let vehiculo of this.asigned_equipment.value.vehiculos">
               modelo: {{vehiculo.split(';')[1]}}, placa: {{vehiculo.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
-          <h5 *ngIf="this.asigned_equipment.value.candados.length !== 0">
+          <h6 *ngIf="this.asigned_equipment.value.candados.length !== 0">
             Lista Candados:
             <p *ngFor="let candado of this.asigned_equipment.value.candados">
               numero serial: {{candado.split(';')[1]}}, marca: {{candado.split(';')[2]}}, modelo: {{candado.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
-          <h5 *ngIf="this.asigned_equipment.value.armamentos.length !== 0">
+          <h6 *ngIf="this.asigned_equipment.value.armamentos.length !== 0">
             Lista armamentos:
             <p *ngFor="let armamento of this.asigned_equipment.value.armamentos">
               numero serial: {{armamento.split(';')[1]}}, marca: {{armamento.split(';')[2]}}, modelo: {{armamento.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
-          <h5 *ngIf="this.asigned_equipment.value.movil.length !== 0">
+          <h6 *ngIf="this.asigned_equipment.value.movil.length !== 0">
                móviles:
             <p>
               numero serial: {{this.asigned_equipment.value.movil.split(';')[1]}}, marca: {{this.asigned_equipment.value.movil.split(';')[2]}}, modelo: {{this.asigned_equipment.value.movil.split(';')[2]}}
             </p>
-          </h5>
+          </h6>
 
       </div>
     </div>
@@ -180,9 +181,9 @@
       <form [formGroup]="registerForm" (ngSubmit)="imprimirFormulario()" style="display: flex; flex-direction: column; width: auto; gap: 1rem;">
 
 
-        <form [formGroup]="asigned_staff" >
+        <form [formGroup]="asigned_staff">
 
-            <mat-form-field *ngIf="this.guardiasBool" appearance="fill">
+            <mat-form-field *ngIf="this.guardiasBool" appearance="fill" ngIfNoWhitespace>
               <mat-label>Guardias</mat-label>
               <mat-select (ngModelChange)="this.controlButtonGuardia($event)" formControlName="guardias" multiple>
                 <mat-option *ngFor="let personal of lista_guardias" value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
@@ -194,9 +195,9 @@
                 No se pueden agregar más de n elementos a la lista.
               </mat-error>
             </mat-form-field>
-          <br>
+        
       
-          <mat-form-field *ngIf="this.guardaespaldasBool" appearance="fill">
+          <mat-form-field *ngIf="this.guardaespaldasBool" appearance="fill" ngIfNoWhitespace>
             <mat-label> Chofer guardaespaldas</mat-label>
             <mat-select (ngModelChange)="this.controlButtonGuardaespalda($event)" formControlName="guardaespaldas" multiple>
               <mat-option *ngFor="let personal of lista_guardaespaldas"  value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
@@ -204,9 +205,8 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
       
-          <mat-form-field *ngIf="this.conductorBool" appearance="fill">
+          <mat-form-field *ngIf="this.conductorBool" appearance="fill" ngIfNoWhitespace>
             <mat-label>Conductores</mat-label>
             <mat-select (ngModelChange)="this.controlButtonConductor($event)" formControlName="conductores" multiple>
               <mat-option *ngFor="let personal of lista_conductor"  value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
@@ -214,9 +214,8 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
       
-          <mat-form-field *ngIf="this.motorizadosBool" appearance="fill">
+          <mat-form-field *ngIf="this.motorizadosBool" appearance="fill" ngIfNoWhitespace>
             <mat-label>Motorizados</mat-label>
             <mat-select (ngModelChange)="this.controlButtonMotorizado($event)" formControlName="motorizados" multiple>
               <mat-option *ngFor="let personal of lista_motorizado"  value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
@@ -224,10 +223,10 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
+
         </form>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" ngIfNoWhitespace>
           <mat-label>Empleado líder</mat-label>
           <mat-select (ngModelChange)="controlButtonEmpleadoLider($event)" formControlName="staff_leader">
             <mat-option *ngFor="let personal of this.concatenarListas()" value="{{personal}}"> 
@@ -238,8 +237,8 @@
 
 
 
-        <form  [formGroup]="asigned_equipment" >
-          <mat-form-field *ngIf="this.vehiculosBool" appearance="fill">
+        <form  [formGroup]="asigned_equipment">
+          <mat-form-field *ngIf="this.vehiculosBool" appearance="fill" ngIfNoWhitespace>
             <mat-label>Vehículos</mat-label>
             <mat-select (ngModelChange)="controlButtonVehiculos($event)" formControlName="vehiculos" multiple>
               <mat-option *ngFor="let vehiculo of lista_vehiculos" value="{{vehiculo.id}};{{vehiculo.model}};{{vehiculo.plate}}">
@@ -251,7 +250,7 @@
           </mat-form-field>
           <br>
       
-          <mat-form-field *ngIf="this.candadosBool" appearance="fill">
+          <mat-form-field *ngIf="this.candadosBool" appearance="fill" ngIfNoWhitespace>
             <mat-label>Candados</mat-label>
             <mat-select (ngModelChange)="controlButtonCandados($event)" formControlName="candados" multiple>
               <mat-option *ngFor="let candado of lista_candados" value="{{candado.id}};{{candado.serial_number}};{{candado.brand}};{{candado.model}}">
@@ -262,7 +261,7 @@
           </mat-form-field>
           <br>
       
-          <mat-form-field *ngIf="this.armamentoBool" appearance="fill">
+          <mat-form-field *ngIf="this.armamentoBool" appearance="fill" ngIfNoWhitespace>
             <mat-label>Armamento</mat-label>
             <mat-select (ngModelChange)="controlButtonArmamento($event)" formControlName="armamentos" multiple>
               <mat-option *ngFor="let armamento of lista_armamentos" value="{{armamento.id}};{{armamento.brand}};{{armamento.model}}">
@@ -293,7 +292,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
 
       <mat-form-field appearance="fill">
         <mat-label>Estado</mat-label>
@@ -303,17 +301,12 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
   
-      <mat-form-field *ngIf="this.costoBoolean" appearance="fill">
+      <mat-form-field *ngIf="this.costoBoolean" appearance="fill" ngIfNoWhitespace>
         <mat-label>Costo</mat-label>
         <input formControlName="total" matInput type="number" >
       </mat-form-field>
-      <br>
   
-      
-  
-      
   
       <button mat-flat-button color="primary"
         [disabled]="
@@ -323,7 +316,6 @@
         type="submit" (click)="enviarNotificacionAlCliente()">Asignar pedido</button>
 
       <!-- <button mat-flat-button color="warn">Reembolso</button> -->
-      <!-- <button mat-flat-button color="success" type="button" (click)="enviarNotificacionAlCliente()">Print</button> -->
 
 
       </form>

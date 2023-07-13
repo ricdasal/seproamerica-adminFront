@@ -42,7 +42,7 @@
       <div class="item">
         <label for="apellido">DOMICILIO</label>
         <mat-form-field appearance="fill">
-          <mat-label>cédula</mat-label>
+          <mat-label>domicilio</mat-label>
           <input   type="text" id="address" matInput required formControlName="address" name="address"  /> 
           <mat-error *ngIf="registerForm.controls['address'].errors?.['required']">*</mat-error>
         </mat-form-field>
@@ -70,7 +70,7 @@
         <label >CORREO ELECTRÓNICO</label>
 
         <mat-form-field appearance="fill">
-          <mat-label>cedula</mat-label>
+          <mat-label>email</mat-label>
           <input type="email" id="fname" name="email" matInput required formControlName="email" />
           <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
           <mat-error *ngIf="registerForm.controls['email'].errors?.['pattern']"> Debe contener una extensión válida</mat-error>

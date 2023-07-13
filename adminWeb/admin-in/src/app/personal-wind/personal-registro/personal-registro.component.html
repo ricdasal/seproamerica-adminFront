@@ -20,7 +20,7 @@
         <label for="apellido">APELLIDOS</label>
         <mat-form-field appearance="fill">
           <mat-label>apellidos</mat-label>
-          <input   type="text" id="apellido" matInput required formControlName="last_name" />
+          <input  type="text" id="apellido" matInput required formControlName="last_name" />
           <mat-error *ngIf="registerForm.controls['last_name'].errors?.['required']"> *</mat-error>
           <mat-error *ngIf="registerForm.controls['last_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
         </mat-form-field>

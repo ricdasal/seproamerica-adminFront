@@ -74,9 +74,9 @@
       </div>
 
       <div>
-        <h3>Editar administrador</h3>
-
-        <div class="item">
+        <h3 style="margin-bottom: 4.8rem;">Editar administrador</h3>
+ 
+        <div class="item" style="margin-bottom: 0.5rem;">
     
           <label >Cédula de identidad</label>
           <mat-form-field appearance="fill">
@@ -89,7 +89,7 @@
   
         </div>
       
-        <div class="item">
+        <div class="item" style="margin-bottom: 0.5rem;">
       
           <label >Fecha de nacimiento</label>
           <mat-form-field appearance="fill">
@@ -102,7 +102,7 @@
         </div>
       
       
-        <div class="item">
+        <div class="item" style="margin-bottom: 0.5rem;">
             <label >Genero</label>
             <mat-form-field appearance="fill">
               <mat-label>Selecciona un genero</mat-label>
@@ -115,7 +115,7 @@
         </div>
       
       
-        <div class="item">
+        <div class="item" style="margin-bottom: 0.45rem;">
       
             <label >Direccion</label>
             <mat-form-field appearance="fill">
@@ -145,17 +145,15 @@
 
     </div>
 
+    <div class="item">
+      <label > FOTO DE PERFIL </label> 
+      <input type="file"  accept="uploads/png, uploads/jpeg" (change)="setImagen($event)">
+
+    </div>
+
     <div style="display: flex; flex-direction: row; gap: 1rem;">
       <button  mat-raised-button color="primary" class="format-button" type="submit" [mat-dialog-close]="true" [disabled]="!registerForm.valid">Guardar</button>
       <button  mat-raised-button color="warn" class="format-button" type="button" (click)="onClickNO()">Cancelar</button>              
-    </div>
-
-    <div class="grupo_formulario">
-
-      
-      
-
-
     </div>
     
         

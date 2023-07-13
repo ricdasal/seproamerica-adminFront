@@ -39,6 +39,7 @@ export class EditPersonalComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.personal);
+    
     this.obtenerCargos();
     this.obtenerSucursales();
     this.registerForm = this.formBuilder.group({
@@ -52,7 +53,8 @@ export class EditPersonalComponent implements OnInit {
       'gender': [this.personal.gender, [Validators.required]],
       'address': [this.personal.address, [Validators.required]],
       'charge':[this.personal.charge, [Validators.required ]],
-      'branch' : [this.personal.branch,  [Validators.required]],     
+      'branch' : [this.personal.branch,  [Validators.required]],  
+      'url_img' : [this.personal.url_img]   
     });
   }
 
@@ -76,10 +78,51 @@ export class EditPersonalComponent implements OnInit {
   }
 
 
+
   setImagen(event: any){
     /*this.user.fotoOp = event.target.files[0];
     this.registerForm.get('fotoOp')?.setValue(this.user.fotoOp);*/
+
+    if (event.target !== null) {
+      let file = event.target.files[0];
+      console.log(file)
+      let reader = new FileReader();
+      
+      reader.onload = () => {
+        let dataUrl = reader.result as string;
+        let base64String = dataUrl.split(',')[1];
+  
+        // Determinar el prefijo en función del tipo de contenido del archivo
+        let prefix;
+        if (file.type === 'image/jpeg') {
+          prefix = 'data:image/jpeg;base64,';
+        } else if (file.type === 'image/png') {
+          prefix = 'data:image/png;base64,';
+        } else {
+          console.error('Formato de imagen no válido');
+          return;
+        }
+  
+        // Agregar el prefijo a la imagen en base64
+        let imageBase64 = prefix + base64String;
+        console.log(imageBase64);
+        
+        // this.registerForm.value["url_img"].setValue(imageBase64);
+        // this.registerForm.value["url_img"] = imageBase64;
+        this.registerForm.get('url_img')?.setValue(imageBase64);
+
+        
+      }
+      reader.onerror = (event) => {
+        if (event.target !== null) {
+          console.error('Error al leer el archivo:', event.target.error);
+        }
+      }
+      reader.readAsDataURL(file);
+    }
   }
+
+  
 
   obtenerCargos(){
     const headers = new HttpHeaders({

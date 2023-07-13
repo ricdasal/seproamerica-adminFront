@@ -220,7 +220,7 @@ export class TablaPersonalComponent implements OnInit {
       .subscribe({
         next: (personal: any) => {
           const ventanaGrupos =  this.dialog.open(EditPersonalComponent, {
-            width: '70vh',
+            width: '90vh',
             height: '80vh',
             data: personal
           })

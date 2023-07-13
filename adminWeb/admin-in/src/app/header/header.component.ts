@@ -15,6 +15,7 @@ import { NotificacionesService } from '../services/notificaciones/notificaciones
 })
 export class HeaderComponent implements OnInit {
   showFiller = false;
+  
 
   constructor(
     private modalService: ModalsService,

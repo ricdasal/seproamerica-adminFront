@@ -169,6 +169,25 @@
   align-items: center;
 }
 
+.navbar-toggler {
+  background-color: transparent;
+  color: black;
+}
+
+.navbar-toggler:hover {
+  background-color: black;
+  color: white;
+}
+
+.navbar-collapse.collapse.show {
+  background-color: black !important;
+  color: white !important;
+} 
+
+/* .navbar-collapse.collapse.show{
+  color: white;
+} */
+
 /* ::ng-deep.mat-dialog-container {
   background-color: rgb(187, 21, 21);
 
