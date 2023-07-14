@@ -47,6 +47,7 @@ export class EditAdminComponent implements OnInit {
       charge: new FormControl("administrador"),
       branch: new FormControl(this.admin.branch, [Validators.required]),
       group: new FormControl("administrador"),
+      url_img: new FormControl(this.admin.url_img)
 
 
 

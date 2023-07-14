@@ -4,7 +4,8 @@
             <img src="../../../../assets/Iconos/app sepro vectores-30.png" alt="">
         </div>
         <div class="perfil" > 
-            <img (click)="irPerfil();" src="../../../../assets/Iconos/app sepro vectores-63.png" alt="">
+            <img *ngIf="this.imagen_perfil === null" ngIfNoWhitespace (click)="irPerfil();" src="../../../../assets/Iconos/app sepro vectores-63.png" alt="">
+            <img *ngIf="this.imagen_perfil !== null" ngIfNoWhitespace (click)="irPerfil();" style="border-radius: 10rem;" src="{{this.imagen_perfil}}" alt="">
             <h1>{{nombre_perfil}}</h1>
             <span>Sucursal: {{this.nombre_sucursal}}</span>
         </div>

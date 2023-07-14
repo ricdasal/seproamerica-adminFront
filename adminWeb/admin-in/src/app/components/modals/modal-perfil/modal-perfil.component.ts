@@ -15,6 +15,7 @@ export class ModalPerfilComponent implements OnInit {
   data=JSON.parse(localStorage.getItem("datoUsuario")!)
   nombre_perfil= 'usuario promedio';
   nombre_sucursal = 'sucursal generica';
+  imagen_perfil = null
   datos_cargados: boolean = false;
 
   constructor(
@@ -58,6 +59,7 @@ export class ModalPerfilComponent implements OnInit {
         console.log(data);
         this.nombre_perfil = data.first_name  + " " + data.last_name;
         this.nombre_sucursal = data.branch;
+        this.imagen_perfil = data.url_img;
         this.datos_cargados = true;
       }
     })

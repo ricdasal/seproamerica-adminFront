@@ -1,5 +1,4 @@
-<div *ngIf="this.datos_cargados" style=" font-family: 'Bahnschrift';">
-  <h6>{{mensaje}}</h6>
+<div *ngIf="this.datos_cargados" style=" font-family: 'Bahnschrift';">  
   <div class="row">
 
     <div class="column" >
@@ -82,91 +81,6 @@
           <h6 id="valor">{{this.registerForm.value.phone_account.split(";")[1]}}</h6>
         </div>
 
-        
-        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de empleados requeridos:</h4>
-
-        
-
-        <div class="Fila_Datos" *ngFor="let staff of this.lista_staff_object">
-          <h6>{{staff.nombre}}:</h6>
-          <h6 id="valor">{{staff.cantidad}}</h6>
-        </div>
-
-        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de equipamiento requerido</h4>
-
-        <div class="Fila_Datos" *ngFor="let equipment of this.lista_equipment_object">
-          <h6>{{equipment.nombre}}:</h6>
-          <h6 id="valor">{{equipment.cantidad}}</h6>
-        </div>
-        <br><br>
-
-
-        <h4>Detalles:</h4>
-        <h6 id="detalles"></h6>
-
-
-        <div class="Fila_Datos">
-          <h4 >Empleados asignados:</h4>
-        </div>
-          
-        
-          <h6  *ngIf="this.asigned_staff.value.guardias.length !== 0">lista guardias: 
-            <p *ngFor="let guardias of this.asigned_staff.value.guardias">
-              {{guardias.split(';')[1]}} {{guardias.split(';')[2]}}
-            </p>
-          </h6>
-
-          <h6 *ngIf="this.asigned_staff.value.guardaespaldas.length !== 0">lista guardaespaldas: 
-            <p *ngFor="let guardaespalda of this.asigned_staff.value.guardaespaldas">
-              {{guardaespalda.split(';')[1]}} {{guardaespalda.split(';')[2]}}
-            </p>
-          </h6>
-
-          <h6 *ngIf="this.asigned_staff.value.motorizados.length !== 0">lista motorizados: 
-            <p *ngFor="let motorizado of this.asigned_staff.value.motorizados">
-              {{motorizado.split(';')[1]}} {{motorizado.split(';')[2]}}
-            </p>
-          </h6>
-
-          <h6 *ngIf="this.asigned_staff.value.conductores.length !== 0">lista conductores: 
-            <p *ngFor="let conductor of this.asigned_staff.value.conductores">
-              {{conductor.split(';')[1]}} {{conductor.split(';')[2]}}
-            </p>
-          </h6>
-
-          <div class="Fila_Datos">
-            <h4 >Equipamento</h4>
-          </div>
-
-          
-
-          <h6 *ngIf="this.asigned_equipment.value.vehiculos.length !== 0">
-            Lista vehiculos:
-            <p *ngFor="let vehiculo of this.asigned_equipment.value.vehiculos">
-              modelo: {{vehiculo.split(';')[1]}}, placa: {{vehiculo.split(';')[2]}}
-            </p>
-          </h6>
-
-          <h6 *ngIf="this.asigned_equipment.value.candados.length !== 0">
-            Lista Candados:
-            <p *ngFor="let candado of this.asigned_equipment.value.candados">
-              numero serial: {{candado.split(';')[1]}}, marca: {{candado.split(';')[2]}}, modelo: {{candado.split(';')[2]}}
-            </p>
-          </h6>
-
-          <h6 *ngIf="this.asigned_equipment.value.armamentos.length !== 0">
-            Lista armamentos:
-            <p *ngFor="let armamento of this.asigned_equipment.value.armamentos">
-              numero serial: {{armamento.split(';')[1]}}, marca: {{armamento.split(';')[2]}}, modelo: {{armamento.split(';')[2]}}
-            </p>
-          </h6>
-
-          <h6 *ngIf="this.asigned_equipment.value.movil.length !== 0">
-               móviles:
-            <p>
-              numero serial: {{this.asigned_equipment.value.movil.split(';')[1]}}, marca: {{this.asigned_equipment.value.movil.split(';')[2]}}, modelo: {{this.asigned_equipment.value.movil.split(';')[2]}}
-            </p>
-          </h6>
 
       </div>
     </div>
@@ -175,11 +89,16 @@
 
     <div class="column" style="text-align:start;">
       <h2>Asignación</h2>
-      <br>
-      <br>
+
 
       <form [formGroup]="registerForm" (ngSubmit)="imprimirFormulario()" style="display: flex; flex-direction: column; width: auto; gap: 1rem;">
 
+        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de empleados requeridos:</h4>
+
+        <div class="Fila_Datos" *ngFor="let staff of this.lista_staff_object">
+          <h6>{{staff.nombre}}:</h6>
+          <h6 id="valor">{{staff.cantidad}}</h6>
+        </div>
 
         <form [formGroup]="asigned_staff">
 
@@ -236,6 +155,13 @@
         </mat-form-field>
 
 
+        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de equipamiento requerido</h4>
+
+        <div class="Fila_Datos" *ngFor="let equipment of this.lista_equipment_object">
+          <h6>{{equipment.nombre}}:</h6>
+          <h6 id="valor">{{equipment.cantidad}}</h6>
+        </div>
+        <br><br>
 
         <form  [formGroup]="asigned_equipment">
           <mat-form-field *ngIf="this.vehiculosBool" appearance="fill" ngIfNoWhitespace>
@@ -248,7 +174,6 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
       
           <mat-form-field *ngIf="this.candadosBool" appearance="fill" ngIfNoWhitespace>
             <mat-label>Candados</mat-label>
@@ -259,7 +184,6 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
       
           <mat-form-field *ngIf="this.armamentoBool" appearance="fill" ngIfNoWhitespace>
             <mat-label>Armamento</mat-label>
@@ -269,9 +193,9 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
+
       
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" ngIfNoWhitespace>
             <mat-label>Móvil</mat-label>
             <mat-select (ngModelChange)="controlButtonMovil($event)" formControlName="movil">
               <mat-option *ngFor="let movil of lista_moviles" value="{{movil.id}};{{movil.brand}};{{movil.model}}">
@@ -280,11 +204,9 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <br>
-
         </form>
   
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="fill" ngIfNoWhitespace>
         <mat-label>Cuenta asignada</mat-label>
         <mat-select (ngModelChange)="controlButtonControlCuenta($event)" formControlName="phone_account" >
           <mat-option *ngFor="let cuenta of lista_cuentas" value="{{cuenta.id}};{{cuenta.first_name}}">
@@ -307,6 +229,135 @@
         <input formControlName="total" matInput type="number" >
       </mat-form-field>
   
+
+      <h4>Detalles:</h4>
+        <div>
+          <h6>Empleados asignados:</h6>
+          <div class="Fila_Datos">
+            <div>
+              <ul *ngIf="this.asigned_staff.value.guardias.length !== 0" >
+                <th>Guardias: </th>
+                <li *ngFor="let guardias of this.asigned_staff.value.guardias">
+                  <h6>
+                    {{guardias.split(';')[1]}} {{guardias.split(';')[2]}}
+                </h6> 
+               </li>
+              </ul>
+            </div>
+
+            <div>
+              <ul *ngIf="this.asigned_staff.value.guardaespaldas.length !== 0" ngIfNoWhitespace>
+                <th>Guardaespaldas:</th>
+                <li *ngFor="let guardaespalda of this.asigned_staff.value.guardaespaldas">
+                  <h6>{{guardaespalda.split(';')[1]}} {{guardaespalda.split(';')[2]}}</h6>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <ul *ngIf="this.asigned_staff.value.motorizados.length !== 0">
+                <th>Motorizados:</th>
+                <li *ngFor="let motorizado of this.asigned_staff.value.motorizados">
+                  <h6>{{motorizado.split(';')[1]}} {{motorizado.split(';')[2]}}</h6>
+
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <ul *ngIf="this.asigned_staff.value.conductores.length !== 0">
+                <th>Conductores:</th>
+                <li *ngFor="let conductor of this.asigned_staff.value.conductores">
+                  <h6>{{conductor.split(';')[1]}} {{conductor.split(';')[2]}}</h6>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div>
+          <h6 >Equipamento: </h6>
+          <div class="Fila_Datos">
+            <div>
+              <ul *ngIf="this.asigned_equipment.value.vehiculos.length !== 0">
+                <th>Vehículos:</th>
+                <li *ngFor="let vehiculo of this.asigned_equipment.value.vehiculos">
+                  <h6>
+                    modelo: {{vehiculo.split(';')[1]}}
+                  </h6>
+                  <h6>
+                    placa: {{vehiculo.split(';')[2]}}
+                  </h6>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <ul *ngIf="this.asigned_equipment.value.candados.length !== 0">
+                <th>Candados:</th>
+                <li *ngFor="let candado of this.asigned_equipment.value.candados">
+                  <h6>
+                    numero serial: {{candado.split(';')[0]}}
+                  </h6>
+                  <h6>
+                    marca: {{candado.split(';')[1]}}
+                  </h6>
+                  <h6>
+                    modelo: {{candado.split(';')[2]}}
+                  </h6>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <ul *ngIf="this.asigned_equipment.value.armamentos.length !== 0">
+                <th>Armamentos:</th>
+                <li *ngFor="let armamento of this.asigned_equipment.value.armamentos">
+                  <h6>
+                    numero serial: {{armamento.split(';')[0]}} 
+                  </h6>
+                  <h6>
+                    marca: {{armamento.split(';')[1]}}
+                  </h6>
+                  <h6>
+                    modelo: {{armamento.split(';')[2]}}
+                  </h6>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <ul *ngIf="this.asigned_equipment.value.movil.length !== 0">
+                <th>Móvil:</th>
+                <li>
+                  <h6>
+                    numero serial: {{this.asigned_equipment.value.movil.split(';')[0]}}
+                  </h6>
+                  <h6>
+                    marca: {{this.asigned_equipment.value.movil.split(';')[1]}}
+                  </h6>
+                  <h6>
+                    modelo: {{this.asigned_equipment.value.movil.split(';')[2]}}
+                  </h6>
+                </li>
+              </ul>
+            </div>
+            
+          </div>
+
+
+        </div>
+
+          
+          
+
+          
+
+          
+
+
   
       <button mat-flat-button color="primary"
         [disabled]="
@@ -314,6 +365,8 @@
           this.boton_deshabilitado_empleado_lider || this.boton_deshabilitado_vehiculo || this.boton_deshabilitado_candados || this.boton_deshabilitado_armamento || 
           this.boton_deshabilitado_movil || this.boton_deshabilitado_cuenta_asignada || this.boton_deshabilitado_estado)"
         type="submit" (click)="enviarNotificacionAlCliente()">Asignar pedido</button>
+
+        <button mat-flat-button color="warn" type="button">Reembolso</button>
 
       <!-- <button mat-flat-button color="warn">Reembolso</button> -->
 

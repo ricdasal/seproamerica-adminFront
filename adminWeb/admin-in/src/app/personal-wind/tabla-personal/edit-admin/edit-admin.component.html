@@ -7,7 +7,8 @@
 
     <div style="display: flex; gap: 3rem;">
       <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-        <img style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="../../../../assets/img/iconopersona.png" alt="">
+        <img *ngIf="this.registerForm.value['url_img'] === null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="../../../../assets/img/iconopersona.png" alt="">
+        <img *ngIf="this.registerForm.value['url_img'] !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.registerForm.value['url_img']" alt="">
 
         <div class="item">
   

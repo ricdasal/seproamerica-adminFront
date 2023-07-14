@@ -161,7 +161,6 @@ console.log(--------------------------------------------)
 
 
 
-  mensaje: string = '';
 
 
   constructor(
