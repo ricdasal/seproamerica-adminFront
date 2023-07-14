@@ -76,8 +76,8 @@ export class TablaCuentasTelefonoComponent implements OnInit {
 
   eliminarCuenta(id: any){
     this.dialog.open(EliminarCuentaComponent, {
-      width: '100vh',
-      height: '70vh',
+      width: '70vh',
+      height: '50vh',
       data: id
     })
   }
