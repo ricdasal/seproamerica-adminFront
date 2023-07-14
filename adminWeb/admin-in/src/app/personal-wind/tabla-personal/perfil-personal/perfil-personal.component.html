@@ -22,7 +22,8 @@
 
   <div class="contenedor-principal">
     <div class="contenedor-secundario">
-      <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu"> <!--{{this.personal.image}}-->
+    <img *ngIf="this.data.url_img === null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="../../../../assets/img/iconopersona.png" alt="">
+    <img *ngIf="this.data.url_img !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.data.url_img " alt="">
       <div class="contenedor-informacion">
         <h4>
           {{this.personal.first_name}}<br>{{this.personal.last_name}}

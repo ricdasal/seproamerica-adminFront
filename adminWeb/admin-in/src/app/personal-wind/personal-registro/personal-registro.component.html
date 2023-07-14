@@ -4,138 +4,147 @@
   <h3>Registrar Personal</h3>
 
   <form [formGroup]="registerForm" (ngSubmit)="guardar_Personal_Operativo(registerForm)" class="formulario">
-    <div class="grupo_formulario">
-      <h4>Datos Personales</h4>
-      <div class="item" >
-        <label >NOMBRES</label>
-        <mat-form-field appearance="fill">
-          <mat-label>nombres</mat-label>
-          <input type="text" id="fname" name="nombres" matInput required formControlName="first_name" />
-          <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
-          <mat-error *ngIf="registerForm.controls['first_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="item">
-        <label for="apellido">APELLIDOS</label>
-        <mat-form-field appearance="fill">
-          <mat-label>apellidos</mat-label>
-          <input  type="text" id="apellido" matInput required formControlName="last_name" />
-          <mat-error *ngIf="registerForm.controls['last_name'].errors?.['required']"> *</mat-error>
-          <mat-error *ngIf="registerForm.controls['last_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="item" >
-        <label for="fechNac">FECHA DE NACIMIENTO</label>
-        <mat-form-field appearance="fill">
-          <mat-label>fecha de nacimiento</mat-label>
-          <input matInput type="date"  formControlName="birthdate">
-        </mat-form-field>
-        
-      </div>
-
-      <div class="item">
-        <label >DOCUMENTO DE IDENTIDAD</label>
-
-        <mat-form-field appearance="fill">
-          <mat-label>documento de identidad</mat-label>
-          <input type="text" id="fname" name="cedula" matInput required formControlName="dni"/>
-          <mat-error *ngIf="registerForm.controls['dni'].errors?.['required']"> *</mat-error>
-        </mat-form-field>
-
-        
+    <div style="display: flex; flex-direction: row; gap: 2rem" >
+      <div>
+        <h4>Datos Personales</h4>
+        <div class="item" >
+          <label >NOMBRES</label>
+          <mat-form-field appearance="fill">
+            <mat-label>nombres</mat-label>
+            <input type="text"  name="nombres" matInput required formControlName="first_name" />
+            <mat-error *ngIf="registerForm.controls['first_name'].errors?.['required']"> *</mat-error>
+            <mat-error *ngIf="registerForm.controls['first_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+          </mat-form-field>
+        </div>
   
+        <div class="item">
+          <label for="apellido">APELLIDOS</label>
+          <mat-form-field appearance="fill">
+            <mat-label>apellidos</mat-label>
+            <input  type="text" id="apellido" matInput required formControlName="last_name" />
+            <mat-error *ngIf="registerForm.controls['last_name'].errors?.['required']"> *</mat-error>
+            <mat-error *ngIf="registerForm.controls['last_name'].errors?.['pattern']"> Solo insertar letras</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="item" >
+          <label for="fechNac">FECHA DE NACIMIENTO</label>
+          <mat-form-field appearance="fill">
+            <mat-label>fecha de nacimiento</mat-label>
+            <input matInput type="date"  formControlName="birthdate">
+          </mat-form-field>
+          
+        </div>
+  
+        <div class="item">
+          <label >DOCUMENTO DE IDENTIDAD</label>
+  
+          <mat-form-field appearance="fill">
+            <mat-label>documento de identidad</mat-label>
+            <input type="text"  name="cedula" matInput required formControlName="dni"/>
+            <mat-error *ngIf="registerForm.controls['dni'].errors?.['required']"> *</mat-error>
+          </mat-form-field>
+  
+          
+    
+        </div>
+
       </div>
 
-      <div class="item">
-        <label >CORREO ELECTRÓNICO</label>
-        <mat-form-field appearance="fill">
-          <mat-label>correo electrónico</mat-label>
-          <input type="email" id="fname" name="correo"  matInput required formControlName="email" />
-          <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
-          <mat-error *ngIf="registerForm.controls['email'].errors?.['pattern']"> Debe contener una extensión
-            válida</mat-error>
-        </mat-form-field>
+      <div style="margin-top: 2.25rem;">
+        
+        <div class="item">
+          <label >CORREO ELECTRÓNICO</label>
+          <mat-form-field appearance="fill">
+            <mat-label>correo electrónico</mat-label>
+            <input type="email"  name="correo"  matInput required formControlName="email" />
+            <mat-error *ngIf="registerForm.controls['email'].errors?.['required']"> *</mat-error>
+            <mat-error *ngIf="registerForm.controls['email'].errors?.['pattern']"> Debe contener una extensión
+              válida</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="item">
+          <label  for="tel">TELÉFONO</label>
+          <mat-form-field appearance="fill">
+            <mat-label>teléfono</mat-label>
+            <input maxlength="10" type="tel" id="tel" matInput formControlName="phone_number"/>
+            <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
+            <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['pattern']"> Su telefono debe comenzar con 09 y
+              tener como máximo 10 dígitos</mat-error>
+            <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['minlength']"> Minimo 9 caracteres</mat-error>
+            <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['maxlength']"> Maximo 10 caracteres</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div class="item">
+          <label>GÉNERO</label>
+          <mat-form-field appearance="fill">
+            <mat-label>género</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option *ngFor="let genero of lista_generos" value="{{genero.genero}}" id="{{genero.identificador}}">{{genero.genero}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="item">
+          <label >DIRECCIÓN</label>
+          <mat-form-field appearance="fill">
+            <mat-label>dirección</mat-label>
+            <input type="text"  name="direccion"   matInput required  formControlName="address"/>
+            <mat-error *ngIf="registerForm.controls['address'].errors?.['required']"> *</mat-error>
+          </mat-form-field>
+        </div>
+
       </div>
 
-      <div class="item">
-        <label  for="tel">TELÉFONO</label>
-        <mat-form-field appearance="fill">
-          <mat-label>teléfono</mat-label>
-          <input maxlength="10" type="tel" id="tel" matInput formControlName="phone_number"/>
-          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['required']"> *</mat-error>
-          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['pattern']"> Su telefono debe comenzar con 09 y
-            tener como máximo 10 dígitos</mat-error>
-          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['minlength']"> Minimo 9 caracteres</mat-error>
-          <mat-error *ngIf="registerForm.controls['phone_number'].errors?.['maxlength']"> Maximo 10 caracteres</mat-error>
-        </mat-form-field>
-      </div>
+      <div>
 
-      <div class="item">
-        <label class="form-label">GÉNERO</label>
-        <mat-form-field appearance="fill">
-          <mat-label>género</mat-label>
-          <mat-select formControlName="gender">
-            <mat-option *ngFor="let genero of lista_generos" value="{{genero.genero}}" id="{{genero.identificador}}">{{genero.genero}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+        <h4>Datos de Trabajo</h4>
+  
+        <div class="item">
+          <label  for="form3Example1cg">SUCURSALES</label>
+          <mat-form-field appearance="fill">
+            <mat-label>sucursal</mat-label>
+            <mat-select formControlName="branch">
+              <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
+  
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="item">
+          <label  for="form3Example1cg">CARGO</label>
+          <mat-form-field appearance="fill">
+            <mat-label>cargo</mat-label>
+            <mat-select formControlName="charge">
+              <mat-option *ngFor="let cargo of lista_cargos" value="{{cargo.name}}" id="{{cargo.id}}">{{cargo.name}}</mat-option>
+  
+            </mat-select>
+          </mat-form-field>
+  
+  
+        </div>
+  
+        <div class="item">
+          <label > FOTO DE PERFIL </label> 
+          <input style="width: 50%;" type="file"  accept="image/png, image/jpeg" (change)="setImagen($event)">
+    
+        </div>
+   
+       
+      </div>  
 
-      <div class="item">
-        <label >DIRECCIÓN</label>
-        <mat-form-field appearance="fill">
-          <mat-label>dirección</mat-label>
-          <input type="text" id="fname" name="direccion"   matInput required  formControlName="address"/>
-          <mat-error *ngIf="registerForm.controls['address'].errors?.['required']"> *</mat-error>
-        </mat-form-field>
-      </div>
 
       
-
     </div>
-    <div class="grupo_formulario">
-
-      <h4>DATOS DE TRABAJO</h4>
-
-      <div class="item">
-        <label  for="form3Example1cg">SUCURSALES</label>
-        <mat-form-field appearance="fill">
-          <mat-label>sucursal</mat-label>
-          <mat-select formControlName="branch">
-            <mat-option *ngFor="let sucursal of lista_sucursales" value="{{sucursal.name}}" id="{{sucursal.id}}">{{sucursal.name}}</mat-option>
-
-          </mat-select>
-        </mat-form-field>
-      </div>
-
-      <div class="item">
-        <label  for="form3Example1cg">CARGO</label>
-        <mat-form-field appearance="fill">
-          <mat-label>cargo</mat-label>
-          <mat-select formControlName="charge">
-            <mat-option *ngFor="let cargo of lista_cargos" value="{{cargo.name}}" id="{{cargo.id}}">{{cargo.name}}</mat-option>
-
-          </mat-select>
-        </mat-form-field>
-
-
-      </div>
-
-      <div class="item">
-        <label > FOTO DE PERFIL </label> 
-        <input type="file"  accept="image/png, image/jpeg" (change)="setImagen($event)">
-  
-      </div>
-      
-      
-     
-    </div>  
-
-    <div>
+    
+    <div style="display: flex; flex-direction: row; gap: 0.5rem; margin-top: 2rem;">
       <button mat-raised-button color="primary" class="format-button" type="submit" ngClick="submit" [disabled]="!registerForm.valid" (click)="onClickNo()">Guardar</button>
       <button mat-raised-button color="warn" class="format-button" type="button" (click)="onClickNo()">Cancelar</button>
     </div>
+    
+    
 
 
 

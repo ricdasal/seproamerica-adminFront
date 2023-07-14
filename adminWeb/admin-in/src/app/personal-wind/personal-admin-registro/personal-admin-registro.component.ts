@@ -8,6 +8,7 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterModel } from '../../models/register.model';
 import { CedulaLongitud, CedulaValidator, ageValidator, telefonoCelularValidator } from '../funciones-utiles';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-personal-admin-registro',
@@ -70,9 +71,12 @@ export class PersonalAdminRegistroComponent implements OnInit {
   lista_grupos = [];
   lista_generos = ['masculino', 'femenino', 'No definido'];
 
-  constructor(private formBuilder: FormBuilder, 
+  constructor(
+    private formBuilder: FormBuilder, 
     private clienteWAService: ClienteWAService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    public matDialogRef: MatDialogRef<any>
+    ) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
@@ -171,6 +175,10 @@ export class PersonalAdminRegistroComponent implements OnInit {
       }
       reader.readAsDataURL(file);
     }
+  }
+
+  onClickNo(){
+    this.matDialogRef.close();
   }
 
 }

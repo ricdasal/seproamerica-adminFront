@@ -16,7 +16,8 @@
 .formulario{
   display: flex;
   flex-direction: column;
-  gap: 5rem
+  gap:1rem;
+  align-items: center;
 }
 
 
@@ -31,7 +32,8 @@
 .grupo_formulario{
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  width: 50%;
+  gap: 0.5rem;
 
 }
 
