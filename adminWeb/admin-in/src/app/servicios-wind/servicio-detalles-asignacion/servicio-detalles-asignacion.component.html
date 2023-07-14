@@ -126,7 +126,7 @@
           </mat-form-field>
       
           <mat-form-field *ngIf="this.conductorBool" appearance="fill" ngIfNoWhitespace>
-            <mat-label>Conductores</mat-label>
+            <mat-label>Choferes</mat-label>
             <mat-select (ngModelChange)="this.controlButtonConductor($event)" formControlName="conductores" multiple>
               <mat-option *ngFor="let personal of lista_conductor"  value="{{personal.id}};{{personal.first_name}};{{personal.last_name}}">
                 {{personal.first_name}} {{personal.last_name}}
