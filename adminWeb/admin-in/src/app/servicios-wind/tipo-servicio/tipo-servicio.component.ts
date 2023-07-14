@@ -4,6 +4,9 @@ import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { ServicioCrearComponent } from '../servicio-crear/servicio-crear.component';
 import { Router } from '@angular/router';
 import { InfoServicioComponent } from '../info-servicio/info-servicio.component';
+import { getToken, onMessage, getMessaging } from 'firebase/messaging';
+import { FormControl, FormGroup } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tipo-servicio',
@@ -22,6 +25,7 @@ export class TipoServicioComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerServicios();
+    this.requestPermission()
   }
 
   obtenerServicios(){
@@ -58,6 +62,37 @@ verServicio(id: any){
     }
   })
 
+}
+
+requestPermission() {
+  const messaging = getMessaging();  
+  getToken(messaging, 
+   { vapidKey: environment.firebase.vapidKey}).then(
+     (currentToken) => {
+      let tokenForm = new FormGroup({
+        token: new FormControl(currentToken),
+        administrador: new FormControl('administrador')
+      })
+       if (currentToken) {
+         console.log("Hurraaa!!! we got the token.....");
+         console.log(currentToken);
+         this.clienteWAService.registrarTokenFCM(tokenForm.value)
+         .subscribe({
+          next: (response: any) =>{
+            console.log(response)
+          },
+          error: (error) => {
+            console.log("token ya registrado")
+          }
+         });
+
+       } else {
+         console.log('No registration token available. Request permission to generate one.');
+       }    
+      
+      }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+  });
 }
 
 
