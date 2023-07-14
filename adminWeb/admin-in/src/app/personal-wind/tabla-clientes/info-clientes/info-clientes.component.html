@@ -1,4 +1,4 @@
-<mat-card >
+<!-- <mat-card >
     <mat-card-header>
       <mat-card-title-group >
         <mat-card-title>{{this.cliente.first_name}} {{this.cliente.last_name}}</mat-card-title>
@@ -17,4 +17,29 @@
       
       
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
+
+  <div class="contenedor-principal">
+    <div class="contenedor-secundario">
+    <img *ngIf="this.cliente.url_img === null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="../../../../assets/img/iconopersona.png" alt="">
+    <img *ngIf="this.cliente.url_img !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.cliente.url_img " alt="">
+      <div class="contenedor-informacion">
+        <h4>
+          {{this.cliente.first_name}}<br>{{this.cliente.last_name}}
+        </h4>
+        <h5 style="color: #959595;">
+          {{this.cliente.dni}}
+        </h5>
+        <h4 *ngIf="this.cliente.is_active" style="color: #34604e;"><b>Activo</b></h4>
+        <h4 *ngIf="!this.cliente.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      </div>
+    </div>
+    <div>
+      <h6><b>Correo:</b><br> <h6 class="color-gris">{{this.cliente.email}}</h6></h6>
+      <h6><b>Direccion:</b> <br><h6 class="color-gris">{{this.cliente.address}}</h6></h6>
+      <h6><b>Fecha de nacimiento:</b> <br><h6 class="color-gris">{{this.cliente.birthdate}}</h6></h6>
+      <h6><b>Genero:</b> <br> <h6 class="color-gris">{{this.cliente.gender}}</h6></h6>
+      <h6><b>Telefono:</b> <br> <h6 class="color-gris">{{this.cliente.phone_number}}</h6></h6>
+      <h6><b>Grupo:</b> <br> <h6 class="color-gris">{{this.cliente.group}}</h6></h6>  
+    </div>
+  </div>

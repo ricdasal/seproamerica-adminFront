@@ -61,7 +61,7 @@ export class TablaClientesComponent implements OnInit {
         next: (cliente: any) => {
           console.log(cliente);
           const ventanaGrupos =  this.dialog.open(InfoClientesComponent, {
-            width: '70vh',
+            width: '90vh',
             height: '53vh',
             data: cliente
           })
