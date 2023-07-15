@@ -56,6 +56,7 @@ export class AppComponent implements OnInit{
     console.log(window.location.href.split('#')[1])
     if(localStorage.getItem('ACCESS_TOKEN')){
       this.requestPermission();
+      this.listen();
     }
     if(localStorage.getItem('ACCESS_TOKEN') && window.location.href.split('#')[1] == '/'){
       
