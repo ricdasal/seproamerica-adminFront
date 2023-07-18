@@ -104,6 +104,8 @@ import { NotificacionModalComponent } from './components/modals/notificacion-mod
 import { MensajeConfirmacionComponent } from './components/modals/mensaje-confirmacion/mensaje-confirmacion.component';
 import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
 import { MensajeConfirmacionEliminarComponent } from './components/modals/mensaje-confirmacion-eliminar/mensaje-confirmacion-eliminar.component';
+import { MensajeErrorComponent } from './components/modals/mensaje-error/mensaje-error.component';
+import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar-reporte.component';
 
 initializeApp(environment.firebase);
 
@@ -186,7 +188,9 @@ initializeApp(environment.firebase);
     NotificacionModalComponent,
     MensajeConfirmacionComponent,
     MensajeConfirmacionCrearComponent,
-    MensajeConfirmacionEliminarComponent
+    MensajeConfirmacionEliminarComponent,
+    MensajeErrorComponent,
+    GenerarReporteComponent
   ],
   imports: [
     BrowserModule,

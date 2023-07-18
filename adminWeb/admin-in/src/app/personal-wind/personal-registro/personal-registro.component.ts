@@ -11,6 +11,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CrearGruposComponent } from '../../configuraciones-wind/crear-grupos/crear-grupos.component';
 import { CedulaValidator, CedulaLongitud, ageValidator, telefonoCelularValidator } from '../funciones-utiles';
 import { MensajeConfirmacionCrearComponent } from 'src/app/components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
+import { MensajeErrorComponent } from 'src/app/components/modals/mensaje-error/mensaje-error.component';
 
 @Component({
   selector: 'app-personal-registro',
@@ -137,10 +138,16 @@ export class PersonalRegistroComponent implements OnInit {
           width: '70vh',
           height: '50vh',
         })
+        this.onClickNo()
 
       },
       error => {
         console.log(error);
+        const ventanaError = this.dialog.open(MensajeErrorComponent, {
+          data: error,
+          width: '80vh',
+          height: '50vh',
+        })
       }
     )
   }

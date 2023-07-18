@@ -2,21 +2,20 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-perfil-personal',
-  templateUrl: './perfil-personal.component.html',
-  styleUrls: ['./perfil-personal.component.css']
+  selector: 'app-mensaje-error',
+  templateUrl: './mensaje-error.component.html',
+  styleUrls: ['./mensaje-error.component.css']
 })
-export class PerfilPersonalComponent implements OnInit {
-
-  personal: any = {};
+export class MensajeErrorComponent implements OnInit {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public error: any,
     public dialogRef: MatDialogRef<any>,
   ) { }
 
   ngOnInit(): void {
-    this.personal = this.data
+    let initializar = 0;
+    console.log(this.error)
   }
 
   onClickNo(){

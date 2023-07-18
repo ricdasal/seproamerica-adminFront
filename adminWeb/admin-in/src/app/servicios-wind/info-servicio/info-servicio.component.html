@@ -1,7 +1,11 @@
-<h1>Informacion Servicio</h1>
 
-<p>{{this.info_servicio.name}}</p>
-<p>{{this.info_servicio.description}}</p>
 
-<button mat-raised-button color="primary">Editar servicio</button>
+<div style="display: flex; flex-direction: column; align-items: center; padding: 1rem;">
+    <h1>Informacion del servicio</h1>
 
+    <h2><b>{{this.info_servicio.name}}</b></h2>
+    <p style="text-align: justify;">{{this.info_servicio.description}}</p>
+
+    <button mat-raised-button color="primary">Editar servicio</button>
+
+</div>

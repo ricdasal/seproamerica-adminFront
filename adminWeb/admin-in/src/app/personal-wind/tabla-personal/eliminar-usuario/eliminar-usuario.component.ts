@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MensajeConfirmacionEliminarComponent } from 'src/app/components/modals/mensaje-confirmacion-eliminar/mensaje-confirmacion-eliminar.component';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class EliminarUsuarioComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private clienteWAService: ClienteWAService,
     private http: HttpClient,
-    public dialog: MatDialogRef<any>
+    public dialogRef: MatDialogRef<any>,
+    public dialog: MatDialog,
 
   ) { }
 
@@ -33,12 +35,20 @@ export class EliminarUsuarioComponent implements OnInit {
     .subscribe({
       next: (res)=>{
         console.log(res);
+        this.dialog.open(MensajeConfirmacionEliminarComponent, {
+          data: "Personal",
+          width: '70vh',
+          height: '50vh',
+        })
+      },
+      error: (error: any) => {
+        console.log(error);
       }
     })
   }
 
   cerrarDialog(): void{
-    this.dialog.close();
+    this.dialogRef.close();
   }
 
 }

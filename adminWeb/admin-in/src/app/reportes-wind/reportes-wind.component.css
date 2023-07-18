@@ -17,7 +17,7 @@
     margin-bottom: 0px;
   }
   
-  .wrapper .bottom_nav ul li a{
+  .wrapper .bottom_nav ul li {
     color: white;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -25,9 +25,28 @@
   }
     
   #navbarResponsive2{
-    background-color: rgb(157, 13, 13);
+    background-color: black;
     border-radius: 50px 50px 0px 0px;
     margin-bottom: 0cm;
     padding-bottom: 0px;
   }
   
+  .wrapper{
+    font-family: 'Bahnschrift';
+    font-weight: bolder;
+  }
+
+  .link-style{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    border-radius: 32px;
+    width: 20%;
+  }
+  
+  .link-style:hover{
+    background-color: rgb(203, 56, 56);
+    color: pink;
+    cursor: pointer
+    
+  }

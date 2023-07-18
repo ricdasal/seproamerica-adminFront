@@ -46,54 +46,57 @@ export class TipoServicioComponent implements OnInit {
   //     height: '50vh',
   //     data: 23
   // })
-}
+  }
 
-verServicio(id: any){
-  console.log(id);
-  this.clienteWAService.obtenerServicioPorId(id)
-  .subscribe({
-    next: (res)=>{
-      console.log(res);
-      this.dialog.open(InfoServicioComponent, {
-            width: '100vh',
-            height: '50vh',
-            data: res
-      })
-    }
-  })
+  verServicio(id: any){
+    console.log(id);
+    this.clienteWAService.obtenerServicioPorId(id)
+    .subscribe({
+      next: (res)=>{
+        console.log(res);
+        this.dialog.open(InfoServicioComponent, {
+              width: '100vh',
+              height: '50vh',
+              data: res
+        })
+      }
+    })
 
-}
+  }
 
-requestPermission() {
-  const messaging = getMessaging();  
-  getToken(messaging, 
-   { vapidKey: environment.firebase.vapidKey}).then(
-     (currentToken) => {
-      let tokenForm = new FormGroup({
-        token: new FormControl(currentToken),
-        administrador: new FormControl('administrador')
-      })
-       if (currentToken) {
-         console.log("Hurraaa!!! we got the token.....");
-         console.log(currentToken);
-         this.clienteWAService.registrarTokenFCM(tokenForm.value)
-         .subscribe({
-          next: (response: any) =>{
-            console.log(response)
-          },
-          error: (error) => {
-            console.log("token ya registrado")
-          }
-         });
+  requestPermission() {
+    const messaging = getMessaging();  
+    getToken(messaging, 
+    { vapidKey: environment.firebase.vapidKey}).then(
+      (currentToken) => {
+        let tokenForm = new FormGroup({
+          token: new FormControl(currentToken),
+          administrador: new FormControl('administrador')
+        })
+        if (currentToken) {
+          console.log("Hurraaa!!! we got the token.....");
+          console.log(currentToken);
+          this.clienteWAService.registrarTokenFCM(tokenForm.value)
+          .subscribe({
+            next: (response: any) =>{
+              console.log(response)
+            },
+            error: (error) => {
+              console.log("token ya registrado")
+            }
+          });
 
-       } else {
-         console.log('No registration token available. Request permission to generate one.');
-       }    
-      
-      }).catch((err) => {
-      console.log('An error occurred while retrieving token. ', err);
-  });
-}
+        } else {
+          console.log('No registration token available. Request permission to generate one.');
+        }    
+        
+        }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+    });
+  }
 
+  urlImg(){
+    
+  }
 
 }

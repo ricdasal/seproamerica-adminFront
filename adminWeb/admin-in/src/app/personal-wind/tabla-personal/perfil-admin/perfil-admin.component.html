@@ -30,6 +30,7 @@
       </h5>
       <h4 *ngIf="this.admin.is_active" style="color: #34604e;"><b>Activo</b></h4>
       <h4 *ngIf="!this.admin.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      <button mat-flat-button type="button" style="background-color: #145e3b; color: white;" (click)="onClickNo()">Aceptar</button>
     </div>
   </div>
   <div>
@@ -41,5 +42,7 @@
     <h6><b>Sucursal:</b> <br> <h6 class="color-gris">{{this.admin.branch}}</h6></h6>
     <h6><b>Grupo:</b> <br> <h6 class="color-gris">{{this.admin.group}}</h6></h6>  
   </div>
+
+  
 </div>
 

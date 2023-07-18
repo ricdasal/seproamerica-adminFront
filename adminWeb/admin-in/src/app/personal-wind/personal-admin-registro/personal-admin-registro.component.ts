@@ -8,7 +8,9 @@ import { FormBuilder } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RegisterModel } from '../../models/register.model';
 import { CedulaLongitud, CedulaValidator, ageValidator, telefonoCelularValidator } from '../funciones-utiles';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MensajeErrorComponent } from 'src/app/components/modals/mensaje-error/mensaje-error.component';
+import { MensajeConfirmacionCrearComponent } from 'src/app/components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
 
 @Component({
   selector: 'app-personal-admin-registro',
@@ -75,6 +77,7 @@ export class PersonalAdminRegistroComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private clienteWAService: ClienteWAService,
     private http: HttpClient,
+    public dialog: MatDialog,
     public matDialogRef: MatDialogRef<any>
     ) { }
 
@@ -105,8 +108,25 @@ export class PersonalAdminRegistroComponent implements OnInit {
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     this.http.post(`${this.clienteWAService.DJANGO_SERVER_CREAR_PERSONAL_ADMINISTRADOR}`, form.value, {headers})
-    .subscribe( (res: any) => {
-      console.log(res);
+    .subscribe({
+      next: (res: any) => {
+        console.log(res);
+        const ventanaConfirmacion = this.dialog.open(MensajeConfirmacionCrearComponent,{
+          data: "Administrador",
+          width: '70vh',
+          height: '50vh',
+        })
+        this.onClickNo()
+        
+      },
+      error: (error: any) => {
+        console.log(error);
+        const ventanaError = this.dialog.open(MensajeErrorComponent, {
+          data: error,
+          width: '80vh',
+          height: '50vh',
+        })
+      }
       
     })
   }
@@ -131,7 +151,8 @@ export class PersonalAdminRegistroComponent implements OnInit {
       next: (res: any)=>{
         this.lista_sucursales = this.lista_sucursales.concat(res);
       }
-    })
+    }
+    )
   }
 
     setImagen(event: any){

@@ -39,6 +39,7 @@ import { CrearCargosComponent } from './configuraciones-wind/crear-cargos/crear-
 import { NotificacionModalComponent } from './components/modals/notificacion-modal/notificacion-modal.component';
 import { MensajeConfirmacionComponent } from './components/modals/mensaje-confirmacion/mensaje-confirmacion.component';
 import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
+import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar-reporte.component';
 
 
 const routes: Routes = [
@@ -99,9 +100,6 @@ const routes: Routes = [
     canActivate:[PermitidoConSesionActivaGuard]},
     { path: '', redirectTo: '/serviciosVentana/serviciosTipo', pathMatch: 'prefix'},
   ] },
-
-
-  
   {path: 'configuraciones', component: ConfiguracionesWindComponent, pathMatch: 'prefix', 
   canActivate:[PermitidoConSesionActivaGuard, PermitidoConTipoDeUsuarioGuard], children: [
     {path: 'grupos', component: CrearGruposComponent, pathMatch: 'prefix',
@@ -110,6 +108,12 @@ const routes: Routes = [
     canActivate:[PermitidoConSesionActivaGuard, PermitidoConTipoDeUsuarioGuard]},
     { path: '', redirectTo: '/configuraciones/grupos', pathMatch: 'prefix'},
 
+  ]},
+  { path: 'reportesVentana', component: ReportesWindComponent, pathMatch: 'prefix',
+  canActivate:[PermitidoConSesionActivaGuard], children: [
+    {path: 'generarReporte', component: GenerarReporteComponent, pathMatch: 'prefix',
+    canActivate: [PermitidoConSesionActivaGuard]},
+    { path: '', redirectTo: '/reportesVentana/generarReporte', pathMatch: 'prefix'},
   ]},
   { path: 'registro', component: RegistroComponent, pathMatch: 'prefix',    
   canActivate:[NoPermitidoSinSesionActivaGuard]},
@@ -133,8 +137,7 @@ const routes: Routes = [
     canActivate:[PermitidoConSesionActivaGuard]},
 
   
-  { path: 'reportesVentana', component: ReportesWindComponent, pathMatch: 'prefix',
-  canActivate:[PermitidoConSesionActivaGuard] },
+
   { path: 'mensajeriaVentana', component: MensajeriaWindComponent, pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard] },
   

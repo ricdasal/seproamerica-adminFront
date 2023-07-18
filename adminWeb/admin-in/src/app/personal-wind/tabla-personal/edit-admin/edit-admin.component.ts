@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { CedulaValidator, CedulaLongitud, ageValidator, telefonoCelularValidator } from '../../funciones-utiles';
+import { MensajeConfirmacionComponent } from 'src/app/components/modals/mensaje-confirmacion/mensaje-confirmacion.component';
 
 @Component({
   selector: 'app-edit-admin',
@@ -65,12 +66,15 @@ export class EditAdminComponent implements OnInit {
     .subscribe({
       next: (res: any) =>{
         console.log(res);
-        this.dialog.open(DialogoConfirmacionComponent, {
-          data: res.message
+        this.dialog.open(MensajeConfirmacionComponent, {
+          data: "Administrador",
+          width: '70vh',
+          height: '50vh',
         });
       }
     })
 
+    this.onClickNO()
   }
 
   onClickNO(): void{
