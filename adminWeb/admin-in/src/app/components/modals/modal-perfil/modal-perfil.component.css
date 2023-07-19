@@ -4,7 +4,7 @@
     background-color: #bf1a24;
     color: white;
     text-align: center;
-    height: 100%;
+
 }
 .img-logo{
     text-align: center;
@@ -45,7 +45,6 @@
     justify-content: center;
     text-align: center;
     
-    margin: 20px;
    
 }
 .btn-logout img{
@@ -58,8 +57,8 @@
     align-items: center;
 }
 
-
+/* 
 ::ng-deep .mat-dialog-container{
     padding: 0;
-    /* border-top-left-radius: 3rem; */
-}
+
+} */

@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, interval } from 'rxjs';
+import { Observable, interval, take } from 'rxjs';
 import { NotificacionesService } from 'src/app/services/notificaciones/notificaciones.service';
 import { FirebaseAppSettings, initializeApp } from "firebase/app";
 import { environment } from 'src/environments/environment';
@@ -8,9 +8,10 @@ import { environment } from 'src/environments/environment';
 // import { FirebaseApp, FirebaseAppModule, FirebaseApps } from '@angular/fire/app';
 import { getMessaging, getToken, onMessage} from "firebase/messaging";
 import { AppComponent } from 'src/app/app.component';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { NotificacionModalComponent } from '../notificacion-modal/notificacion-modal.component';
 
 @Component({
   selector: 'app-modal-notificaciones',
@@ -19,45 +20,10 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ModalNotificacionesComponent implements OnInit {
 
-  notificaciones=[
-    {
-      'titulo':'Nuevo Servicio Solicitado',
-      'texto':'Nuevo servicio solicitaddo',
-      
-    },
-    {
-      'titulo':'Servicio 341 pagado',
-      'texto':'Servicio 341 pagado'
-    },
-    {
-      'titulo':'Nueva notificacion cualquiera',
-      'texto':'Nueva notificacion cualquiera'
-    },
-    {
-      'titulo':'Nuevo Servicio Solicitado',
-      'texto':'Nuevo servicio solicitaddo'
-    },
-    {
-      'titulo':'Nuevo Servicio Solicitado',
-      'texto':'Nuevo servicio solicitaddo'
-    },
-    {
-      'titulo':'Nueva notificacion cualquiera',
-      'texto':'Nueva notificacion cualquiera'
-    },
-    {
-      'titulo':'Servicio 342 pagado',
-      'texto':'Servicio 342 pagado'
-    },
-    {
-      'titulo':'Nuevo Servicio Solicitado',
-      'texto':'Nuevo servicio solicitaddo'
-    },
-
-  ]
 
 
- token: string = '';
+  audio = new Audio('assets/audio/audio_alerta1.mp3');
+  token: string = '';
 
   title = 'af-notification';
   message:any = null;
@@ -67,13 +33,14 @@ export class ModalNotificacionesComponent implements OnInit {
 
   app = initializeApp(environment.firebase);
 
-  
+  params = new HttpParams().set('limit', '10');
 
   constructor(
     public notificacionService:NotificacionesService,
     private router:Router,
     private http: HttpClient,
     private clienteWAService: ClienteWAService,
+    private dialog: MatDialog,
     public dialogRef: MatDialogRef<any>,
   ) { 
     
@@ -82,6 +49,7 @@ export class ModalNotificacionesComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerNotificaciones();
+    this.listen();
 
   }
 
@@ -90,8 +58,8 @@ export class ModalNotificacionesComponent implements OnInit {
     .subscribe({
       next: (notificaciones: any) => {
         this.lista_notificaciones = [];
-        this.lista_notificaciones = this.lista_notificaciones.concat(notificaciones);
-        console.log(notificaciones);
+        this.lista_notificaciones = this.lista_notificaciones.concat(notificaciones.slice(0, 10));
+        console.log(this.lista_notificaciones)
       }
     })
   }
@@ -152,66 +120,16 @@ export class ModalNotificacionesComponent implements OnInit {
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
       console.log('Message received. ', payload);
+      this.obtenerNotificaciones();
+      this.reproducir_alerta();
+      this.dialog.open(NotificacionModalComponent, {
+        width: '250px',
+        data: payload
+      });
 
-      this.message=payload;
-
-      this.lista_notificaciones.push(this.message);
     });
   }
 
-
-  enviar_mensaje(){
-    const url = 'https://fcm.googleapis.com/fcm/send';
-    const serverKey = 'AIzaSyDWEsnR-K7xcEb-VRIfu9bJ8lvCOJMRINo';
-    const notification = {
-      title: 'First Notification',
-      body: 'Hello from Jishnu!!'
-    };
-
-
-  
-  
-
-    console.log(this.token)
-    
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `key=${serverKey}`
-    });
-    
-    const data = {
-      notification: notification,
-      to: this.token
-    };
-    
-    this.http.post(url, data, { headers })
-      .subscribe(
-        (response) => {
-          console.log('Respuesta:', response);
-          // Realiza acciones adicionales con la respuesta
-        },
-        (error) => {
-          console.error('Error en la solicitud:', error);
-          // Maneja el error de manera adecuada
-        }
-      );
-
-
-
-
-
-
-  // Send a message to devices subscribed to the provided topic.
-  // getMessaging().send(message)
-  //   .then((response) => {
-  //     // Response is a message ID string.
-  //     console.log('Successfully sent message:', response);
-  //   })
-  //   .catch((error) => {
-  //     console.log('Error sending message:', error);
-  //   });
-
-  }
 
   leerNotificacion(notificacion: any){
     console.log(notificacion)
@@ -234,5 +152,11 @@ export class ModalNotificacionesComponent implements OnInit {
     }
   }
  
+  reproducir_alerta() {
+    //this.audio.muted = true; // without this line it's not working although I have "muted" in HTML
+    this.audio.load()
+    this.audio.play();
+    
+  }
   
 }

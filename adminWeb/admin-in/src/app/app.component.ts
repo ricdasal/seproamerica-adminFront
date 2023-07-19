@@ -5,12 +5,6 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { MensajeriaService } from './services/mensajeria/mensajeria.service';
 import { NotificacionesService } from './services/notificaciones/notificaciones.service';
 import { getToken, onMessage, getMessaging } from 'firebase/messaging';
-
-
-
-
-
-
 import { environment } from 'src/environments/environment';
 import { ClienteWAService } from './services/cliente-wa.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -41,7 +35,8 @@ export class AppComponent implements OnInit{
     private notificacionService:NotificacionesService,
     private mensajeriaService:MensajeriaService,
     private clienteWAService: ClienteWAService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+
      ) { 
       this.ruta=window.location.href.split("/").pop()
     console.log(this.ruta)
@@ -117,7 +112,7 @@ export class AppComponent implements OnInit{
       this.reproducir_alerta();
       this.dialog.open(NotificacionModalComponent, {
         width: '250px',
-        data: payload
+        data: payload,
       });
       this.message=payload;
     });

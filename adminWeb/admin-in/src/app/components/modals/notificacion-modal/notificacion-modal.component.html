@@ -1,5 +1,12 @@
-
+<!-- 
 <div class="notification-box">
     <h1>{{notificacion.notification.title}}</h1>
     <h3>{{notificacion.notification.body}}</h3>
+</div> -->
+
+<div class="componente-principal">
+    <img class="estilo-imagen" src="../../../../assets/img/icono11.png" alt="">
+    <h5>{{notificacion.notification.title}}</h5>
+    <h6> {{notificacion.notification.body}}</h6>
+    <button type="button" (click)="onClickNO()" mat-flat-button style="background-color: #c93c45; width: 10rem; color: white;">Cerrar</button> 
 </div>

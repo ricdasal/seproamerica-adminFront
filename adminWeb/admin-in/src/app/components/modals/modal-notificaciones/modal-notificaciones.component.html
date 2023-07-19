@@ -50,7 +50,7 @@
    
 <div style="display: flex; flex-direction: column; gap: 3vh;">
     <div class="header-notificaciones">
-        <h1 style="display: flex; gap: 3vh"> 
+        <h1 style="display: flex; gap: 3vh; "> 
             <img class="logoI " src="../../assets/Iconos/app-sepro-vectores-notificaciones.png">
             Notificaciones
             <!-- <button type="button" (click)="this.eliminarNotificaciones">eliminar notificaciones</button> -->
@@ -65,9 +65,11 @@
         <div *ngFor="let notificacion of this.lista_notificaciones" 
         class="notificacion"
         (click)="obtenerPedido(notificacion.order)">
-            <h3>{{notificacion.title}}</h3>
-            <h4>{{notificacion.message}}</h4>
-            <h4>Orden #: {{notificacion.order}}</h4>
+            <h5>{{notificacion.title}}</h5>
+            <h6>{{notificacion.message}}</h6>
+            <h6>Orden #: {{notificacion.order}}</h6>
+            <h6>Fecha de envio: {{notificacion.date_sended.split('T')[0]}}</h6>
+            <h6>Hora de envio: {{notificacion.date_sended.split('T')[1].split('.')[0]}}</h6>
     
         </div>
     
