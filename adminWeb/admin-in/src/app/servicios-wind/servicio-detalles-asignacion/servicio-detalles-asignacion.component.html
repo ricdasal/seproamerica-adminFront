@@ -22,7 +22,12 @@
 
         <div class="Fila_Datos">
           <h6>Fecha de solicitud:</h6>
-          <h6 id="valor">{{pedido_a_asignar.fecha_Solicitud}}</h6>
+          <h6 id="valor">{{pedido_a_asignar.fecha_Solicitud.split('T')[0]}}</h6>
+        </div>
+
+        <div class="Fila_Datos">
+          <h6>Hora de solicitud:</h6>
+          <h6 id="valor">{{pedido_a_asignar.fecha_Solicitud.split('T')[1].split('.')[0]}}</h6>
         </div>
 
         <div class="Fila_Datos" >

@@ -40,6 +40,7 @@ import { NotificacionModalComponent } from './components/modals/notificacion-mod
 import { MensajeConfirmacionComponent } from './components/modals/mensaje-confirmacion/mensaje-confirmacion.component';
 import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
 import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar-reporte.component';
+import { ServicioAceptadoComponent } from './servicios-wind/servicio-eap/servicio-aceptado/servicio-aceptado.component';
 
 
 const routes: Routes = [
@@ -91,7 +92,11 @@ const routes: Routes = [
     { path: 'serviciosPorAsignar', component: ServicioPorAsignarComponent, pathMatch: 'prefix',
     canActivate:[PermitidoConSesionActivaGuard] },
     {path: 'todosLosServicios', component: ServicioEapComponent, pathMatch: 'prefix',
-    canActivate:[PermitidoConSesionActivaGuard]},
+    canActivate:[PermitidoConSesionActivaGuard], children: [
+      
+    ]},
+    {path: 'detalleServicio', component: ServicioAceptadoComponent, pathMatch: 'prefix', 
+      canActivate: [PermitidoConSesionActivaGuard]},
     { path: 'serviciosDetallesAsignacion', component: ServicioDetallesAsignacionComponent, pathMatch: 'prefix',
     canActivate:[PermitidoConSesionActivaGuard] },
     { path: 'serviciosEnCurso', component: ServicioEnCursoComponent, pathMatch: 'prefix',

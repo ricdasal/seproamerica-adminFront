@@ -106,6 +106,7 @@ import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-c
 import { MensajeConfirmacionEliminarComponent } from './components/modals/mensaje-confirmacion-eliminar/mensaje-confirmacion-eliminar.component';
 import { MensajeErrorComponent } from './components/modals/mensaje-error/mensaje-error.component';
 import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar-reporte.component';
+import { ServicioAceptadoComponent } from './servicios-wind/servicio-eap/servicio-aceptado/servicio-aceptado.component';
 
 initializeApp(environment.firebase);
 
@@ -190,7 +191,8 @@ initializeApp(environment.firebase);
     MensajeConfirmacionCrearComponent,
     MensajeConfirmacionEliminarComponent,
     MensajeErrorComponent,
-    GenerarReporteComponent
+    GenerarReporteComponent,
+    ServicioAceptadoComponent
   ],
   imports: [
     BrowserModule,

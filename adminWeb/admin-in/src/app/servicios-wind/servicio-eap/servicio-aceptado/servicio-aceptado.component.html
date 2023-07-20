@@ -1,0 +1,231 @@
+
+<div *ngIf="this.datosCargados" style="display: flex; gap: 2rem">
+    <div class="column" >
+        <div class="informacion_cliente" style="text-align:start;"> 
+          <h2 >Datos del servicio</h2>
+    
+          <div class="Fila_Datos">
+            <h6>ID:</h6>
+            <h6 id="valor">{{pedido_asignado.id}}</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Usuario solicitante:</h6>
+            <!-- <h6 id="valor">{{this.nombre_cliente.first_name}} {{this.nombre_cliente.last_name}}</h6> -->
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Nombre del servicio:    </h6>
+            <!-- <h6 id="valor">{{this.nombre_servicio.name}}</h6> -->
+          </div>  
+    
+          <div class="Fila_Datos">
+            <h6>Fecha de solicitud:</h6>
+            <h6 id="valor">{{pedido_asignado.date_request.split('T')[0]}}</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Hora de solicitud:</h6>
+            <h6 id="valor">{{pedido_asignado.date_request.split('T')[1].split('.')[0]}}</h6>
+          </div>
+    
+          <div class="Fila_Datos" >
+            <h6>Ubicación:   </h6>
+            <h6><button mat-button style="font-size:small;" (click)="abrirUbicacion()">Abrir ubicación</button></h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Distancia en kilómetros:</h6>
+            <h6 id="valor">{{this.pedido_asignado.km_distance}} Km</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Fecha Inicio: </h6>
+            <h6 id="valor">{{pedido_asignado.start_date}}</h6>
+          </div>
+
+          <div class="Fila_Datos">
+            <h6>Hora Inicio:</h6>
+            <h6 id="valor">{{pedido_asignado.start_time}}</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Fecha Finalización:</h6>
+            <h6 id="valor">{{pedido_asignado.end_date}}</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Hora Finalización:</h6>
+            <h6 id="valor">{{pedido_asignado.end_time}}</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Método de pago: </h6>
+            <h6 id="valor">{{pedido_asignado.payment_method}}</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Estado:</h6>
+            <h6 id="valor">{{pedido_asignado.status}}</h6>
+    
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Empleado líder:</h6>
+            <!-- <h6 id="valor">{{this.registerForm.value.staff_leader.split(';')[1]}} {{this.registerForm.value.staff_leader.split(';')[2]}}</h6> -->
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Pago</h6>
+            <h6 id="valor">${{this.pedido_asignado.total}}</h6>
+          </div>
+    
+          <div class="Fila_Datos">
+            <h6>Cuenta asignada</h6>
+            <!-- <h6 id="valor">{{this.registerForm.value.phone_account.split(";")[1]}}</h6> -->
+          </div>
+    
+    
+        </div>
+    </div>
+
+    <div class="column">
+        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de empleados requeridos:</h4>
+
+        <!-- <div class="Fila_Datos" *ngFor="let staff of this.lista_staff_object">
+          <h6>{{staff.nombre}}:</h6>
+          <h6 id="valor">{{staff.cantidad}}</h6>
+        </div> -->
+
+        <h4 style="margin-top: 2rem; margin-bottom: 2rem;">Cantidad de equipamiento requerido</h4>
+
+        <!-- <div class="Fila_Datos" *ngFor="let equipment of this.lista_equipment_object">
+          <h6>{{equipment.nombre}}:</h6>
+          <h6 id="valor">{{equipment.cantidad}}</h6>
+        </div> -->
+
+        <h4>Detalles:</h4>
+        <div>
+          <h6>Empleados asignados:</h6>
+          <div class="Fila_Datos">
+            <div>
+              <!-- <ul *ngIf="this.asigned_staff.value.guardias.length !== 0" >
+                <th>Guardias: </th>
+                <li *ngFor="let guardias of this.asigned_staff.value.guardias">
+                  <h6>
+                    {{guardias.split(';')[1]}} {{guardias.split(';')[2]}}
+                </h6> 
+               </li>
+              </ul> -->
+            </div>
+
+            <div>
+              <!-- <ul *ngIf="this.asigned_staff.value.guardaespaldas.length !== 0" ngIfNoWhitespace>
+                <th>Guardaespaldas:</th>
+                <li *ngFor="let guardaespalda of this.asigned_staff.value.guardaespaldas">
+                  <h6>{{guardaespalda.split(';')[1]}} {{guardaespalda.split(';')[2]}}</h6>
+                </li>
+              </ul> -->
+            </div>
+
+            <div>
+              <!-- <ul *ngIf="this.asigned_staff.value.motorizados.length !== 0">
+                <th>Motorizados:</th>
+                <li *ngFor="let motorizado of this.asigned_staff.value.motorizados">
+                  <h6>{{motorizado.split(';')[1]}} {{motorizado.split(';')[2]}}</h6>
+
+                </li>
+              </ul> -->
+            </div>
+
+            <div>
+              <!-- <ul *ngIf="this.asigned_staff.value.conductores.length !== 0">
+                <th>Conductores:</th>
+                <li *ngFor="let conductor of this.asigned_staff.value.conductores">
+                  <h6>{{conductor.split(';')[1]}} {{conductor.split(';')[2]}}</h6>
+                </li>
+              </ul> -->
+            </div>
+
+          </div>
+
+        </div>
+
+        <div>
+            <h6 >Equipamento: </h6>
+            <div class="Fila_Datos">
+              <div>
+                <!-- <ul *ngIf="this.asigned_equipment.value.vehiculos.length !== 0">
+                  <th>Vehículos:</th>
+                  <li *ngFor="let vehiculo of this.asigned_equipment.value.vehiculos">
+                    <h6>
+                      modelo: {{vehiculo.split(';')[1]}}
+                    </h6>
+                    <h6>
+                      placa: {{vehiculo.split(';')[2]}}
+                    </h6>
+                  </li>
+                </ul> -->
+              </div>
+  
+              <div>
+                <!-- <ul *ngIf="this.asigned_equipment.value.candados.length !== 0">
+                  <th>Candados:</th>
+                  <li *ngFor="let candado of this.asigned_equipment.value.candados">
+                    <h6>
+                      numero serial: {{candado.split(';')[0]}}
+                    </h6>
+                    <h6>
+                      marca: {{candado.split(';')[1]}}
+                    </h6>
+                    <h6>
+                      modelo: {{candado.split(';')[2]}}
+                    </h6>
+                  </li>
+                </ul> -->
+              </div>
+  
+              <div>
+                <!-- <ul *ngIf="this.asigned_equipment.value.armamentos.length !== 0">
+                  <th>Armamentos:</th>
+                  <li *ngFor="let armamento of this.asigned_equipment.value.armamentos">
+                    <h6>
+                      numero serial: {{armamento.split(';')[0]}} 
+                    </h6>
+                    <h6>
+                      marca: {{armamento.split(';')[1]}}
+                    </h6>
+                    <h6>
+                      modelo: {{armamento.split(';')[2]}}
+                    </h6>
+                  </li>
+                </ul> -->
+              </div>
+  
+              <div>
+                <!-- <ul *ngIf="this.asigned_equipment.value.movil.length !== 0">
+                  <th>Móvil:</th>
+                  <li>
+                    <h6>
+                      numero serial: {{this.asigned_equipment.value.movil.split(';')[0]}}
+                    </h6>
+                    <h6>
+                      marca: {{this.asigned_equipment.value.movil.split(';')[1]}}
+                    </h6>
+                    <h6>
+                      modelo: {{this.asigned_equipment.value.movil.split(';')[2]}}
+                    </h6>
+                  </li>
+                </ul> -->
+              </div>
+              
+            </div>
+    </div>
+  </div>
+    
+
+</div>
+
+<div *ngIf="!this.datosCargados" style="display: flex; flex-direction: column; align-items: center; margin-top: 40vh;">
+  <mat-spinner></mat-spinner>
+</div>

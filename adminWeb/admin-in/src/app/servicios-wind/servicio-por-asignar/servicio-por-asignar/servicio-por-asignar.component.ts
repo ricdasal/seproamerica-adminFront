@@ -27,7 +27,7 @@ export class ServicioPorAsignarComponent implements OnInit {
 
 
   lista_pedidos_en_proceso: Array<any> = []
-  columnas: string[] = ['Id','Fecha de solicitud','Fecha de servicio', 'Hora de inicio', 'Solicitante', 'Dni del solictante', 'Servicio','Opciones'];
+  columnas: string[] = ['Id','Fecha de solicitud', 'Hora de solicitud', 'Fecha de servicio', 'Hora de inicio', 'Solicitante', 'Dni del solictante', 'Servicio','Opciones'];
 
   constructor(
     private clienteWAService: ClienteWAService,
