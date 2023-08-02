@@ -41,6 +41,7 @@ import { MensajeConfirmacionComponent } from './components/modals/mensaje-confir
 import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-confirmacion-crear/mensaje-confirmacion-crear.component';
 import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar-reporte.component';
 import { ServicioAceptadoComponent } from './servicios-wind/servicio-eap/servicio-aceptado/servicio-aceptado.component';
+import { ChatWindComponent } from './mensajeria-wind/chat-wind/chat-wind.component';
 
 
 const routes: Routes = [
@@ -82,8 +83,8 @@ const routes: Routes = [
   ],
   pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard]
-},
-{ path: 'serviciosVentana', component: ServiciosWindComponent, pathMatch: 'prefix',
+  },
+  { path: 'serviciosVentana', component: ServiciosWindComponent, pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard], children: [
     { path: 'servicioEditarEliminar', component: ServicioEditarEliminarComponent, pathMatch: 'prefix',
     canActivate:[PermitidoConSesionActivaGuard] },
@@ -105,7 +106,7 @@ const routes: Routes = [
     canActivate:[PermitidoConSesionActivaGuard]},
     { path: '', redirectTo: '/serviciosVentana/serviciosTipo', pathMatch: 'prefix'},
   ] },
-  {path: 'configuraciones', component: ConfiguracionesWindComponent, pathMatch: 'prefix', 
+  { path: 'configuraciones', component: ConfiguracionesWindComponent, pathMatch: 'prefix', 
   canActivate:[PermitidoConSesionActivaGuard, PermitidoConTipoDeUsuarioGuard], children: [
     {path: 'grupos', component: CrearGruposComponent, pathMatch: 'prefix',
     canActivate:[PermitidoConSesionActivaGuard, PermitidoConTipoDeUsuarioGuard]},
@@ -120,6 +121,13 @@ const routes: Routes = [
     canActivate: [PermitidoConSesionActivaGuard]},
     { path: '', redirectTo: '/reportesVentana/generarReporte', pathMatch: 'prefix'},
   ]},
+  { path: 'buzon-mensajes', component: MensajeriaWindComponent, pathMatch: 'prefix',  
+  canActivate:[PermitidoConSesionActivaGuard], children: [
+    {path: 'chat', component: ChatWindComponent, pathMatch: 'prefix', 
+    canActivate: [PermitidoConSesionActivaGuard]}
+  ]},
+
+
   { path: 'registro', component: RegistroComponent, pathMatch: 'prefix',    
   canActivate:[NoPermitidoSinSesionActivaGuard]},
   { path: 'perfil', component: PerfilComponent, pathMatch: 'prefix',    

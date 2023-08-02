@@ -1,0 +1,18 @@
+<div class="contenedor"> 
+
+    <div *ngFor="let mensaje of this.lista_mensajes" class="{{mensaje.remitente}}">
+        <h6>{{mensaje.contenido}}</h6>     
+    
+    </div>
+
+</div>
+
+<form [formGroup]="chat_cliente_administrador" (ngSubmit)="enviarMensaje(chat_cliente_administrador)" style="display: flex; flex-direction: column; gap: 3rem;">
+    <div style="width: 100%; margin-top: 1rem; display: flex; gap: 0.25rem;">
+        <input type="text" style="width: 100%;" formControlName="message" placeholder="Escribe un mensaje">
+        <button mat-flat-button color="primary" type="submit" [disabled]="!this.chat_cliente_administrador.valid">enviar</button>
+    </div>
+</form>
+
+
+

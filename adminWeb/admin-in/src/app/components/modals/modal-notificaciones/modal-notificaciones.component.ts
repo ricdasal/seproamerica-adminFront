@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 // import { getMessaging, getToken, provideMessaging, onMessage} from '@angular/fire/messaging';
 // import { FirebaseApp, FirebaseAppModule, FirebaseApps } from '@angular/fire/app';
 import { getMessaging, getToken, onMessage} from "firebase/messaging";
-import { AppComponent } from 'src/app/app.component';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';

@@ -1,60 +1,11 @@
-<!-- <section class="modal-notificacion">
 
-    <div class="contenido" >
-        <h1>NOTIFICACIONES</h1>
-
-        <div > 
-                <div [ngClass]="{
-                    'nuevo_servicio' : message=='Nuevo servicio',
-                    'cualquiera' : message=='Nuevo Mensaje'}"
-                    id="item-notificacion">
-                    
-                    <div id="titulo">
-                        <span >    
-                            NUEVO SERVICIO SOLICITADO
-                        </span>
-                        <span >    
-                            {{message | uppercase}} 
-                        </span>
-
-                    </div>
-                    <div class="contenido">{{message}}</div>
-                    <div class="d-flex">
-                        <div id="hora">
-                            21:20
-                        </div>
-                        <div id="estado" >
-                            
-                        </div>
-                    </div>
-                </div>
-                <br>
-        </div>
-     
-
-    </div>
-    <audio hidden controls src='../../../../assets/audio/audio_alerta.mp3' type="audio/mp3">
-        Your browser does not support the <code>audio</code> element.
-    </audio>
-    
-</section> -->
-
-<!-- <div *ngFor="let notificacion of lista_notificaciones">
-    <h1>{{ notificacion.notification.title }}</h1>
-    <h2>{{ notificacion.notification.body }}</h2>
-    <audio hidden controls src='../../../../assets/audio/audio_alerta.mp3' type="audio/mp3">
-        Your browser does not support the <code>audio</code> element.
-    </audio>
-  </div>
-   -->
-   
 <div style="display: flex; flex-direction: column; gap: 3vh;">
     <div class="header-notificaciones">
-        <h1 style="display: flex; gap: 3vh; "> 
+        <h3 style="display: flex; gap: 3vh; "> 
             <img class="logoI " src="../../assets/Iconos/app-sepro-vectores-notificaciones.png">
             Notificaciones
             <!-- <button type="button" (click)="this.eliminarNotificaciones">eliminar notificaciones</button> -->
-        </h1>
+        </h3>
     </div>
     <div *ngIf="this.lista_notificaciones.length === 0;">
         No Message Arrived
@@ -62,15 +13,25 @@
     
     <div *ngIf="this.lista_notificaciones.length !== 0;" class="ventana-notificaciones" 
         >
-        <div *ngFor="let notificacion of this.lista_notificaciones" 
+        <div style="padding: 1rem;" *ngFor="let notificacion of this.lista_notificaciones" 
         class="notificacion"
         (click)="obtenerPedido(notificacion.order)">
-            <h5>{{notificacion.title}}</h5>
-            <h6>{{notificacion.message}}</h6>
-            <h6>Orden #: {{notificacion.order}}</h6>
-            <h6>Fecha de envio: {{notificacion.date_sended.split('T')[0]}}</h6>
-            <h6>Hora de envio: {{notificacion.date_sended.split('T')[1].split('.')[0]}}</h6>
+            <div style="display: flex; gap: 1rem;">
+                <h6 style="text-align: justify;">Orden #: {{notificacion.order}}</h6>
+                <h6 style="text-align: justify;">{{notificacion.title}}:</h6>
+                <h6>{{notificacion.message}}</h6>
+                
+
+            </div>
+           
+            <div style="display: flex; gap: 7rem;">
+
+                <h6>Fecha de envio: {{notificacion.date_sended.split('T')[0]}}</h6>
+                <h6>Hora de envio: {{notificacion.date_sended.split('T')[1].split('.')[0]}}</h6>
     
+
+            </div>
+            
         </div>
     
     </div>

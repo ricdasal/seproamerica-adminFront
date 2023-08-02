@@ -1,4 +1,4 @@
-<section class="modal-mensajeria">
+<!-- <section class="modal-mensajeria">
 
     <div class="contenido" >
         <h1>MENSAJERIA</h1>
@@ -39,4 +39,49 @@
     <div class="btn-mensajeria">
         <button (click)="irMensajeria()" class="btn" >Ir a mensajería</button>
     </div>
-</section>
+</section> -->
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+    <div class="header-mensajeria">
+        <img width="70vh" src="../../../../assets/Iconos/app-sepro-vectores-sms.png" alt="">
+        <h3>Mensajería</h3>
+    </div>
+
+    <div class="lista-mensajes">
+        <div class="mensaje" style="padding: 1rem; width: 100%;" *ngFor="let mensaje of this.lista_mensajes">
+            <div>
+                <h6>{{mensaje.nombre}}</h6>
+                <h6>{{mensaje.mensaje}}</h6>
+            </div>
+            <div>
+                <h6>fecha de envío: {{mensaje.fecha_de_envio}}</h6>
+            </div>
+
+
+        </div>
+
+
+
+        <!-- <div style="padding: 1rem;" *ngFor="let notificacion of this.lista_notificaciones" 
+        class="notificacion"
+        (click)="obtenerPedido(notificacion.order)">
+            <div style="display: flex; gap: 1rem;">
+                <h6 style="text-align: justify;">Orden #: {{notificacion.order}}</h6>
+                <h6 style="text-align: justify;">{{notificacion.title}}:</h6>
+                <h6>{{notificacion.message}}</h6>
+                
+
+            </div>
+           
+            <div style="display: flex; gap: 7rem;">
+
+                <h6>Fecha de envio: {{notificacion.date_sended.split('T')[0]}}</h6>
+                <h6>Hora de envio: {{notificacion.date_sended.split('T')[1].split('.')[0]}}</h6>
+    
+
+            </div>
+            
+        </div> -->
+
+    </div>
+</div>

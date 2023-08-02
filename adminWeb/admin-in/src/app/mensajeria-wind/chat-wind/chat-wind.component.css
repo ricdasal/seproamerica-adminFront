@@ -1,0 +1,33 @@
+.cliente{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+
+.cliente > h6{
+    background-color: #3b7bc2;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
+.administrador{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.administrador > h6 {
+    background-color: #53bdeb;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+.contenedor{
+    display: flex; 
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 90%;
+    padding: 1rem;
+}

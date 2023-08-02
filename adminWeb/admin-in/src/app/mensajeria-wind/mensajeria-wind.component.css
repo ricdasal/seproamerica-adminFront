@@ -1,6 +1,52 @@
+.lista-mensajes{
+    height: 100%;
+    width: 70%;
+    overflow-y: scroll;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
 
-/*estilos para barra de opciones*/
-.wrapper .bottom_nav{
+.bucket-mensajes{
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+}
+
+.container{
+    display: flex; 
+    margin-top: 1.5rem; 
+    gap: 2rem; 
+    background-color: whitesmoke; 
+    height: 75%;
+}
+
+h3{
+    padding: none;
+    margin: none;
+}
+
+.usuario-mensaje{
+    border: 0.25rem; 
+    border-style: solid; 
+    border-radius: 1rem; 
+    padding: 0.25rem; 
+    text-align: center; 
+    cursor: pointer;
+}
+
+.usuario-mensaje:hover{
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.wrapper{
+    font-family: 'Bahnschrift';
+    font-weight: bolder;
+  }
+  .wrapper .bottom_nav{
     width: 100%;
     background: #f9f9f9;
     height: 45px;
@@ -26,256 +72,24 @@
   }
     
   #navbarResponsive2{
-    background-color: rgb(157, 13, 13);
+    background-color: black;
     border-radius: 50px 50px 0px 0px;
     margin-bottom: 0cm;
     padding-bottom: 0px;
+    width: auto;
   }
   a{
     text-decoration: none;
-   }
+    }
    li{
     padding: 10px;
     border-radius: 32px;
+    color: white;
    }
    li:hover { 
     background-color: rgb(203, 56, 56);
     color: pink;
+    cursor: pointer;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
-  .active{
-    margin-top: 2px;
-    text-decoration: underline 2px solid white;
-  }
-  
-
-
-section{
-   display: flex;
-   flex-direction: row;
-   position: absolute;
-   left: 0;
-   top: 0;
-   width: 100%;
-   height: 100%;
-   
-}
-.contenido{
-    position: relative;
-}
-::-webkit-scrollbar {display: none;}
-
-/* Estilos personalizados para el header*/
-img{
-    width: 100%;
-    height: auto;
-}
-
-/*Header*/
-fondo-header{
-    background-color: white;
-}
-
-.estructura-header{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 1%;
-    grid-template-areas: 
-        "h1 h2 h3";
-}
-
-.estructura-header .primeraDivision{
-    grid-area: h1;
-}
-
-.estructura-header .segundaDivision{
-    grid-area: h2;
-}
-
-.estructura-header .terceraDivision{
-    grid-area: h3;
-}
-
-.flexbox-terceraDivision{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    background-color: #BF1924;
-    height: 70%;
-}
-
-.flexbox-terceraDivision-item1{
-    margin-left: 50px;
-    margin-top: 10px;
-    width: 30%;
-}
-
-.flexbox-terceraDivision-item2{
-    /*margin-left: 40px;
-    margin-top: 10px;*/
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    width: 50%;
-}
-
-.icono{
-    font-size: 50px;
-    height: 50px ;
-    width: 50px;
-    text-decoration: none;
-    color: white;
-}
-
-.icono:hover{
-    color: #FF4742;
-    transition: all 1s cubic-bezier(0.075, 0.81, 0.165, 1);
-}
-
-.container-imagen{
-    width: 40%;
-}
-
-.container-Registro1 .container-Registro2{
-    display: flex;
-    justify-content: center;
-    background-color: #BF1924;
-    color: white;
-    margin-top: 70px;
-}
-
-.container-Iconos1 .container-Iconos2{
-    display: flex;
-    justify-content: center;
-    background-color: #BF1924;
-}
-
-.container-Iconos1 .container-Iconos2 .iconList{
-    float: left;
-    list-style: none;
-}
-/*-------------------------------------------------------------------------------*/
-/*Estilos para mensajeria*/
-
-#historial-mensajes {
-    border-right: 2px black solid;
-    height: 600px;
-	overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-}
-.lista-mensajes-1{
-    display: flex;
-    flex-direction: column;
-	height: auto;
-    margin: 0;
-    padding-bottom: 20px;
-}
-#item-mensaje{
-    display: flex;
-    gap: 15px;
-    padding: 10px;
-}
-
-#nombre-servicio{
-    display: flex;
-    background-color: rgb(44, 152, 44);
-    color: white;
-    border-radius: 32px;
-    padding: 5px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    align-self: top;
-    z-index: 3;
-    
-}
-.info-envio{
-    font-size: smaller;
-    color: gray;
-
-}
-
-.mensajes{
-    height: 495px;
-	width: 100%;
-	overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-}
-
-.lista-mensajes{
-    display: flex;
-    flex-direction: column;
-	height: auto;
-    margin: 0;
-    padding-bottom: 20px;
-}
-
-
-.sms-general{
-    padding: 15px;
-    margin: 5px;
-    border: solid 1px black;
-    border-radius: 32px;
-    width: 80%;
-    font-size: 17px;
-    background-color: white;
-    
-}
-.tiempo{
-    color:#BF1924;
-    float: right;
-    font-size: x-small;
-    text-align: end;
-    font-weight: bold;
-}
-.texto{
-    margin: 0 au;
-}
-.sms-enviado{
-    align-self: flex-end;
-
-}
-
-.sms-recibido{
-    align-self: flex-start;
-
-}
-.sala{
-position: relative;
-background-color: rgb(234, 227, 227);
-border-radius:  32px 32px 0 0;
-}
-.sala-mensajes{
-    background-color: rgb(255, 21, 21);
-}
-form{
-   
-    position: absolute;
-    bottom: -35px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-}
-
-#entrada-mensaje{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 50px;
-    border-radius: 0 0 16px 16px;
-    border: 1px gray solid;  
-}
-
-.sin-contenido{
-
-    text-align: center;
-}
-.no-leido {
-    background-color: blue;
-    width: 15px;
-    height: 15px;
-    border-radius: 12px;
-  }
-

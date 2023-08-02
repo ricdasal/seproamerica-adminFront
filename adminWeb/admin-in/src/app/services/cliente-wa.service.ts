@@ -139,8 +139,20 @@ export class ClienteWAService {
   DJANGO_SERVER_ENVIAR_NOTIFICACION: string =  this.BASE_URL + "notifications/orderClientNoti/"
   DJANGO_SERVER_OBTENER_NOTIFICACIONES: string = this.BASE_URL + "notifications/adminNoti/"
 
+  //
+  DJANGO_SERVER_ENVIAR_MENSAJE: string = this.BASE_URL + "messaging/sendMessage/";
+
 
   constructor(private http: HttpClient) { }
+
+
+  obtenerCliente(id: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    return this.http.get(`${this.DJANGO_SERVER_OBTENER_CLIENTE}${id}`, {headers})
+  }
 
 
   obtenerUsuarioAdmin(id: any){
@@ -407,6 +419,14 @@ export class ClienteWAService {
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     return this.http.delete(`${this.DJANGO_SERVER_OBTENER_NOTIFICACIONES}`, {headers})
+
+  }
+
+  enviarMensajeCliente(mensaje: any){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+    return this.http.post(this.DJANGO_SERVER_ENVIAR_MENSAJE, mensaje, {headers})
 
   }
 

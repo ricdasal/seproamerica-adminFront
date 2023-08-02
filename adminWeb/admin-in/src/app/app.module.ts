@@ -107,6 +107,11 @@ import { MensajeConfirmacionEliminarComponent } from './components/modals/mensaj
 import { MensajeErrorComponent } from './components/modals/mensaje-error/mensaje-error.component';
 import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar-reporte.component';
 import { ServicioAceptadoComponent } from './servicios-wind/servicio-eap/servicio-aceptado/servicio-aceptado.component';
+import { ChatWindComponent } from './mensajeria-wind/chat-wind/chat-wind.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { NewChatWindComponent } from './mensajeria-wind/new-chat-wind/new-chat-wind.component';
 
 initializeApp(environment.firebase);
 
@@ -192,7 +197,9 @@ initializeApp(environment.firebase);
     MensajeConfirmacionEliminarComponent,
     MensajeErrorComponent,
     GenerarReporteComponent,
-    ServicioAceptadoComponent
+    ServicioAceptadoComponent,
+    ChatWindComponent,
+    NewChatWindComponent
   ],
   imports: [
     BrowserModule,
@@ -219,7 +226,9 @@ initializeApp(environment.firebase);
     GoogleMapsModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
-    // AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
     // AngularFireMessagingModule,
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideMessaging(() => getMessaging()),
