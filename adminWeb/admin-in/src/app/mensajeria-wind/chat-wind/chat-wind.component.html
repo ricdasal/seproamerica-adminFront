@@ -1,7 +1,10 @@
-<div class="contenedor"> 
+<div id="miDiv" cdkScrollable class="contenedor"> 
 
     <div *ngFor="let mensaje of this.lista_mensajes" class="{{mensaje.remitente}}">
-        <h6>{{mensaje.contenido}}</h6>     
+        <h6>{{mensaje.contenido}}
+            <p style="align-items: end; font-size: 0.75rem; color: #999fa2;">{{this.obtenerHoraActual(mensaje.fecha_envio.seconds)}}</p>  
+        </h6> 
+          
     
     </div>
 

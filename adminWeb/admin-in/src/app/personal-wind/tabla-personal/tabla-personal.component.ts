@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -24,14 +24,14 @@ interface Filtro {
   templateUrl: './tabla-personal.component.html',
   styleUrls: ['./tabla-personal.component.css']
 })
-export class TablaPersonalComponent implements OnInit {
+export class TablaPersonalComponent implements OnInit, AfterViewInit {
 
   //Lista para guardar los servicios ya creados
   lista_personal: Array<any> = [];
 
   personalList:any=[];
    columnas: string[] = ['Nombres','Apellidos','Contacto','Correo','Opciones'];
-   dataSource!: MatTableDataSource<any>;
+   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(this.lista_personal);
    @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
    display = 'none';
@@ -63,6 +63,10 @@ export class TablaPersonalComponent implements OnInit {
       this.cargarUsuarios();
   }
 
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
   obtenerUsuarioFiltro(){
 
     if(this.selectedValue == 'administrador'){
@@ -82,8 +86,8 @@ export class TablaPersonalComponent implements OnInit {
   cargarUsuarios(){  
     console.log(this.lista_personal);
     //this.dataSource = new MatTableDataSource(this.datos);
-    this.dataSource = new MatTableDataSource<any>(this.lista_personal);
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource = new MatTableDataSource<any>(this.lista_personal);
+    // this.dataSource.paginator = this.paginator;
   }
 
 
@@ -98,7 +102,7 @@ export class TablaPersonalComponent implements OnInit {
         console.log(data);
         this.lista_personal = []; 
         this.lista_personal = this.lista_personal.concat(data);
-
+        this.dataSource = new MatTableDataSource<any>(this.lista_personal);
       }
     })  
   }
