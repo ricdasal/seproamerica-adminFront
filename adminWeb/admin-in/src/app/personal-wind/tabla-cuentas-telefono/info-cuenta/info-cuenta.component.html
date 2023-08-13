@@ -1,4 +1,4 @@
-<mat-card class="example-card" style=" height:40vh;max-width: 100vh;max-height: 100vh;">
+<!-- <mat-card class="example-card" style=" height:40vh;max-width: 100vh;max-height: 100vh;">
     <mat-card-header>
       <mat-card-title-group >
         <mat-card-title><b></b>{{this.cuentaTelefono.email}}</mat-card-title>
@@ -13,5 +13,25 @@
       
 
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
 
+
+  <div class="contenedor-principal">
+    <div class="contenedor-secundario">
+    <img  ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="assets/logo.png" alt="">
+    <!-- <img *ngIf="this.cuentaTelefono.url_img !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.cuentaTelefono.url_img " alt=""> -->
+      <div class="contenedor-informacion">
+        <h4>
+          {{this.cuentaTelefono.first_name}}<br>{{this.cuentaTelefono.last_name}}
+        </h4>
+        <h5 style="color: #959595;">
+          {{this.cuentaTelefono.dni}}
+        </h5>
+        <h4 *ngIf="this.cuentaTelefono.is_active" style="color: #34604e;"><b>Activo</b></h4>
+        <h4 *ngIf="!this.cuentaTelefono.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      </div>
+    </div>
+    <div>
+      <h6><b>Correo:</b><br> <h6 class="color-gris">{{this.cuentaTelefono.email}}</h6></h6>
+
+  </div>

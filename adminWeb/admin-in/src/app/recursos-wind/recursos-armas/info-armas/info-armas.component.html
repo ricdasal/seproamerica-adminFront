@@ -1,4 +1,4 @@
-<mat-card class="example-card" >
+<!-- <mat-card class="example-card" >
     <mat-card-header>
       <mat-card-title-group >
         <mat-card-title>Modelo: {{this.arma.model}}</mat-card-title>
@@ -14,5 +14,33 @@
       <b>Año:</b> {{this.arma.year}}<br>
       <b>Branch:</b> {{this.arma.branch}}<br>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
+
+  <div class="contenedor-principal">
+    <div class="contenedor-secundario">
+    <img  ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="assets/logo.png" alt="">
+    <!-- <img *ngIf="this.arma.url_img !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.arma.url_img " alt=""> -->
+      <div class="contenedor-informacion">
+        <h4>
+          Modelo: {{this.arma.model}}
+        </h4>
+        <h5 style="color: #959595;">
+          {{this.arma.dni}}
+        </h5>
+        <h4 *ngIf="this.arma.is_active" style="color: #34604e;"><b>Activo</b></h4>
+        <h4 *ngIf="!this.arma.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      </div>
+    </div>
+    <div>
+
+
+      <h6><b>Categoría:</b> <h6 class="color-gris">{{this.arma.category}}<br></h6></h6>
+      <h6><b>Marca:</b> <h6 class="color-gris">{{this.arma.brand}}<br> </h6></h6>
+      <h6><b>Munición:</b> <h6 class="color-gris">{{this.arma.ammo}}<br></h6></h6>
+      <h6><b>Color:</b> <h6 class="color-gris">{{this.arma.color}}<br></h6></h6>
+      <h6><b>Numero Serial:</b> <h6 class="color-gris">{{this.arma.serial_number}}<br></h6></h6>
+      <h6><b>Año:</b> <h6 class="color-gris">{{this.arma.year}}<br></h6></h6>
+      <h6><b>Branch:</b> <h6 class="color-gris">{{this.arma.branch}}<br></h6></h6>
+
+  </div> 
 

@@ -78,8 +78,8 @@ export class RecursosCelularComponent implements OnInit {
 
     eliminarCelular(id: any){
       const ventanaGrupos =  this.dialog.open(EliminarCelularComponent, {
-        width: '100vh',
-        height: '80vh',
+        width: '70vh',
+        height: '50vh',
         data: id
       })
     }

@@ -88,8 +88,8 @@ export class RecursosCandadosComponent implements OnInit {
 
     eliminarCandado(id: any){
       const ventanaGrupos =  this.dialog.open(EliminarCandadoComponent, {
-        width: '100vh',
-        height: '80vh',
+        width: '70vh',
+        height: '50vh',
         data: id
       })
     }

@@ -101,8 +101,8 @@ export class RecursosArmasComponent implements OnInit{
 
     eliminarArma(id: any){
         this.dialog.open(EliminarArmaComponent, {
-          width: '100vh',
-          height: '80vh',
+          width: '70vh',
+          height: '50vh',
           data: id
       })
     }

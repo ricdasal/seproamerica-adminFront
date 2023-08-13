@@ -56,7 +56,7 @@ export class TablaCuentasTelefonoComponent implements OnInit {
         next: (cuentaTelefono: any) => {
           console.log(cuentaTelefono);
           const ventanaGrupos =  this.dialog.open(InfoCuentaComponent, {
-            width: '70vh',
+            width: '75vh',
             height: '45vh',
             data: cuentaTelefono
           })
@@ -69,7 +69,7 @@ export class TablaCuentasTelefonoComponent implements OnInit {
   crearCuenta(){
     const ventanaGrupos =  this.dialog.open(CrearCuentaComponent, {
       width: '80vh',
-      height: '50vh',
+      height: '80vh',
     })
 
   }

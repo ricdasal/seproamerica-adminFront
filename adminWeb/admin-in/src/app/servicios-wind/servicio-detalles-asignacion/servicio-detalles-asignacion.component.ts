@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ComunicarComponentesService } from 'src/app/services/comunicar-componentes.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MapWindComponent } from '../servicio-en-curso/map-wind/map-wind.component';
+import { MensajeConfirmacionComponent } from 'src/app/components/modals/mensaje-confirmacion/mensaje-confirmacion.component';
 
 
 @Component({
@@ -710,12 +711,14 @@ console.log(--------------------------------------------)
       next: (data:any) =>{
         console.log(data);
    
-        this.dialog.open(AsignacionConfirmacion, {
-          width: '25vh',
-          height: '25vh',
-          data: data
+        this.dialog.open(MensajeConfirmacionComponent, {
+          width: '70vh',
+          height: '50vh',
+          data: 'Pedido'
           
         })
+        this.router.navigate(['serviciosVentana/serviciosPorAsignar']);
+
         
       }
       

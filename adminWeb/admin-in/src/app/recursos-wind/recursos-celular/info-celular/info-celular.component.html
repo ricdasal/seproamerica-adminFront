@@ -1,4 +1,4 @@
-<mat-card class="example-card" >
+<!-- <mat-card class="example-card" >
     <mat-card-header>
       <mat-card-title-group >
         <mat-card-title>Modelo: {{this.celular.model}}</mat-card-title>
@@ -6,11 +6,38 @@
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-      <b>Numero de teléfono:</b> {{this.celular.phone_number}}<br>
+      
       <b>Color:</b> {{this.celular.color}}<br>
       <b>Marca:</b> {{this.celular.brand}}<br> 
       <b>Sucursal:</b> {{this.celular.branch}}<br>
-      <b>Año compra:</b> {{this.celular.purchase_date}}<br>
+      
     
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
+
+
+  <div class="contenedor-principal">
+    <div class="contenedor-secundario">
+    <img  ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="assets/logo.png" alt="">
+    <!-- <img *ngIf="this.celular.url_img !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.celular.url_img " alt=""> -->
+      <div class="contenedor-informacion">
+        <h4>
+          <h6><b>Modelo:</b> <h6 class="color-gris">{{this.celular.model}}</h6></h6>
+        </h4>
+        <h5 style="color: #959595;">
+          {{this.celular.dni}}
+        </h5>
+        <h4 *ngIf="this.celular.is_active" style="color: #34604e;"><b>Activo</b></h4>
+        <h4 *ngIf="!this.celular.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      </div>
+    </div>
+    <div>
+      
+      <h6><b>Numero de teléfono:</b> <h6 class="color-gris">{{this.celular.phone_number}}</h6></h6>
+      <h6><b>Color:</b> <h6 class="color-gris">{{this.celular.color}}</h6></h6>
+      <h6><b>Marca:</b> <h6 class="color-gris">{{this.celular.brand}}</h6> </h6>
+      <h6><b>Año compra:</b>  <h6 class="color-gris">{{this.celular.purchase_date}}</h6> </h6>
+      <h6> <b>Sucursal:</b>  <h6 class="color-gris">{{this.celular.branch}}</h6></h6>
+
+
+  </div> 

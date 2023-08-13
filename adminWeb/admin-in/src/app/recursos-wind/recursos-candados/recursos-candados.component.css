@@ -34,7 +34,8 @@
   th{
     background-color: black;
     color: white;
-  }
+    text-align: center !important;
+  } 
   
   td{
     background-color: whitesmoke;

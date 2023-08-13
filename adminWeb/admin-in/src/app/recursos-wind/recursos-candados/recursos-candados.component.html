@@ -9,10 +9,10 @@
         Agregar Candado
       </button>
     </div>
-    <table mat-table [dataSource]="CandadoList" class="mat-elevation-z8" #tabla1>
+    <table mat-table [dataSource]="CandadoList" class="mat-elevation-z8" #tabla1 >
   
       <ng-container matColumnDef="Numero Serie">
-        <th mat-header-cell *matHeaderCellDef> Número de serie </th>
+        <th mat-header-cell *matHeaderCellDef > Número de serie </th>
         <td mat-cell *matCellDef="let CandadoList"> {{CandadoList.serial_number}}</td>
       </ng-container>
   

@@ -101,7 +101,7 @@ export class ChatWindComponent implements OnInit, OnDestroy, AfterViewInit, Afte
 
   obtenerHoraActual(segundos: number): string {
     const fechaActual = new Date();
-    fechaActual.setSeconds(segundos + 12420);
+    fechaActual.setSeconds(segundos);
 
     const horas = fechaActual.getHours().toString().padStart(2, '0');
     const minutos = fechaActual.getMinutes().toString().padStart(2, '0');

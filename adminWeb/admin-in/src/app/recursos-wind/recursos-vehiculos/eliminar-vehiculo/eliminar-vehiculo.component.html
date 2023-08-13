@@ -1,4 +1,4 @@
-<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem;">
+<!-- <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem;">
     <div>
         <img src="../../../../assets/Iconos/0011.png" alt="">
     </div>
@@ -6,7 +6,23 @@
         <h3>Se eliminará a este vehículo con todos sus datos. ¿Desea eliminarlo?</h3>
     </div>
     <div class="modal-body">
-        <h4 id="mensajeDeConfirmacionDos">Realmente desea eliminar este usuario?</h4>
+        <h4 id="mensajeDeConfirmacionDos">Realmente desea eliminar este usuar?</h4>
+        
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="eliminarEquipamento(this.data);cerrarDialog();" class="btn btn-primary" style="background-color: #c93c45; width: 10rem;">Eliminar</button> 
+    </div>
+</div> -->
+
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; font-size: 2rem; ">
+    <div>
+        <img style="width: 15vh; height: 15vh;" src="../../../../assets/Iconos/0011.png" alt="">
+    </div>
+    <div class="modal-header">
+        <h3>Se eliminará a este vehículo con todos sus datos. ¿Desea eliminarlo?</h3>
+    </div>
+    <div class="modal-body">
+        <h4 id="mensajeDeConfirmacionDos">¿Realmente desea eliminar este vehículo?</h4>
         
     </div>
     <div class="modal-footer">

@@ -1,19 +1,47 @@
-<mat-card class="example-card" >
+<!-- <mat-card class="example-card" >
     <mat-card-header>
       <mat-card-title-group >
-        <mat-card-title>Modelo: {{this.vehiculo.model}}</mat-card-title>
+        <mat-card-title></mat-card-title>
         <img mat-card-md-image style="margin-left: 50vh;" src="https://material.angular.io/assets/img/examples/shiba2.jpg"  alt="Image of a Shiba Inu">
       </mat-card-title-group>
     </mat-card-header>
     <mat-card-content>
-      <b>Categoría:</b> {{this.vehiculo.category}}<br>
-      <b>Marca:</b> {{this.vehiculo.brand}}<br> 
-      <b>Sucursal:</b> {{this.vehiculo.branch}}<br>
-      <b>Color:</b> {{this.vehiculo.color}}<br>
-      <b>Motor:</b> {{this.vehiculo.engine}}<br>
-      <b>Placa:</b> {{this.vehiculo.plate}}<br>
-      <b>Capacidad de combustible:</b> {{this.vehiculo.gas_tank_capacity}}<br>
-      <b>Modelo:</b> {{this.vehiculo.model}}<br>
+      
+      
+     
+      
+      
+      
+      
+      
 
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
+
+  <div class="contenedor-principal">
+    <div class="contenedor-secundario">
+    <img  ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="assets/logo.png" alt="">
+    <!-- <img *ngIf="this.vehiculo.url_img !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.vehiculo.url_img " alt=""> -->
+      <div class="contenedor-informacion">
+        <h4>
+          Modelo: {{this.vehiculo.model}}
+        </h4>
+        <h5 style="color: #959595;">
+          {{this.vehiculo.dni}}
+        </h5>
+        <h4 *ngIf="this.vehiculo.is_active" style="color: #34604e;"><b>Activo</b></h4>
+        <h4 *ngIf="!this.vehiculo.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      </div>
+    </div>
+    <div>
+      <h6><b>Categoría:</b> <h6 class="color-gris">{{this.vehiculo.category}}</h6></h6>
+      <h6><b>Marca:</b> <h6 class="color-gris">{{this.vehiculo.brand}}</h6> </h6>
+      <h6> <b>Sucursal:</b>  <h6 class="color-gris">{{this.vehiculo.branch}}</h6></h6>
+      <h6><b>Color:</b> <h6 class="color-gris">{{this.vehiculo.color}}</h6></h6>
+      <h6><b>Motor:</b> <h6 class="color-gris">{{this.vehiculo.engine}}</h6></h6>
+      <h6><b>Placa:</b> <h6 class="color-gris">{{this.vehiculo.plate}}</h6></h6>
+      <h6><b>Capacidad de combustible:</b> <h6 class="color-gris">{{this.vehiculo.gas_tank_capacity}}</h6></h6>
+      <h6><b>Modelo:</b> <h6 class="color-gris">{{this.vehiculo.model}}</h6></h6>
+      <h6></h6>
+
+  </div> 

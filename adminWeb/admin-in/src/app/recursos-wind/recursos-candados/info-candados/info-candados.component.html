@@ -1,4 +1,4 @@
-<mat-card class="example-card" >
+<!-- <mat-card class="example-card" >
     <mat-card-header>
       <mat-card-title-group >
         <mat-card-title>Modelo: {{this.candado.model}}</mat-card-title>
@@ -12,4 +12,30 @@
       <b>Sucursal:</b> {{this.candado.branch}}<br>
       <b>Provider:</b> {{this.candado.provider}}<br>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
+
+
+  <div class="contenedor-principal">
+    <div class="contenedor-secundario">
+    <img  ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem;" src="assets/logo.png" alt="">
+    <!-- <img *ngIf="this.candado.url_img !== null" ngIfNoWhitespace style="width: 10rem; height: 8rem; margin-bottom: 0.25rem; border-radius: 10rem;" [src]="this.candado.url_img " alt=""> -->
+      <div class="contenedor-informacion">
+        <h4>
+          <b>Numero de serie:</b> {{this.candado.serial_number}}
+        </h4>
+        <h5 style="color: #959595;">
+          {{this.candado.dni}}
+        </h5>
+        <h4 *ngIf="this.candado.is_active" style="color: #34604e;"><b>Activo</b></h4>
+        <h4 *ngIf="!this.candado.is_active" style="color: #c83b44;"><b>No Activo</b></h4>
+      </div>
+    </div>
+    <div>
+      <h6><b>Categoría:</b> <h6 class="color-gris">{{this.candado.category}}</h6></h6>
+      <h6><b>Marca:</b> <h6 class="color-gris">{{this.candado.brand}}</h6> </h6>
+      <h6> <b>Sucursal:</b>  <h6 class="color-gris">{{this.candado.branch}}</h6></h6>
+      <h6><b>Color:</b> <h6 class="color-gris">{{this.candado.color}}</h6></h6>
+      <h6><b>Modelo:</b> <h6 class="color-gris">{{this.candado.model}}</h6></h6>
+      <h6><b>Provider:</b>  <h6 class="color-gris">{{this.candado.provider}}</h6></h6>
+
+  </div> 
