@@ -49,8 +49,6 @@ import { AgregarcandadosDialogComponent } from './recursos-wind/recursos-candado
 import { AgregararmamentoDialogComponent } from './recursos-wind/recursos-armas/agregararmamento-dialog/agregararmamento-dialog.component';
 
 
-
-
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { ModalMensajeriaComponent } from './components/modals/modal-mensajeria/modal-mensajeria.component';
 import { ModalPerfilComponent } from './components/modals/modal-perfil/modal-perfil.component';
@@ -114,11 +112,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { NewChatWindComponent } from './mensajeria-wind/new-chat-wind/new-chat-wind.component';
 
 initializeApp(environment.firebase);
-
-
-
-
-
 
 
 @NgModule({
