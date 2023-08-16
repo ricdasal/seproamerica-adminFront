@@ -39,6 +39,6 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: [],
     singleRun: false,
-    restartOnFileChange: true
+    restartOnFileChange: false
   });
 };
