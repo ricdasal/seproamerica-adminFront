@@ -14,9 +14,10 @@
  
     <div class="lista-mensajes">
 
-      <button mat-flat-button color="primary" type="button" (click)="this.nuevoMensaje()">Nuevo mensaje</button>
+      <!-- <button mat-flat-button color="primary" type="button" (click)="this.nuevoMensaje()">Nuevo mensaje</button> -->
       <div *ngFor="let usuario of this.lista_usuarios" (click)="appearChat(usuario.id);" class="usuario-mensaje">
         <h3>{{usuario.nombre}} {{usuario.apellido}}</h3>
+        <h6>Ultimo mensaje: "{{usuario.last_message_info.ultimo_mensaje}}"</h6>
       </div>
             
 

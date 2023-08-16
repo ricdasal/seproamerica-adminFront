@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { interval } from 'rxjs';
+import { interval, last } from 'rxjs';
 import { MensajeriaService, smsInfo2 } from '../services/mensajeria/mensajeria.service';
 import { ModalsService } from '../services/modals/modals.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
