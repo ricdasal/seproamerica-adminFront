@@ -10,6 +10,7 @@ export class NewChatWindComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let initializer;
   }
 
 }
