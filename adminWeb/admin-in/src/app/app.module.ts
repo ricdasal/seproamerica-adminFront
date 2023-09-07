@@ -110,6 +110,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { NewChatWindComponent } from './mensajeria-wind/new-chat-wind/new-chat-wind.component';
+import { ValoresGeneradosComponent } from './reportes-wind/generar-reporte/valores-generados/valores-generados.component';
 
 initializeApp(environment.firebase);
 
@@ -192,7 +193,8 @@ initializeApp(environment.firebase);
     GenerarReporteComponent,
     ServicioAceptadoComponent,
     ChatWindComponent,
-    NewChatWindComponent
+    NewChatWindComponent,
+    ValoresGeneradosComponent
   ],
   imports: [
     BrowserModule,

@@ -252,7 +252,7 @@ export class ClienteWAService {
 
   }
 
-  obtenerPedidos(){
+  obtenerTodoPedidos(){
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
@@ -313,6 +313,15 @@ export class ClienteWAService {
       'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
     });
     return this.http.get(`${this.DJANGO_SERVER_OBTENER_CLIENTE  }${id}`, {headers})
+
+  }
+
+  obtenerPedidos(){
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('ACCESS_TOKEN')}`
+    });
+
+    return this.http.get(`${this.DJANGO_SERVER_MODIFICAR_PEDIDO}`)
 
   }
 

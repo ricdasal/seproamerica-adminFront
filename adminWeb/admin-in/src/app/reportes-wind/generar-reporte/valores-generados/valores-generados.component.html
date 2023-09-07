@@ -1,0 +1,126 @@
+
+<div class="caja">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+        <div [formGroup]="formulario_fecha" style="display: flex; flex-direction: column; gap: 1rem;"> 
+            <div class="item" >
+                <!-- <label>DESDE</label> -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Desde</mat-label>
+                  <input matInput type="date"  formControlName="fecha_inicio">
+                </mat-form-field>
+                
+            </div>
+    
+            <div class="item" >
+                <!-- <label>DESDE</label> -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Hasta</mat-label>
+                  <input matInput type="date"  formControlName="fecha_fin">
+                </mat-form-field>
+                
+            </div>
+            
+            
+            <button mat-flat-button color="primary" (click)="filtroPorfecha()">Filtro por fecha</button>
+    
+        </div>
+
+        <div [formGroup]="formulario_costos" style="display: flex; flex-direction: column; gap: 1rem;"> 
+            <div class="item" >
+                <!-- <label>DESDE</label> -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Desde</mat-label>
+                  <input matInput type="number"  formControlName="costo_desde">
+                </mat-form-field>
+                
+            </div>
+    
+            <div class="item" >
+                <!-- <label>DESDE</label> -->
+                <mat-form-field appearance="fill">
+                  <mat-label>Hasta</mat-label>
+                  <input matInput type="number"  formControlName="costo_hasta">
+                </mat-form-field>
+                
+            </div>
+            
+            
+            <button mat-flat-button color="primary" (click)="filtroPorfecha()">Filtro por costo</button>
+    
+        </div>
+
+        <div>
+            <button mat-flat-button color="primary" (click)="this.obtenerPedidos()">Reiniciar filtros</button>
+        </div>
+
+    </div>
+    
+
+    
+
+      
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;">Id</th>
+            <td mat-cell *matCellDef="let pedido">
+              {{pedido.id}} 
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="client_dni">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;">Cédula de identidad</th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.client_dni}} </td>  
+        </ng-container>
+
+        <ng-container matColumnDef="client_name">
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Nombres </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.client_first_name}} {{pedido.client_last_name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date_request" >
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Fecha de solicitud </th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.date_request.split('T')[0]}}:{{pedido.date_request.split('T')[1].split('.')[0]}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="service_name" >
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;">Servicio</th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.service_name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="start_date" >
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;">Fecha de inicio</th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.start_date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="start_time" >
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;">Hora inicio</th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.start_time}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status" >
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;">Estado</th>
+            <td mat-cell *matCellDef="let pedido"> {{pedido.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="total" >
+            <th mat-header-cell *matHeaderCellDef style="text-align:center;">Costo</th>
+            <td mat-cell *matCellDef="let pedido"> ${{pedido.total}}</td>
+        </ng-container>
+    
+    
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+
+  
+      
+    </table>
+      <!-- <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator> -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
+    
+      <!--Pantalla para confirmar registro-->
+      
+</div>

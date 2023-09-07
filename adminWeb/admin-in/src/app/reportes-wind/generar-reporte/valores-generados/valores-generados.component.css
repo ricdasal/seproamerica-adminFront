@@ -1,0 +1,55 @@
+table {
+    margin: auto;
+    background-color: rgb(224, 224, 233);
+    margin-top: 12px;
+    width: 200vh; 
+    /* height: 100vh; */
+  }
+
+  th.mat-header{
+    width: 100vh;
+  }
+
+  .informacion{
+    text-align: center;
+  }
+
+  .td-style{
+    align-items: center;
+    
+  }
+
+  .botones{
+    color: white; 
+    background-color: black;
+  }
+
+  .subcaja{
+    display: flex; 
+    gap: 12vh;
+  }
+
+  .caja{
+    display: flex; 
+    flex-direction: column;
+    gap: 3vh; 
+    align-items: center;
+    /* margin-top: 5vh; */
+  }
+
+  .mat-table{
+    background-color: white;
+  }
+
+  th{
+    background-color: black;
+    color: white;
+  }
+
+  .item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* gap: 0.5rem; */
+  
+  }

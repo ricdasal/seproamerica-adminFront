@@ -1,31 +1,21 @@
 <div style="display: flex; flex-direction: row; gap: 4rem; flex-wrap: wrap; padding: 3rem; background-color: FFF0;">
     <div style="margin: auto;" *ngFor="let reporte of lista_opciones" id="{{reporte.id}}" class="reporte_especifico">
-        <!-- <img id="Base_Circulo" src="../../assets/Iconos/app sepro vectores-12.png" alt="">
-      
-        <div class="detalles">
-          <h1>{{reporte.name}}</h1>
-          <img class="logo-reporte" src="../../assets/Iconos/app sepro vectores-19.png" alt="">
-          <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="" (click)="verreporte(reporte.id)">
-        </div>
-      </div> -->
     
       <div class="reporte_especifico" >
         <div class="contenedor_principal">
           <div class="contenedor_blanco" >
             <div class="contenedor" >
               <img src="{{reporte.url}}"alt="" style="max-width: 10vh;">
-              <h3 style="text-align: center;">{{reporte.title}}</h3>
-              <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" alt="" style="width: 15vh; cursor: pointer;">
-        
+              <h4 style="text-align: center;">{{reporte.title}}</h4>
+              <img class="btn-detalle" src="../../assets/Iconos/app sepro vectores-21.png" routerLinkActive="active" routerLink="/reportesVentana/{{reporte.routerLink}}" alt="" style="width: 15vh; cursor: pointer;">
             </div>
-        
+            <!-- src="../../assets/Iconos/app-sepro-vectores-generar-pdf.png" -->
           </div>
          
-          
         </div>
     
        </div>
        
-    
      </div> 
+
 </div>

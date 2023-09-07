@@ -42,6 +42,7 @@ import { MensajeConfirmacionCrearComponent } from './components/modals/mensaje-c
 import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar-reporte.component';
 import { ServicioAceptadoComponent } from './servicios-wind/servicio-eap/servicio-aceptado/servicio-aceptado.component';
 import { ChatWindComponent } from './mensajeria-wind/chat-wind/chat-wind.component';
+import { ValoresGeneradosComponent } from './reportes-wind/generar-reporte/valores-generados/valores-generados.component';
 
 
 const routes: Routes = [
@@ -119,7 +120,10 @@ const routes: Routes = [
   canActivate:[PermitidoConSesionActivaGuard], children: [
     {path: 'generarReporte', component: GenerarReporteComponent, pathMatch: 'prefix',
     canActivate: [PermitidoConSesionActivaGuard]},
-    { path: '', redirectTo: '/reportesVentana/generarReporte', pathMatch: 'prefix'},
+    {path: 'valoresGenerados', component: ValoresGeneradosComponent, pathMatch: 'prefix',
+    canActivate: [PermitidoConSesionActivaGuard]},
+    {path: '', redirectTo: '/reportesVentana/generarReporte', pathMatch: 'prefix'},
+    
   ]},
   { path: 'buzon-mensajes', component: MensajeriaWindComponent, pathMatch: 'prefix',  
   canActivate:[PermitidoConSesionActivaGuard], children: [
