@@ -223,7 +223,7 @@ initializeApp(environment.firebase);
     MatProgressSpinnerModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    // AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase),
     // AngularFireMessagingModule,
     // provideFirebaseApp(() => initializeApp(environment.firebase)),
     // provideMessaging(() => getMessaging()),

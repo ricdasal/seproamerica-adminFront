@@ -128,7 +128,8 @@ const routes: Routes = [
   { path: 'buzon-mensajes', component: MensajeriaWindComponent, pathMatch: 'prefix',  
   canActivate:[PermitidoConSesionActivaGuard], children: [
     {path: 'chat', component: ChatWindComponent, pathMatch: 'prefix', 
-    canActivate: [PermitidoConSesionActivaGuard]}
+    canActivate: [PermitidoConSesionActivaGuard]},
+    {path: '', redirectTo: '/buzon-mensajes/chat', pathMatch: 'prefix'},
   ]},
 
 
