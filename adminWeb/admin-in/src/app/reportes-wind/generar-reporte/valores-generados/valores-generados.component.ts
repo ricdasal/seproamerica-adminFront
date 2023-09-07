@@ -74,19 +74,14 @@ export class ValoresGeneradosComponent implements OnInit, AfterViewInit {
 
   filtroPorfecha(){
 
-    
-
-    let fechaInicio: Date = new Date(this.formulario_fecha.value.fecha_inicio); //new Date('2023-08-19'); 
+    let fechaInicio: Date = new Date(this.formulario_fecha.value.fecha_inicio);
     if(this.formulario_fecha.value.fecha_inicio == ''){
       fechaInicio = new Date('1900-08-30')
     }
-    console.log(fechaInicio)
-    let fechaFin: Date = new Date(this.formulario_fecha.value.fecha_fin); //new Date('2023-08-30'); new Date()
+    let fechaFin: Date = new Date(this.formulario_fecha.value.fecha_fin); 
     if(this.formulario_fecha.value.fecha_fin == ''){
       fechaFin = new Date();
     }
-    console.log(fechaFin)
-    // this.datos.filter(item => item.fecha >= this.fechaInicio && item.fecha <= this.fechaFin);
     this.pedidos =  this.pedidos.filter(
       (item: { start_date: any; }) => {
         const fechaItem = new Date(item.start_date);
@@ -97,13 +92,32 @@ export class ValoresGeneradosComponent implements OnInit, AfterViewInit {
 
       })
 
-      console.log(this.pedidos)
-
       this.dataSource = new MatTableDataSource<any>(this.pedidos);
       this.dataSource.paginator = this.paginator
   }
 
   filtroPorCosto(){
+
+    let costoInicio: any = this.formulario_costos.value.costo_desde;
+    if(this.formulario_costos.value.costo_desde == 0){
+      costoInicio = 0
+    }
+    let costoFin: any = this.formulario_costos.value.costo_hasta;
+    if(this.formulario_costos.value.costo_hasta == 0){
+      costoFin = 10000000000;
+    }
+    this.pedidos =  this.pedidos.filter(
+      (item: { total: any; }) => {
+      return (
+        (!costoInicio || item.total >= costoInicio) &&
+        (!costoFin || item.total <= costoFin)
+      );
+
+      })
+
+      this.dataSource = new MatTableDataSource<any>(this.pedidos);
+      this.dataSource.paginator = this.paginator
+
 
   }
 
