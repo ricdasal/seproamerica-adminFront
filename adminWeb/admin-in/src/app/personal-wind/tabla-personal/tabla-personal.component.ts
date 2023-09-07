@@ -103,6 +103,7 @@ export class TablaPersonalComponent implements OnInit, AfterViewInit {
         this.lista_personal = []; 
         this.lista_personal = this.lista_personal.concat(data);
         this.dataSource = new MatTableDataSource<any>(this.lista_personal);
+        this.dataSource.paginator = this.paginator;
       }
     })  
   }

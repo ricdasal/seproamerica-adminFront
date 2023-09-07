@@ -66,6 +66,8 @@ export class RecursosVehiculosComponent implements OnInit {
         next: (data)=>{
           this.VehiculoList = this.VehiculoList.concat(data);
           console.log(this.VehiculoList);
+          this.dataSource = new MatTableDataSource<any>(this.VehiculoList);
+          this.dataSource.paginator = this.paginator;
         }
       })
     }

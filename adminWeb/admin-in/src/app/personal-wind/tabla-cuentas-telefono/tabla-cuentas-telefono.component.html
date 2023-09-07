@@ -2,7 +2,7 @@
 
   <button mat-flat-button class="botones" type="button" (click)="crearCuenta()">Crear Cuentas</button><br>
     
-    <table mat-table [dataSource]="lista_cuentas" class="mat-elevation-z8" #tabla1>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" #tabla1>
   
       <ng-container matColumnDef="Id">
         <th mat-header-cell *matHeaderCellDef style="text-align:center;"> Id </th>

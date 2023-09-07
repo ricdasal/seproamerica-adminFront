@@ -72,10 +72,11 @@ export class RecursosArmasComponent implements OnInit{
         next: (data)=>{
           this.ArmamentoList = this.ArmamentoList.concat(data);
           console.log(this.ArmamentoList);
+          this.dataSource = new MatTableDataSource<any>(this.ArmamentoList);
+          this.dataSource.paginator = this.paginator;
         }
       })
-      this.dataSource = new MatTableDataSource<any>(this.ArmamentoList);
-      this.dataSource.paginator = this.paginator;
+      
 
     }
 

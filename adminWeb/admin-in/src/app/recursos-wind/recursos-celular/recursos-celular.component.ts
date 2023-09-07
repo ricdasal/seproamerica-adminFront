@@ -45,6 +45,8 @@ export class RecursosCelularComponent implements OnInit {
       .subscribe({
         next: (data)=>{
           this.lista_celulares = this.lista_celulares.concat(data);
+          this.dataSource = new MatTableDataSource<any>(this.lista_celulares);
+          this.dataSource.paginator = this.paginator;
         }
       })
   

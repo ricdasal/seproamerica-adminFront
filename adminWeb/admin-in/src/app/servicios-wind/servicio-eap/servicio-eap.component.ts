@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 
 @Component({
@@ -21,6 +23,8 @@ export class ServicioEapComponent implements OnInit {
   lista_pedidos_asignar: Array<any> = [];
 
 
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
   lista_pedidos_en_proceso: Array<any> = []
   columnas: string[] = ['Id','Fecha de solicitud', 'Hora de solicitud','Fecha de servicio','Solicitante', 'Dni del solictante', 'Servicio','Opciones'];
@@ -39,11 +43,14 @@ export class ServicioEapComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_asignar);
+        this.dataSource.paginator = this.paginator;
       }
     })
 
     this.obtenerPedidosFinalizados();
     this.obtenerPedidosReembolsados();
+    
   }
 
   obtenerPedidosEliminados(){
@@ -52,6 +59,8 @@ export class ServicioEapComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_asignar);
+        this.dataSource.paginator = this.paginator;
         
       }
     })
@@ -63,6 +72,8 @@ export class ServicioEapComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_asignar);
+        this.dataSource.paginator = this.paginator;
         
       }
     })
@@ -75,6 +86,8 @@ export class ServicioEapComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_asignar);
+        this.dataSource.paginator = this.paginator;
         
       }
     })
@@ -87,6 +100,8 @@ export class ServicioEapComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_asignar);
+        this.dataSource.paginator = this.paginator;
         
       }
     })
@@ -99,6 +114,8 @@ export class ServicioEapComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_asignar);
+        this.dataSource.paginator = this.paginator;
         
       }
     })

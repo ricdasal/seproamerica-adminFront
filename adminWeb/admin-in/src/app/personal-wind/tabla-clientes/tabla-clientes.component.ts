@@ -45,6 +45,8 @@ export class TablaClientesComponent implements OnInit {
       next: (data) => {
         this.lista_clientes = this.lista_clientes.concat(data);
         console.log(this.lista_clientes);
+        this.dataSource = new MatTableDataSource<any>(this.lista_clientes);
+        this.dataSource.paginator = this.paginator;
 
 
       }

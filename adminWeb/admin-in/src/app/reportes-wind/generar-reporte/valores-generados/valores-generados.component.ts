@@ -99,7 +99,7 @@ export class ValoresGeneradosComponent implements OnInit, AfterViewInit {
   filtroPorCosto(){
 
     let costoInicio: any = this.formulario_costos.value.costo_desde;
-    if(this.formulario_costos.value.costo_desde == 0){
+    if(this.formulario_costos.value.costo_desde < 0){
       costoInicio = 0
     }
     let costoFin: any = this.formulario_costos.value.costo_hasta;

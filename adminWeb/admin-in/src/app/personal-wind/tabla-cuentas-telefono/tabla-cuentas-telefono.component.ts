@@ -41,6 +41,8 @@ export class TablaCuentasTelefonoComponent implements OnInit {
       next: (data)=>{
         this.lista_cuentas = this.lista_cuentas.concat(data);
         console.log(this.lista_cuentas);
+        this.dataSource = new MatTableDataSource<any>(this.lista_cuentas);
+        this.dataSource.paginator = this.paginator;
       } 
     })
   }

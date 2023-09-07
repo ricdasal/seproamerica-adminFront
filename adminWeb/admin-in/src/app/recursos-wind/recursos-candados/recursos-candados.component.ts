@@ -64,6 +64,8 @@ export class RecursosCandadosComponent implements OnInit {
         next: (data)=>{
           this.CandadoList = this.CandadoList.concat(data);
           console.log(this.CandadoList);
+          this.dataSource = new MatTableDataSource<any>(this.CandadoList);
+          this.dataSource.paginator = this.paginator;
         }
       })
     }

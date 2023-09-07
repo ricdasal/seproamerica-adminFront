@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { PedidoModel } from 'src/app/models/pedido.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 @Component({
@@ -29,6 +31,8 @@ export class ServicioPorAsignarComponent implements OnInit {
   lista_pedidos_en_proceso: Array<any> = []
   columnas: string[] = ['Id','Fecha de solicitud', 'Hora de solicitud', 'Fecha de servicio', 'Hora de inicio', 'Solicitante', 'Dni del solictante', 'Servicio','Opciones'];
 
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   constructor(
     private clienteWAService: ClienteWAService,
     ) { }
@@ -46,6 +50,8 @@ export class ServicioPorAsignarComponent implements OnInit {
     .subscribe({
       next: (data: any) => {
         this.lista_pedidos_asignar = this.lista_pedidos_asignar.concat(data);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_asignar);
+        this.dataSource.paginator = this.paginator;
         this.lista_pedidos_asignar.sort(
           (a, b) => {
             const dateA = new Date(a.date_request);

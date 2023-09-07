@@ -1,7 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
 import { MapWindComponent } from '../map-wind/map-wind.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-servicio-en-curso',
@@ -20,6 +22,9 @@ export class ServicioEnCursoComponent implements OnInit {
   lista_pedidos_en_proceso: Array<any> = []
   columnas: string[] = ['Id','Nombre','Apellidos','Servicio', 'Fecha de inicio', 'Hora de inicio','Opciones'];
 
+  dataSource!: MatTableDataSource<any>;
+  @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+
   ngOnInit(): void {
     this.obtenerPedidosEnCurso()
   }
@@ -30,6 +35,8 @@ export class ServicioEnCursoComponent implements OnInit {
       next: (pedidos: any) => {
         console.log(pedidos)
         this.lista_pedidos_en_proceso = this.lista_pedidos_en_proceso.concat(pedidos);
+        this.dataSource = new MatTableDataSource<any>(this.lista_pedidos_en_proceso);
+        this.dataSource.paginator = this.paginator;
 
       }
     })
