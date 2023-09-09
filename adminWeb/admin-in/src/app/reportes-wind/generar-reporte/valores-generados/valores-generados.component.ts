@@ -3,6 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteWAService } from 'src/app/services/cliente-wa.service';
+import pdfMake from 'pdfmake/build/pdfMake';
+import pdfFonts from "pdfmake/build/vfs_fonts";
+pdfMake.vfs =  pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-valores-generados',
@@ -16,6 +19,8 @@ export class ValoresGeneradosComponent implements OnInit, AfterViewInit {
   pedidos:any=[];
 
    columnas: string[] = ['id','client_dni','client_name','date_request', 'service_name', 'start_date', 'start_time','status', 'total'];
+
+   columnasPdf: Array<string> = ['Id', 'Cédula', 'Nombre del cliente', 'Fecha de solicitud', 'Servicio', 'Fecha de inicio', 'Hora de inicio', 'Estado', 'Total']
 
    dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(this.pedidos);
 
@@ -119,6 +124,54 @@ export class ValoresGeneradosComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator = this.paginator
 
 
+  }
+
+  crearPdf(){
+
+    const pdfDefinition: any = {
+      header: [
+        {
+          text: 'Reportes Seproamerica',
+          alignment: 'left',
+        },
+        {
+          text: new Date(),
+          alignment: 'right',
+        },
+      ],
+      content: [
+        { text: 'Valores generados Seproamérica', style: 'header' },
+        {
+          style: 'tableExample',
+          table: {
+            body: [
+              this.columnasPdf,
+            ]
+          }
+        },
+        
+      ],
+      styles: {
+        header: {
+          fontSize: 22,
+          bold: true
+        },
+        tableExample: {
+          margin: [0, 5, 0, 15],
+          alignment: 'center'
+        },
+      },
+      pageOrientation: 'landscape',
+    }
+    // console.log(pdfDefinition.content[1].table.body)
+    for(let pedido of this.pedidos){
+      //['id','client_dni','client_name','date_request', 'service_name', 'start_date', 'start_time','status', 'total'];
+      let elementoBody = [pedido.id, pedido.client_dni, pedido.client_first_name + " " + pedido.client_last_name, pedido.date_request.split('T')[0], pedido.service_name, pedido.start_date, pedido.start_time, pedido.status, pedido.total];
+      pdfDefinition.content[1].table.body.push(elementoBody)
+      console.log(elementoBody);
+    }
+    const pdf = pdfMake.createPdf(pdfDefinition);
+    pdf.open();
   }
 
 }
