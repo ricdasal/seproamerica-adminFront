@@ -43,10 +43,12 @@ import { GenerarReporteComponent } from './reportes-wind/generar-reporte/generar
 import { ServicioAceptadoComponent } from './servicios-wind/servicio-eap/servicio-aceptado/servicio-aceptado.component';
 import { ChatWindComponent } from './mensajeria-wind/chat-wind/chat-wind.component';
 import { ValoresGeneradosComponent } from './reportes-wind/generar-reporte/valores-generados/valores-generados.component';
+import { TermsComponent } from './terms/terms.component';
+import { DeleteAccStepsComponent } from './delete-acc-steps/delete-acc-steps.component';
 
 
 const routes: Routes = [
-  
+
   { path: 'login', 
   component: InicioSesionComponent, pathMatch: 'prefix', canActivate:[NoPermitidoSinSesionActivaGuard]},
   //canActivate:[NoPermitidoSinSesionActivaGuard]},
@@ -158,8 +160,10 @@ const routes: Routes = [
 
   { path: 'mensajeriaVentana', component: MensajeriaWindComponent, pathMatch: 'prefix',
   canActivate:[PermitidoConSesionActivaGuard] },
-  
 
+  { path: 'eliminarCuenta', component: DeleteAccStepsComponent, pathMatch: 'prefix' },
+  
+  { path: 'terminos', component: TermsComponent, pathMatch: 'prefix' },
 
   { path: '', redirectTo: '/login', pathMatch: 'prefix', },
 

@@ -111,6 +111,8 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/aut
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { NewChatWindComponent } from './mensajeria-wind/new-chat-wind/new-chat-wind.component';
 import { ValoresGeneradosComponent } from './reportes-wind/generar-reporte/valores-generados/valores-generados.component';
+import { TermsComponent } from './terms/terms.component';
+import { DeleteAccStepsComponent } from './delete-acc-steps/delete-acc-steps.component';
 
 initializeApp(environment.firebase);
 
@@ -194,7 +196,9 @@ initializeApp(environment.firebase);
     ServicioAceptadoComponent,
     ChatWindComponent,
     NewChatWindComponent,
-    ValoresGeneradosComponent
+    ValoresGeneradosComponent,
+    TermsComponent,
+    DeleteAccStepsComponent
   ],
   imports: [
     BrowserModule,

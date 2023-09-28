@@ -1,0 +1,36 @@
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-div {
+    flex-direction: column;
+}
+
+.header {
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(to bottom, rgb(184, 0, 0), black);
+    margin-bottom: 2%;
+}
+
+.header img {
+    width: 170px;
+}
+
+.terms {
+    flex-direction: column;
+    width: 80%;
+}
+
+.title, .content {
+    font-size: 2rem;
+    margin-bottom: 3%;
+}
+
+.content {
+    font-size: 1.4rem;
+    margin-bottom: 2%;
+    text-align: justify;
+}
